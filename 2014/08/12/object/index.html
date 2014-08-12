@@ -4,20 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>MarkdownPad 2 | anjia</title>
+    <title>js面向对象之对象 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="MarkdownPad 是一款功能丰富的 Markdown 编辑器，兼容 Windows。
-专为 Markdown 而生
-快速感受下 Markdown 的简明语法和快捷键吧！
-小例子：
-
-加粗 (Ctrl+B) 和 斜体 (Ctrl+I)
-引号 (Ctrl+Q)
-代码片段 (Ctrl+K)
-标题 1">
+    <meta name="description" content="理解对象
+ECMAScript 中没有类的概念。ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。
+创建对象的方法。
+早期，最简单的方式就是：先创建一个 Objec">
     
     
     
@@ -81,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/08/07/markdown/" title="MarkdownPad 2" itemprop="url">MarkdownPad 2</a>
+      <a href="/2014/08/12/object/" title="js面向对象之对象" itemprop="url">js面向对象之对象</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-08-07T14:51:30.000Z" itemprop="datePublished">2014-08-07</time>
-    更新日期:<time datetime="2014-08-11T02:09:47.000Z" itemprop="dateModified">2014-08-11</time>
+    <time datetime="2014-08-12T13:26:03.000Z" itemprop="datePublished">2014-08-12</time>
+    更新日期:<time datetime="2014-08-12T15:07:05.000Z" itemprop="dateModified">2014-08-12</time>
     
   </p>
 </header>
@@ -98,48 +93,62 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#专为_Markdown_而生"><span class="toc-number">1.</span> <span class="toc-text">专为 Markdown 而生</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改实时生效，即时预览"><span class="toc-number">2.</span> <span class="toc-text">修改实时生效，即时预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来自己试试"><span class="toc-number">3.</span> <span class="toc-text">来自己试试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为高级_Markdown_用户"><span class="toc-number">4.</span> <span class="toc-text">为高级 Markdown 用户</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解对象"><span class="toc-number">1.</span> <span class="toc-text">理解对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">1.1.</span> <span class="toc-text">属性类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性"><span class="toc-number">1.1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
-		<p><strong>MarkdownPad</strong> 是一款功能丰富的 Markdown 编辑器，兼容 Windows。</p>
-<h2 id="专为_Markdown_而生">专为 Markdown 而生</h2>
-<p>快速感受下 Markdown 的简明语法和快捷键吧！</p>
-<p>小例子：</p>
+		<h2 id="理解对象">理解对象</h2>
+<p>ECMAScript 中没有类的概念。<br>ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”<br>我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。</p>
+<p>创建对象的方法。</p>
+<p>早期，最简单的方式就是：先创建一个 Object 实例，再给它添加属性和方法。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var person = new Object();</div><div class="line">person.name = <span class="string">"anjia"</span>;</div><div class="line"></div><div class="line">person.sayName = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	alert(this.name);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>后来，用对象字面量创建。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var person = {</div><div class="line">	name: <span class="string">"anjia"</span>,</div><div class="line">	sayName: <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	}</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>无论哪种方式，所创建的对象 person 都有相同的属性和方法。<br>这些属性在创建的时候，就带有一些特征值，js 就通过这些特征值来定义它们的行为。</p>
+<h3 id="属性类型">属性类型</h3>
+<p>ECMA-262 定义这些属性特性是为了实现 Javascript 引擎用的，所以在 Javascript 中不能直接访问它们。为了表示特性是内部值，该规范就把它们放在了两对方括号中，eg. [[Enumerable]]。</p>
+<p>ECMAScript 中有两种属性：数据属性和访问器属性。</p>
+<h4 id="数据属性">数据属性</h4>
+<p>数据属性有4个描述其行为的特性：</p>
 <ul>
-<li><strong>加粗</strong> (<code>Ctrl+B</code>) 和 <em>斜体</em> (<code>Ctrl+I</code>)</li>
-<li>引号 (<code>Ctrl+Q</code>)</li>
-<li>代码片段 (<code>Ctrl+K</code>)</li>
-<li>标题 1, 2, 3 (<code>Ctrl+1</code>, <code>Ctrl+2</code>, <code>Ctrl+3</code>)</li>
-<li>列表 (<code>Ctrl+U</code> 和 <code>Ctrl+Shift+O</code>)</li>
+<li>[[Configurable]]：能否被 delete 删除，能否修改其特性。默认 true</li>
+<li>[[Enumerable]]：能否通过 for-in 循环取。默认 true</li>
+<li>[[Writable]]：能否修改属性的值。默认 true</li>
+<li>[[Value]]：存着属性本身的值。默认 undifined</li>
 </ul>
-<h2 id="修改实时生效，即时预览">修改实时生效，即时预览</h2>
-<p>Don’t guess if your <a href="http://markdownpad.com" target="_blank" rel="external">hyperlink syntax</a> is correct; LivePreview will show you exactly what your document looks like every time you press a key.</p>
-<p>不用猜测你的 <a href="">超级链接</a> 是否正确；在线预览将实时地展示信息你键入的信息。</p>
-<h2 id="来自己试试">来自己试试</h2>
-<p>字体、颜色、布局和样式表都是 100% 定制，MarkdownPad 随你便！把它变成你满意的编译器吧。</p>
-<h2 id="为高级_Markdown_用户">为高级 Markdown 用户</h2>
-<p>MarkdownPad supports multiple Markdown processing engines, including standard Markdown, Markdown Extra (with Table support) and GitHub Flavored Markdown.</p>
-<p>With a tabbed document interface, PDF export, a built-in image uploader, session management, spell check, auto-save, syntax highlighting and a built-in CSS management interface, there’s no limit to what you can do with MarkdownPad.</p>
+<p>要修改属性默认的特性，必须使用 ECMAScript 5 的 Object.defineProperty() 方法。但具体实现上，不同浏览器版本中又会有差异。到用到时再细查。</p>
+<p>多数情况下，我们都用不到要修改这些特性，但理解这些概念有助于理解 Javascript 对象。</p>
+<h4 id="访问器属性">访问器属性</h4>
+<p>访问器属性不包含数据值。它们包含一对 getter 和 setter 函数（当然，都不是必需的）。</p>
+<p>访问器属性有如下4个特性。</p>
+<ul>
+<li>[[Configurable]]：能否被 delete 删除，能否修改属性的特性。默认 true</li>
+<li>[[Enumerable]]：能否通过 for-in 循环读取。默认 true</li>
+<li>[[Get]]：读取属性时调用的函数。默认 undifined</li>
+<li>[[Set]]：写入属性时调用的函数。默认 undifined</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用 Object.defineProperty() 来定义。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/markdown/">markdown</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/对象/">对象</a><a href="/tags/js高级程序设计/">js高级程序设计</a><a href="/tags/读书笔记/">读书笔记</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/tool/">tool</a>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/08/07/markdown/" data-title="MarkdownPad 2 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/08/12/object/" data-title="js面向对象之对象 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -149,18 +158,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/08/12/object/" title="js面向对象之对象">
+ <a href="/2014/08/12/createObject/" title="js面向对象之创建对象">
   <strong>上一篇:</strong><br/>
   <span>
-  js面向对象之对象</span>
+  js面向对象之创建对象</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/08/06/hexo/"  title="Hexo">
+<a href="/2014/08/07/markdown/"  title="MarkdownPad 2">
  <strong>下一篇:</strong><br/> 
- <span>Hexo
+ <span>MarkdownPad 2
 </span>
 </a>
 </div>
@@ -173,7 +182,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#专为_Markdown_而生"><span class="toc-number">1.</span> <span class="toc-text">专为 Markdown 而生</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改实时生效，即时预览"><span class="toc-number">2.</span> <span class="toc-text">修改实时生效，即时预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来自己试试"><span class="toc-number">3.</span> <span class="toc-text">来自己试试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为高级_Markdown_用户"><span class="toc-number">4.</span> <span class="toc-text">为高级 Markdown 用户</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解对象"><span class="toc-number">1.</span> <span class="toc-text">理解对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">1.1.</span> <span class="toc-text">属性类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性"><span class="toc-number">1.1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

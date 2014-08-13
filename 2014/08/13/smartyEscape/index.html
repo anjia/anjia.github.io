@@ -4,17 +4,20 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hexo | anjia</title>
+    <title>smarty 中的转义 escape | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="欢迎来到 Hexo！这是你第一次 post。查看 文档 获得更多信息。 当你使用 Hexo 时，碰到任何问题你都可以在这里 troubleshooting 里找到答案。或者，你也可以去 GitHub 上找。
-快速入门
-创建一个新的 post
-1$ hexo new &quot;My new Post&quot;
+    <meta name="description" content="了解它们分别对谁做了什么样的转义。
+smarty 的转义
+可对以下内容进行转义（转码）
 
-更多">
+html   可转义 &amp;amp; “ ‘ &amp;lt; &amp;gt;
+htmlall 可转义 all html entities
+url  可转义 : / ? = &amp;amp; # 汉字
+mail 可转义 @ .
+quo">
     
     
     
@@ -78,15 +81,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/08/06/hexo/" title="Hexo" itemprop="url">Hexo</a>
+      <a href="/2014/08/13/smartyEscape/" title="smarty 中的转义 escape" itemprop="url">smarty 中的转义 escape</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-08-06T05:27:52.000Z" itemprop="datePublished">2014-08-06</time>
-    更新日期:<time datetime="2014-08-11T02:09:43.000Z" itemprop="dateModified">2014-08-11</time>
+    <time datetime="2014-08-13T13:04:41.000Z" itemprop="datePublished">2014-08-13</time>
+    更新日期:<time datetime="2014-08-13T14:15:30.000Z" itemprop="dateModified">2014-08-13</time>
     
   </p>
 </header>
@@ -95,47 +98,65 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个新的_post"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个新的 post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务"><span class="toc-number">1.2.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态文件"><span class="toc-number">1.3.</span> <span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_到远程的网站"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy 到远程的网站</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#smarty_的转义"><span class="toc-number">1.</span> <span class="toc-text">smarty 的转义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘html’"><span class="toc-number">1.1.</span> <span class="toc-text">escape: ‘html’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘url’"><span class="toc-number">1.2.</span> <span class="toc-text">escape: ‘url’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘javascript’"><span class="toc-number">1.3.</span> <span class="toc-text">escape: ‘javascript’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘mail’"><span class="toc-number">1.4.</span> <span class="toc-text">escape: ‘mail’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘quotes’"><span class="toc-number">1.5.</span> <span class="toc-text">escape: ‘quotes’</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双引号串_vs-_单引号串"><span class="toc-number">2.</span> <span class="toc-text">双引号串 vs. 单引号串</span></a></li></ol>
 		</div>
 		
-		<p>欢迎来到 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>！这是你第一次 post。查看 <a href="http://hexo.io/docs/" target="_blank" rel="external">文档</a> 获得更多信息。 当你使用 Hexo 时，碰到任何问题你都可以在这里 <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> 里找到答案。或者，你也可以去 <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a> 上找。</p>
-<h2 id="快速入门">快速入门</h2>
-<h3 id="创建一个新的_post">创建一个新的 post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My new Post"</span></div></pre></td></tr></table></figure>
-
-<p>更多信息： <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="启动服务">启动服务</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="生成静态文件">生成静态文件</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_到远程的网站">Deploy 到远程的网站</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<p>了解它们分别对谁做了什么样的转义。</p>
+<h2 id="smarty_的转义">smarty 的转义</h2>
+<p>可对以下内容进行转义（转码）</p>
+<ol>
+<li>html   可转义 &amp; “ ‘ &lt; &gt;</li>
+<li>htmlall 可转义 all html entities</li>
+<li>url  可转义 : / ? = &amp; # 汉字</li>
+<li>mail 可转义 @ .</li>
+<li>quotes</li>
+<li>hex 十六进制</li>
+<li>hexentity 十六进制实体</li>
+<li>javascript</li>
+</ol>
+<p>参考 smarty3 手册：<a href="http://www.php100.com/manual/smarty3/language.modifier.escape.html" target="_blank" rel="external">http://www.php100.com/manual/smarty3/language.modifier.escape.html</a></p>
+<h3 id="escape:_‘html’">escape: ‘html’</h3>
+<p>它会对以下5个字符进行转义 &amp; “ ‘ &lt; &gt;<br>会分别转义成 HTML 中对应的转义字符（&amp;  “  ‘  &lt;  &gt;），以保证在页面上能正常显示。如下：<br><img src="http://blogkiki.qiniudn.com/pic-1.png" alt="image"><br>感觉前两天脑袋掉进一个深坑里了，不，不是深坑，是一个浅坑的拐角了，死都想不明白下面的 case。而且得出了这样的测试结论：</p>
+<ul>
+<li>当&lt;后跟的是英文字母（不论大小写）时，若直接输出，则会导致后面内容的缺失</li>
+<li>当&lt;后跟的是空格、数字、汉字等时，直接输出，则可显示正常</li>
+</ul>
+<p>我的 case 是这样的：<br><img src="http://blogkiki.qiniudn.com/pic2.png" alt="image"><br>靠！刚才写到这里的时候，简直是秒懂了。只能说明之前脑袋瓜档机是真的。原因：是因为我是在 smarty 中输出 然后直接显示在网页里的。所以究其原因不在于 escape:’html’ 时做了什么诡异的事情，而在于浏览器在解析 HTML 页面时碰到&lt;会怎么处理。</p>
+<h3 id="escape:_‘url’">escape: ‘url’</h3>
+<p>其中对以下7处进行转义：<br><img src="http://blogkiki.qiniudn.com/pic3.png" alt="image"><br>而对英文字母数字点号 则原样保留<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic4.png" alt="image"></p>
+<h3 id="escape:_‘javascript’">escape: ‘javascript’</h3>
+<p>如果有个变量要在 js 中使用，则需要对其进行 javascript 转义</p>
+<h3 id="escape:_‘mail’">escape: ‘mail’</h3>
+<p>会对 @ . 这两个字符进行转义</p>
+<ul>
+<li>@  [AT]</li>
+<li>.  [DOT]</li>
+</ul>
+<p>举例：<br><img src="http://blogkiki.qiniudn.com/pic5.png" alt="image"></p>
+<h3 id="escape:_‘quotes’">escape: ‘quotes’</h3>
+<p>会对单引号进行转义，把 ‘ 变成  \’<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic6.png" alt="image"><br>对单引号串没有转义的原因，在于单引号串和双引号串的区别。详见下方。</p>
+<h2 id="双引号串_vs-_单引号串">双引号串 vs. 单引号串</h2>
+<p>在 php（smarty 同理）中，双引号串中的内容可以被解释被替换，而单引号串中的内容总被认为是普通字符。<br>所以，当想在字符串中进行 变量代换 和 包含\n(\t \r \n)等转义序列时，应该使用双引号。比如：<br><img src="http://blogkiki.qiniudn.com/pic7.png" alt="image"><br>在脚本中，<br>处理单引号串更快些，因为语法分析器会很单纯地处理单引号串<br>处理双引号串会慢些，因为会对其内部的东东进行解析</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hexo/">hexo</a>
+  <span></span> <a href="/tags/smarty/">smarty</a><a href="/tags/转义/">转义</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/tool/">tool</a>
+  <a class="article-category-link" href="/categories/后端/">后端</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/08/06/hexo/" data-title="Hexo | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/08/13/smartyEscape/" data-title="smarty 中的转义 escape | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -144,14 +165,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/08/07/markdown/" title="MarkdownPad 2">
-  <strong>上一篇:</strong><br/>
-  <span>
-  MarkdownPad 2</span>
+
+<div class="next">
+<a href="/2014/08/13/webCode/"  title="编码方式 ASCII, Unicode, UTF-8, GBK">
+ <strong>下一篇:</strong><br/> 
+ <span>编码方式 ASCII, Unicode, UTF-8, GBK
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -161,7 +182,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个新的_post"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个新的 post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务"><span class="toc-number">1.2.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态文件"><span class="toc-number">1.3.</span> <span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_到远程的网站"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy 到远程的网站</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#smarty_的转义"><span class="toc-number">1.</span> <span class="toc-text">smarty 的转义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘html’"><span class="toc-number">1.1.</span> <span class="toc-text">escape: ‘html’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘url’"><span class="toc-number">1.2.</span> <span class="toc-text">escape: ‘url’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘javascript’"><span class="toc-number">1.3.</span> <span class="toc-text">escape: ‘javascript’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘mail’"><span class="toc-number">1.4.</span> <span class="toc-text">escape: ‘mail’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#escape:_‘quotes’"><span class="toc-number">1.5.</span> <span class="toc-text">escape: ‘quotes’</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双引号串_vs-_单引号串"><span class="toc-number">2.</span> <span class="toc-text">双引号串 vs. 单引号串</span></a></li></ol>
   </div>
 
 <div id="asidepart">

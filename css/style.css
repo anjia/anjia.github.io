@@ -985,6 +985,9 @@ article .article-content figure img {
     padding-top: 0.7em;
   }
 }
+article .article-content img {
+  margin: 0;
+}
 article .article-content figcaption,
 article .article-content .caption {
   text-align: center;

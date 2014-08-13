@@ -4,17 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hexo | anjia</title>
+    <title>js面向对象之创建对象 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="欢迎来到 Hexo！这是你第一次 post。查看 文档 获得更多信息。 当你使用 Hexo 时，碰到任何问题你都可以在这里 troubleshooting 里找到答案。或者，你也可以去 GitHub 上找。
-快速入门
-创建一个新的 post
-1$ hexo new &quot;My new Post&quot;
+    <meta name="description" content="创建对象
+想记录这节笔记的原因有三：
 
-更多">
+后知后觉：早在 2011年10月左右，实验室的周神就曾组织大家去学习 js 的这些，并进行了两次组内分享。那时是我第一次接触到 js 中的面向对象机制。但也仅仅是参与了分享上的讨论（说是讨论，更确切的讲是他讲我们听，他提问我们互动回答-记得他当时还夸我反应挺快">
     
     
     
@@ -78,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/08/06/hexo/" title="Hexo" itemprop="url">Hexo</a>
+      <a href="/2014/08/12/jsCreateObject/" title="js面向对象之创建对象" itemprop="url">js面向对象之创建对象</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-08-06T05:27:52.000Z" itemprop="datePublished">2014-08-06</time>
-    更新日期:<time datetime="2014-08-11T02:09:43.000Z" itemprop="dateModified">2014-08-11</time>
+    <time datetime="2014-08-12T13:26:17.000Z" itemprop="datePublished">2014-08-12</time>
+    更新日期:<time datetime="2014-08-12T15:07:06.000Z" itemprop="dateModified">2014-08-12</time>
     
   </p>
 </header>
@@ -95,47 +93,52 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个新的_post"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个新的 post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务"><span class="toc-number">1.2.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态文件"><span class="toc-number">1.3.</span> <span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_到远程的网站"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy 到远程的网站</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-number">1.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#起初的两种简单的方式"><span class="toc-number">1.1.</span> <span class="toc-text">起初的两种简单的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-number">1.3.</span> <span class="toc-text">构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">1.4.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合构造函数+原型"><span class="toc-number">1.5.</span> <span class="toc-text">组合构造函数+原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态原型模式"><span class="toc-number">1.6.</span> <span class="toc-text">动态原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生构造函数模式"><span class="toc-number">1.7.</span> <span class="toc-text">寄生构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稳妥构造函数模式"><span class="toc-number">1.8.</span> <span class="toc-text">稳妥构造函数模式</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>欢迎来到 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>！这是你第一次 post。查看 <a href="http://hexo.io/docs/" target="_blank" rel="external">文档</a> 获得更多信息。 当你使用 Hexo 时，碰到任何问题你都可以在这里 <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> 里找到答案。或者，你也可以去 <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a> 上找。</p>
-<h2 id="快速入门">快速入门</h2>
-<h3 id="创建一个新的_post">创建一个新的 post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My new Post"</span></div></pre></td></tr></table></figure>
-
-<p>更多信息： <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="启动服务">启动服务</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="生成静态文件">生成静态文件</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_到远程的网站">Deploy 到远程的网站</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>更多信息: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<h2 id="创建对象">创建对象</h2>
+<p>想记录这节笔记的原因有三：</p>
+<ul>
+<li>后知后觉：早在 2011年10月左右，实验室的周神就曾组织大家去学习 js 的这些，并进行了两次组内分享。那时是我第一次接触到 js 中的面向对象机制。但也仅仅是参与了分享上的讨论（说是讨论，更确切的讲是他讲我们听，他提问我们互动回答-记得他当时还夸我反应挺快来着），后来在项目的编码中也没有实际的用到。第二次是在 2012年10月毕业找工作时，看了些，但之后也没用起来。第三次就是现在了，工作一年后，发现自己真正用 js 的这些特性去好好的面向对象，次数超级无敌少。才发觉自己的山寨和业余，于是便决定好好做人，理论与实践相结合去全身心体会 js 的关键特性们。</li>
+<li>感慨与惊叹：虽不是第一次接触这几种听起来白富美的xxx模式，但每次看到的时候，都被它们的 “a 解决了xx问题，但又存在xx问题。于是b就诞生了” 的这种环环相扣的递进魅力所吸引。所以，这次我要把它们都记录下来，以提醒自己要以解决问题为驱动去理解知识，以及工具从没好坏它只有自己的适用范围。</li>
+<li>我那该死的倔强：之前我就知道这是 js 很重要的一个特性，但从没真正碰到过要做一个东西去用它，所以也就从没认认真真地去学习它消化它。而这次，用到了，所以决定好好学下。告诫自己：不要因为没实际用到就不静下心来去学重要的东西，尤其是工作以后。因为工作一年了，我发现，其实有些东西你不自己深入学下去的话，平时的工作也是可以完成的，合格的。如果我还把自己的这份倔强当做是性格的话，那n年之后，我一定还是在原地踏步踏，不进则使劲退。要学会并适应这种有备无患地处理重要但不紧急的事情。</li>
+</ul>
+<h3 id="起初的两种简单的方式">起初的两种简单的方式</h3>
+<p>Object构造函数</p>
+<p>字面量</p>
+<p>会有问题1：若要用同一个接口去创建很多对象时，就会产生大量的重复代码。</p>
+<p>为解决这一“创建多个相似对象”问题，可使用工厂模式的变体。</p>
+<h3 id="工厂模式">工厂模式</h3>
+<p>会有问题2：不能识别一个对象的类型。</p>
+<p>随着 js 的发展，又出现了一种新模式：构造函数</p>
+<h3 id="构造函数模式">构造函数模式</h3>
+<p>问题3：</p>
+<h3 id="原型模式">原型模式</h3>
+<h3 id="组合构造函数+原型">组合构造函数+原型</h3>
+<h3 id="动态原型模式">动态原型模式</h3>
+<h3 id="寄生构造函数模式">寄生构造函数模式</h3>
+<h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
+<p>ps：太晚了，明天再继续补充….</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hexo/">hexo</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/对象/">对象</a><a href="/tags/js高级程序设计/">js高级程序设计</a><a href="/tags/读书笔记/">读书笔记</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/tool/">tool</a>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/08/06/hexo/" data-title="Hexo | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/08/12/jsCreateObject/" data-title="js面向对象之创建对象 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -145,13 +148,21 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/08/07/markdown/" title="MarkdownPad 2">
+ <a href="/2014/08/13/webUrl/" title="URL 回车后发生了什么？">
   <strong>上一篇:</strong><br/>
   <span>
-  MarkdownPad 2</span>
+  URL 回车后发生了什么？</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2014/08/12/jsObject/"  title="js面向对象之对象">
+ <strong>下一篇:</strong><br/> 
+ <span>js面向对象之对象
+</span>
+</a>
+</div>
 
 </nav>
 
@@ -161,7 +172,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个新的_post"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个新的 post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务"><span class="toc-number">1.2.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态文件"><span class="toc-number">1.3.</span> <span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_到远程的网站"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy 到远程的网站</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-number">1.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#起初的两种简单的方式"><span class="toc-number">1.1.</span> <span class="toc-text">起初的两种简单的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-number">1.3.</span> <span class="toc-text">构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">1.4.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合构造函数+原型"><span class="toc-number">1.5.</span> <span class="toc-text">组合构造函数+原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态原型模式"><span class="toc-number">1.6.</span> <span class="toc-text">动态原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生构造函数模式"><span class="toc-number">1.7.</span> <span class="toc-text">寄生构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稳妥构造函数模式"><span class="toc-number">1.8.</span> <span class="toc-text">稳妥构造函数模式</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>js面向对象之创建对象 | anjia</title>
+    <title>js面向对象之对象 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="创建对象
-想记录这节笔记的原因有三：
-
-后知后觉：早在 2011年10月左右，实验室的周神就曾组织大家去学习 js 的这些，并进行了两次组内分享。那时是我第一次接触到 js 中的面向对象机制。但也仅仅是参与了分享上的讨论（说是讨论，更确切的讲是他讲我们听，他提问我们互动回答-记得他当时还夸我反应挺快">
+    <meta name="description" content="理解对象
+ECMAScript 中没有类的概念。ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。
+创建对象的方法。
+早期，最简单的方式就是：先创建一个 Objec">
     
     
     
@@ -76,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/08/12/createObject/" title="js面向对象之创建对象" itemprop="url">js面向对象之创建对象</a>
+      <a href="/2014/08/12/jsObject/" title="js面向对象之对象" itemprop="url">js面向对象之对象</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-08-12T13:26:17.000Z" itemprop="datePublished">2014-08-12</time>
-    更新日期:<time datetime="2014-08-12T15:07:06.000Z" itemprop="dateModified">2014-08-12</time>
+    <time datetime="2014-08-12T13:26:03.000Z" itemprop="datePublished">2014-08-12</time>
+    更新日期:<time datetime="2014-08-12T15:07:05.000Z" itemprop="dateModified">2014-08-12</time>
     
   </p>
 </header>
@@ -93,32 +93,42 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-number">1.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#起初的两种简单的方式"><span class="toc-number">1.1.</span> <span class="toc-text">起初的两种简单的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-number">1.3.</span> <span class="toc-text">构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">1.4.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合构造函数+原型"><span class="toc-number">1.5.</span> <span class="toc-text">组合构造函数+原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态原型模式"><span class="toc-number">1.6.</span> <span class="toc-text">动态原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生构造函数模式"><span class="toc-number">1.7.</span> <span class="toc-text">寄生构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稳妥构造函数模式"><span class="toc-number">1.8.</span> <span class="toc-text">稳妥构造函数模式</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解对象"><span class="toc-number">1.</span> <span class="toc-text">理解对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">1.1.</span> <span class="toc-text">属性类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性"><span class="toc-number">1.1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
-		<h2 id="创建对象">创建对象</h2>
-<p>想记录这节笔记的原因有三：</p>
+		<h2 id="理解对象">理解对象</h2>
+<p>ECMAScript 中没有类的概念。<br>ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”<br>我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。</p>
+<p>创建对象的方法。</p>
+<p>早期，最简单的方式就是：先创建一个 Object 实例，再给它添加属性和方法。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var person = new Object();</div><div class="line">person.name = <span class="string">"anjia"</span>;</div><div class="line"></div><div class="line">person.sayName = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	alert(this.name);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>后来，用对象字面量创建。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var person = {</div><div class="line">	name: <span class="string">"anjia"</span>,</div><div class="line">	sayName: <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	}</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>无论哪种方式，所创建的对象 person 都有相同的属性和方法。<br>这些属性在创建的时候，就带有一些特征值，js 就通过这些特征值来定义它们的行为。</p>
+<h3 id="属性类型">属性类型</h3>
+<p>ECMA-262 定义这些属性特性是为了实现 Javascript 引擎用的，所以在 Javascript 中不能直接访问它们。为了表示特性是内部值，该规范就把它们放在了两对方括号中，eg. [[Enumerable]]。</p>
+<p>ECMAScript 中有两种属性：数据属性和访问器属性。</p>
+<h4 id="数据属性">数据属性</h4>
+<p>数据属性有4个描述其行为的特性：</p>
 <ul>
-<li>后知后觉：早在 2011年10月左右，实验室的周神就曾组织大家去学习 js 的这些，并进行了两次组内分享。那时是我第一次接触到 js 中的面向对象机制。但也仅仅是参与了分享上的讨论（说是讨论，更确切的讲是他讲我们听，他提问我们互动回答-记得他当时还夸我反应挺快来着），后来在项目的编码中也没有实际的用到。第二次是在 2012年10月毕业找工作时，看了些，但之后也没用起来。第三次就是现在了，工作一年后，发现自己真正用 js 的这些特性去好好的面向对象，次数超级无敌少。才发觉自己的山寨和业余，于是便决定好好做人，理论与实践相结合去全身心体会 js 的关键特性们。</li>
-<li>感慨与惊叹：虽不是第一次接触这几种听起来白富美的xxx模式，但每次看到的时候，都被它们的 “a 解决了xx问题，但又存在xx问题。于是b就诞生了” 的这种环环相扣的递进魅力所吸引。所以，这次我要把它们都记录下来，以提醒自己要以解决问题为驱动去理解知识，以及工具从没好坏它只有自己的适用范围。</li>
-<li>我那该死的倔强：之前我就知道这是 js 很重要的一个特性，但从没真正碰到过要做一个东西去用它，所以也就从没认认真真地去学习它消化它。而这次，用到了，所以决定好好学下。告诫自己：不要因为没实际用到就不静下心来去学重要的东西，尤其是工作以后。因为工作一年了，我发现，其实有些东西你不自己深入学下去的话，平时的工作也是可以完成的，合格的。如果我还把自己的这份倔强当做是性格的话，那n年之后，我一定还是在原地踏步踏，不进则使劲退。要学会并适应这种有备无患地处理重要但不紧急的事情。</li>
+<li>[[Configurable]]：能否被 delete 删除，能否修改其特性。默认 true</li>
+<li>[[Enumerable]]：能否通过 for-in 循环取。默认 true</li>
+<li>[[Writable]]：能否修改属性的值。默认 true</li>
+<li>[[Value]]：存着属性本身的值。默认 undifined</li>
 </ul>
-<h3 id="起初的两种简单的方式">起初的两种简单的方式</h3>
-<p>Object构造函数</p>
-<p>字面量</p>
-<p>会有问题1：若要用同一个接口去创建很多对象时，就会产生大量的重复代码。</p>
-<p>为解决这一“创建多个相似对象”问题，可使用工厂模式的变体。</p>
-<h3 id="工厂模式">工厂模式</h3>
-<p>会有问题2：不能识别一个对象的类型。</p>
-<p>随着 js 的发展，又出现了一种新模式：构造函数</p>
-<h3 id="构造函数模式">构造函数模式</h3>
-<p>问题3：</p>
-<h3 id="原型模式">原型模式</h3>
-<h3 id="组合构造函数+原型">组合构造函数+原型</h3>
-<h3 id="动态原型模式">动态原型模式</h3>
-<h3 id="寄生构造函数模式">寄生构造函数模式</h3>
-<h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
-<p>ps：太晚了，明天再继续补充….</p>
+<p>要修改属性默认的特性，必须使用 ECMAScript 5 的 Object.defineProperty() 方法。但具体实现上，不同浏览器版本中又会有差异。到用到时再细查。</p>
+<p>多数情况下，我们都用不到要修改这些特性，但理解这些概念有助于理解 Javascript 对象。</p>
+<h4 id="访问器属性">访问器属性</h4>
+<p>访问器属性不包含数据值。它们包含一对 getter 和 setter 函数（当然，都不是必需的）。</p>
+<p>访问器属性有如下4个特性。</p>
+<ul>
+<li>[[Configurable]]：能否被 delete 删除，能否修改属性的特性。默认 true</li>
+<li>[[Enumerable]]：能否通过 for-in 循环读取。默认 true</li>
+<li>[[Get]]：读取属性时调用的函数。默认 undifined</li>
+<li>[[Set]]：写入属性时调用的函数。默认 undifined</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用 Object.defineProperty() 来定义。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -138,7 +148,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/08/12/createObject/" data-title="js面向对象之创建对象 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/08/12/jsObject/" data-title="js面向对象之对象 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -147,11 +157,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2014/08/12/jsCreateObject/" title="js面向对象之创建对象">
+  <strong>上一篇:</strong><br/>
+  <span>
+  js面向对象之创建对象</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2014/08/12/object/"  title="js面向对象之对象">
+<a href="/2014/08/07/markdown/"  title="MarkdownPad 2">
  <strong>下一篇:</strong><br/> 
- <span>js面向对象之对象
+ <span>MarkdownPad 2
 </span>
 </a>
 </div>
@@ -164,7 +182,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-number">1.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#起初的两种简单的方式"><span class="toc-number">1.1.</span> <span class="toc-text">起初的两种简单的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-number">1.3.</span> <span class="toc-text">构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">1.4.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合构造函数+原型"><span class="toc-number">1.5.</span> <span class="toc-text">组合构造函数+原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态原型模式"><span class="toc-number">1.6.</span> <span class="toc-text">动态原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生构造函数模式"><span class="toc-number">1.7.</span> <span class="toc-text">寄生构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稳妥构造函数模式"><span class="toc-number">1.8.</span> <span class="toc-text">稳妥构造函数模式</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解对象"><span class="toc-number">1.</span> <span class="toc-text">理解对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">1.1.</span> <span class="toc-text">属性类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性"><span class="toc-number">1.1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -176,9 +194,13 @@
 	<p class="asidetitle">分类目录</p>
 		<ul>
 		
+			<li><a href="/categories/Web/" title="Web">Web<sup>2</sup></a></li>
+		
 			<li><a href="/categories/javascript/" title="javascript">javascript<sup>2</sup></a></li>
 		
 			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		
+			<li><a href="/categories/后端/" title="后端">后端<sup>1</sup></a></li>
 		
 		</ul>
 </div>
@@ -187,7 +209,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">7</span></li></ul>
   </div>
 
 
@@ -195,7 +217,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 20.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/对象/" style="font-size: 20.00px;">对象</a><a href="/tags/读书笔记/" style="font-size: 20.00px;">读书笔记</a>
+       <a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 20.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/smarty/" style="font-size: 10.00px;">smarty</a><a href="/tags/web/" style="font-size: 20.00px;">web</a><a href="/tags/对象/" style="font-size: 20.00px;">对象</a><a href="/tags/读书笔记/" style="font-size: 20.00px;">读书笔记</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 

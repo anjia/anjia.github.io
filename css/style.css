@@ -783,7 +783,7 @@ body {
   clear: both;
 }
 .article-footer a {
-  color: #333;
+  color: #999;
   text-decoration: none;
 }
 .article-footer a:hover {
@@ -1166,7 +1166,7 @@ body {
   background: #262a30;
   padding: 15px 0;
   border-top: 1px solid #ddd;
-  color: #333;
+  color: #999;
 }
 #footer a {
   color: #c00;

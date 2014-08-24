@@ -43,6 +43,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jsPrototype" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/08/24/jsPrototype/" class="article-date">
+  <time datetime="2014-08-24T13:47:45.000Z" itemprop="datePublished">2014-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/08/24/jsPrototype/">js 的原型对象 prototype</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ECMAScript 中的原型对象</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="t8643ghexrltjbxm" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-jsCreateObject" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/08/12/jsCreateObject/" class="article-date">
@@ -61,7 +104,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/12/jsCreateObject/">js面向对象之创建对象</a>
+      <a class="article-title" href="/2014/08/12/jsCreateObject/">js 面向对象_2_创建对象</a>
     </h1>
   
 
@@ -69,34 +112,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="创建对象">创建对象</h2>
-<p>想记录这节笔记的原因有三：</p>
+        <p>想记录这节笔记的原因有三：</p>
 <ul>
 <li>后知后觉：早在 2011年10月左右，实验室的周神就曾组织大家去学习 js 的这些，并进行了两次组内分享。那时是我第一次接触到 js 中的面向对象机制。但也仅仅是参与了分享上的讨论（说是讨论，更确切的讲是他讲我们听，他提问我们互动回答-记得他当时还夸我反应挺快来着），后来在项目的编码中也没有实际的用到。第二次是在 2012年10月毕业找工作时，看了些，但之后也没用起来。第三次就是现在了，工作一年后，发现自己真正用 js 的这些特性去好好的面向对象，次数超级无敌少。才发觉自己的山寨和业余，于是便决定好好做人，理论与实践相结合去全身心体会 js 的关键特性们。</li>
 <li>感慨与惊叹：虽不是第一次接触这几种听起来白富美的xxx模式，但每次看到的时候，都被它们的 “a 解决了xx问题，但又存在xx问题。于是b就诞生了” 的这种环环相扣的递进魅力所吸引。所以，这次我要把它们都记录下来，以提醒自己要以解决问题为驱动去理解知识，以及工具从没好坏它只有自己的适用范围。</li>
 <li>我那该死的倔强：之前我就知道这是 js 很重要的一个特性，但从没真正碰到过要做一个东西去用它，所以也就从没认认真真地去学习它消化它。而这次，用到了，所以决定好好学下。告诫自己：不要因为没实际用到就不静下心来去学重要的东西，尤其是工作以后。因为工作一年了，我发现，其实有些东西你不自己深入学下去的话，平时的工作也是可以完成的，合格的。如果我还把自己的这份倔强当做是性格的话，那n年之后，我一定还是在原地踏步踏，不进则使劲退。要学会并适应这种有备无患地处理重要但不紧急的事情。</li>
 </ul>
-<h3 id="起初的两种简单的方式">起初的两种简单的方式</h3>
-<p>Object构造函数</p>
-<p>字面量</p>
-<p>会有问题1：若要用同一个接口去创建很多对象时，就会产生大量的重复代码。</p>
-<p>为解决这一“创建多个相似对象”问题，可使用工厂模式的变体。</p>
-<h3 id="工厂模式">工厂模式</h3>
-<p>会有问题2：不能识别一个对象的类型。</p>
-<p>随着 js 的发展，又出现了一种新模式：构造函数</p>
-<h3 id="构造函数模式">构造函数模式</h3>
-<p>问题3：</p>
-<h3 id="原型模式">原型模式</h3>
-<h3 id="组合构造函数+原型">组合构造函数+原型</h3>
-<h3 id="动态原型模式">动态原型模式</h3>
-<h3 id="寄生构造函数模式">寄生构造函数模式</h3>
-<h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
-<p>ps：太晚了，明天再继续补充….</p>
+<h2 id="创建单个对象">创建单个对象</h2>
+<p>1、Object 构造函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var person = new Object();</div><div class="line">person.name = <span class="string">"anjia"</span>;</div><div class="line">person.age = <span class="number">26</span>;</div><div class="line">person.sayName = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	alert(this.name);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>2、字面量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var person = {</div><div class="line">	name: <span class="string">"anjia"</span>,</div><div class="line">	age: <span class="number">26</span>,</div><div class="line">	sayName: <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	}</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p><b>问题 1：若要用这同一个接口去创建很多对象，会产生大量的重复代码。</b><br>解决：为解决这一“创建多个相似对象”问题，可使用工厂模式的变体。</p>
+<h2 id="工厂模式">工厂模式</h2>
+<p>由于 ECMAScript 无法创建类，所以就用函数去封装用特定接口去创建对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function createPerson(name, age){</div><div class="line">	var o = new Object();</div><div class="line">	o.name = <span class="string">"anjia"</span>;</div><div class="line">	o.age = <span class="number">26</span>;</div><div class="line">	o.sayName = <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	};</div><div class="line">	<span class="keyword">return</span> o;</div><div class="line">}</div><div class="line"></div><div class="line">var person1 = createPerson(<span class="string">"Lily"</span>, <span class="number">20</span>);</div><div class="line">var person2 = createPerson(<span class="string">"David"</span>, <span class="number">29</span>);</div></pre></td></tr></table></figure>
+
+<p>函数 createPerson() 据形参构建一个包含必要信息的对象，我们可以无数次调用该函数，它每次都会返回包含两个属性一个方法的对象。</p>
+<p><b>问题 2：工厂模式没办法知道一个对象的类型</b><br>解决：随着 js 的发展，出现了构造函数模式</p>
+<h2 id="构造函数模式">构造函数模式</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person(name, age){</div><div class="line">	this.name = name;</div><div class="line">	this.age = age;</div><div class="line">	this.sayName = <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	};</div><div class="line">}</div><div class="line"></div><div class="line">var person1 = new Person(<span class="string">"Lily"</span>, <span class="number">20</span>);</div><div class="line">var person2 = new Person(<span class="string">"David"</span>, <span class="number">29</span>);</div></pre></td></tr></table></figure>
+
+<p>与工厂模式相比，除了用 Person() 函数取代了 createPerson() 之外，在 Person() 内部还有以下不同：<br>（1）没有显示地创建对象；<br>（2）直接将属性和方法赋给了 this 对象；<br>（3）没有 return 语句；<br>此外，函数名 Person 首字母大写（按惯例，构造函数与非构造函数的命名规则）。</p>
+<p>用构造函数去创建一个 Person 实例，必须使用 new 操作符。用 new 去调用构造函数会经历以下4个步骤：<br>（1）创建一个新对象<br>（2）让渡作用域：构造函数的作用域赋给新的对象，此时 this 就指向了这个新对象 【这个是关键，用 new 操作符】<br>（3）给新对象添加属性和方法<br>（4）返回新对象</p>
+<p>此处，person1 和 person2 分别保存着 Person 的一个不同实例。这两对象中都有一个属性 constructor，指向了 Person。即：<br>person1.constructor == Person   // true<br>person2.constructor == Person   // true</p>
+<p>对象的 constructor 属性最初是用来标识对象的类型的。但是提到检测对象类型，还是用 instanceof 操作符更可靠些。即<br>alert(person1 instanceof Object);  // true<br>alert(person1 instanceof Person);  // true</p>
+<p>构造函数与其他函数的唯一区别，在于调用它们的方式不同。不过呢，构造函数本质上就是个好函数，所以不存在定义构造函数的特殊语法。任何函数只要通过 new 操作符来调用，那它就可以作为构造函数；相对应，任何构造函数如果不通过 new 去调用，那它和普通的函数也没啥不同。</p>
+<p>构造函数胜过工厂模式的地方，即可以将它的实例标识为一种特定的类型。构造函数虽然好用，但它也是有问题的，就是每个方法都要在每个实例上重新创建一遍。但是嘞，创建两个完成同样任务的 function 实例确实是没有必要。来看：<br>alert(person1.sayName == person2.sayName);   // false</p>
+<p><b>问题3：每个方法都要在每个实例上重新创建一遍。</b><br>解决：我们完全可以把函数定义转移到构造函数外部来解决重复的问题，即：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">funtion Person(name, age){</div><div class="line">	this.name = name;</div><div class="line">	this.age = age;</div><div class="line">	this.sayName = sayName;</div><div class="line">}</div><div class="line"></div><div class="line">function <span class="function"><span class="title">sayName</span></span>(){</div><div class="line">	alert(this.name);</div><div class="line">}</div><div class="line"></div><div class="line">var person1 = new Person(<span class="string">"Lily"</span>, <span class="number">20</span>);</div><div class="line">var person2 = new Person(<span class="string">"David"</span>, <span class="number">29</span>);</div></pre></td></tr></table></figure>
+
+<p>这样呢，person1 和 person2 就共享了全局作用域中定义的一个 sayName() 函数了。如此，虽然解决了两个函数做同一件事情的问题，但是引入了新问题。</p>
+<p><b>问题Q4：用全局函数的方式去定义函数就没有封装性可言了。</b><br>解决：原型模式</p>
+<h2 id="原型模式">原型模式</h2>
+<p>我们创建的每一个函数都有一个 prototye 属性，该属性是一个指针，它指向了一个对象。这个对象包含可以由特定类型的实例共享的方法和属性。prototype 就是通过调用构造函数而创建的那个对象实例的原型对象。来看看将信息直接添加到原型对象中的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function <span class="function"><span class="title">Person</span></span>(){</div><div class="line">}</div><div class="line"></div><div class="line">Person.prototype.name = <span class="string">"anjia"</span>;</div><div class="line">Person.prototype.age = <span class="number">26</span>;</div><div class="line">Person.prototype.sayName = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	alert(this.name);</div><div class="line">};</div><div class="line"></div><div class="line">var person1 = new Person();</div><div class="line">var person2 = new Person();</div><div class="line"></div><div class="line">alert(person1.sayName == person2.sayName);  // <span class="literal">true</span></div></pre></td></tr></table></figure>
+
+<p>与构造函数模式不同的是，这些对象的属性和方法是由所有实例共享的。</p>
+<p>也可以用一种更简单的原型语法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function <span class="function"><span class="title">Person</span></span>(){</div><div class="line">}</div><div class="line"></div><div class="line">Person.prototype = {</div><div class="line">	constructor: Person,   //重新指回</div><div class="line">	name: <span class="string">"anjia"</span>,</div><div class="line">	age: <span class="number">26</span>,</div><div class="line">	sayName: <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	}</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>由于重写了 prototype 对象，将它设置成了一个用字面量对象创建的新对象，这会导致 constructor 属性不再指向 Person 了（指向 Object 构造函数了）。因为每创建一个函数，就会同时创建它的 prototype 对象，这个对象也会自动获得 constructor 属性。此时，尽管  instanceof 还是 Person，但是通过 constructor 已经无法确定对象的类型了。<br>点击了解更多有关 <a href="http://anjia.github.io/2014/08/24/jsPrototype/" target="_blank" rel="external">原型对象</a> 的性质。</p>
+<p><b>原型对象的问题 5：</b><br>1、由于它省略了为构造函数传参这一过程，结果导致所有实例在默认情况下都是取得相同的属性值<br>2、逻辑上不该共享的属性也被多个实例共享了。当然可以通过在实例上加个同名属性，进而屏蔽原型链的向上查找。所以还能忍。<br>3、最大的问题是：由于其共享的本质，当包含的属性是个引用类型值时，就会有 bug。<br>鉴于原因3，所以很少会单独使用原型模式。</p>
+<h2 id="组合构造函数模式_+_原型模式">组合构造函数模式 + 原型模式</h2>
+<p>构造函数模式去定义实例属性;原型函数模式去定义方法和共享属性。这样，每个实例都会有自己的一份实例属性，且同时共享对方法的引用，最大限度地节省了内存。<br>且还支持向构造函数传参，可谓集两种模式之长。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function Person(name, age){</div><div class="line">	this.name = name;</div><div class="line">	this.age = age;</div><div class="line">	this.friends = [<span class="string">"Hen"</span>, <span class="string">"Berg"</span>];</div><div class="line">}</div><div class="line"></div><div class="line">Person.prototype = {</div><div class="line">	constructor: Person,</div><div class="line">	sayName: <span class="function"><span class="title">function</span></span>(){</div><div class="line">		alert(this.name);</div><div class="line">	}</div><div class="line">};</div><div class="line"></div><div class="line">var person1 = new Person(<span class="string">"Lily"</span>, <span class="number">20</span>);</div><div class="line">var person2 = new Person(<span class="string">"David"</span>, <span class="number">29</span>);</div><div class="line"></div><div class="line">person1.friends.push(<span class="string">"Lily2"</span>);</div><div class="line"></div><div class="line">alert(person1.friends);	  // Hen,Berg,Lily2</div><div class="line">alert(person2.friends);   // Hen,Berg</div><div class="line">alert(person1.friends == person2.friends);   // <span class="literal">false</span></div><div class="line">alert(person1.sayName == person2.sayName);   // <span class="literal">true</span></div></pre></td></tr></table></figure>
+
+<p>这种构造函数与原型混成的模式，是目前在 ECMAScript 中使用最广泛、认同度最高的一种自定义类型的方式。</p>
+<h2 id="动态原型模式">动态原型模式</h2>
+<h2 id="寄生构造函数模式">寄生构造函数模式</h2>
+<h2 id="稳妥构造函数模式">稳妥构造函数模式</h2>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="wl83919vr79iu50r" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="0aaz3w5iw22k676g" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -126,7 +198,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/12/jsObject/">js面向对象之对象</a>
+      <a class="article-title" href="/2014/08/12/jsObject/">js 面向对象_1_对象</a>
     </h1>
   
 
@@ -171,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="z4pdp388yrd8wrea" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="iilh2kjf2rc3c21d" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -192,7 +264,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -201,7 +273,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -211,6 +283,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/08/24/jsPrototype/">js 的原型对象 prototype</a>
+          </li>
         
           <li>
             <a href="/2014/08/13/smartyEscape/">smarty 中的转义 escape</a>
@@ -225,11 +301,7 @@
           </li>
         
           <li>
-            <a href="/2014/08/12/jsCreateObject/">js面向对象之创建对象</a>
-          </li>
-        
-          <li>
-            <a href="/2014/08/12/jsObject/">js面向对象之对象</a>
+            <a href="/2014/08/12/jsCreateObject/">js 面向对象_2_创建对象</a>
           </li>
         
       </ul>
@@ -241,7 +313,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smarty/">smarty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smarty/">smarty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -291,17 +363,7 @@
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
-    <script>
-  var disqus_shortname = 'null';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
+    
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

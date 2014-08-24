@@ -8,7 +8,7 @@
   <meta name="description" content="Web前端开发工程师">
 <meta property="og:type" content="website">
 <meta property="og:title" content="anjia">
-<meta property="og:url" content="http://yoursite.com/">
+<meta property="og:url" content="http://anjia.github.io/">
 <meta property="og:site_name" content="anjia">
 <meta property="og:description" content="Web前端开发工程师">
 <meta name="twitter:card" content="summary">
@@ -84,14 +84,14 @@
 </ol>
 <p>参考 smarty3 手册：<a href="http://www.php100.com/manual/smarty3/language.modifier.escape.html" target="_blank" rel="external">http://www.php100.com/manual/smarty3/language.modifier.escape.html</a></p>
 <h3 id="escape:_‘html’">escape: ‘html’</h3>
-<p>它会对以下5个字符进行转义 &amp; “ ‘ &lt; &gt;<br>会分别转义成 HTML 中对应的转义字符（&amp;  “  ‘  &lt;  &gt;），以保证在页面上能正常显示。如下：<br><img src="http://blogkiki.qiniudn.com/pic-1.png" alt="image"><br>感觉前两天脑袋掉进一个深坑里了，不，不是深坑，是一个浅坑的拐角了，死都想不明白下面的 case。而且得出了这样的测试结论：</p>
+<p>它会对以下5个字符进行转义 &amp; “ ‘ &lt; &gt;<br>会分别转义成 HTML 中对应的转义字符（&amp;  “  ‘  &lt;  &gt;），以保证在页面上能正常显示。如下：<br><img src="http://blogkiki.qiniudn.com/pic-1.png" alt=""><br>感觉前两天脑袋掉进一个深坑里了，不，不是深坑，是一个浅坑的拐角了，死都想不明白下面的 case。而且得出了这样的测试结论：</p>
 <ul>
 <li>当&lt;后跟的是英文字母（不论大小写）时，若直接输出，则会导致后面内容的缺失</li>
 <li>当&lt;后跟的是空格、数字、汉字等时，直接输出，则可显示正常</li>
 </ul>
-<p>我的 case 是这样的：<br><img src="http://blogkiki.qiniudn.com/pic2.png" alt="image"><br>靠！刚才写到这里的时候，简直是秒懂了。只能说明之前脑袋瓜档机是真的。原因：是因为我是在 smarty 中输出 然后直接显示在网页里的。所以究其原因不在于 escape:’html’ 时做了什么诡异的事情，而在于浏览器在解析 HTML 页面时碰到&lt;会怎么处理。</p>
+<p>我的 case 是这样的：<br><img src="http://blogkiki.qiniudn.com/pic2.png" alt=""><br>靠！刚才写到这里的时候，简直是秒懂了。只能说明之前脑袋瓜档机是真的。原因：是因为我是在 smarty 中输出 然后直接显示在网页里的。所以究其原因不在于 escape:’html’ 时做了什么诡异的事情，而在于浏览器在解析 HTML 页面时碰到&lt;会怎么处理。</p>
 <h3 id="escape:_‘url’">escape: ‘url’</h3>
-<p>其中对以下7处进行转义：<br><img src="http://blogkiki.qiniudn.com/pic3.png" alt="image"><br>而对英文字母数字点号 则原样保留<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic4.png" alt="image"></p>
+<p>其中对以下7处进行转义：<br><img src="http://blogkiki.qiniudn.com/pic3.png" alt=""><br>而对英文字母数字点号 则原样保留<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic4.png" alt=""></p>
 <h3 id="escape:_‘javascript’">escape: ‘javascript’</h3>
 <p>如果有个变量要在 js 中使用，则需要对其进行 javascript 转义</p>
 <h3 id="escape:_‘mail’">escape: ‘mail’</h3>
@@ -100,16 +100,16 @@
 <li>@  [AT]</li>
 <li>.  [DOT]</li>
 </ul>
-<p>举例：<br><img src="http://blogkiki.qiniudn.com/pic5.png" alt="image"></p>
+<p>举例：<br><img src="http://blogkiki.qiniudn.com/pic5.png" alt=""></p>
 <h3 id="escape:_‘quotes’">escape: ‘quotes’</h3>
-<p>会对单引号进行转义，把 ‘ 变成  \’<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic6.png" alt="image"><br>对单引号串没有转义的原因，在于单引号串和双引号串的区别。详见下方。</p>
+<p>会对单引号进行转义，把 ‘ 变成  \’<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic6.png" alt=""><br>对单引号串没有转义的原因，在于单引号串和双引号串的区别。详见下方。</p>
 <h2 id="双引号串_vs-_单引号串">双引号串 vs. 单引号串</h2>
-<p>在 php（smarty 同理）中，双引号串中的内容可以被解释被替换，而单引号串中的内容总被认为是普通字符。<br>所以，当想在字符串中进行 变量代换 和 包含\n(\t \r \n)等转义序列时，应该使用双引号。比如：<br><img src="http://blogkiki.qiniudn.com/pic7.png" alt="image"><br>在脚本中，<br>处理单引号串更快些，因为语法分析器会很单纯地处理单引号串<br>处理双引号串会慢些，因为会对其内部的东东进行解析</p>
+<p>在 php（smarty 同理）中，双引号串中的内容可以被解释被替换，而单引号串中的内容总被认为是普通字符。<br>所以，当想在字符串中进行 变量代换 和 包含\n(\t \r \n)等转义序列时，应该使用双引号。比如：<br><img src="http://blogkiki.qiniudn.com/pic7.png" alt=""><br>在脚本中，<br>处理单引号串更快些，因为语法分析器会很单纯地处理单引号串<br>处理双引号串会慢些，因为会对其内部的东东进行解析</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/13/smartyEscape/" data-id="ificcpxc1mg2i07i" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/13/smartyEscape/" data-id="r73xofkjpubmh66o" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/smarty/">smarty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转义/">转义</a></li></ul>
@@ -199,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/13/webCode/" data-id="fke2z3e0vbsoku85" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/13/webCode/" data-id="sksnn6dbn304vyl4" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -309,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/13/webUrl/" data-id="ruxcascll1xpunqz" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/13/webUrl/" data-id="dz8k8tp9aa733ihs" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -374,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/12/jsCreateObject/" data-id="fep93n1g2auhi2o5" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="wl83919vr79iu50r" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -449,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/12/jsObject/" data-id="iyeum6z440t3bdgi" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="z4pdp388yrd8wrea" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -510,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/07/markdown/" data-id="76u6d2u6pi794wxn" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/07/markdown/" data-id="awkw6e0u9xpmkl5c" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
@@ -570,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/06/hexo/" data-id="oce0pkfzlvv3w92i" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/06/hexo/" data-id="wkbpj668919riiym" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -690,7 +690,17 @@
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
-    
+    <script>
+  var disqus_shortname = 'null';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

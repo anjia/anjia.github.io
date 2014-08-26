@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: 后端 | anjia</title>
+  <title>Archives | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Web前端开发工程师">
 <meta property="og:type" content="website">
 <meta property="og:title" content="anjia">
-<meta property="og:url" content="http://anjia.github.io/categories/后端/">
+<meta property="og:url" content="http://anjia.github.io/archives/page/2/">
 <meta property="og:site_name" content="anjia">
 <meta property="og:description" content="Web前端开发工程师">
 <meta name="twitter:card" content="summary">
@@ -43,14 +43,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-smartyEscape" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/08/13/smartyEscape/" class="article-date">
-  <time datetime="2014-08-13T13:04:41.000Z" itemprop="datePublished">2014-08-13</time>
+    <a href="/2014/08/06/hexo/" class="article-date">
+  <time datetime="2014-08-06T05:27:52.000Z" itemprop="datePublished">2014-08-06</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
+    <a class="article-category-link" href="/categories/blog/">blog</a>
   </div>
 
   </div>
@@ -61,7 +61,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/13/smartyEscape/">smarty 中的转义 escape</a>
+      <a class="article-title" href="/2014/08/06/hexo/">Hexo</a>
     </h1>
   
 
@@ -69,50 +69,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>探究下 smarty 对谁做了什么样的转义。</p>
-<h2 id="smarty_的转义">smarty 的转义</h2>
-<p>可对以下内容进行转义（转码）</p>
-<ol>
-<li>html   可转义 &amp; “ ‘ &lt; &gt;</li>
-<li>htmlall 可转义 all html entities</li>
-<li>url  可转义 : / ? = &amp; # 汉字</li>
-<li>mail 可转义 @ .</li>
-<li>quotes</li>
-<li>hex 十六进制</li>
-<li>hexentity 十六进制实体</li>
-<li>javascript</li>
-</ol>
-<p>参考 smarty3 手册：<a href="http://www.php100.com/manual/smarty3/language.modifier.escape.html" target="_blank" rel="external">http://www.php100.com/manual/smarty3/language.modifier.escape.html</a></p>
-<h3 id="escape:_‘html’">escape: ‘html’</h3>
-<p>它会对以下5个字符进行转义 &amp; “ ‘ &lt; &gt;<br>会分别转义成 HTML 中对应的转义字符（&amp;  “  ‘  &lt;  &gt;），以保证在页面上能正常显示。如下：<br><img src="http://blogkiki.qiniudn.com/pic-1.png" alt=""><br>感觉前两天脑袋掉进一个深坑里了，不，不是深坑，是一个浅坑的拐角了，死都想不明白下面的 case。而且得出了这样的测试结论：</p>
-<ul>
-<li>当&lt;后跟的是英文字母（不论大小写）时，若直接输出，则会导致后面内容的缺失</li>
-<li>当&lt;后跟的是空格、数字、汉字等时，直接输出，则可显示正常</li>
-</ul>
-<p>我的 case 是这样的：<br><img src="http://blogkiki.qiniudn.com/pic2.png" alt=""><br>靠！刚才写到这里的时候，简直是秒懂了。只能说明之前脑袋瓜档机是真的。原因：是因为我是在 smarty 中输出 然后直接显示在网页里的。所以究其原因不在于 escape:’html’ 时做了什么诡异的事情，而在于浏览器在解析 HTML 页面时碰到&lt;会怎么处理。</p>
-<h3 id="escape:_‘url’">escape: ‘url’</h3>
-<p>其中对以下7处进行转义：<br><img src="http://blogkiki.qiniudn.com/pic3.png" alt=""><br>而对英文字母数字点号 则原样保留<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic4.png" alt=""></p>
-<h3 id="escape:_‘javascript’">escape: ‘javascript’</h3>
-<p>如果有个变量要在 js 中使用，则需要对其进行 javascript 转义</p>
-<h3 id="escape:_‘mail’">escape: ‘mail’</h3>
-<p>会对 @ . 这两个字符进行转义</p>
-<ul>
-<li>@  [AT]</li>
-<li>.  [DOT]</li>
-</ul>
-<p>举例：<br><img src="http://blogkiki.qiniudn.com/pic5.png" alt=""></p>
-<h3 id="escape:_‘quotes’">escape: ‘quotes’</h3>
-<p>会对单引号进行转义，把 ‘ 变成  \’<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic6.png" alt=""><br>对单引号串没有转义的原因，在于单引号串和双引号串的区别。详见下方。</p>
-<h2 id="双引号串_vs-_单引号串">双引号串 vs. 单引号串</h2>
-<p>在 php（smarty 同理）中，双引号串中的内容可以被解释被替换，而单引号串中的内容总被认为是普通字符。<br>所以，当想在字符串中进行 变量代换 和 包含\n(\t \r \n)等转义序列时，应该使用双引号。比如：<br><img src="http://blogkiki.qiniudn.com/pic7.png" alt=""><br>在脚本中，<br>处理单引号串更快些，因为语法分析器会很单纯地处理单引号串<br>处理双引号串会慢些，因为会对其内部的东东进行解析</p>
+        <p>欢迎用 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 来搭建你的个人博客，查看 <a href="http://hexo.io/docs/" target="_blank" rel="external">文档</a> 获得更多信息。 当你使用 Hexo 时，碰到任何问题你都可以在这里  <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> 找到答案，你也可以去 <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a> 上找。</p>
+<h2 id="快速入门">快速入门</h2>
+<h3 id="创建一个新的_post">创建一个新的 post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My new Post"</span></div></pre></td></tr></table></figure>
+
+<p>更多信息： <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="启动服务">启动服务</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="生成静态文件">生成静态文件</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_到远程的网站">Deploy 到远程的网站</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/13/smartyEscape/" data-id="ougs0rh56qjtzy8g" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/06/hexo/" data-id="roirf7zftmklmbpn" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/smarty/">smarty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转义/">转义</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
     </footer>
   </div>
@@ -121,6 +103,10 @@
 
 
   
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 </section>
         

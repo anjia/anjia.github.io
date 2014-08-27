@@ -5,15 +5,24 @@
   
   <title>HTML5 中的 postMessage 和 onmessage | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HTML5 中的 postMessage 和 onmessage">
+  <meta name="description" content="HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等Web应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：
+
+Web Workers（工作线程）用它们实现多个线程间的 js 调用功能
+Cross-document messaging（跨文档消息机制） 中实现两个不同域间 js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML5 中的 postMessage 和 onmessage">
 <meta property="og:url" content="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/">
 <meta property="og:site_name" content="anjia">
-<meta property="og:description" content="HTML5 中的 postMessage 和 onmessage">
+<meta property="og:description" content="HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等Web应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：
+
+Web Workers（工作线程）用它们实现多个线程间的 js 调用功能
+Cross-document messaging（跨文档消息机制） 中实现两个不同域间 js">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5 中的 postMessage 和 onmessage">
-<meta name="twitter:description" content="HTML5 中的 postMessage 和 onmessage">
+<meta name="twitter:description" content="HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等Web应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：
+
+Web Workers（工作线程）用它们实现多个线程间的 js 调用功能
+Cross-document messaging（跨文档消息机制） 中实现两个不同域间 js">
 
   
     <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
@@ -67,15 +76,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>HTML5 中的 postMessage 和 onmessage</p>
+        <p>HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等Web应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：</p>
+<ol>
+<li>Web Workers（工作线程）用它们实现多个线程间的 js 调用功能</li>
+<li>Cross-document messaging（跨文档消息机制） 中实现两个不同域间 js 调用功能</li>
+<li>WebSockets（浏览器本身可请求+服务器的推送）实现浏览器与后台服务器双向通讯</li>
+<li>Server-Sent Events 该事件模型允许从服务器实时推送数据到浏览器。</li>
+</ol>
+<p>此处主要讨论 postMessage 在 Web Workers 和 Cross-document messaging 的应用。其他两个详见参考[1]。</p>
+<h2 id="工作线程_Web_Workers">工作线程 Web Workers</h2>
+<p>HTML5 中提出了工作线程 Web Workers 的概念，它指出 Web Workers 的三大主要特征：能长时间运行（响应）、理想的启动性能、理想的内存消耗。Web Workers 允许开发人员编写长时间运行而不被用户所中断的后台程序，去执行事务或逻辑，并同时保证页面对用户的及时响应。它为 Web 网页的脚本提供了一种能在后台进程中运行的方法。</p>
+<p>一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完后再通过 onmessage 进行捕获。若想通过此机制改变 DOM，只能通过返回消息给创建者的回调函数进行处理。</p>
+<p>示例1. 主线程和子线程如何通信：子发送，主监听<br>主线程中创建 Worker 实例，并监听 onmessage 事件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function <span class="function"><span class="title">init</span></span>(){</div><div class="line">	var worker = new Worker(<span class="string">'compute.js'</span>);   // 子线程在 compute.js 中处理</div><div class="line">	worker.onmessage = function(event){</div><div class="line">		console.log( event.data );  // 输出子线程返回的结果数据</div><div class="line"> 	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>另一个线程 compute.js 中调用 postMessage 方法向主线程中发送消息，从而实现在两个线程间的数据传递</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 每隔<span class="number">1</span>秒给主线程发送一个数据</div><div class="line"><span class="keyword">set</span>Timeout(<span class="function"><span class="title">function</span></span>(){</div><div class="line">	postMessage(<span class="string">"子线程向主线程发送的数据"</span>);  </div><div class="line">}, <span class="number">1000</span>);</div></pre></td></tr></table></figure>
+
+<h2 id="跨文档消息机制_Cross-document_messaging">跨文档消息机制 Cross-document messaging</h2>
+<p>HTML5 提供了在网页文档之间相互接收和发送消息的功能。只需要获取到网页所在的窗口对象实例，两个 Web 页面就可以相互通信了，甚至是跨域的。postMessage 允许页面中多个 iframe/window 间的通信。</p>
+<ol>
+<li>要想接收从其他窗口发送来的信息，只需要监听窗口对象的 onmessage 事件即可。</li>
+<li>一个窗口想要发送消息，则通过 postMessage(message, “”) 来传递数据。两个参数代表的含义分别是：<br>第一个参数表示所要发送的消息文本，可以是任何 js对象（一般都通过 JSON 把对象转化成文本）；<br>第二个参数表示接收消息的对象窗口的url地址，通配符”<em>“指定全部地址。<br>不用通配符也可以指定具体的 url，那么在 onmessage 中加个来源判断 if( event.origin !== ‘<em>*</em></em>‘ ) return;</li>
+</ol>
+<p>示例2. 模拟下不同域之间的通信，比如父页面中嵌了个iframe子页面，且父子是不同源的。<br>父页面给子页面发送消息，子页面接收</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 父页面中：父向子发</div><div class="line">document.getElementById(<span class="string">'iframeId'</span>).contentWindow.postMessage(<span class="string">'父向子发送的数据'</span>);</div><div class="line"></div><div class="line">// 子页面中：子对消息监听，随时接收数据</div><div class="line">window.addEventListener(<span class="string">'message'</span>, function(event){</div><div class="line">	console.log(event.data);</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>与之对应，如果子页面给父页面发消息的话，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 父页面中：监听</div><div class="line">window.addEventListener(<span class="string">'message'</span>, function(event){</div><div class="line">	console.log(event.data);</div><div class="line">});</div><div class="line"></div><div class="line">// 子页面中：子对父发消息</div><div class="line">window.parent.postMessage(<span class="string">'子向父发送的数据'</span>);</div></pre></td></tr></table></figure>
+
+<p>简而言之，发送消息的 postMessage() 和 监听消息的 onmessage 得是一对，即：</p>
+<ol>
+<li>父给子发，那就调 子.postMessage 去给子发消息，然后 子.onmessage 去监听收</li>
+<li>子给父发，那就掉 父.postMessage 去给父发消息，然后 父.onmessage 去监听收</li>
+</ol>
+<p>说明：代码示例不考虑浏览器的兼容性，只为了说明原理。</p>
+<h2 id="小结">小结</h2>
+<p>可见在不同场景中这两个 API 的应用模式都是类似的。postMessage 传递数据，而 onmessage 接收数据。</p>
+<p>浏览器对这个 API 的支持情况，目前支持的有 ie8+ ，ff，chrome，opera，safari。HTML5 的 postMessage 可以解决大部分场景下的跨域问题，可以不用再创建代理的 iframe 去解决跨域（ie6 和 ie7）。</p>
+<p>检测浏览器是否支持可用 !!window.postMessage == true 则支持</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="http://www.ibm.com/developerworks/cn/web/1301_jiangjj_html5message/" target="_blank" rel="external">HTML5 postMessage 和 onmessage API 详细应用</a></li>
+<li><a href="http://caniuse.com/" target="_blank" rel="external">利用HTML5的window.postMessage实现跨域通信</a></li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="us0c2t7fhm2jiq6l" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="eve46fa0ux796mej" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
 
     </footer>
   </div>
@@ -111,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -120,7 +172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -130,6 +182,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/08/27/useful/">有用的网站</a>
+          </li>
         
           <li>
             <a href="/2014/08/26/todo/">ToDo</a>
@@ -147,10 +203,6 @@
             <a href="/2014/08/24/jsPrototype/">js 原型对象 prototype</a>
           </li>
         
-          <li>
-            <a href="/2014/08/13/smartyEscape/">smarty 中的转义 escape</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -160,7 +212,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smarty/">smarty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smarty/">smarty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -172,15 +224,31 @@
       <ul>
         
           <li>
+            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+          </li>
+        
+          <li>
+            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+          </li>
+        
+          <li>
+            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+          </li>
+        
+          <li>
+            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+          </li>
+        
+          <li>
             <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
           </li>
         
           <li>
             <a href="http://bawn.github.io/" target="_blank">iOS开发博客</a>
-          </li>
-        
-          <li>
-            <a href="http://tangyumeng.com/" target="_blank">tangyumeng&#39;s blog</a>
           </li>
         
       </ul>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2014/9 | anjia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Web前端开发工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="anjia">
+<meta property="og:url" content="http://anjia.github.io/archives/2014/09/">
+<meta property="og:site_name" content="anjia">
+<meta property="og:description" content="Web前端开发工程师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="anjia">
+<meta name="twitter:description" content="Web前端开发工程师">
+
+  
+    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+	<span id="logo">anjia</span>
+	
+	  <span id="subtitle">
+		<a href="/" id="subtitle">静下心，慢慢来</a>
+	  </span>
+	
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-regExp_js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/02/regExp_js/" class="article-date">
+  <time datetime="2014-09-02T14:51:00.000Z" itemprop="datePublished">2014-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="两种匹配模式">两种匹配模式</h2>
+<p>匹配模式的两种语法<br>/pattern/<br>new RegExp(string)</p>
+<h2 id="修饰符">修饰符</h2>
+<p>i  忽略大小写<br>g  全文查找所有匹配的<br>m  多行查找</p>
+<h2 id="RegExp_对象的方法">RegExp 对象的方法</h2>
+<p>test()    检索，返回 true false<br>exec()    检索，返回找到的值，并确定其位置<br>compile() 编译正则表达式</p>
+<h2 id="String对象支持正则的方法">String对象支持正则的方法</h2>
+<p>search()  检索<br>match()   查找<br>replace() 替换<br>split()   分割</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="xgvst4sm7wqhplnw" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-regExp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/02/regExp/" class="article-date">
+  <time datetime="2014-09-02T14:30:55.000Z" itemprop="datePublished">2014-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/02/regExp/">正则表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="用途">用途</h2>
+<p>模式匹配：有效性验证、提取子串、查找特定字符、替换</p>
+<h2 id="语法">语法</h2>
+<h3 id="1-定界符//">1.定界符//</h3>
+<p>格式：/匹配模式/</p>
+<h3 id="2-定位符">2.定位符</h3>
+<ol>
+<li>^  开头</li>
+<li>$  结束</li>
+<li>b  单词边界</li>
+<li>B  非单词边界</li>
+</ol>
+<h3 id="3-元字符">3.元字符</h3>
+<p>元字符：具有特殊意义的字符</p>
+<h4 id="3-1_字符类">3.1 字符类</h4>
+<ol>
+<li>s  空白字符，比如空格、tab键、换行</li>
+<li>S  非空白字符</li>
+<li>w  字母、数字、下划线</li>
+<li>W 非w</li>
+<li>d  数字</li>
+<li>D  非数字</li>
+<li>. 除换行外的所有字符</li>
+</ol>
+<p>说明：<br>d 不匹配圆角的0-9的字符<br>w 不匹配汉字、不匹配圆角的数字、字母、下划线<br>s 开头的中间的结尾的空白字符 都会匹配<br>s和S w和W d和D 等可认为是互逆运算</p>
+<h4 id="3-2_量词限定符">3.2 量词限定符</h4>
+<p>量词，限定符：规定给定的组件必须要出现多少次才能满足匹配</p>
+<ol>
+<li>+至少1次 （前导字符在目标对象中连续出现）</li>
+<li>*0次 或 多次 </li>
+<li>?0次 或 1次</li>
+<li>{n} 非负整数 匹配确定的n次</li>
+<li>{n,} 至少匹配n次</li>
+<li>{n,m} 匹配n到m次</li>
+</ol>
+<h4 id="3-3_other_运算符">3.3 other 运算符</h4>
+<ol>
+<li>[]  指定一个范围。eg. [a-zA-Z0-9]</li>
+<li>() 组合字符串，所包含的内容必须同时一起。<br>eg. ([a-z][A-Z][0-9])，aA0匹配，aAA不匹配</li>
+<li>|  管道符，或的意思，多个不同的模式。<br>eg. (fo|foo|fool)，匹配fo, 也匹配foo，也匹配 fool</li>
+<li>^ 否定运算符。<br>一般出现在[]内部的是否定运算符，[]之外的是定位符^。eg. [^0-9] 表示除0-9数字之外的所有字符</li>
+</ol>
+<h2 id="转义字符">转义字符</h2>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="8spx67eewsllmjnw" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsCrossDomain_methods" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/02/jsCrossDomain_methods/" class="article-date">
+  <time datetime="2014-09-02T13:41:23.000Z" itemprop="datePublished">2014-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/02/jsCrossDomain_methods/">js 中的跨域解决办法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文来自<a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
+<h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
+<p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
+<p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
+<h3 id="document-domain_+_iframe">document.domain + iframe</h3>
+<p>应用场景：主域相同，但子域不同<br>解决办法：设置 document.domain<br>具体做法：<br>在 www.a.com 上的 page1.html</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span>;</div><div class="line"></div><div class="line">//创建一个 iframe，去控制 iframe 的 contentWindow，这样两个js文件就可以相互“交互”了</div><div class="line">var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">ifr.src = <span class="string">'http://script.a.com/page2.html'</span>;</div><div class="line">ifr.style.display = <span class="string">'none'</span>;</div><div class="line">document.body.appendChild(ifr);</div><div class="line"></div><div class="line">ifr.onload = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	var doc = ifr.contentDocument || ifr.documentWindow.document;</div><div class="line">	//可以操作 page2.html 中的元素了</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>在 script.a.com 上的 page2.html</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span></div></pre></td></tr></table></figure>
+
+<p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
+<p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
+<p>问题：<br>1、安全性，当一个站点(b.a.com)被攻击后，另一个站点(c.a.com)会引起安全漏洞<br>2、若一个页面中引入了多个iframe，要想能操作所有iframe，则必须都得设置成相同的domain</p>
+<h2 id="动态创建script">动态创建script</h2>
+<p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
+<h2 id="利用_iframe_和_location-hash">利用 iframe 和 location.hash</h2>
+<p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。<br>在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。<br>问题：<br>1、数据直接暴露在了 url 中<br>2、数据容量和类型都有限</p>
+<h2 id="window-name_实现跨域数据传输">window.name 实现跨域数据传输</h2>
+<p>详见 <a href="http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html" target="_blank" rel="external">window.name实现的跨域数据传输</a></p>
+<h2 id="使用_HTML5_的_postMessage">使用 HTML5 的 postMessage</h2>
+<p>HTML5 提供了跨文档消息传输 Cross Document Messaging，postMessage 支持基于 web 的实时消息传递。可参考：<br>《精通HTML5编程》第五章——跨文档消息机制<br><a href="https://developer.mozilla.org/en/dom/window.postmessage" target="_blank" rel="external">Window.postMessage</a><br>我之前的博客 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></p>
+<h2 id="利用flash">利用flash</h2>
+<p>YUI3 中的 IO 组件中有用到：<a href="http://yuilibrary.com/yui/docs/io/" target="_blank" rel="external">http://yuilibrary.com/yui/docs/io/</a></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">JavaScript跨域总结与解决办法</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="ip0v13g0oj5432v8" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/02/regExp/">正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/02/jsCrossDomain_methods/">js 中的跨域解决办法</a>
+          </li>
+        
+          <li>
+            <a href="/2014/08/27/useful/">有用的网站</a>
+          </li>
+        
+          <li>
+            <a href="/2014/08/26/todo/">ToDo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smarty/">smarty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+          </li>
+        
+          <li>
+            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+          </li>
+        
+          <li>
+            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+          </li>
+        
+          <li>
+            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+          </li>
+        
+          <li>
+            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
+          </li>
+        
+          <li>
+            <a href="http://bawn.github.io/" target="_blank">iOS开发博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 anjia<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

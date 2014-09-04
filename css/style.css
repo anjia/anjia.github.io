@@ -1447,6 +1447,10 @@ pre .javascript .function {
 .widget ol ol {
   list-style: decimal;
 }
+.widget.links a {
+  margin-right: 10px;
+  white-space: nowrap;
+}
 .category-list-count,
 .tag-list-count,
 .archive-list-count {

@@ -81,7 +81,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="xgvst4sm7wqhplnw" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="e5g78zp4f6q6ofty" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="8spx67eewsllmjnw" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="j0yp56escbeckdgj" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -208,7 +208,7 @@
 <h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
 <p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
 <p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
-<h3 id="document-domain_+_iframe">document.domain + iframe</h3>
+<h3 id="1-_document-domain_+_iframe">1. document.domain + iframe</h3>
 <p>应用场景：主域相同，但子域不同<br>解决办法：设置 document.domain<br>具体做法：<br>在 www.a.com 上的 page1.html</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span>;</div><div class="line"></div><div class="line">//创建一个 iframe，去控制 iframe 的 contentWindow，这样两个js文件就可以相互“交互”了</div><div class="line">var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">ifr.src = <span class="string">'http://script.a.com/page2.html'</span>;</div><div class="line">ifr.style.display = <span class="string">'none'</span>;</div><div class="line">document.body.appendChild(ifr);</div><div class="line"></div><div class="line">ifr.onload = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	var doc = ifr.contentDocument || ifr.documentWindow.document;</div><div class="line">	//可以操作 page2.html 中的元素了</div><div class="line">}</div></pre></td></tr></table></figure>
 
@@ -218,15 +218,25 @@
 <p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
 <p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
 <p>问题：<br>1、安全性，当一个站点(b.a.com)被攻击后，另一个站点(c.a.com)会引起安全漏洞<br>2、若一个页面中引入了多个iframe，要想能操作所有iframe，则必须都得设置成相同的domain</p>
-<h2 id="动态创建script">动态创建script</h2>
+<h2 id="2-_动态创建script">2. 动态创建script</h2>
 <p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
-<h2 id="利用_iframe_和_location-hash">利用 iframe 和 location.hash</h2>
-<p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。<br>在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。<br>问题：<br>1、数据直接暴露在了 url 中<br>2、数据容量和类型都有限</p>
-<h2 id="window-name_实现跨域数据传输">window.name 实现跨域数据传输</h2>
+<h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
+<p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
+<p>比如，以下两个页面想要传递消息：a.com/page1.html 和 b.com/page2.html 相互传递数据<br>a.com 下的文件 page1.html </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//在页面中创建一个 iframe，src 指向另个域</div><div class="line">function <span class="function"><span class="title">startRequest</span></span>(){</div><div class="line">	var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">	ifr.style.display = <span class="string">'none'</span>;</div><div class="line">	ifr.src = <span class="string">'http://www.b.com/page2.html#paramdo'</span>;</div><div class="line">	document.body.appendChild(ifr);</div><div class="line">}</div><div class="line"></div><div class="line">//每隔<span class="number">2</span>s去<span class="built_in">hash</span>上检查并获取数据</div><div class="line">function <span class="function"><span class="title">checkHash</span></span>(){</div><div class="line">	try{</div><div class="line">		var data = location.hash?location.hash.substring(<span class="number">1</span>):<span class="string">''</span>;</div><div class="line">		console.log(<span class="string">'数据是：'</span>， data);</div><div class="line">	}catch(e){}</div><div class="line">}</div><div class="line"><span class="keyword">set</span>Interval( checkHash, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
+
+<p>b.com 下的文件 page2.html</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//模拟一个简单的参数处理操作</div><div class="line">var <span class="built_in">hash</span> = location.hash;</div><div class="line">switch(<span class="built_in">hash</span>){</div><div class="line">	<span class="keyword">case</span> <span class="string">'#paramdo'</span>:</div><div class="line">		// page2 在响应 page1 中 iframe 的 src 请求时</div><div class="line">		// 可以修改父的<span class="built_in">hash</span>，进而达到 page2-&gt;page1 传递数据的目的</div><div class="line">		callBack();</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'#paramdata'</span>: </div><div class="line">		// page1-&gt;page2 传递的话，直接取父的<span class="built_in">hash</span>即可</div><div class="line">		var <span class="built_in">hash</span> = parent.location.hash;</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">} </div><div class="line"></div><div class="line">//模拟子page2向父page1传递参数</div><div class="line">function <span class="function"><span class="title">callBack</span></span>(){</div><div class="line">	try{</div><div class="line">		// 把参数回传给父（另一个域）</div><div class="line">		parent.location.hash = <span class="string">'somedata'</span>;</div><div class="line">	}catch(e){</div><div class="line">  		// 由于不同域，ie|chrome 不允许修改 parent.location.hash（firefox 可以改）</div><div class="line">  		// 所以要借助 a.com 域名下的一个代理iframe</div><div class="line">		var ifrproxy = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">		ifrproxy.style.display = <span class="string">'none'</span>;</div><div class="line">		ifrproxy.src = <span class="string">'http://a.com/page3.html#somedata'</span>; //嘿！src指向另一个域</div><div class="line">		document.body.appendChild(ifrproxy);</div><div class="line"> 	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>在 a.com 域名下的代理页面 page3.html</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 因为 parent.parent 和 自身属于同一个域，所以可以改变其 locaiton.hash 值</div><div class="line">parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+
+<p>问题：<br>1、数据直接暴露在了 url 中<br>2、数据容量和类型都有限</p>
+<h2 id="4-_window-name_实现跨域数据传输">4. window.name 实现跨域数据传输</h2>
 <p>详见 <a href="http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html" target="_blank" rel="external">window.name实现的跨域数据传输</a></p>
-<h2 id="使用_HTML5_的_postMessage">使用 HTML5 的 postMessage</h2>
+<h2 id="5-_使用_HTML5_的_postMessage">5. 使用 HTML5 的 postMessage</h2>
 <p>HTML5 提供了跨文档消息传输 Cross Document Messaging，postMessage 支持基于 web 的实时消息传递。可参考：<br>《精通HTML5编程》第五章——跨文档消息机制<br><a href="https://developer.mozilla.org/en/dom/window.postmessage" target="_blank" rel="external">Window.postMessage</a><br>我之前的博客 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></p>
-<h2 id="利用flash">利用flash</h2>
+<h2 id="6-_利用flash">6. 利用flash</h2>
 <p>YUI3 中的 IO 组件中有用到：<a href="http://yuilibrary.com/yui/docs/io/" target="_blank" rel="external">http://yuilibrary.com/yui/docs/io/</a></p>
 <h2 id="参考来源">参考来源</h2>
 <p><a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">JavaScript跨域总结与解决办法</a></p>
@@ -234,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="ip0v13g0oj5432v8" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="j0qd6zcaezux72dz" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -320,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="mwx1xgoks3lggest" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="nkdbrg3413o99mcf" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -373,16 +383,14 @@
 <p>其实 jsonp 里面也是创建了 script 标签，然后通过 js 回调的形式实现了跨域访问。而 jQuery 对 jsonp 也仅仅是支持，其核心也是 jsonp。所以，归根结底，这三种方式都是常见又经常被忽略的 script 标签。</p>
 <h2 id="自己整理">自己整理</h2>
 <ol>
-<li><a href="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" target="_blank" rel="external">js 中常用的6种跨域解决办法</a></li>
+<li><a href="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" target="_blank" rel="external">js 中常用的6种跨域解决办法</a><br>里面详细谈了以下两点：<br>（1）相同主域 + iframe<br>（2）跨域 + iframe 用代理页</li>
 <li><a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></li>
-<li>iframe 实现跨域</li>
-<li>jQuery 中的跨域</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="1dgytphnz6e6g7j0" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="a1a4fxxkygottr6s" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -425,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="p8ntysmr30es2oel" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="bmjsg8kv5e3xqh93" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -519,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="eofe24hd6qvxjq4p" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="q88yca6cnh7unsu0" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -594,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="5ohelqwjxguzcrm1" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="csy426ykumeq4q9o" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -672,38 +680,40 @@
     
   <div class="widget-wrap">
     <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
+    <div class="widget links">
         
-          <li>
             <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-          </li>
         
-          <li>
             <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-          </li>
         
-          <li>
             <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-          </li>
         
-          <li>
             <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-          </li>
         
-          <li>
+            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+        
+            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+        
+            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+        
+            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+        
+            <a href="http://blog.csdn.net/mine666/article/category/1444681" target="_blank">JiaoLong_H</a>
+        
+            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+        
             <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-          </li>
         
-          <li>
+            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+        
+            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+        
+            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+        
             <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-          </li>
         
-          <li>
             <a href="http://bawn.github.io/" target="_blank">iOS开发博客</a>
-          </li>
         
-      </ul>
     </div>
   </div>
 

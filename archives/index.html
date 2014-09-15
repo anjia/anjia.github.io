@@ -43,6 +43,180 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jade_what" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/13/jade_what/" class="article-date">
+  <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/后端/">后端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/13/jade_what/">模板引擎 Jade</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事了之后发现，对它的态度更多的是怪异。</p>
+<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|(原样输出的管道)初识的时候不易接受。</p>
+<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在if-else语句里就容易写错缩进。</p>
+<p>第三，是少敲键盘了，但失去了HTML的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用Jade写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
+<p>第四，对于class和id的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
+<p>在看文档的时候，里面有描述“Jade中的某种写法，同样是设计师友好的”。就比较好奇，为什么要对设计师友好？感觉取悦了狭义上的前端工程师就够了。产品是要只为少数人设计，语言也要一样。</p>
+<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是undefined或null时会自动忽略。这些针对前端、针对HTML的特性做的优化还是很不错的。</p>
+<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用smarty，觉得模板是很方便。所以，想看看其他的兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出HTML字符串嘛。</p>
+<p>为了不让今天的付出感觉上白费掉，便决定写个博客记录下目前对它的理解，好提醒下自己：我今天确实是接触到了“新”东西。</p>
+<h2 id="Jade">Jade</h2>
+<p>Jade — Node Template Engine<br>Jade是一个高性能的模板引擎，为Node而做，是用JavaScript实现的。Node.js的Express.js框架默认用的就是jade。<br>Jade还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
+<ol>
+<li>通过npm安装： npm install jade</li>
+<li>把Jade编译成一个可供浏览器使用的单文件，执行：make jade.js。<br>可以把 <em>.jade  编译为  </em>.html</li>
+<li>命令行：jade [options] [dir|file…]</li>
+<li>API</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">//complie</span></div><div class="line"><span class="keyword">var</span> fn = jade.compile(<span class="string">'string of jade'</span>, options);</div><div class="line"><span class="keyword">var</span> html = fn(locals);</div><div class="line"></div><div class="line"><span class="comment">//render</span></div><div class="line"><span class="keyword">var</span> html = jade.render(<span class="string">'string of jade'</span>, merge(options, locals));</div><div class="line"></div><div class="line"><span class="comment">//renderFile</span></div><div class="line"><span class="keyword">var</span> html = jade.renderFile(<span class="string">'filename.jade'</span>, merge(options, locals));</div></pre></td></tr></table></figure>
+
+<ol>
+<li>浏览器支持<br>浏览器版的jade它只支持最新的浏览器，是一个很大的文件。建议使用时先把Jade预编译成JavaScript，然后再在客户端使用 runtime.js 库。</li>
+</ol>
+<h2 id="Jade的语法和特性">Jade的语法和特性</h2>
+<p>Jade的语法是简洁、对HTML代码空格敏感。在这点上它借鉴了Haml的很多地方，所以与Haml的语法挺相近。</p>
+<p>Haml是什么？Haml是简写HTML的一种办法。借用Haml的作者Hampton Catlin的一句话：“Haml是对传统XHTML的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的XHTML构造方式。”Haml的网站上也说：“Haml让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
+<ol>
+<li>语法<br>（1）标签、属性、注释<br>（2）读取数据的值（转义、非转义）</li>
+<li>逻辑<br>（1）条件语句（if、unless、case）<br>（2）循环（each、for）<br>（3）过滤器<br>（4）Mixins</li>
+<li>继承和包含<br>（1）模板继承<br>（2）包含</li>
+<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
+<li>其他<br>（1）Doctype<br>（2）产生输出</li>
+</ol>
+<h2 id="1-_语法">1. 语法</h2>
+<h3 id="标签">标签</h3>
+<p>标签就是一个简单的单词</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">会被转换成 <span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的id--&gt;</span></div><div class="line">div#container</div><div class="line">会被转成 <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的class--&gt;</span></div><div class="line">div.user-details</div><div class="line"></div><div class="line"><span class="comment">&lt;!--多个class和id--&gt;</span></div><div class="line">div#foo.bar.baz</div><div class="line"></div><div class="line"><span class="comment">&lt;!--不写标签，默认就是div（语法糖）--&gt;</span></div><div class="line">#foo</div><div class="line">.bar</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="属性">属性</h3>
+<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是true时才会输出。为false时就被忽略了</p>
+<p>class属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--普通的 JavaScript 字符串连接--&gt;</span></div><div class="line">a(href='/user/' + user.id)= user.name</div><div class="line"></div><div class="line"><span class="comment">&lt;!--用Jade--&gt;</span></div><div class="line">a(href='/user/#{user.id}')= user.name</div></pre></td></tr></table></figure>
+
+<h3 id="注释">注释</h3>
+<p>1、单行注释 // 不输出的注释，加- 即 //-<br>2、块注释<br>3、条件注释</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">body</div><div class="line"> //if IE</div><div class="line">   a()</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--[if IE]&gt;</span></div><div class="line">    &lt;a href="http://www.mozilla.com/en-US/firefox/"&gt;Get Firefox&lt;/a&gt;</div><div class="line">  &lt;![endif]--&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="读取数据的值">读取数据的值</h3>
+<p>1、读取变量的值，用 #{}<br>输出是默认是转义的。比如取变量name的值 #{name}<br>当要输出#{}，则可以转义，即 p #{name}</p>
+<p>2、不想转义变量的值 !{name}   【直接输出标签】</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- var html = "<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>"</div><div class="line">| !{html}</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接输出&lt;script&gt; 标签  【都原样了，还非转义？】--&gt;</span></div></pre></td></tr></table></figure>
+
+<h2 id="2-_模板逻辑">2. 模板逻辑</h2>
+<h3 id="条件语句">条件语句</h3>
+<p>Jade的条件语句和使用了前缀-的js语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的js。是相等的</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//用条件表达式<span class="keyword">if</span></div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  <span class="keyword">if</span> user.role == <span class="string">'admin'</span></div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    p= user.name</div><div class="line"><span class="comment"></span></div><div class="line">//常规的js代码</div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  - <span class="keyword">if</span> (user.role == <span class="string">'admin'</span>)</div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  - <span class="keyword">else</span></div><div class="line">    p= user.name</div></pre></td></tr></table></figure>
+
+<p>Jade同时支持 unless  这和 if(!(expr)) 是等价的</p>
+<h3 id="Case">Case</h3>
+<p>case表达式</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--空格缩进--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    friends = 10</div><div class="line">    case friends</div><div class="line">      when 0</div><div class="line">        p you have no friends</div><div class="line">      when 1</div><div class="line">        p you have a friend</div><div class="line">      default</div><div class="line">        p you have #{friends} friends</div><div class="line"></div><div class="line"><span class="comment">&lt;!--块展开--&gt;</span></div><div class="line">friends = 5</div><div class="line">html</div><div class="line">  body</div><div class="line">    case friends</div><div class="line">      when 0: p you have no friends</div><div class="line">      when 1: p you have a friend</div><div class="line">      default: p you have #{friends} friends</div></pre></td></tr></table></figure>
+
+<p>此处有木有发现关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
+<h3 id="循环">循环</h3>
+<p>Jade支持js的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
+<p>Jade在内部会把这些语句转换成原生的js语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用for。</p>
+<h3 id="过滤器">过滤器</h3>
+<p>过滤器前缀:<br>比如:markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
+<h3 id="Mixins">Mixins</h3>
+<p>Mixins 在编译的模板里会被 Jade 转换为普通的js函数。<br>Mixins 可以带参，但不是必需的。</p>
+<h2 id="3-_模板继承">3. 模板继承</h2>
+<h3 id="模板继承">模板继承</h3>
+<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade的block就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
+<p>Jade允许你替换、前置和追加blocks。</p>
+<p>block 默认是覆盖（替换）父级块的内容（也可以在子块中实现块）<br>block append  追加代码块（block可选）<br>block prepend 前置代码块（block可选）</p>
+<h3 id="包含">包含</h3>
+<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade解析这些文件，并插入到已经生成的语法树中</p>
+<p>被包含的块，可以用yield语句（明确标明 include 代码块的放置位置。）</p>
+<p>子可以用父中的变量。被包含的Jade会按字面解析合并到AST中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做partial的替代。</p>
+<h2 id="4-_模板特性">4. 模板特性</h2>
+<h3 id="标签文本">标签文本</h3>
+<p>1、单行的文本，用标签文本</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--单行的文本只需要把文本放在标签之后即可，即标签文本--&gt;</span></div><div class="line">p hello</div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>2、文本块 用 |</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--大段的文本，原样输出--&gt;</span></div><div class="line">p</div><div class="line"> | aaa</div><div class="line"> | bbb</div><div class="line"> | ccc</div><div class="line"></div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>aaa bbb ccc<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>3、用. 来开始一段文本块<br>p.<br>  aaa<br>  bbb<br>  ccc.</p>
+<p>带空格的 . 会被Jade的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注意：文本块需要两次转义--&gt;</span></div><div class="line">要输出下面的文本：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>foo\bar<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">需使用：</div><div class="line">p.</div><div class="line">  foo\\bar</div></pre></td></tr></table></figure>
+
+<p>eg1.内联标签可以使用标签文本、也可以使用文本块</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--使用标签文本--&gt;</span></div><div class="line">label</div><div class="line"> | Username:</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接使用标签文本--&gt;</span></div><div class="line">label Username</div></pre></td></tr></table></figure>
+
+<p>eg2.只包含文本的标签，比如 script style textarea，想要输出其中间的内容，不需要使用前缀字符 |</p>
+<figure class="highlight Jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">  head</div><div class="line">    title Example</div><div class="line">    <span class="keyword">script</span></div><div class="line">      <span class="keyword">if</span> (foo) {</div><div class="line">        bar();</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        baz();</div><div class="line">      }</div></pre></td></tr></table></figure>
+
+<h3 id="内联的HTML">内联的HTML</h3>
+<p>想要输出HTML代码片段，可以有以下两种方式：</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--1 使用管道定义一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    | <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    | <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--2 使用. 来告诉Jade 我们需要一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body.</div><div class="line">    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--以上两个例子都渲染出相同的结果--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="嵌套">嵌套</h3>
+<p>1、空格缩进 以自然的方式定义标签嵌套</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first</div><div class="line">    a(href=<span class="string">'#'</span>) foo</div><div class="line">  li</div><div class="line">    a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last</div><div class="line">    a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
+
+<p>2、块展开，在一行内创建嵌套标签，用符号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first: a(href=<span class="string">'#'</span>) foo</div><div class="line">  li: a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last: a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
+
+<h3 id="可执行代码">可执行代码</h3>
+<p>Jade目前支持三种类型的可执行代码</p>
+<p>第一种前缀 -<br>这是不会被输出的<br>可用在条件语句或循环中</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby"> <span class="keyword">for</span> (var key <span class="keyword">in</span> obj)</span></div><div class="line"> p= obj[key]</div><div class="line"></div><div class="line">-<span class="ruby"><span class="keyword">if</span> (foo)</span></div><div class="line"> ul</div><div class="line">   li aaa</div><div class="line">   li bbb</div><div class="line">-<span class="ruby"><span class="keyword">else</span></span></div><div class="line"> p hehe</div></pre></td></tr></table></figure>
+
+<p>第二种要转义输出的值，用前缀=<br>我们返回一个值 可以加前缀=，输出的代码默认是转义的<br>若想不被转义，可使用 !=</p>
+<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'bar'</span></div><div class="line"><span class="header">= foo</span></div><div class="line">h1= foo</div><div class="line"></div><div class="line"><span class="comment">//会被渲染成</span></div><div class="line">bar</div><div class="line">&lt;h1&gt;bar&lt;/h1&gt;</div><div class="line"></div><div class="line"><span class="comment">//以下两行是等价的</span></div><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div><div class="line">foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div></pre></td></tr></table></figure>
+
+<h2 id="5-其他">5.其他</h2>
+<h3 id="Doctype">Doctype</h3>
+<p>添加文档类型<br>!!!<br>!!! 5<br>!!! html<br>doctype html</p>
+<h3 id="产生输出">产生输出</h3>
+<p>当选项compileDebug的值是true，Jade编译时会加行号，且报错信息里会带上行号。<br>当值是false时，参数会被去掉。</p>
+<p>你可以通过 toString() 来编译模板而不需要在浏览器端运行整个 Jade 库，这样可以提高性能，也可以减少载入的 JavaScript 数量。</p>
+<h2 id="结束语">结束语</h2>
+<p>模板是什么？模板就是一个模子。供你套数据，并且依据不同数据去走不同的逻辑。<br>引擎是什么？引擎就是个处理器（编译、运行），最后输出个结果（HTML代码）的东西。</p>
+<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
+<p>最后查了下，还真是，关于Jade的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> -来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a>-来自stackoverflow<br>你要是也有兴趣，可加入<a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a>去讨论</p>
+<h2 id="在线学习Jade">在线学习Jade</h2>
+<p>【1】 <a href="http://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank" rel="external">学习Jade模板引擎的语法</a>，包括：<br>HTML的标签文本、注释<br>id、类、属性<br>变量、转义和非转义</p>
+<p>【2】<a href="http://cssdeck.com/labs/jade-templating-tutorial-codecast-part-2" target="_blank" rel="external">Jade的逻辑处理部分</a>，包括：<br>在模板中使用内嵌js（node）代码<br>条件语句（if和unless）<br>循环（loop、for、each）<br>定义函数（Mixins）<br>过滤器（Filters）</p>
+<p>【3】<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="external">在线测试Jade</a></p>
+<h2 id="参考网站">参考网站</h2>
+<p><a href="http://jade-lang.com/tutorial/" target="_blank" rel="external">Jade的官方教程</a><br><a href="http://jade-lang.com/" target="_blank" rel="external">Jade的完整文档</a><br><a href="https://github.com/visionmedia/jade#readme" target="_blank" rel="external">Jade的Git</a><br><a href="https://github.com/visionmedia/jade/blob/master/Readme_zh-cn.md" target="_blank" rel="external">Jade-模板引擎</a></p>
+<p>其他<br><a href="http://segmentfault.com/a/1190000000357534" target="_blank" rel="external">Jade-源于 Node.js 的 HTML 模板引擎</a><br><a href="http://qianduanblog.com/post/nodejs-learning-13-express3-jade.html" target="_blank" rel="external">nodejs学习13：express3之jade模板引擎入门</a><br><a href="http://blog.csdn.net/gxhacx/article/details/12490927" target="_blank" rel="external">Node学习笔记-Jade模板引擎</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="1o3d1gwz898s693q" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-regExp_js" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/02/regExp_js/" class="article-date">
@@ -81,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="kthwht5s7wie5soj" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="ql07df8789jmzy3u" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -166,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="ih2tf0t5pzy3q2ow" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="z51kj29yii2gdv5b" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -244,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="1xp2vf0v5doruhhk" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="oz3en8bgjbd17fbf" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -289,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="l902jzpgvfzow0qk" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="c18uxjcn9h6jaa69" class="article-share-link">分享到</a>
       
       
     </footer>
@@ -350,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="3hyrk23twhhaj7ho" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="6dde6lctv9y59wya" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
@@ -436,7 +610,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="kcsti1qkdwm8ow6g" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="hfxejmeyitvfazsp" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -496,7 +670,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="ifod50bobtvf1nfn" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="4xt5jpkxby012ww8" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -539,7 +713,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="22osrv27u1p03uea" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="97glpq3gzysdf0j0" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -617,100 +791,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/13/smartyEscape/" data-id="0kjuia38ujkg22gj" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/13/smartyEscape/" data-id="tpks6o6xpde0kc91" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/smarty/">smarty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转义/">转义</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-webCode" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/13/webCode/" class="article-date">
-  <time datetime="2014-08-13T12:50:30.000Z" itemprop="datePublished">2014-08-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/13/webCode/">编码方式 ASCII, Unicode, UTF-8, GBK</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="信息编码方式">信息编码方式</h2>
-<p>1、ASCII 编码：American Standand Code for Information Interchange 美国标准信息交换码<br>2、非ASCII 编码<br>世界的（Unicode）<br>中国汉字编码（GB2312，GBK，GB18030）</p>
-<h2 id="ASCII">ASCII</h2>
-<p>1、ASCII 是美国制定的字符编码，对应关系：英语字符 之与 二进制位 （鼻祖，最简单的方式）<br>2、标准的 ASCII 是由7位二进制数组成，用来表示26个英文大小写字母 和 特殊符号</p>
-<ul>
-<li>从0000 0000 到 0111 1111，共128个字符 【1个字节，最高位为0】</li>
-<li>详细的ASCII码对照表，可参考 <a href="http://wenku.baidu.com/view/f1c0e2fec8d376eeaeaa31fd.html" target="_blank" rel="external">http://wenku.baidu.com/view/f1c0e2fec8d376eeaeaa31fd.html</a></li>
-</ul>
-<h2 id="非_ASCII">非  ASCII</h2>
-<h3 id="Unicode">Unicode</h3>
-<p>1、解决的问题：将世界上所有文字统一编码<br>与 ASCII 码的区分，eg.“汉”用十六进制表示6C49，用二进制表示（1101100 01001001）至少2个字节or更多。<br>2、带来的问题<br>对英文来讲，存储浪费。已知的英文 ASCII 码表示只需一个字节，足矣。造成的后果是： </p>
-<ul>
-<li>出现了 Unicode 的多种存储方式</li>
-<li>无法推广，直到互联网的出现（强烈要求统一的编码方式）</li>
-</ul>
-<p>3、Unicode 只是一个符号集，只规定了符号的二进制码 【却没有规定，这个二进制代码如何存储】<br>   中文的Unicode，可参考 <a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="external">http://www.chi2ko.com/tool/CJK.htm</a><br>4、Unicode是理论，UTF是存储、传输方式 （eg. UTF-8：Unicode TransformationFormat-8bits）<br>   3套编码方式（Unicode用基本保留字）：UTF-8，UTF-16，UTF-32</p>
-<h3 id="UTF-8">UTF-8</h3>
-<p>1、UTF-8 是 Unicode 的实现方式之一，互联网上使用最广泛<br>2、特点：变长的字节编码方式（有控制位）<br>   对于一个字符的 UTF-8 编码，如下。</p>
-<ul>
-<li>1字节 0xxxxxxx                 【 Unicode 兼容 ASCII 】</li>
-<li>2字节 110xxxxx 10xxxxxx</li>
-<li>3字节 1110xxxx 10xxxxxx 10xxxxxx</li>
-<li>4字节 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
-<li>5字节 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
-<li>6字节 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </li>
-</ul>
-<p>UTF-8 最多可用到6个字节。因此，UTF-8 中可用来表示字符编码的实际位数，最多有31位。<br>而x所表示的值，与 Unicode 编码是一一对应的，高低位也相同。<br>3、unicode 和 UTF-8 的相互转换。<br>  有关utf-8，可参考 <a href="http://www.cnblogs.com/chenwenbiao/archive/2011/08/11/2134503.html" target="_blank" rel="external">http://www.cnblogs.com/chenwenbiao/archive/2011/08/11/2134503.html</a></p>
-<h3 id="汉字编码">汉字编码</h3>
-<p>1、UTF-8 是兼容 ASCII 的：英文1个字节，中文3个字节。<br>2、中国汉字的编码，有GB2312、GBK、GB18030</p>
-<ul>
-<li>表示范围：GB2312 &lt; GBK &lt; GB18030，均用2字节表一个汉字（高字节为1，以区分ASCII码）</li>
-<li>GB2312出来较早，有些汉字和繁体字不支持</li>
-<li>均兼容ASCII</li>
-</ul>
-<h2 id="GBK_和_UTF-8">GBK 和 UTF-8</h2>
-<p>1、区别：字节不同</p>
-<ul>
-<li>GBK 中英文统一两字节</li>
-<li>UTF-8 英文1个字节，中文3个字节</li>
-</ul>
-<p>2、区分：可用BOM（Byte Order Mark）标记<br>3、互换：必须通过 Unicode 编码<br>4、字符集合：GB2312 &lt; GBK &lt; UTF-8<br>5、各自的适用场合：</p>
-<ul>
-<li>英文字符多时，用 UTF-8 省空间</li>
-<li>中文多时，用 GBK 省空间</li>
-<li>GBK 是中国的，在国家标准 GB2312 基础上扩充的，通用性差</li>
-<li>UTF-8 世界的，国际编码，通用性好</li>
-</ul>
-<p>温馨提示：<br>现在几乎不用 GBK 了，大家默认的都是直接上 UTF-8。原因你懂的。<br>之所以还去查这一坨东西，主要是因为我之前不很清楚这些编码们之间的区别。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/13/webCode/" data-id="zf2i3r57lfaqnmxl" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转义/">转义</a></li></ul>
 
     </footer>
   </div>
@@ -732,7 +816,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -741,7 +825,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -751,6 +835,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/09/13/jade_what/">模板引擎 Jade</a>
+          </li>
         
           <li>
             <a href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
@@ -768,10 +856,6 @@
             <a href="/2014/08/27/useful/">有用的网站</a>
           </li>
         
-          <li>
-            <a href="/2014/08/26/todo/">ToDo</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -781,7 +865,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smarty/">smarty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

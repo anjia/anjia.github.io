@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Handlebars.js 模板引擎 | anjia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Handlebars.js是JavaScript 的一个语义模板库，可通过对view和data的分离来快速构建Web模板。它采用”Logic-less template”（无逻辑模版）的思路，在加载时被预编译，而不是到了客户端执行到代码时再去编译， 这样可以保证模板加载和运行的速度。
+Handlebars.js继承于著名的Mustache模板引擎，具备了渲染页面的基础功能，并在其基础上进行拓展。他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Handlebars.js 模板引擎">
+<meta property="og:url" content="http://anjia.github.io/2014/09/17/handlebars/">
+<meta property="og:site_name" content="anjia">
+<meta property="og:description" content="Handlebars.js是JavaScript 的一个语义模板库，可通过对view和data的分离来快速构建Web模板。它采用”Logic-less template”（无逻辑模版）的思路，在加载时被预编译，而不是到了客户端执行到代码时再去编译， 这样可以保证模板加载和运行的速度。
+Handlebars.js继承于著名的Mustache模板引擎，具备了渲染页面的基础功能，并在其基础上进行拓展。他">
+<meta property="og:image" content="\images\use_20140918.png">
+<meta property="og:image" content="\images\block_20140918.png">
+<meta property="og:image" content="\images\each_20140918.png">
+<meta property="og:image" content="\images\with_20140918.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Handlebars.js 模板引擎">
+<meta name="twitter:description" content="Handlebars.js是JavaScript 的一个语义模板库，可通过对view和data的分离来快速构建Web模板。它采用”Logic-less template”（无逻辑模版）的思路，在加载时被预编译，而不是到了客户端执行到代码时再去编译， 这样可以保证模板加载和运行的速度。
+Handlebars.js继承于著名的Mustache模板引擎，具备了渲染页面的基础功能，并在其基础上进行拓展。他">
+
+  
+    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+	<span id="logo">anjia</span>
+	
+	  <span id="subtitle">
+		<a href="/" id="subtitle">静下心，慢慢来</a>
+	  </span>
+	
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-handlebars" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/17/handlebars/" class="article-date">
+  <time datetime="2014-09-17T13:13:03.000Z" itemprop="datePublished">2014-09-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/后端/">后端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Handlebars.js 模板引擎
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Handlebars.js是JavaScript 的一个语义模板库，可通过对view和data的分离来快速构建Web模板。它采用”Logic-less template”（无逻辑模版）的思路，在加载时被预编译，而不是到了客户端执行到代码时再去编译， 这样可以保证模板加载和运行的速度。</p>
+<p>Handlebars.js继承于著名的Mustache模板引擎，具备了渲染页面的基础功能，并在其基础上进行拓展。他是著名JavaScript MVC框架Emberjs代码的主要贡献者之一。</p>
+<p>赞成它的原因：<br>1.它是一个弱逻辑模板引擎；它是 Mustache.js 的超集<br>2.可以在服务端预编译模板；可以运行在客户端和服务端<br>3.支持 Helper 方法；在模板中支持 this 的概念</p>
+<h2 id="目录">目录</h2>
+<ol>
+<li>安装和使用</li>
+<li>表达式<br>Block表达式<br>Handlebars的内置块表达式（Block helper）<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper<br>自定义helper</li>
+<li>其他<br>（1）Handlebar的注释（comments）<br>（2）Handlebars的访问（Path）<br>（3）调试技巧<br>（4）handlebars的jquery插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
+</ol>
+<h2 id="安装和使用">安装和使用</h2>
+<p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
+<p>单独建立一个模板，ID（或 class）和type很重要，因为要用它们来获取模板内容<br>在JavaScript中，使用 handlebars，可以如下：</p>
+<p><img src="\images\use_20140918.png" alt=""></p>
+<h2 id="Handlebar的表达式">Handlebar的表达式</h2>
+<p>Handlebars expressions 是handlebars模板中最基本的单元，使用方法是用双大括号。表达式也支持点操作符content.title，该形式可以调用嵌套的值或者方法。handlebars模板会自动匹配相应的数值，对象甚至是函数。<br>handlebars会根据上下文来自动对表达式进行匹配：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
+<h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
+<p>如果当前的表达式是一个数组，则Handlebars会“自动展开数组”，并将Blocks的上下文设为数组中的元素。</p>
+<p><img src="\images\block_20140918.png" alt=""></p>
+<h3 id="内置块表达式（Block_helper）">内置块表达式（Block helper）</h3>
+<p>用Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
+<h4 id="1-_each_block_helper">1. each block helper</h4>
+<p>内置的each helper遍历列表块内容，用this来引用遍历的元素，this 指的是数组里的每一项元素。</p>
+<p><img src="\images\each_20140918.png" alt=""></p>
+<p>这和上面的Block很像，但是原理不一样。name是数组，而内置的each就是为了遍历数组用的，更复杂的数据也同样使用。 【？】</p>
+<h4 id="2-_if_else_block_helper">2. if else block helper</h4>
+<p>if就像你使用JavaScript一样，指定条件渲染DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar将不会渲染DOM。</p>
+<h4 id="3-_unless_block_helper">3. unless block helper</h4>
+<p>反向的if</p>
+<h4 id="4-_with_block_helper">4. with block helper</h4>
+<p>一般情况下，Handlebars模板会在编译的阶段的时候进行context传递和赋值。<br>使用with的方法，我们可以将context转移到数据的一个section里面（如果你的数据包含section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
+<p><img src="\images\with_20140918.png" alt=""></p>
+<h3 id="自定义helper">自定义helper</h3>
+<h2 id="其他">其他</h2>
+<h3 id="Handlebars的访问（Path）">Handlebars的访问（Path）</h3>
+<p>Handlebar支持路径和mustache，Handlebar还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
+<h3 id="调试技巧">调试技巧</h3>
+<p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
+<h2 id="参考">参考</h2>
+<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">有说明+完整demo</a>：简单说明+完整demo。用代码说东西，所见即所得</p>
+<p>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：虽很向h 但说的很贴心，表示很同意作者<br>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
+<p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="idl2e6g1egvmx8oc" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/09/13/jade_what/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jade 模板引擎</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/09/17/handlebars/">Handlebars.js 模板引擎</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/13/jade_what/">Jade 模板引擎</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/02/regExp/">正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/02/jsCrossDomain_methods/">js 中的跨域解决办法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget links">
+        
+            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+        
+            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+        
+            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+        
+            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+        
+            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+        
+            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+        
+            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+        
+            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+        
+            <a href="http://blog.csdn.net/mine666/article/category/1444681" target="_blank">JiaoLong_H</a>
+        
+            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+        
+            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+        
+            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+        
+            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+        
+            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+        
+            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
+        
+            <a href="http://bawn.github.io/" target="_blank">iOS开发博客</a>
+        
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 anjia<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

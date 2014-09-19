@@ -69,19 +69,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Handlebars.js是JavaScript 的一个语义模板库，可通过对view和data的分离来快速构建Web模板。它采用”Logic-less template”（无逻辑模版）的思路，在加载时被预编译，而不是到了客户端执行到代码时再去编译， 这样可以保证模板加载和运行的速度。</p>
-<p>Handlebars.js继承于著名的Mustache模板引擎，具备了渲染页面的基础功能，并在其基础上进行拓展。他是著名JavaScript MVC框架Emberjs代码的主要贡献者之一。</p>
-<p>赞成它的原因：<br>1.它是一个弱逻辑模板引擎；它是 Mustache.js 的超集<br>2.可以在服务端预编译模板；可以运行在客户端和服务端<br>3.支持 Helper 方法；在模板中支持 this 的概念</p>
+        <p>Handlebars.js 是一个Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建Web模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
+<p>其他：<br>一个弱逻辑模板引擎；Mustache.js 的超集；在服务端预编译模板；支持 Helper 方法；在模板中支持 this 的概念。<br><strong></strong></p>
+<p>想要了解以下概念，点击查看 <a href="http://www.html-js.com/article/1595" target="_blank" rel="external">学习Javascript模板Handlebars.js</a><br>1.Handlebars.js 是怎样运行的？<br>2.为什么使用 Javascript 模板引擎？<br>3.什么情况下使用 Javascript 模板？<br>4.为什么要选择 Handlebars.js？</p>
 <h2 id="目录">目录</h2>
 <ol>
 <li>安装和使用</li>
-<li>表达式<br>Block表达式<br>Handlebars的内置块表达式（Block helper）<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper<br>自定义helper</li>
+<li>表达式<br><strong>Block表达式</strong>：可以改变js的上下文<br><strong>Handlebars的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个section里面（编译时候进行）<br><strong>自定义helper：</strong>在js中用Handlebars.registerHelper注册helpers</li>
 <li>其他<br>（1）Handlebar的注释（comments）<br>（2）Handlebars的访问（Path）<br>（3）调试技巧<br>（4）handlebars的jquery插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
 </ol>
 <h2 id="安装和使用">安装和使用</h2>
 <p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
-<p>单独建立一个模板，ID（或 class）和type很重要，因为要用它们来获取模板内容<br>在JavaScript中，使用 handlebars，可以如下：</p>
-<p><img src="\images\use_20140918.png" alt=""></p>
+<p>如何使用？见【3】<br>1.在HTML页面上，通过使用Handlebars表达式设定模板，将模板添加到script标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在js中，初始化数据对象<br>3.在js中，使用Handlebars编译函数来编译模板<br><img src="\images\use_20140918.png" alt=""></p>
 <h2 id="Handlebar的表达式">Handlebar的表达式</h2>
 <p>Handlebars expressions 是handlebars模板中最基本的单元，使用方法是用双大括号。表达式也支持点操作符content.title，该形式可以调用嵌套的值或者方法。handlebars模板会自动匹配相应的数值，对象甚至是函数。<br>handlebars会根据上下文来自动对表达式进行匹配：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
 <h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
@@ -107,14 +106,14 @@
 <h3 id="调试技巧">调试技巧</h3>
 <p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
 <h2 id="参考">参考</h2>
-<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">有说明+完整demo</a>：简单说明+完整demo。用代码说东西，所见即所得</p>
-<p>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：虽很向h 但说的很贴心，表示很同意作者<br>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
+<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说东西，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
+<p>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
 <p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="idl2e6g1egvmx8oc" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="mrtobt60ju0qegbe" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -288,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="av2exraqvz9hwejx" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="yxv5irumtejs46w5" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -338,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="6rl1xq0ogiqhfxjd" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="lazgl3tp2a3j9esc" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -423,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="eh4fsaupin4yvei2" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="a6bgfkm9zxhhbtky" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -501,7 +500,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="ju8fcnvch1zft081" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="k3sxbrwagmo1gbfd" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -546,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="jjpoeqof3agn0cg6" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="2s583uuazx4z63rm" class="article-share-link">分享到</a>
       
       
     </footer>
@@ -607,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="o482slsxc94x9o6q" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="g7969xoa0cwdc5mx" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
@@ -693,7 +692,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="66xbx722x9nbwan5" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="z90f2m9zquge2s8y" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -753,7 +752,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="8pxhg53k78u5wcal" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="ifjnpb8dbxmqleub" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -796,7 +795,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="1bsd0hhtvale2v1s" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="18aghe2n46z03f6f" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>

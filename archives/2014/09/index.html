@@ -43,6 +43,256 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-nodejs_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/23/nodejs_0/" class="article-date">
+  <time datetime="2014-09-23T07:52:16.000Z" itemprop="datePublished">2014-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/nodejs_0/">Node.js 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 Javascript API，并让V8能够独立运行于多个平台上（暂且把V8看做是js虚拟机），这样js也能写出跨平台非浏览器页面的应用。</p>
+<p>Node.js特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞IO，更高并发量的网络程序<br>3.Google V8</p>
+<p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter的tweet处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
+<h2 id="npm">npm</h2>
+<p>npm 是 node 的内置功能，目的：让node具有很好的扩展性。<br>npm：用来管理依赖模块<br>node本身只提供实现应用程序的精简api集合。</p>
+<p>为了让node能提供更强大的功能，Ryan借鉴了Perl、Python等语言的经验，提出了NPM（Node Packaged Module，简称模块）的概念，并创建了一整套的模块发布、安装、依赖管理机制。<br>node后来的成功，也是所有node社区成员共同努力的结果，NPM起了关键的作用。没有npm就没有近日风靡全球的node，庞大丰富的npm库。可见npm在node生态中的重要地位。</p>
+<p>我们可以看到大家提交的npm库，并可以通过两个重要榜单去看模板的质量：最多依赖模块和最受欢迎模块<br>通过看榜单，可以对node有个概况的了解，以最多依赖模板为例：<br>1.1698 underscore util库，Backbone.js项目的一部分<br>2.1033 request Http request method<br>3.1002 async 用同步的代码风格写异步代码<br>4.935 coffee-script<br>5.832 express 轻量Web App Framework，基于connect<br>6.812 optimist 命令行辅助<br>7.634 commander 命令行辅助<br>8.571 colors 命令行着色辅助<br>9.436 uglify-js 压缩<br>10.421 connect Http Server中间件库</p>
+<p>有各种util、app框架、编译器等<br>Backbone.js、request、express、connect</p>
+<h2 id="node中的模板加载">node中的模板加载</h2>
+<p>node中的模块分类：<br>1.核心模块(Core Module)：node内置模块，通常存在于node安装路径lib目录下<br>2.第三方模块：</p>
+<p>require是node中加载模块的全局函数，涉及到node.js的模块机制。<br>node如何寻找到对应模块的呢？规则是：<br>1.路径为Y的module中使用 require(X)<br>2.如果是X为核心模块，命中则结束<br>3.如果X以‘./’、‘/’、‘../’开头时，加载第三方模块，命中则结束<br>4.查找失败抛出异常</p>
+<h2 id="杂谈1">杂谈1</h2>
+<p>Node 是一个使用了 CommonJS 风格的代码加载。</p>
+<p>接着：都提供了什么<br>1.NPM：node.js package management<br>2.命令行工具，管理你的项目依赖的那堆东西<br>3.Node和NPM之间的联系：文件夹 node_modules、package.json<br>4.一个注册工具，几乎每一个来自外部的 Node.js package</p>
+<p>最后：常见任务的流行的 package<br>1.对项目有用的工具：<br>2.单元测试：Mocha<br>3.web框架：Express.js、Koa<br>4.模板引擎：Jade、EJS<br>5.网络：Connect、Request、socket.io<br>6.命令行交互：参数解析器（Optimist、Commander）、Colors（美化CLI输出）</p>
+<h2 id="杂谈2">杂谈2</h2>
+<p>说开了 NodeJs 只是 JavaScript 作为 CommonJS 的实现，使得 JavaScript 在服务器端有了用武之地。所以NodeJs从语法层面来说还是JavaScript。</p>
+<p>但是与客户端的JavaScript又有所区别。需要注意：<br>1.要有js基础、理解事件模型、了解js的语法和特性、理解js的面向对象编程<br>2.代码组织方式：包机制、require、exports<br>3.基本的操作系统、数据库（尤其非关系型数据库）、Web编程、HTTP等网络通信</p>
+<p>node 使用 javascript 作为其应用层编程语言，所以 node 程序的语法和 js 无差。<br>console.log 和浏览器中使用习惯一致（只是打到了标准输出-命令界面）</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">Node.js的系列文</a> 来自博客园，Luics的博客，有概况挺全面，质量不错<br><a href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js" target="_blank" rel="external">如何开始学习Node.js</a> 来自stackoverflow，里面对node做了简要介绍，并对资料的提供层层递进<br><a href="http://www.zhihu.com/question/19793473" target="_blank" rel="external">怎样有效地学习Node.js</a> 来自知乎，多看文档、代码、代码。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="0vnv6zmkm6dqxoim" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nodejs_1_expressjs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/23/nodejs_1_expressjs/" class="article-date">
+  <time datetime="2014-09-23T07:47:09.000Z" itemprop="datePublished">2014-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node/">node</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/nodejs_1_expressjs/">Express 介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>还记得<a href="anjia.github.io/2014/09/23/nodejs_0/">《Node.js 入门》</a>中提到的最多依赖模板吗，前10名中的有两个，它们是：<br>05.express：轻量Web App Framework，基于connect<br>10.connect：Http Server中间件库</p>
+<p>connect和express出自同一作者TJ Holowaychuk。<br>express是基于connect的（从两个项目的git提交历史上看，先有express后有connect）。</p>
+<p>Connect是一个node中间件（middleware）框架。为什么要用connect？原生的api依然有简单静态文件服务器的诸多方面未经处理的问题，比如：404等异常未处理、没有基本的文件路径安全验证（实际上我们可以访问到整个os文件系统）、全局异常处理等等。但connect已经将这些问题都处理好了（写得更少做得更多）。</p>
+<p>Express是以web应用框架的面貌出现的，基于connect；准确的说是在connect基础上添加一个更接近业务开发的框架。<br><img src="\images\express_20140923.png" alt=""></p>
+<p>Express提供的框架比较灵活，你可以在express基础上实现MVC。<br>从上图中可以看到，express也实现了一些特殊的connect中间件<br>1.route middleware 实现路由<br>2.express.middleware 初始化express全局参数<br>3.mounted child app middleware 挂载子app</p>
+<p>ps.<br>1.Express 是一个非常小的框架，3.0.0正式发布版只有932行源码，Express强烈依赖的Connect只有267行源码，Connect可选的中间件和扩展总共1143行源码，并且只有到使用时才会加载。<br>2.Node.js虽然提供了http模块，却不是让你直接用这个模块进行Web开发的。http模块仅仅是一个HTTP服务器内核的封装。<br>3.中间件（middleware）就是处理HTTP请求的函数，用来完成各种特定的任务。use是express调用中间件的方法。每个中间件在http处理过程中通过改写request或（和）response的数据、状态，实现了特定的功能。</p>
+<h3 id="Express_介绍">Express 介绍</h3>
+<p>基于 nodejs 的 websocket 的框架<br>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种Web应用，和丰富的HTTP工具，中间件随取随用。它不对 node.js 已有的特性进行二次抽象，只是在它之上扩展了Web应用所需的功能。它也没有涉及到数据库，这个任务留给了第三方的node模块，有了第三方的模块基本上可以与任何数据库交互</p>
+<h3 id="安装_Express">安装 Express</h3>
+<p>全局安装 Express，Express 作为命令被安装到了系统中。<br>-g 代表安装到 NODE_PATH 的 li b里面<br>-d 代表把相依性套件也一起安装</p>
+<h3 id="Express支持的模板引擎">Express支持的模板引擎</h3>
+<p>Express 支持许多模板引擎，常用的有：<br>1.Haml haml 的实现<br>2.Jade haml.js 接替者，同时也是Express的默认模板引擎<br>3.EJS 嵌入JavaScript模板<br>4.CoffeeKup 基于CoffeeScript的模板引擎<br>5.jQuery Templates 的NodeJS版本</p>
+<h3 id="Express的API">Express的API</h3>
+<p>除了 get 方法以外，Express 还提供 post、put、delete 方法，即 HTTP 动词都是 Express 的方法。<br>set 方法用于指定变量的值。</p>
+<p>赋给变量xxx</p>
+<p>框架设置 express 实例的参数：<br>port 访问端口<br>view 视图存放的目录<br>view engine 网页模板引擎</p>
+<p>set 方法用于设定内部变量<br>use 方法用于调用 express 中间件</p>
+<p>任何遵守这样回调的 (path, locals, callback) .<br>为了统一模板引擎接口和缓存，推荐查看 <a href="https://github.com/visionmedia/consolidate.js" target="_blank" rel="external">consolidate.js</a>寻找帮助.<br>有些没有列出来的模板引擎没准也支持 Express.</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">connect &amp; express简介</a> 来自博客园，Luics的博客，简介明了。还有demo+更多链接</p>
+<p><a href="http://expressjs.jser.us/" target="_blank" rel="external">Express 中文文档</a><br><a href="http://expressjs.com/guide.html" target="_blank" rel="external">express API</a><br><a href="https://github.com/senchalabs/connect" target="_blank" rel="external">connect</a><br><a href="http://nodejs.org/docs/v0.5.10/api/" target="_blank" rel="external">Node.js 的API</a></p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/express.html" target="_blank" rel="external">Express 框架</a> 来自《JavaScript标准参考教程》阮一峰</p>
+<p><a href="http://my.oschina.net/youdoce/blog/68476" target="_blank" rel="external">Express.js 中文入门指引手册</a>：其他</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="144wj2hrcnv2qdqs" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-chromeDevTool" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/23/chromeDevTool/" class="article-date">
+  <time datetime="2014-09-23T07:42:56.000Z" itemprop="datePublished">2014-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/chromeDevTool/">chrome developer tool 开发者调试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>元素右键 【Elements】<br>（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）<br>（2）复制路径：CSS路径；XPath路径<br>（3）设置断点：子元素修改、修改属性、删除元素</li>
+<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的js文件</li>
+<li>查看元素绑定了哪些事件<br>【Elements】面板下的“Event Listeners”：按类型列出元素的相关事件（捕获和冒泡阶段会经过的这个节点的事件）</li>
+<li>查找<br>（1）所有js文件中搜索&amp;查找js函数定义：ctrl + shift + F<br>（2）查找函数定义：ctrl + shift + 0<br>（3）查找文件：ctrl + o</li>
+<li>command line API<br>（1）$(id)与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements面板最近选中的5个元素，最新的是$0<br>更多 console API：console.log()<br>更多 command line API：</li>
+<li>【Resources】页面的资源<br>（1）请求的资源情况：字体、图片、脚本文件、样式文件<br>（2）存储相关：Cookies、HTML5的Database、Local Storage<br>  你可以对存储的内容编辑和删除。</li>
+<li>【Timeline】：JS执行时间、页面元素渲染时间</li>
+</ol>
+<ol>
+<li>Chrome的workspace：<br>能够在开发者工具中调试修改js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
+<li>【Profiles】性能分析</li>
+<li>仿真测试：</li>
+</ol>
+<ol>
+<li>Ajax 时中断 【？？】</li>
+<li>console 中执行的代码可断点 【？】<br>最后一行加上 //@ sourceURL=filename.js,<br>会在 Scripts 面板中有个叫 filename.js 的文件, 然后他就和外部 js 文件一样了</li>
+<li>top frame</li>
+</ol>
+<ol>
+<li>Elements</li>
+<li>Network：分析网站请求的网络情况、查看某一请求的请求头和响应头</li>
+<li>Console</li>
+</ol>
+<p>参考：<br><a href="http://ued.taobao.org/blog/2012/06/debug-with-chrome-dev-tool/" target="_blank" rel="external">chrome developer tool调试技巧</a>：ued.taobao.org<br><a href="http://isux.tencent.com/chrome-workspace.html" target="_blank" rel="external">Chrome workspace</a>：isux.tencent.com</p>
+<p><a href="https://developer.chrome.com/devtools/docs/console" target="_blank" rel="external">https://developer.chrome.com/devtools/docs/console</a><br><a href="https://developers.google.com/chrome-developer-tools/" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/</a> </p>
+<p><a href="http://javascript.ruanyifeng.com/tool/console.html" target="_blank" rel="external">console对象</a>： 阮一峰的博客书<br><a href="https://crxdoc-zh.appspot.com/apps/tut_debugging" target="_blank" rel="external">教程：调试</a>：里面有靠谱的更多链接…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="usiadnwwsb6ku92p" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调试/">调试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-funning_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/23/funning_0/" class="article-date">
+  <time datetime="2014-09-23T07:42:09.000Z" itemprop="datePublished">2014-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/funning_0/">ALT+小键盘数字打的特殊符号</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>按住Alt键，在小键盘上输入数字出来的特殊符号。再松开Alt</p>
+<p>41459 ◇<br>41460 ◆ </p>
+<p>41461 □<br>41462 ■</p>
+<p>41463 △<br>41464 ▲</p>
+<p>41465 ※</p>
+<p>41466 →<br>41467 ←<br>41468 ↑<br>41469 ↓</p>
+<p>41470 〓</p>
+<p>41456 ○<br>41457 ●<br>41458 ◎</p>
+<p>41454 ☆<br>41455 ★</p>
+<p>41441 ♂<br>41442 ♀</p>
+<p>43081 ↖<br>43082 ↗<br>43083 ↘<br>43084 ↙</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="e7w7tri5miujcvzm" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/快捷键/">快捷键</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-handlebars" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/17/handlebars/" class="article-date">
@@ -113,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="mrtobt60ju0qegbe" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="cts46ht7x6wuh14g" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -287,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="yxv5irumtejs46w5" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="c3bqi2ksn6dksvx3" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -337,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="lazgl3tp2a3j9esc" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="sxz4ep63tfwajxoj" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -422,7 +672,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="a6bgfkm9zxhhbtky" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="6t8gvlf9aq9wljmm" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -500,7 +750,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="k3sxbrwagmo1gbfd" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="pxgc1q8ohvs23fk8" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -521,7 +771,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -530,7 +780,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -542,23 +792,23 @@
       <ul>
         
           <li>
+            <a href="/2014/09/23/nodejs_0/">Node.js 入门</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/23/nodejs_1_expressjs/">Express 介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/23/chromeDevTool/">chrome developer tool 开发者调试</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/23/funning_0/">ALT+小键盘数字打的特殊符号</a>
+          </li>
+        
+          <li>
             <a href="/2014/09/17/handlebars/">Handlebars.js 模板引擎</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/13/jade_what/">Jade 模板引擎</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/02/regExp/">正则表达式</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/02/jsCrossDomain_methods/">js 中的跨域解决办法</a>
           </li>
         
       </ul>
@@ -570,7 +820,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/调试/">调试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

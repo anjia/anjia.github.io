@@ -5,18 +5,18 @@
   
   <title>Node.js 入门 | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 Javascript API，并让V8能够独立运行于多个平台上（暂且把V8看做是js虚拟机），这样js也能写出跨平台非浏览器页面的应用。
-Node.js特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异步编程：非阻塞IO">
+  <meta name="description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。
+Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js 入门">
 <meta property="og:url" content="http://anjia.github.io/2014/09/23/nodejs_0/">
 <meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 Javascript API，并让V8能够独立运行于多个平台上（暂且把V8看做是js虚拟机），这样js也能写出跨平台非浏览器页面的应用。
-Node.js特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异步编程：非阻塞IO">
+<meta property="og:description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。
+Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js 入门">
-<meta name="twitter:description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 Javascript API，并让V8能够独立运行于多个平台上（暂且把V8看做是js虚拟机），这样js也能写出跨平台非浏览器页面的应用。
-Node.js特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异步编程：非阻塞IO">
+<meta name="twitter:description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。
+Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异">
 
   
     <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
@@ -70,24 +70,24 @@ Node.js特性（单线程异步编程模型）1.单线程：编程复杂性更�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 Javascript API，并让V8能够独立运行于多个平台上（暂且把V8看做是js虚拟机），这样js也能写出跨平台非浏览器页面的应用。</p>
-<p>Node.js特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞IO，更高并发量的网络程序<br>3.Google V8</p>
-<p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter的tweet处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
-<h2 id="npm">npm</h2>
-<p>npm 是 node 的内置功能，目的：让node具有很好的扩展性。<br>npm：用来管理依赖模块<br>node本身只提供实现应用程序的精简api集合。</p>
-<p>为了让node能提供更强大的功能，Ryan借鉴了Perl、Python等语言的经验，提出了NPM（Node Packaged Module，简称模块）的概念，并创建了一整套的模块发布、安装、依赖管理机制。<br>node后来的成功，也是所有node社区成员共同努力的结果，NPM起了关键的作用。没有npm就没有近日风靡全球的node，庞大丰富的npm库。可见npm在node生态中的重要地位。</p>
-<p>我们可以看到大家提交的npm库，并可以通过两个重要榜单去看模板的质量：最多依赖模块和最受欢迎模块<br>通过看榜单，可以对node有个概况的了解，以最多依赖模板为例：<br>1.1698 underscore util库，Backbone.js项目的一部分<br>2.1033 request Http request method<br>3.1002 async 用同步的代码风格写异步代码<br>4.935 coffee-script<br>5.832 express 轻量Web App Framework，基于connect<br>6.812 optimist 命令行辅助<br>7.634 commander 命令行辅助<br>8.571 colors 命令行着色辅助<br>9.436 uglify-js 压缩<br>10.421 connect Http Server中间件库</p>
-<p>有各种util、app框架、编译器等<br>Backbone.js、request、express、connect</p>
-<h2 id="node中的模板加载">node中的模板加载</h2>
-<p>node中的模块分类：<br>1.核心模块(Core Module)：node内置模块，通常存在于node安装路径lib目录下<br>2.第三方模块：</p>
-<p>require是node中加载模块的全局函数，涉及到node.js的模块机制。<br>node如何寻找到对应模块的呢？规则是：<br>1.路径为Y的module中使用 require(X)<br>2.如果是X为核心模块，命中则结束<br>3.如果X以‘./’、‘/’、‘../’开头时，加载第三方模块，命中则结束<br>4.查找失败抛出异常</p>
+        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。</p>
+<p>Node.js 特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞 IO，更高并发量的网络程序<br>3.Google V8</p>
+<p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter 的 tweet 处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
+<h2 id="NPM">NPM</h2>
+<p>npm 是 node 的内置功能，目的：让 node 具有很好的扩展性。<br>npm：用来管理依赖模块<br>node 本身只提供实现应用程序的精简api集合。</p>
+<p>为了让 node 能提供更强大的功能，Ryan 借鉴了 Perl、Python 等语言的经验，提出了 NPM（Node Packaged Module，简称模块）的概念，并创建了一整套的模块发布、安装、依赖管理机制。<br>node 后来的成功，也是所有 node 社区成员共同努力的结果，npm 起了关键的作用。没有 npm 就没有近日风靡全球的 node，庞大丰富的 npm 库。可见npm 在 node 生态中的重要地位。</p>
+<p>我们可以看到大家提交的 npm 库。可以通过两个重要榜单去看模板的质量：最多依赖模块和最受欢迎模块<br>通过看榜单，可以对 node 有个概况的了解，以最多依赖模板为例：<br>1.1698 underscore util库，Backbone.js 项目的一部分<br>2.1033 request，Http request method<br>3.1002 async，用同步的代码风格写异步代码<br>4.935 coffee-script<br>5.832 express，轻量Web App Framework，基于connect<br>6.812 optimist，命令行辅助<br>7.634 commander，命令行辅助<br>8.571 colors，命令行着色辅助<br>9.436 uglify-js，压缩<br>10.421 connect，Http Server中间件库</p>
+<p>有各种 util、app 框架、编译器等<br>Backbone.js、request、express、connect</p>
+<h2 id="node_中的模板加载">node 中的模板加载</h2>
+<p>node 中的模块分类：<br>1.核心模块(Core Module)：node 内置模块，通常存在于 node 安装路径 lib 目录下<br>2.第三方模块：</p>
+<p>require 是 node 中加载模块的全局函数，涉及到 node.js 的模块机制。<br>node 如何寻找到对应模块的呢？规则是：<br>1.路径为Y的module中使用 require(X)<br>2.如果是X为核心模块，命中则结束<br>3.如果X以‘./’、‘/’、‘../’开头时，加载第三方模块，命中则结束<br>4.查找失败抛出异常</p>
 <h2 id="杂谈1">杂谈1</h2>
 <p>Node 是一个使用了 CommonJS 风格的代码加载。</p>
 <p>接着：都提供了什么<br>1.NPM：node.js package management<br>2.命令行工具，管理你的项目依赖的那堆东西<br>3.Node和NPM之间的联系：文件夹 node_modules、package.json<br>4.一个注册工具，几乎每一个来自外部的 Node.js package</p>
 <p>最后：常见任务的流行的 package<br>1.对项目有用的工具：<br>2.单元测试：Mocha<br>3.web框架：Express.js、Koa<br>4.模板引擎：Jade、EJS<br>5.网络：Connect、Request、socket.io<br>6.命令行交互：参数解析器（Optimist、Commander）、Colors（美化CLI输出）</p>
 <h2 id="杂谈2">杂谈2</h2>
-<p>说开了 NodeJs 只是 JavaScript 作为 CommonJS 的实现，使得 JavaScript 在服务器端有了用武之地。所以NodeJs从语法层面来说还是JavaScript。</p>
-<p>但是与客户端的JavaScript又有所区别。需要注意：<br>1.要有js基础、理解事件模型、了解js的语法和特性、理解js的面向对象编程<br>2.代码组织方式：包机制、require、exports<br>3.基本的操作系统、数据库（尤其非关系型数据库）、Web编程、HTTP等网络通信</p>
+<p>说开了 NodeJs 只是 JavaScript 作为 CommonJS 的实现，使得 JavaScript 在服务器端有了用武之地。所以 NodeJs 从语法层面来说还是 JavaScript。</p>
+<p>但是与客户端的 JavaScript 又有所区别。需要注意：<br>1.要有js基础、理解事件模型、了解js的语法和特性、理解js的面向对象编程<br>2.代码组织方式：包机制、require、exports<br>3.基本的操作系统、数据库（尤其非关系型数据库）、Web编程、HTTP等网络通信</p>
 <p>node 使用 javascript 作为其应用层编程语言，所以 node 程序的语法和 js 无差。<br>console.log 和浏览器中使用习惯一致（只是打到了标准输出-命令界面）</p>
 <h2 id="参考">参考</h2>
 <p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">Node.js的系列文</a> 来自博客园，Luics的博客，有概况挺全面，质量不错<br><a href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js" target="_blank" rel="external">如何开始学习Node.js</a> 来自stackoverflow，里面对node做了简要介绍，并对资料的提供层层递进<br><a href="http://www.zhihu.com/question/19793473" target="_blank" rel="external">怎样有效地学习Node.js</a> 来自知乎，多看文档、代码、代码。。。</p>
@@ -95,7 +95,7 @@ Node.js特性（单线程异步编程模型）1.单线程：编程复杂性更�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="0vnv6zmkm6dqxoim" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="djcflzub9ttwrrnf" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>

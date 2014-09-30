@@ -5,19 +5,19 @@
   
   <title>Express 介绍 | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="还记得《Node.js 入门》中提到的最多依赖模板吗，前10名中的有两个，它们是：05.express：轻量Web App Framework，基于connect10.connect：Http Server中间件库
-connect和express出自同一作者TJ Holowaychuk。express是基于connect的（从两个项目的git提交历史上看，先有express后有connect）。">
+  <meta name="description" content="还记得《Node.js 入门》中提到的最多依赖模板吗，前10名中的有两个，它们是：05.express：轻量 Web App Framework，基于 connect10.connect：Http Server 中间件库
+connect 和 express 出自同一作者 TJ Holowaychuk。express 是基于 connect的（从两个项目的git提交历史上看，先有 express 后">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express 介绍">
 <meta property="og:url" content="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/">
 <meta property="og:site_name" content="anjia">
-<meta property="og:description" content="还记得《Node.js 入门》中提到的最多依赖模板吗，前10名中的有两个，它们是：05.express：轻量Web App Framework，基于connect10.connect：Http Server中间件库
-connect和express出自同一作者TJ Holowaychuk。express是基于connect的（从两个项目的git提交历史上看，先有express后有connect）。">
+<meta property="og:description" content="还记得《Node.js 入门》中提到的最多依赖模板吗，前10名中的有两个，它们是：05.express：轻量 Web App Framework，基于 connect10.connect：Http Server 中间件库
+connect 和 express 出自同一作者 TJ Holowaychuk。express 是基于 connect的（从两个项目的git提交历史上看，先有 express 后">
 <meta property="og:image" content="\images\express_20140923.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Express 介绍">
-<meta name="twitter:description" content="还记得《Node.js 入门》中提到的最多依赖模板吗，前10名中的有两个，它们是：05.express：轻量Web App Framework，基于connect10.connect：Http Server中间件库
-connect和express出自同一作者TJ Holowaychuk。express是基于connect的（从两个项目的git提交历史上看，先有express后有connect）。">
+<meta name="twitter:description" content="还记得《Node.js 入门》中提到的最多依赖模板吗，前10名中的有两个，它们是：05.express：轻量 Web App Framework，基于 connect10.connect：Http Server 中间件库
+connect 和 express 出自同一作者 TJ Holowaychuk。express 是基于 connect的（从两个项目的git提交历史上看，先有 express 后">
 
   
     <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
@@ -71,18 +71,18 @@ connect和express出自同一作者TJ Holowaychuk。express是基于connect的�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>还记得<a href="anjia.github.io/2014/09/23/nodejs_0/">《Node.js 入门》</a>中提到的最多依赖模板吗，前10名中的有两个，它们是：<br>05.express：轻量Web App Framework，基于connect<br>10.connect：Http Server中间件库</p>
-<p>connect和express出自同一作者TJ Holowaychuk。<br>express是基于connect的（从两个项目的git提交历史上看，先有express后有connect）。</p>
-<p>Connect是一个node中间件（middleware）框架。为什么要用connect？原生的api依然有简单静态文件服务器的诸多方面未经处理的问题，比如：404等异常未处理、没有基本的文件路径安全验证（实际上我们可以访问到整个os文件系统）、全局异常处理等等。但connect已经将这些问题都处理好了（写得更少做得更多）。</p>
-<p>Express是以web应用框架的面貌出现的，基于connect；准确的说是在connect基础上添加一个更接近业务开发的框架。<br><img src="\images\express_20140923.png" alt=""></p>
-<p>Express提供的框架比较灵活，你可以在express基础上实现MVC。<br>从上图中可以看到，express也实现了一些特殊的connect中间件<br>1.route middleware 实现路由<br>2.express.middleware 初始化express全局参数<br>3.mounted child app middleware 挂载子app</p>
-<p>ps.<br>1.Express 是一个非常小的框架，3.0.0正式发布版只有932行源码，Express强烈依赖的Connect只有267行源码，Connect可选的中间件和扩展总共1143行源码，并且只有到使用时才会加载。<br>2.Node.js虽然提供了http模块，却不是让你直接用这个模块进行Web开发的。http模块仅仅是一个HTTP服务器内核的封装。<br>3.中间件（middleware）就是处理HTTP请求的函数，用来完成各种特定的任务。use是express调用中间件的方法。每个中间件在http处理过程中通过改写request或（和）response的数据、状态，实现了特定的功能。</p>
+        <p>还记得<a href="anjia.github.io/2014/09/23/nodejs_0/">《Node.js 入门》</a>中提到的最多依赖模板吗，前10名中的有两个，它们是：<br>05.express：轻量 Web App Framework，基于 connect<br>10.connect：Http Server 中间件库</p>
+<p>connect 和 express 出自同一作者 TJ Holowaychuk。<br>express 是基于 connect的（从两个项目的git提交历史上看，先有 express 后有 connect）。</p>
+<p>Connect 是一个 node 中间件（middleware）框架。为什么要用 connect？原生的 api 依然有简单静态文件服务器的诸多方面未经处理的问题，比如：404等异常未处理、没有基本的文件路径安全验证（实际上我们可以访问到整个os文件系统）、全局异常处理等等。但 connect 已经将这些问题都处理好了（写得更少做得更多）。</p>
+<p>Express 是以 web 应用框架的面貌出现的，基于 connect；准确的说是在 connect 基础上添加一个更接近业务开发的框架。<br><img src="\images\express_20140923.png" alt=""></p>
+<p>Express 提供的框架比较灵活，你可以在 express 基础上实现 MVC。<br>从上图中可以看到，express 也实现了一些特殊的 connect 中间件<br>1.route middleware 实现路由<br>2.express.middleware 初始化express全局参数<br>3.mounted child app middleware 挂载子app</p>
+<p>ps.<br>1.Express 是一个非常小的框架，3.0.0正式发布版只有932行源码，Express 强烈依赖 Connect 的只有267行源码，Connect 可选的中间件和扩展总共1143行源码，并且只有到使用时才会加载。<br>2.Node.js 虽然提供了 http 模块，却不是让你直接用这个模块进行 Web 开发的。http 模块仅仅是一个 HTTP 服务器内核的封装。<br>3.中间件（middleware）就是处理 HTTP 请求的函数，用来完成各种特定的任务。use 是 express 调用中间件的方法。每个中间件在 http 处理过程中通过改写 request 或（和）response 的数据、状态，实现了特定的功能。</p>
 <h3 id="Express_介绍">Express 介绍</h3>
-<p>基于 nodejs 的 websocket 的框架<br>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种Web应用，和丰富的HTTP工具，中间件随取随用。它不对 node.js 已有的特性进行二次抽象，只是在它之上扩展了Web应用所需的功能。它也没有涉及到数据库，这个任务留给了第三方的node模块，有了第三方的模块基本上可以与任何数据库交互</p>
+<p>基于 nodejs 的 websocket 的框架<br>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具，中间件随取随用。它不对 node.js 已有的特性进行二次抽象，只是在它之上扩展了 Web 应用所需的功能。它也没有涉及到数据库，这个任务留给了第三方的 node 模块，有了第三方的模块基本上可以与任何数据库交互</p>
 <h3 id="安装_Express">安装 Express</h3>
 <p>全局安装 Express，Express 作为命令被安装到了系统中。<br>-g 代表安装到 NODE_PATH 的 li b里面<br>-d 代表把相依性套件也一起安装</p>
 <h3 id="Express支持的模板引擎">Express支持的模板引擎</h3>
-<p>Express 支持许多模板引擎，常用的有：<br>1.Haml haml 的实现<br>2.Jade haml.js 接替者，同时也是Express的默认模板引擎<br>3.EJS 嵌入JavaScript模板<br>4.CoffeeKup 基于CoffeeScript的模板引擎<br>5.jQuery Templates 的NodeJS版本</p>
+<p>Express 支持许多模板引擎，常用的有：<br>1.Haml，haml 的实现<br>2.Jade，haml.js 接替者，同时也是 Express 的默认模板引擎<br>3.EJS，嵌入 JavaScript 模板<br>4.CoffeeKup，基于 CoffeeScript 的模板引擎<br>5.jQuery Templates 的 NodeJS 版本</p>
 <h3 id="Express的API">Express的API</h3>
 <p>除了 get 方法以外，Express 还提供 post、put、delete 方法，即 HTTP 动词都是 Express 的方法。<br>set 方法用于指定变量的值。</p>
 <p>赋给变量xxx</p>
@@ -98,7 +98,7 @@ connect和express出自同一作者TJ Holowaychuk。express是基于connect的�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="144wj2hrcnv2qdqs" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="bg3iudtx38zlmuhz" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>

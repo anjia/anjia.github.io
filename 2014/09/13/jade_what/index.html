@@ -5,21 +5,21 @@
   
   <title>Jade 模板引擎 | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事了之后发现，对它的态度更多的是怪异。
-第一，有些操作符和它的真实意思对应不那么直观比如 !=(非转义输出) 分明是不等于好么；|(原样输出的管道)初识的时候不易接受。
-第二，空格缩进过于灵活了吧一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄">
+  <meta name="description" content="怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。
+第一，有些操作符和它的真实意思对应不那么直观比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。
+第二，空格缩进过于灵活了吧一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jade 模板引擎">
 <meta property="og:url" content="http://anjia.github.io/2014/09/13/jade_what/">
 <meta property="og:site_name" content="anjia">
-<meta property="og:description" content="怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事了之后发现，对它的态度更多的是怪异。
-第一，有些操作符和它的真实意思对应不那么直观比如 !=(非转义输出) 分明是不等于好么；|(原样输出的管道)初识的时候不易接受。
-第二，空格缩进过于灵活了吧一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄">
+<meta property="og:description" content="怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。
+第一，有些操作符和它的真实意思对应不那么直观比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。
+第二，空格缩进过于灵活了吧一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jade 模板引擎">
-<meta name="twitter:description" content="怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事了之后发现，对它的态度更多的是怪异。
-第一，有些操作符和它的真实意思对应不那么直观比如 !=(非转义输出) 分明是不等于好么；|(原样输出的管道)初识的时候不易接受。
-第二，空格缩进过于灵活了吧一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄">
+<meta name="twitter:description" content="怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。
+第一，有些操作符和它的真实意思对应不那么直观比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。
+第二，空格缩进过于灵活了吧一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟">
 
   
     <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
@@ -73,17 +73,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事了之后发现，对它的态度更多的是怪异。</p>
-<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|(原样输出的管道)初识的时候不易接受。</p>
-<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在if-else语句里就容易写错缩进。</p>
-<p>第三，是少敲键盘了，但失去了HTML的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用Jade写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
-<p>第四，对于class和id的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
+        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。</p>
+<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。</p>
+<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得，缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在 if-else 语句里就容易写错缩进。</p>
+<p>第三，是少敲键盘了，但失去了 HTML 的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用 Jade 写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
+<p>第四，对于 class 和 id 的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
 <p>在看文档的时候，里面有描述“Jade中的某种写法，同样是设计师友好的”。就比较好奇，为什么要对设计师友好？感觉取悦了狭义上的前端工程师就够了。产品是要只为少数人设计，语言也要一样。</p>
-<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是undefined或null时会自动忽略。这些针对前端、针对HTML的特性做的优化还是很不错的。</p>
-<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用smarty，觉得模板是很方便。所以，想看看其他的兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出HTML字符串嘛。</p>
+<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是 undefined 或 null 时会自动忽略、模板中可以直接使用 javascript。这些针对 HTML、针对前端的特性做的优化还是很不错的。</p>
+<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用 smarty，觉得模板很方便。所以想看看其他兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上就是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出 HTML 字符串嘛。</p>
 <p>为了不让今天的付出感觉上白费掉，便决定写个博客记录下目前对它的理解，好提醒下自己：我今天确实是接触到了“新”东西。</p>
 <h2 id="Jade">Jade</h2>
-<p>Jade — Node Template Engine<br>Jade是一个高性能的模板引擎，为Node而做，是用JavaScript实现的。Node.js的Express.js框架默认用的就是jade。<br>Jade还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
+<p>Jade — Node Template Engine，一个高性能的模板引擎，为 Node 而做，用 JavaScript 实现。<br>Node.js 的 Express.js 框架默认用的就是 Jade。<br>Jade 还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
 <ol>
 <li>通过npm安装： npm install jade</li>
 <li>把Jade编译成一个可供浏览器使用的单文件，执行：make jade.js。<br>可以把 <em>.jade  编译为  </em>.html</li>
@@ -93,16 +93,16 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">//complie</span></div><div class="line"><span class="keyword">var</span> fn = jade.compile(<span class="string">'string of jade'</span>, options);</div><div class="line"><span class="keyword">var</span> html = fn(locals);</div><div class="line"></div><div class="line"><span class="comment">//render</span></div><div class="line"><span class="keyword">var</span> html = jade.render(<span class="string">'string of jade'</span>, merge(options, locals));</div><div class="line"></div><div class="line"><span class="comment">//renderFile</span></div><div class="line"><span class="keyword">var</span> html = jade.renderFile(<span class="string">'filename.jade'</span>, merge(options, locals));</div></pre></td></tr></table></figure>
 
 <ol>
-<li>浏览器支持<br>浏览器版的jade它只支持最新的浏览器，是一个很大的文件。建议使用时先把Jade预编译成JavaScript，然后再在客户端使用 runtime.js 库。</li>
+<li>浏览器支持<br>浏览器版的 Jade 它只支持最新的浏览器，是一个很大的文件。建议使用时先把 Jade 预编译成 JavaScript，然后再在客户端使用 runtime.js 库。</li>
 </ol>
 <h2 id="Jade的语法和特性">Jade的语法和特性</h2>
-<p>Jade的语法是简洁、对HTML代码空格敏感。在这点上它借鉴了Haml的很多地方，所以与Haml的语法挺相近。</p>
-<p>Haml是什么？Haml是简写HTML的一种办法。借用Haml的作者Hampton Catlin的一句话：“Haml是对传统XHTML的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的XHTML构造方式。”Haml的网站上也说：“Haml让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
+<p>Jade 的语法是简洁、对 HTML 代码空格敏感。在这点上它借鉴了 Haml 的很多地方，所以与 Haml 语法挺相近</p>
+<p>Haml 是什么？Haml 是简写 HTML 的一种办法。借用 Haml 的作者 Hampton Catlin 的一句话：“Haml 是对传统 XHTML 的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的 XHTML 构造方式。” Haml 的网站上也说：“Haml 让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
 <ol>
 <li>语法<br>（1）标签、属性、注释<br>（2）读取数据的值（转义、非转义）</li>
 <li>逻辑<br>（1）条件语句（if、unless、case）<br>（2）循环（each、for）<br>（3）过滤器<br>（4）Mixins</li>
 <li>继承和包含<br>（1）模板继承<br>（2）包含</li>
-<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
+<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的 HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
 <li>其他<br>（1）Doctype<br>（2）产生输出</li>
 </ol>
 <h2 id="1-_语法">1. 语法</h2>
@@ -111,8 +111,8 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">会被转换成 <span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的id--&gt;</span></div><div class="line">div#container</div><div class="line">会被转成 <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的class--&gt;</span></div><div class="line">div.user-details</div><div class="line"></div><div class="line"><span class="comment">&lt;!--多个class和id--&gt;</span></div><div class="line">div#foo.bar.baz</div><div class="line"></div><div class="line"><span class="comment">&lt;!--不写标签，默认就是div（语法糖）--&gt;</span></div><div class="line">#foo</div><div class="line">.bar</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h3 id="属性">属性</h3>
-<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是true时才会输出。为false时就被忽略了</p>
-<p>class属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
+<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是 true 时才会输出。为 false 时就被忽略了</p>
+<p>class 属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--普通的 JavaScript 字符串连接--&gt;</span></div><div class="line">a(href='/user/' + user.id)= user.name</div><div class="line"></div><div class="line"><span class="comment">&lt;!--用Jade--&gt;</span></div><div class="line">a(href='/user/#{user.id}')= user.name</div></pre></td></tr></table></figure>
 
 <h3 id="注释">注释</h3>
@@ -126,7 +126,7 @@
 
 <h2 id="2-_模板逻辑">2. 模板逻辑</h2>
 <h3 id="条件语句">条件语句</h3>
-<p>Jade的条件语句和使用了前缀-的js语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的js。是相等的</p>
+<p>Jade 的条件语句和使用了前缀 - 的 js 语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的 js。是相等的</p>
 <figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//用条件表达式<span class="keyword">if</span></div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  <span class="keyword">if</span> user.role == <span class="string">'admin'</span></div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    p= user.name</div><div class="line"><span class="comment"></span></div><div class="line">//常规的js代码</div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  - <span class="keyword">if</span> (user.role == <span class="string">'admin'</span>)</div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  - <span class="keyword">else</span></div><div class="line">    p= user.name</div></pre></td></tr></table></figure>
 
 <p>Jade同时支持 unless  这和 if(!(expr)) 是等价的</p>
@@ -134,23 +134,23 @@
 <p>case表达式</p>
 <figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--空格缩进--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    friends = 10</div><div class="line">    case friends</div><div class="line">      when 0</div><div class="line">        p you have no friends</div><div class="line">      when 1</div><div class="line">        p you have a friend</div><div class="line">      default</div><div class="line">        p you have #{friends} friends</div><div class="line"></div><div class="line"><span class="comment">&lt;!--块展开--&gt;</span></div><div class="line">friends = 5</div><div class="line">html</div><div class="line">  body</div><div class="line">    case friends</div><div class="line">      when 0: p you have no friends</div><div class="line">      when 1: p you have a friend</div><div class="line">      default: p you have #{friends} friends</div></pre></td></tr></table></figure>
 
-<p>此处有木有发现关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
+<p>此处有木有发现，关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
 <h3 id="循环">循环</h3>
-<p>Jade支持js的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
-<p>Jade在内部会把这些语句转换成原生的js语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用for。</p>
+<p>Jade 支持 js 的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
+<p>Jade 在内部会把这些语句转换成原生的 js 语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用 for。</p>
 <h3 id="过滤器">过滤器</h3>
-<p>过滤器前缀:<br>比如:markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
+<p>过滤器前缀:<br>比如 :markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
 <h3 id="Mixins">Mixins</h3>
-<p>Mixins 在编译的模板里会被 Jade 转换为普通的js函数。<br>Mixins 可以带参，但不是必需的。</p>
+<p>Mixins 在编译的模板里会被 Jade 转换为普通的 js 函数。<br>Mixins 可以带参，但不是必需的。</p>
 <h2 id="3-_模板继承">3. 模板继承</h2>
 <h3 id="模板继承">模板继承</h3>
-<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade的block就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
+<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade 的 block 就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
 <p>Jade允许你替换、前置和追加blocks。</p>
 <p>block 默认是覆盖（替换）父级块的内容（也可以在子块中实现块）<br>block append  追加代码块（block可选）<br>block prepend 前置代码块（block可选）</p>
 <h3 id="包含">包含</h3>
-<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade解析这些文件，并插入到已经生成的语法树中</p>
-<p>被包含的块，可以用yield语句（明确标明 include 代码块的放置位置。）</p>
-<p>子可以用父中的变量。被包含的Jade会按字面解析合并到AST中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做partial的替代。</p>
+<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade 解析这些文件，并插入到已经生成的语法树中</p>
+<p>被包含的块，可以用 yield 语句（明确标明 include 代码块的放置位置。）</p>
+<p>子可以用父中的变量。被包含的 Jade 会按字面解析合并到 AST 中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做 partial 的替代。</p>
 <h2 id="4-_模板特性">4. 模板特性</h2>
 <h3 id="标签文本">标签文本</h3>
 <p>1、单行的文本，用标签文本</p>
@@ -160,7 +160,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--大段的文本，原样输出--&gt;</span></div><div class="line">p</div><div class="line"> | aaa</div><div class="line"> | bbb</div><div class="line"> | ccc</div><div class="line"></div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>aaa bbb ccc<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>3、用. 来开始一段文本块<br>p.<br>  aaa<br>  bbb<br>  ccc.</p>
-<p>带空格的 . 会被Jade的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
+<p>带空格的 . 会被 Jade 的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注意：文本块需要两次转义--&gt;</span></div><div class="line">要输出下面的文本：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>foo\bar<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">需使用：</div><div class="line">p.</div><div class="line">  foo\\bar</div></pre></td></tr></table></figure>
 
 <p>eg1.内联标签可以使用标签文本、也可以使用文本块</p>
@@ -192,12 +192,12 @@
 <h3 id="Doctype">Doctype</h3>
 <p>添加文档类型<br>!!!<br>!!! 5<br>!!! html<br>doctype html</p>
 <h3 id="产生输出">产生输出</h3>
-<p>当选项compileDebug的值是true，Jade编译时会加行号，且报错信息里会带上行号。<br>当值是false时，参数会被去掉。</p>
+<p>当选项 compileDebug 的值是 true，Jade 编译时会加行号，且报错信息里会带上行号。<br>当值是 false 时，参数会被去掉。</p>
 <p>你可以通过 toString() 来编译模板而不需要在浏览器端运行整个 Jade 库，这样可以提高性能，也可以减少载入的 JavaScript 数量。</p>
 <h2 id="结束语">结束语</h2>
 <p>模板是什么？模板就是一个模子。供你套数据，并且依据不同数据去走不同的逻辑。<br>引擎是什么？引擎就是个处理器（编译、运行），最后输出个结果（HTML代码）的东西。</p>
-<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
-<p>最后查了下，还真是，关于Jade的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> -来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a>-来自stackoverflow<br>你要是也有兴趣，可加入<a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a>去讨论</p>
+<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade 的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
+<p>最后查了下，还真是，关于 Jade 的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> — 来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a> — 来自stackoverflow<br>你要是也有兴趣，可加入 <a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a> 去讨论</p>
 <h2 id="在线学习Jade">在线学习Jade</h2>
 <p>【1】 <a href="http://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank" rel="external">学习Jade模板引擎的语法</a>，包括：<br>HTML的标签文本、注释<br>id、类、属性<br>变量、转义和非转义</p>
 <p>【2】<a href="http://cssdeck.com/labs/jade-templating-tutorial-codecast-part-2" target="_blank" rel="external">Jade的逻辑处理部分</a>，包括：<br>在模板中使用内嵌js（node）代码<br>条件语句（if和unless）<br>循环（loop、for、each）<br>定义函数（Mixins）<br>过滤器（Filters）</p>
@@ -209,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="c3bqi2ksn6dksvx3" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="4jg3w1nn7o72xh1h" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>

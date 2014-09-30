@@ -5,21 +5,21 @@
   
   <title>js 中的跨域解决办法 | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文来自网络，觉得作者写得既简短又系统，故在此做个笔记框架。
+  <meta name="description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
 同源策略是把双刃剑
-同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是">
+同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js 中的跨域解决办法">
 <meta property="og:url" content="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/">
 <meta property="og:site_name" content="anjia">
-<meta property="og:description" content="本文来自网络，觉得作者写得既简短又系统，故在此做个笔记框架。
+<meta property="og:description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
 同源策略是把双刃剑
-同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是">
+同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js 中的跨域解决办法">
-<meta name="twitter:description" content="本文来自网络，觉得作者写得既简短又系统，故在此做个笔记框架。
+<meta name="twitter:description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
 同源策略是把双刃剑
-同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是">
+同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域">
 
   
     <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
@@ -73,7 +73,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文来自<a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
+        <p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
 <h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
 <p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
 <p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
@@ -86,8 +86,8 @@
 
 <p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
 <p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
-<p>问题：<br>1、安全性，当一个站点(b.a.com)被攻击后，另一个站点(c.a.com)会引起安全漏洞<br>2、若一个页面中引入了多个iframe，要想能操作所有iframe，则必须都得设置成相同的domain</p>
-<h2 id="2-_动态创建script">2. 动态创建script</h2>
+<p>问题：<br>1、安全性，当一个站点（b.a.com）被攻击后，另一个站点（c.a.com）会引起安全漏洞<br>2、若一个页面中引入了多个 iframe，要想能操作所有 iframe，则必须都得设置成相同的 domain</p>
+<h2 id="2-_动态创建_script">2. 动态创建 script</h2>
 <p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
 <h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
 <p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
@@ -113,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="pxgc1q8ohvs23fk8" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="cwc1z8ovmrmqe13o" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>

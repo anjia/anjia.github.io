@@ -69,24 +69,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 Javascript API，并让V8能够独立运行于多个平台上（暂且把V8看做是js虚拟机），这样js也能写出跨平台非浏览器页面的应用。</p>
-<p>Node.js特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞IO，更高并发量的网络程序<br>3.Google V8</p>
-<p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter的tweet处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
-<h2 id="npm">npm</h2>
-<p>npm 是 node 的内置功能，目的：让node具有很好的扩展性。<br>npm：用来管理依赖模块<br>node本身只提供实现应用程序的精简api集合。</p>
-<p>为了让node能提供更强大的功能，Ryan借鉴了Perl、Python等语言的经验，提出了NPM（Node Packaged Module，简称模块）的概念，并创建了一整套的模块发布、安装、依赖管理机制。<br>node后来的成功，也是所有node社区成员共同努力的结果，NPM起了关键的作用。没有npm就没有近日风靡全球的node，庞大丰富的npm库。可见npm在node生态中的重要地位。</p>
-<p>我们可以看到大家提交的npm库，并可以通过两个重要榜单去看模板的质量：最多依赖模块和最受欢迎模块<br>通过看榜单，可以对node有个概况的了解，以最多依赖模板为例：<br>1.1698 underscore util库，Backbone.js项目的一部分<br>2.1033 request Http request method<br>3.1002 async 用同步的代码风格写异步代码<br>4.935 coffee-script<br>5.832 express 轻量Web App Framework，基于connect<br>6.812 optimist 命令行辅助<br>7.634 commander 命令行辅助<br>8.571 colors 命令行着色辅助<br>9.436 uglify-js 压缩<br>10.421 connect Http Server中间件库</p>
-<p>有各种util、app框架、编译器等<br>Backbone.js、request、express、connect</p>
-<h2 id="node中的模板加载">node中的模板加载</h2>
-<p>node中的模块分类：<br>1.核心模块(Core Module)：node内置模块，通常存在于node安装路径lib目录下<br>2.第三方模块：</p>
-<p>require是node中加载模块的全局函数，涉及到node.js的模块机制。<br>node如何寻找到对应模块的呢？规则是：<br>1.路径为Y的module中使用 require(X)<br>2.如果是X为核心模块，命中则结束<br>3.如果X以‘./’、‘/’、‘../’开头时，加载第三方模块，命中则结束<br>4.查找失败抛出异常</p>
+        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。</p>
+<p>Node.js 特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞 IO，更高并发量的网络程序<br>3.Google V8</p>
+<p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter 的 tweet 处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
+<h2 id="NPM">NPM</h2>
+<p>npm 是 node 的内置功能，目的：让 node 具有很好的扩展性。<br>npm：用来管理依赖模块<br>node 本身只提供实现应用程序的精简api集合。</p>
+<p>为了让 node 能提供更强大的功能，Ryan 借鉴了 Perl、Python 等语言的经验，提出了 NPM（Node Packaged Module，简称模块）的概念，并创建了一整套的模块发布、安装、依赖管理机制。<br>node 后来的成功，也是所有 node 社区成员共同努力的结果，npm 起了关键的作用。没有 npm 就没有近日风靡全球的 node，庞大丰富的 npm 库。可见npm 在 node 生态中的重要地位。</p>
+<p>我们可以看到大家提交的 npm 库。可以通过两个重要榜单去看模板的质量：最多依赖模块和最受欢迎模块<br>通过看榜单，可以对 node 有个概况的了解，以最多依赖模板为例：<br>1.1698 underscore util库，Backbone.js 项目的一部分<br>2.1033 request，Http request method<br>3.1002 async，用同步的代码风格写异步代码<br>4.935 coffee-script<br>5.832 express，轻量Web App Framework，基于connect<br>6.812 optimist，命令行辅助<br>7.634 commander，命令行辅助<br>8.571 colors，命令行着色辅助<br>9.436 uglify-js，压缩<br>10.421 connect，Http Server中间件库</p>
+<p>有各种 util、app 框架、编译器等<br>Backbone.js、request、express、connect</p>
+<h2 id="node_中的模板加载">node 中的模板加载</h2>
+<p>node 中的模块分类：<br>1.核心模块(Core Module)：node 内置模块，通常存在于 node 安装路径 lib 目录下<br>2.第三方模块：</p>
+<p>require 是 node 中加载模块的全局函数，涉及到 node.js 的模块机制。<br>node 如何寻找到对应模块的呢？规则是：<br>1.路径为Y的module中使用 require(X)<br>2.如果是X为核心模块，命中则结束<br>3.如果X以‘./’、‘/’、‘../’开头时，加载第三方模块，命中则结束<br>4.查找失败抛出异常</p>
 <h2 id="杂谈1">杂谈1</h2>
 <p>Node 是一个使用了 CommonJS 风格的代码加载。</p>
 <p>接着：都提供了什么<br>1.NPM：node.js package management<br>2.命令行工具，管理你的项目依赖的那堆东西<br>3.Node和NPM之间的联系：文件夹 node_modules、package.json<br>4.一个注册工具，几乎每一个来自外部的 Node.js package</p>
 <p>最后：常见任务的流行的 package<br>1.对项目有用的工具：<br>2.单元测试：Mocha<br>3.web框架：Express.js、Koa<br>4.模板引擎：Jade、EJS<br>5.网络：Connect、Request、socket.io<br>6.命令行交互：参数解析器（Optimist、Commander）、Colors（美化CLI输出）</p>
 <h2 id="杂谈2">杂谈2</h2>
-<p>说开了 NodeJs 只是 JavaScript 作为 CommonJS 的实现，使得 JavaScript 在服务器端有了用武之地。所以NodeJs从语法层面来说还是JavaScript。</p>
-<p>但是与客户端的JavaScript又有所区别。需要注意：<br>1.要有js基础、理解事件模型、了解js的语法和特性、理解js的面向对象编程<br>2.代码组织方式：包机制、require、exports<br>3.基本的操作系统、数据库（尤其非关系型数据库）、Web编程、HTTP等网络通信</p>
+<p>说开了 NodeJs 只是 JavaScript 作为 CommonJS 的实现，使得 JavaScript 在服务器端有了用武之地。所以 NodeJs 从语法层面来说还是 JavaScript。</p>
+<p>但是与客户端的 JavaScript 又有所区别。需要注意：<br>1.要有js基础、理解事件模型、了解js的语法和特性、理解js的面向对象编程<br>2.代码组织方式：包机制、require、exports<br>3.基本的操作系统、数据库（尤其非关系型数据库）、Web编程、HTTP等网络通信</p>
 <p>node 使用 javascript 作为其应用层编程语言，所以 node 程序的语法和 js 无差。<br>console.log 和浏览器中使用习惯一致（只是打到了标准输出-命令界面）</p>
 <h2 id="参考">参考</h2>
 <p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">Node.js的系列文</a> 来自博客园，Luics的博客，有概况挺全面，质量不错<br><a href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js" target="_blank" rel="external">如何开始学习Node.js</a> 来自stackoverflow，里面对node做了简要介绍，并对资料的提供层层递进<br><a href="http://www.zhihu.com/question/19793473" target="_blank" rel="external">怎样有效地学习Node.js</a> 来自知乎，多看文档、代码、代码。。。</p>
@@ -94,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="0vnv6zmkm6dqxoim" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="djcflzub9ttwrrnf" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
@@ -132,18 +132,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>还记得<a href="anjia.github.io/2014/09/23/nodejs_0/">《Node.js 入门》</a>中提到的最多依赖模板吗，前10名中的有两个，它们是：<br>05.express：轻量Web App Framework，基于connect<br>10.connect：Http Server中间件库</p>
-<p>connect和express出自同一作者TJ Holowaychuk。<br>express是基于connect的（从两个项目的git提交历史上看，先有express后有connect）。</p>
-<p>Connect是一个node中间件（middleware）框架。为什么要用connect？原生的api依然有简单静态文件服务器的诸多方面未经处理的问题，比如：404等异常未处理、没有基本的文件路径安全验证（实际上我们可以访问到整个os文件系统）、全局异常处理等等。但connect已经将这些问题都处理好了（写得更少做得更多）。</p>
-<p>Express是以web应用框架的面貌出现的，基于connect；准确的说是在connect基础上添加一个更接近业务开发的框架。<br><img src="\images\express_20140923.png" alt=""></p>
-<p>Express提供的框架比较灵活，你可以在express基础上实现MVC。<br>从上图中可以看到，express也实现了一些特殊的connect中间件<br>1.route middleware 实现路由<br>2.express.middleware 初始化express全局参数<br>3.mounted child app middleware 挂载子app</p>
-<p>ps.<br>1.Express 是一个非常小的框架，3.0.0正式发布版只有932行源码，Express强烈依赖的Connect只有267行源码，Connect可选的中间件和扩展总共1143行源码，并且只有到使用时才会加载。<br>2.Node.js虽然提供了http模块，却不是让你直接用这个模块进行Web开发的。http模块仅仅是一个HTTP服务器内核的封装。<br>3.中间件（middleware）就是处理HTTP请求的函数，用来完成各种特定的任务。use是express调用中间件的方法。每个中间件在http处理过程中通过改写request或（和）response的数据、状态，实现了特定的功能。</p>
+        <p>还记得<a href="anjia.github.io/2014/09/23/nodejs_0/">《Node.js 入门》</a>中提到的最多依赖模板吗，前10名中的有两个，它们是：<br>05.express：轻量 Web App Framework，基于 connect<br>10.connect：Http Server 中间件库</p>
+<p>connect 和 express 出自同一作者 TJ Holowaychuk。<br>express 是基于 connect的（从两个项目的git提交历史上看，先有 express 后有 connect）。</p>
+<p>Connect 是一个 node 中间件（middleware）框架。为什么要用 connect？原生的 api 依然有简单静态文件服务器的诸多方面未经处理的问题，比如：404等异常未处理、没有基本的文件路径安全验证（实际上我们可以访问到整个os文件系统）、全局异常处理等等。但 connect 已经将这些问题都处理好了（写得更少做得更多）。</p>
+<p>Express 是以 web 应用框架的面貌出现的，基于 connect；准确的说是在 connect 基础上添加一个更接近业务开发的框架。<br><img src="\images\express_20140923.png" alt=""></p>
+<p>Express 提供的框架比较灵活，你可以在 express 基础上实现 MVC。<br>从上图中可以看到，express 也实现了一些特殊的 connect 中间件<br>1.route middleware 实现路由<br>2.express.middleware 初始化express全局参数<br>3.mounted child app middleware 挂载子app</p>
+<p>ps.<br>1.Express 是一个非常小的框架，3.0.0正式发布版只有932行源码，Express 强烈依赖 Connect 的只有267行源码，Connect 可选的中间件和扩展总共1143行源码，并且只有到使用时才会加载。<br>2.Node.js 虽然提供了 http 模块，却不是让你直接用这个模块进行 Web 开发的。http 模块仅仅是一个 HTTP 服务器内核的封装。<br>3.中间件（middleware）就是处理 HTTP 请求的函数，用来完成各种特定的任务。use 是 express 调用中间件的方法。每个中间件在 http 处理过程中通过改写 request 或（和）response 的数据、状态，实现了特定的功能。</p>
 <h3 id="Express_介绍">Express 介绍</h3>
-<p>基于 nodejs 的 websocket 的框架<br>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种Web应用，和丰富的HTTP工具，中间件随取随用。它不对 node.js 已有的特性进行二次抽象，只是在它之上扩展了Web应用所需的功能。它也没有涉及到数据库，这个任务留给了第三方的node模块，有了第三方的模块基本上可以与任何数据库交互</p>
+<p>基于 nodejs 的 websocket 的框架<br>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具，中间件随取随用。它不对 node.js 已有的特性进行二次抽象，只是在它之上扩展了 Web 应用所需的功能。它也没有涉及到数据库，这个任务留给了第三方的 node 模块，有了第三方的模块基本上可以与任何数据库交互</p>
 <h3 id="安装_Express">安装 Express</h3>
 <p>全局安装 Express，Express 作为命令被安装到了系统中。<br>-g 代表安装到 NODE_PATH 的 li b里面<br>-d 代表把相依性套件也一起安装</p>
 <h3 id="Express支持的模板引擎">Express支持的模板引擎</h3>
-<p>Express 支持许多模板引擎，常用的有：<br>1.Haml haml 的实现<br>2.Jade haml.js 接替者，同时也是Express的默认模板引擎<br>3.EJS 嵌入JavaScript模板<br>4.CoffeeKup 基于CoffeeScript的模板引擎<br>5.jQuery Templates 的NodeJS版本</p>
+<p>Express 支持许多模板引擎，常用的有：<br>1.Haml，haml 的实现<br>2.Jade，haml.js 接替者，同时也是 Express 的默认模板引擎<br>3.EJS，嵌入 JavaScript 模板<br>4.CoffeeKup，基于 CoffeeScript 的模板引擎<br>5.jQuery Templates 的 NodeJS 版本</p>
 <h3 id="Express的API">Express的API</h3>
 <p>除了 get 方法以外，Express 还提供 post、put、delete 方法，即 HTTP 动词都是 Express 的方法。<br>set 方法用于指定变量的值。</p>
 <p>赋给变量xxx</p>
@@ -159,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="144wj2hrcnv2qdqs" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="bg3iudtx38zlmuhz" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
@@ -199,15 +199,15 @@
       
         <ol>
 <li>元素右键 【Elements】<br>（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）<br>（2）复制路径：CSS路径；XPath路径<br>（3）设置断点：子元素修改、修改属性、删除元素</li>
-<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的js文件</li>
+<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的 js 文件</li>
 <li>查看元素绑定了哪些事件<br>【Elements】面板下的“Event Listeners”：按类型列出元素的相关事件（捕获和冒泡阶段会经过的这个节点的事件）</li>
 <li>查找<br>（1）所有js文件中搜索&amp;查找js函数定义：ctrl + shift + F<br>（2）查找函数定义：ctrl + shift + 0<br>（3）查找文件：ctrl + o</li>
-<li>command line API<br>（1）$(id)与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements面板最近选中的5个元素，最新的是$0<br>更多 console API：console.log()<br>更多 command line API：</li>
+<li>command line API<br>（1）$(id) 与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements 面板最近选中的5个元素，最新的是 $0<br>更多 console API：console.log()<br>更多 command line API：</li>
 <li>【Resources】页面的资源<br>（1）请求的资源情况：字体、图片、脚本文件、样式文件<br>（2）存储相关：Cookies、HTML5的Database、Local Storage<br>  你可以对存储的内容编辑和删除。</li>
 <li>【Timeline】：JS执行时间、页面元素渲染时间</li>
 </ol>
 <ol>
-<li>Chrome的workspace：<br>能够在开发者工具中调试修改js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
+<li>Chrome 的 workspace：<br>能够在开发者工具中调试修改 js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
 <li>【Profiles】性能分析</li>
 <li>仿真测试：</li>
 </ol>
@@ -228,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="usiadnwwsb6ku92p" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="morqa83amhtrgn5j" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调试/">调试</a></li></ul>
@@ -266,7 +266,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>按住Alt键，在小键盘上输入数字出来的特殊符号。再松开Alt</p>
+        <p>按住 Alt 键，在小键盘上输入数字出来的特殊符号。再松开 Alt</p>
 <p>41459 ◇<br>41460 ◆ </p>
 <p>41461 □<br>41462 ■</p>
 <p>41463 △<br>41464 ▲</p>
@@ -281,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="e7w7tri5miujcvzm" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="ns5n9nipprw7eyn3" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/快捷键/">快捷键</a></li></ul>
@@ -319,51 +319,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Handlebars.js 是一个Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建Web模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
+        <p>Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。<br>它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；<br>它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
 <p>其他：<br>一个弱逻辑模板引擎；Mustache.js 的超集；在服务端预编译模板；支持 Helper 方法；在模板中支持 this 的概念。<br><strong></strong></p>
 <p>想要了解以下概念，点击查看 <a href="http://www.html-js.com/article/1595" target="_blank" rel="external">学习Javascript模板Handlebars.js</a><br>1.Handlebars.js 是怎样运行的？<br>2.为什么使用 Javascript 模板引擎？<br>3.什么情况下使用 Javascript 模板？<br>4.为什么要选择 Handlebars.js？</p>
 <h2 id="目录">目录</h2>
 <ol>
 <li>安装和使用</li>
-<li>表达式<br><strong>Block表达式</strong>：可以改变js的上下文<br><strong>Handlebars的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个section里面（编译时候进行）<br><strong>自定义helper：</strong>在js中用Handlebars.registerHelper注册helpers</li>
-<li>其他<br>（1）Handlebar的注释（comments）<br>（2）Handlebars的访问（Path）<br>（3）调试技巧<br>（4）handlebars的jquery插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
+<li>表达式<br><strong> Block 表达式</strong>：可以改变js的上下文<br><strong> Handlebars 的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个 section 里面（编译时候进行）<br><strong> 自定义helper：</strong>在 js 中用 Handlebars.registerHelper 注册 helpers</li>
+<li>其他<br>（1）Handlebar 的注释（comments）<br>（2）Handlebars 的访问（Path）<br>（3）调试技巧<br>（4）handlebars 的 jquery 插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
 </ol>
 <h2 id="安装和使用">安装和使用</h2>
 <p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
-<p>如何使用？见【3】<br>1.在HTML页面上，通过使用Handlebars表达式设定模板，将模板添加到script标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在js中，初始化数据对象<br>3.在js中，使用Handlebars编译函数来编译模板<br><img src="\images\use_20140918.png" alt=""></p>
+<p>如何使用？见【3】<br>1.在 HTML 页面上，通过使用 Handlebars 表达式设定模板，将模板添加到 script 标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在 js 中，初始化数据对象<br>3.在 js 中，使用 Handlebars 编译函数来编译模板</p>
+<p><img src="\images\use_20140918.png" alt=""></p>
 <h2 id="Handlebar的表达式">Handlebar的表达式</h2>
-<p>Handlebars expressions 是handlebars模板中最基本的单元，使用方法是用双大括号。表达式也支持点操作符content.title，该形式可以调用嵌套的值或者方法。handlebars模板会自动匹配相应的数值，对象甚至是函数。<br>handlebars会根据上下文来自动对表达式进行匹配：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
+<p>Handlebars expressions 是 handlebars 模板中最基本的单元，使用方法是用双大括号。<br>表达式也支持点操作符 content.title，该形式可以调用嵌套的值或者方法。<br>handlebars 会根据上下文来自动对表达式进行匹配，对象甚至是函数：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
 <h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
-<p>如果当前的表达式是一个数组，则Handlebars会“自动展开数组”，并将Blocks的上下文设为数组中的元素。</p>
+<p>如果当前的表达式是一个数组，则 Handlebars 会“自动展开数组”，并将 Blocks 的上下文设为数组中的元素。</p>
 <p><img src="\images\block_20140918.png" alt=""></p>
 <h3 id="内置块表达式（Block_helper）">内置块表达式（Block helper）</h3>
-<p>用Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
+<p>用 Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
 <h4 id="1-_each_block_helper">1. each block helper</h4>
-<p>内置的each helper遍历列表块内容，用this来引用遍历的元素，this 指的是数组里的每一项元素。</p>
+<p>内置的 each helper遍 历列表块内容，用 this 来引用遍历的元素，this 指的是数组里的每一项元素。</p>
 <p><img src="\images\each_20140918.png" alt=""></p>
 <p>这和上面的Block很像，但是原理不一样。name是数组，而内置的each就是为了遍历数组用的，更复杂的数据也同样使用。 【？】</p>
 <h4 id="2-_if_else_block_helper">2. if else block helper</h4>
-<p>if就像你使用JavaScript一样，指定条件渲染DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar将不会渲染DOM。</p>
+<p>if 就像你使用 JavaScript 一样，指定条件渲染 DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar 将不会渲染 DOM。</p>
 <h4 id="3-_unless_block_helper">3. unless block helper</h4>
 <p>反向的if</p>
 <h4 id="4-_with_block_helper">4. with block helper</h4>
-<p>一般情况下，Handlebars模板会在编译的阶段的时候进行context传递和赋值。<br>使用with的方法，我们可以将context转移到数据的一个section里面（如果你的数据包含section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
+<p>一般情况下，Handlebars 模板会在编译的阶段的时候进行 context 传递和赋值。<br>使用 with 的方法，我们可以将 context 转移到数据的一个 section 里面（如果你的数据包含 section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
 <p><img src="\images\with_20140918.png" alt=""></p>
 <h3 id="自定义helper">自定义helper</h3>
 <h2 id="其他">其他</h2>
 <h3 id="Handlebars的访问（Path）">Handlebars的访问（Path）</h3>
-<p>Handlebar支持路径和mustache，Handlebar还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
+<p>Handlebar 支持路径和 mustache，Handlebar 还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
 <h3 id="调试技巧">调试技巧</h3>
 <p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
 <h2 id="参考">参考</h2>
-<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说东西，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
+<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
 <p>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
 <p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="cts46ht7x6wuh14g" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="ewatfpjd2yc2pwef" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -401,17 +402,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事了之后发现，对它的态度更多的是怪异。</p>
-<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|(原样输出的管道)初识的时候不易接受。</p>
-<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在if-else语句里就容易写错缩进。</p>
-<p>第三，是少敲键盘了，但失去了HTML的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用Jade写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
-<p>第四，对于class和id的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
+        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。</p>
+<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。</p>
+<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得，缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在 if-else 语句里就容易写错缩进。</p>
+<p>第三，是少敲键盘了，但失去了 HTML 的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用 Jade 写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
+<p>第四，对于 class 和 id 的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
 <p>在看文档的时候，里面有描述“Jade中的某种写法，同样是设计师友好的”。就比较好奇，为什么要对设计师友好？感觉取悦了狭义上的前端工程师就够了。产品是要只为少数人设计，语言也要一样。</p>
-<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是undefined或null时会自动忽略。这些针对前端、针对HTML的特性做的优化还是很不错的。</p>
-<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用smarty，觉得模板是很方便。所以，想看看其他的兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出HTML字符串嘛。</p>
+<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是 undefined 或 null 时会自动忽略、模板中可以直接使用 javascript。这些针对 HTML、针对前端的特性做的优化还是很不错的。</p>
+<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用 smarty，觉得模板很方便。所以想看看其他兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上就是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出 HTML 字符串嘛。</p>
 <p>为了不让今天的付出感觉上白费掉，便决定写个博客记录下目前对它的理解，好提醒下自己：我今天确实是接触到了“新”东西。</p>
 <h2 id="Jade">Jade</h2>
-<p>Jade — Node Template Engine<br>Jade是一个高性能的模板引擎，为Node而做，是用JavaScript实现的。Node.js的Express.js框架默认用的就是jade。<br>Jade还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
+<p>Jade — Node Template Engine，一个高性能的模板引擎，为 Node 而做，用 JavaScript 实现。<br>Node.js 的 Express.js 框架默认用的就是 Jade。<br>Jade 还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
 <ol>
 <li>通过npm安装： npm install jade</li>
 <li>把Jade编译成一个可供浏览器使用的单文件，执行：make jade.js。<br>可以把 <em>.jade  编译为  </em>.html</li>
@@ -421,16 +422,16 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">//complie</span></div><div class="line"><span class="keyword">var</span> fn = jade.compile(<span class="string">'string of jade'</span>, options);</div><div class="line"><span class="keyword">var</span> html = fn(locals);</div><div class="line"></div><div class="line"><span class="comment">//render</span></div><div class="line"><span class="keyword">var</span> html = jade.render(<span class="string">'string of jade'</span>, merge(options, locals));</div><div class="line"></div><div class="line"><span class="comment">//renderFile</span></div><div class="line"><span class="keyword">var</span> html = jade.renderFile(<span class="string">'filename.jade'</span>, merge(options, locals));</div></pre></td></tr></table></figure>
 
 <ol>
-<li>浏览器支持<br>浏览器版的jade它只支持最新的浏览器，是一个很大的文件。建议使用时先把Jade预编译成JavaScript，然后再在客户端使用 runtime.js 库。</li>
+<li>浏览器支持<br>浏览器版的 Jade 它只支持最新的浏览器，是一个很大的文件。建议使用时先把 Jade 预编译成 JavaScript，然后再在客户端使用 runtime.js 库。</li>
 </ol>
 <h2 id="Jade的语法和特性">Jade的语法和特性</h2>
-<p>Jade的语法是简洁、对HTML代码空格敏感。在这点上它借鉴了Haml的很多地方，所以与Haml的语法挺相近。</p>
-<p>Haml是什么？Haml是简写HTML的一种办法。借用Haml的作者Hampton Catlin的一句话：“Haml是对传统XHTML的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的XHTML构造方式。”Haml的网站上也说：“Haml让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
+<p>Jade 的语法是简洁、对 HTML 代码空格敏感。在这点上它借鉴了 Haml 的很多地方，所以与 Haml 语法挺相近</p>
+<p>Haml 是什么？Haml 是简写 HTML 的一种办法。借用 Haml 的作者 Hampton Catlin 的一句话：“Haml 是对传统 XHTML 的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的 XHTML 构造方式。” Haml 的网站上也说：“Haml 让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
 <ol>
 <li>语法<br>（1）标签、属性、注释<br>（2）读取数据的值（转义、非转义）</li>
 <li>逻辑<br>（1）条件语句（if、unless、case）<br>（2）循环（each、for）<br>（3）过滤器<br>（4）Mixins</li>
 <li>继承和包含<br>（1）模板继承<br>（2）包含</li>
-<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
+<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的 HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
 <li>其他<br>（1）Doctype<br>（2）产生输出</li>
 </ol>
 <h2 id="1-_语法">1. 语法</h2>
@@ -439,8 +440,8 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">会被转换成 <span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的id--&gt;</span></div><div class="line">div#container</div><div class="line">会被转成 <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的class--&gt;</span></div><div class="line">div.user-details</div><div class="line"></div><div class="line"><span class="comment">&lt;!--多个class和id--&gt;</span></div><div class="line">div#foo.bar.baz</div><div class="line"></div><div class="line"><span class="comment">&lt;!--不写标签，默认就是div（语法糖）--&gt;</span></div><div class="line">#foo</div><div class="line">.bar</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h3 id="属性">属性</h3>
-<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是true时才会输出。为false时就被忽略了</p>
-<p>class属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
+<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是 true 时才会输出。为 false 时就被忽略了</p>
+<p>class 属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--普通的 JavaScript 字符串连接--&gt;</span></div><div class="line">a(href='/user/' + user.id)= user.name</div><div class="line"></div><div class="line"><span class="comment">&lt;!--用Jade--&gt;</span></div><div class="line">a(href='/user/#{user.id}')= user.name</div></pre></td></tr></table></figure>
 
 <h3 id="注释">注释</h3>
@@ -454,7 +455,7 @@
 
 <h2 id="2-_模板逻辑">2. 模板逻辑</h2>
 <h3 id="条件语句">条件语句</h3>
-<p>Jade的条件语句和使用了前缀-的js语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的js。是相等的</p>
+<p>Jade 的条件语句和使用了前缀 - 的 js 语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的 js。是相等的</p>
 <figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//用条件表达式<span class="keyword">if</span></div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  <span class="keyword">if</span> user.role == <span class="string">'admin'</span></div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    p= user.name</div><div class="line"><span class="comment"></span></div><div class="line">//常规的js代码</div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  - <span class="keyword">if</span> (user.role == <span class="string">'admin'</span>)</div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  - <span class="keyword">else</span></div><div class="line">    p= user.name</div></pre></td></tr></table></figure>
 
 <p>Jade同时支持 unless  这和 if(!(expr)) 是等价的</p>
@@ -462,23 +463,23 @@
 <p>case表达式</p>
 <figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--空格缩进--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    friends = 10</div><div class="line">    case friends</div><div class="line">      when 0</div><div class="line">        p you have no friends</div><div class="line">      when 1</div><div class="line">        p you have a friend</div><div class="line">      default</div><div class="line">        p you have #{friends} friends</div><div class="line"></div><div class="line"><span class="comment">&lt;!--块展开--&gt;</span></div><div class="line">friends = 5</div><div class="line">html</div><div class="line">  body</div><div class="line">    case friends</div><div class="line">      when 0: p you have no friends</div><div class="line">      when 1: p you have a friend</div><div class="line">      default: p you have #{friends} friends</div></pre></td></tr></table></figure>
 
-<p>此处有木有发现关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
+<p>此处有木有发现，关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
 <h3 id="循环">循环</h3>
-<p>Jade支持js的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
-<p>Jade在内部会把这些语句转换成原生的js语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用for。</p>
+<p>Jade 支持 js 的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
+<p>Jade 在内部会把这些语句转换成原生的 js 语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用 for。</p>
 <h3 id="过滤器">过滤器</h3>
-<p>过滤器前缀:<br>比如:markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
+<p>过滤器前缀:<br>比如 :markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
 <h3 id="Mixins">Mixins</h3>
-<p>Mixins 在编译的模板里会被 Jade 转换为普通的js函数。<br>Mixins 可以带参，但不是必需的。</p>
+<p>Mixins 在编译的模板里会被 Jade 转换为普通的 js 函数。<br>Mixins 可以带参，但不是必需的。</p>
 <h2 id="3-_模板继承">3. 模板继承</h2>
 <h3 id="模板继承">模板继承</h3>
-<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade的block就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
+<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade 的 block 就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
 <p>Jade允许你替换、前置和追加blocks。</p>
 <p>block 默认是覆盖（替换）父级块的内容（也可以在子块中实现块）<br>block append  追加代码块（block可选）<br>block prepend 前置代码块（block可选）</p>
 <h3 id="包含">包含</h3>
-<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade解析这些文件，并插入到已经生成的语法树中</p>
-<p>被包含的块，可以用yield语句（明确标明 include 代码块的放置位置。）</p>
-<p>子可以用父中的变量。被包含的Jade会按字面解析合并到AST中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做partial的替代。</p>
+<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade 解析这些文件，并插入到已经生成的语法树中</p>
+<p>被包含的块，可以用 yield 语句（明确标明 include 代码块的放置位置。）</p>
+<p>子可以用父中的变量。被包含的 Jade 会按字面解析合并到 AST 中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做 partial 的替代。</p>
 <h2 id="4-_模板特性">4. 模板特性</h2>
 <h3 id="标签文本">标签文本</h3>
 <p>1、单行的文本，用标签文本</p>
@@ -488,7 +489,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--大段的文本，原样输出--&gt;</span></div><div class="line">p</div><div class="line"> | aaa</div><div class="line"> | bbb</div><div class="line"> | ccc</div><div class="line"></div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>aaa bbb ccc<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>3、用. 来开始一段文本块<br>p.<br>  aaa<br>  bbb<br>  ccc.</p>
-<p>带空格的 . 会被Jade的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
+<p>带空格的 . 会被 Jade 的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注意：文本块需要两次转义--&gt;</span></div><div class="line">要输出下面的文本：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>foo\bar<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">需使用：</div><div class="line">p.</div><div class="line">  foo\\bar</div></pre></td></tr></table></figure>
 
 <p>eg1.内联标签可以使用标签文本、也可以使用文本块</p>
@@ -520,12 +521,12 @@
 <h3 id="Doctype">Doctype</h3>
 <p>添加文档类型<br>!!!<br>!!! 5<br>!!! html<br>doctype html</p>
 <h3 id="产生输出">产生输出</h3>
-<p>当选项compileDebug的值是true，Jade编译时会加行号，且报错信息里会带上行号。<br>当值是false时，参数会被去掉。</p>
+<p>当选项 compileDebug 的值是 true，Jade 编译时会加行号，且报错信息里会带上行号。<br>当值是 false 时，参数会被去掉。</p>
 <p>你可以通过 toString() 来编译模板而不需要在浏览器端运行整个 Jade 库，这样可以提高性能，也可以减少载入的 JavaScript 数量。</p>
 <h2 id="结束语">结束语</h2>
 <p>模板是什么？模板就是一个模子。供你套数据，并且依据不同数据去走不同的逻辑。<br>引擎是什么？引擎就是个处理器（编译、运行），最后输出个结果（HTML代码）的东西。</p>
-<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
-<p>最后查了下，还真是，关于Jade的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> -来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a>-来自stackoverflow<br>你要是也有兴趣，可加入<a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a>去讨论</p>
+<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade 的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
+<p>最后查了下，还真是，关于 Jade 的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> — 来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a> — 来自stackoverflow<br>你要是也有兴趣，可加入 <a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a> 去讨论</p>
 <h2 id="在线学习Jade">在线学习Jade</h2>
 <p>【1】 <a href="http://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank" rel="external">学习Jade模板引擎的语法</a>，包括：<br>HTML的标签文本、注释<br>id、类、属性<br>变量、转义和非转义</p>
 <p>【2】<a href="http://cssdeck.com/labs/jade-templating-tutorial-codecast-part-2" target="_blank" rel="external">Jade的逻辑处理部分</a>，包括：<br>在模板中使用内嵌js（node）代码<br>条件语句（if和unless）<br>循环（loop、for、each）<br>定义函数（Mixins）<br>过滤器（Filters）</p>
@@ -537,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="c3bqi2ksn6dksvx3" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="4jg3w1nn7o72xh1h" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -587,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="sxz4ep63tfwajxoj" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="7ntqcwmwgdd44sup" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -672,7 +673,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="6t8gvlf9aq9wljmm" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="3pslx1ffyf9rgjs1" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -710,7 +711,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文来自<a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
+        <p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
 <h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
 <p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
 <p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
@@ -723,8 +724,8 @@
 
 <p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
 <p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
-<p>问题：<br>1、安全性，当一个站点(b.a.com)被攻击后，另一个站点(c.a.com)会引起安全漏洞<br>2、若一个页面中引入了多个iframe，要想能操作所有iframe，则必须都得设置成相同的domain</p>
-<h2 id="2-_动态创建script">2. 动态创建script</h2>
+<p>问题：<br>1、安全性，当一个站点（b.a.com）被攻击后，另一个站点（c.a.com）会引起安全漏洞<br>2、若一个页面中引入了多个 iframe，要想能操作所有 iframe，则必须都得设置成相同的 domain</p>
+<h2 id="2-_动态创建_script">2. 动态创建 script</h2>
 <p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
 <h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
 <p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
@@ -750,7 +751,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="pxgc1q8ohvs23fk8" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="cwc1z8ovmrmqe13o" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -795,7 +796,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="m0n1k35i2vv5qzki" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="4tgf7ujatiad0454" class="article-share-link">分享到</a>
       
       
     </footer>

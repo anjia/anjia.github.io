@@ -81,7 +81,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="sxz4ep63tfwajxoj" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="7ntqcwmwgdd44sup" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="6t8gvlf9aq9wljmm" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="3pslx1ffyf9rgjs1" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -204,7 +204,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文来自<a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
+        <p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
 <h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
 <p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
 <p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
@@ -217,8 +217,8 @@
 
 <p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
 <p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
-<p>问题：<br>1、安全性，当一个站点(b.a.com)被攻击后，另一个站点(c.a.com)会引起安全漏洞<br>2、若一个页面中引入了多个iframe，要想能操作所有iframe，则必须都得设置成相同的domain</p>
-<h2 id="2-_动态创建script">2. 动态创建script</h2>
+<p>问题：<br>1、安全性，当一个站点（b.a.com）被攻击后，另一个站点（c.a.com）会引起安全漏洞<br>2、若一个页面中引入了多个 iframe，要想能操作所有 iframe，则必须都得设置成相同的 domain</p>
+<h2 id="2-_动态创建_script">2. 动态创建 script</h2>
 <p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
 <h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
 <p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
@@ -244,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="pxgc1q8ohvs23fk8" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="cwc1z8ovmrmqe13o" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -282,7 +282,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等Web应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：</p>
+        <p>HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等 Web 应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：</p>
 <ol>
 <li>Web Workers（工作线程）用它们实现多个线程间的 js 调用功能</li>
 <li>Cross-document messaging（跨文档消息机制） 中实现两个不同域间 js 调用功能</li>
@@ -303,9 +303,9 @@
 <p>HTML5 提供了在网页文档之间相互接收和发送消息的功能。只需要获取到网页所在的窗口对象实例，两个 Web 页面就可以相互通信了，甚至是跨域的。postMessage 允许页面中多个 iframe/window 间的通信。</p>
 <ol>
 <li>要想接收从其他窗口发送来的信息，只需要监听窗口对象的 onmessage 事件即可。</li>
-<li>一个窗口想要发送消息，则通过 postMessage(message, “”) 来传递数据。两个参数代表的含义分别是：<br>第一个参数表示所要发送的消息文本，可以是任何 js对象（一般都通过 JSON 把对象转化成文本）；<br>第二个参数表示接收消息的对象窗口的url地址，通配符”<em>“指定全部地址。<br>不用通配符也可以指定具体的 url，那么在 onmessage 中加个来源判断 if( event.origin !== ‘<em>*</em></em>‘ ) return;</li>
+<li>一个窗口想要发送消息，则通过 postMessage(message, “”) 来传递数据。两个参数代表的含义分别是：<br>第一个参数表示所要发送的消息文本，可以是任何 js对象（一般都通过 JSON 把对象转化成文本）；<br>第二个参数表示接收消息的对象窗口的url地址，通配符星号 指定全部地址。<br>不用通配符也可以指定具体的 url，那么在 onmessage 中加个来源判断<br>if( event.origin !== ‘xxxx’ ) return;</li>
 </ol>
-<p>示例2. 模拟下不同域之间的通信，比如父页面中嵌了个iframe子页面，且父子是不同源的。<br>父页面给子页面发送消息，子页面接收</p>
+<p>示例2. 模拟不同域间的通信，比如父页面中嵌了个 iframe 子页面，且父子是不同源的。<br>父页面给子页面发送消息，子页面接收</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 父页面中：父向子发</div><div class="line">document.getElementById(<span class="string">'iframeId'</span>).contentWindow.postMessage(<span class="string">'父向子发送的数据'</span>);</div><div class="line"></div><div class="line">// 子页面中：子对消息监听，随时接收数据</div><div class="line">window.addEventListener(<span class="string">'message'</span>, function(event){</div><div class="line">	console.log(event.data);</div><div class="line">});</div></pre></td></tr></table></figure>
 
 <p>与之对应，如果子页面给父页面发消息的话，如下：</p>
@@ -330,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="96yvcwgdmb9n14o7" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="0oz4bc5u1xxkv32n" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -369,7 +369,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="为什么会跨域？">为什么会跨域？</h2>
-<p>要让两个不同源的客户端进行通信，就会遇到跨域的问题。同源策略是一个著名的安全策略，由 netscape 提出。现在所有支持js的浏览器都会使用这个安全策略。同源指域名、协议、端口号都相同。只要协议、域名、端口号一个不相同就会形成非同源的环境，如下。</p>
+<p>要让两个不同源的客户端进行通信，就会遇到跨域的问题。同源策略是一个著名的安全策略，由 netscape 提出。现在所有支持 js 的浏览器都会使用这个安全策略。同源指域名、协议、端口号都相同。只要协议、域名、端口号一个不相同就会形成非同源的环境，如下。</p>
 <p><img src="/images/crossDomain.jpg" alt=""></p>
 <h2 id="常见的解决办法">常见的解决办法</h2>
 <ol>
@@ -390,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="mqxf4bm1xnl2thkc" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="1zexecg1qi7gnzy8" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -433,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="54zie40lr6inim45" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="sm5bbwgu1ydky8lr" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -527,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="mgtevt0xmeocjz1d" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsCreateObject/" data-id="q0ds0z8k62qrvb5v" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -602,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="jmqgumkam0b7y2me" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/12/jsObject/" data-id="as2bv40dfne3p5a1" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>

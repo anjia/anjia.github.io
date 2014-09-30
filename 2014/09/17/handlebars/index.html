@@ -5,22 +5,22 @@
   
   <title>Handlebars.js 模板引擎 | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Handlebars.js 是一个Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建Web模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。
-其他：一个弱逻辑模板引擎；Mustache.js 的超集；">
+  <meta name="description" content="Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。
+其他：一个弱逻辑模板引擎；Mustache.js 的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handlebars.js 模板引擎">
 <meta property="og:url" content="http://anjia.github.io/2014/09/17/handlebars/">
 <meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Handlebars.js 是一个Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建Web模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。
-其他：一个弱逻辑模板引擎；Mustache.js 的超集；">
+<meta property="og:description" content="Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。
+其他：一个弱逻辑模板引擎；Mustache.js 的">
 <meta property="og:image" content="\images\use_20140918.png">
 <meta property="og:image" content="\images\block_20140918.png">
 <meta property="og:image" content="\images\each_20140918.png">
 <meta property="og:image" content="\images\with_20140918.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handlebars.js 模板引擎">
-<meta name="twitter:description" content="Handlebars.js 是一个Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建Web模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。
-其他：一个弱逻辑模板引擎；Mustache.js 的超集；">
+<meta name="twitter:description" content="Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。
+其他：一个弱逻辑模板引擎；Mustache.js 的">
 
   
     <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
@@ -74,51 +74,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Handlebars.js 是一个Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建Web模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
+        <p>Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。<br>它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；<br>它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
 <p>其他：<br>一个弱逻辑模板引擎；Mustache.js 的超集；在服务端预编译模板；支持 Helper 方法；在模板中支持 this 的概念。<br><strong></strong></p>
 <p>想要了解以下概念，点击查看 <a href="http://www.html-js.com/article/1595" target="_blank" rel="external">学习Javascript模板Handlebars.js</a><br>1.Handlebars.js 是怎样运行的？<br>2.为什么使用 Javascript 模板引擎？<br>3.什么情况下使用 Javascript 模板？<br>4.为什么要选择 Handlebars.js？</p>
 <h2 id="目录">目录</h2>
 <ol>
 <li>安装和使用</li>
-<li>表达式<br><strong>Block表达式</strong>：可以改变js的上下文<br><strong>Handlebars的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个section里面（编译时候进行）<br><strong>自定义helper：</strong>在js中用Handlebars.registerHelper注册helpers</li>
-<li>其他<br>（1）Handlebar的注释（comments）<br>（2）Handlebars的访问（Path）<br>（3）调试技巧<br>（4）handlebars的jquery插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
+<li>表达式<br><strong> Block 表达式</strong>：可以改变js的上下文<br><strong> Handlebars 的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个 section 里面（编译时候进行）<br><strong> 自定义helper：</strong>在 js 中用 Handlebars.registerHelper 注册 helpers</li>
+<li>其他<br>（1）Handlebar 的注释（comments）<br>（2）Handlebars 的访问（Path）<br>（3）调试技巧<br>（4）handlebars 的 jquery 插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
 </ol>
 <h2 id="安装和使用">安装和使用</h2>
 <p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
-<p>如何使用？见【3】<br>1.在HTML页面上，通过使用Handlebars表达式设定模板，将模板添加到script标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在js中，初始化数据对象<br>3.在js中，使用Handlebars编译函数来编译模板<br><img src="\images\use_20140918.png" alt=""></p>
+<p>如何使用？见【3】<br>1.在 HTML 页面上，通过使用 Handlebars 表达式设定模板，将模板添加到 script 标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在 js 中，初始化数据对象<br>3.在 js 中，使用 Handlebars 编译函数来编译模板</p>
+<p><img src="\images\use_20140918.png" alt=""></p>
 <h2 id="Handlebar的表达式">Handlebar的表达式</h2>
-<p>Handlebars expressions 是handlebars模板中最基本的单元，使用方法是用双大括号。表达式也支持点操作符content.title，该形式可以调用嵌套的值或者方法。handlebars模板会自动匹配相应的数值，对象甚至是函数。<br>handlebars会根据上下文来自动对表达式进行匹配：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
+<p>Handlebars expressions 是 handlebars 模板中最基本的单元，使用方法是用双大括号。<br>表达式也支持点操作符 content.title，该形式可以调用嵌套的值或者方法。<br>handlebars 会根据上下文来自动对表达式进行匹配，对象甚至是函数：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
 <h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
-<p>如果当前的表达式是一个数组，则Handlebars会“自动展开数组”，并将Blocks的上下文设为数组中的元素。</p>
+<p>如果当前的表达式是一个数组，则 Handlebars 会“自动展开数组”，并将 Blocks 的上下文设为数组中的元素。</p>
 <p><img src="\images\block_20140918.png" alt=""></p>
 <h3 id="内置块表达式（Block_helper）">内置块表达式（Block helper）</h3>
-<p>用Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
+<p>用 Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
 <h4 id="1-_each_block_helper">1. each block helper</h4>
-<p>内置的each helper遍历列表块内容，用this来引用遍历的元素，this 指的是数组里的每一项元素。</p>
+<p>内置的 each helper遍 历列表块内容，用 this 来引用遍历的元素，this 指的是数组里的每一项元素。</p>
 <p><img src="\images\each_20140918.png" alt=""></p>
 <p>这和上面的Block很像，但是原理不一样。name是数组，而内置的each就是为了遍历数组用的，更复杂的数据也同样使用。 【？】</p>
 <h4 id="2-_if_else_block_helper">2. if else block helper</h4>
-<p>if就像你使用JavaScript一样，指定条件渲染DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar将不会渲染DOM。</p>
+<p>if 就像你使用 JavaScript 一样，指定条件渲染 DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar 将不会渲染 DOM。</p>
 <h4 id="3-_unless_block_helper">3. unless block helper</h4>
 <p>反向的if</p>
 <h4 id="4-_with_block_helper">4. with block helper</h4>
-<p>一般情况下，Handlebars模板会在编译的阶段的时候进行context传递和赋值。<br>使用with的方法，我们可以将context转移到数据的一个section里面（如果你的数据包含section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
+<p>一般情况下，Handlebars 模板会在编译的阶段的时候进行 context 传递和赋值。<br>使用 with 的方法，我们可以将 context 转移到数据的一个 section 里面（如果你的数据包含 section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
 <p><img src="\images\with_20140918.png" alt=""></p>
 <h3 id="自定义helper">自定义helper</h3>
 <h2 id="其他">其他</h2>
 <h3 id="Handlebars的访问（Path）">Handlebars的访问（Path）</h3>
-<p>Handlebar支持路径和mustache，Handlebar还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
+<p>Handlebar 支持路径和 mustache，Handlebar 还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
 <h3 id="调试技巧">调试技巧</h3>
 <p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
 <h2 id="参考">参考</h2>
-<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说东西，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
+<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
 <p>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
 <p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="cts46ht7x6wuh14g" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="ewatfpjd2yc2pwef" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>

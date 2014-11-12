@@ -43,6 +43,132 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-webSocket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/12/webSocket/" class="article-date">
+  <time datetime="2014-11-12T10:42:38.000Z" itemprop="datePublished">2014-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/12/webSocket/">HTML5 WebSocket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTML5 有许多引人注目的新特性，如 Canvas、本地存储、多媒体编程接口、WebSocket 等。其中，WebSocket 有“Web的TCP”之称，它使浏览器支持 Socket 成为可能，从而在浏览器和服务器间提供了一个基于 TCP 连接的双向通道。Web 开发人员可以很方便的用 WebSocket 构建实时 Web 应用。</p>
+<p>从以下4点来认识 HTML5 WebSocket：<br>它是什么？<br>它解决了什么问题？<br>它的原理？<br>它怎么用？</p>
+<h2 id="1-它是什么">1.它是什么</h2>
+<p>WebSocket 是 HTML5 提供的一种浏览器和服务器之间进行全双工通信的网络技术。在 WebSocket API 中，浏览器和服务器只需要做一个握手动作，然后就形成了一个快速通道，二者之间就可以直接进行数据传送了。</p>
+<p>其实，WebSocket就是一个应用层的通信协议，协议名ws。它和HTTP一样，都是基于TCP（传输层协议）的。</p>
+<h2 id="2-它解决了什么问题？">2.它解决了什么问题？</h2>
+<p>当要实现对实时性要求较高的 Web 应用时，比如在线游戏、在线聊天等。传统的处理方式是用轮询和Comet技术。而Comet技术实际是对轮询技术的改进，又可分为长轮询机制和流技术。分别如下：</p>
+<p>轮询<br>客户端以一定的时间间隔向服务器发请求，以频繁请求的方式保持客户端和服务器端的同步。<br>问题：太多无谓的网络传输，低效（固定间隔请求嘛，那个时候服务器数据可能还没更新呢）</p>
+<p>长轮询<br>对定时轮询的改进，目的是降低无效的网络传输。<br>方式：当服务器没有更新时，连接会保持一段周期知道数据改变|状态改变|时间过期。<br>问题：当服务器端数据频繁变更时，就和定时轮询差不多了</p>
+<p>流<br>方式：在客户端页面使用一个隐藏窗口，向服务器发个长连接请求。服务器接到请求后作出回应，并不断更新连接状态，以保证客户端和服务器端的连接不过期。这样，就可以将服务器端的信息源源不断地推向客户端了。<br>问题：用户体验上，需要针对不同浏览器设计不同的方案来改进用户体验；同时，当并发较大时，对服务器资源也是个很大的考验。</p>
+<p>其实，这些技术都不是真正的实时技术，只是用 Ajax 模拟实时的效果。问题有：</p>
+<ol>
+<li>浏览器不断向服务器发请求：交互一次，都要一次 HTTP 的请求和应答</li>
+<li>每次 HTTP 请求和应答都带有完整的 HTTP 头信息：HTTP request 的 header是非常长的，里面包含的数据很小很小，都会占用很多的带宽和服务器资源，这就增加了每次传输的数据量</li>
+</ol>
+<p>于是~<br>HTML5 定义了 WebSocket 协议，以更好的节省服务器资源和带宽，并达到真正的实时通信。且WebSocket连接本质上就是一个TCP连接，所以在稳定性和传输量方面，都有很大优势。</p>
+<h2 id="3-它的原理？">3.它的原理？</h2>
+<p>WebSocket 协议本质上是一个基于 TCP 的协议。为建立一个 WebSocket 连接，浏览器首先向服务器发起一个 HTTP 请求。<br>这个请求和通常的 HTTP 请求很相似，但其中有些内容是和 WebSocket 协议密切相关的，包含了一些附加头信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//浏览器请求</span></div><div class="line">GET / HTTP/<span class="number">1.1</span></div><div class="line">Upgrade: websocket  <span class="comment">//表明这是一个特殊的HTTP请求，一个申请协议升级的HTTP请求，</span></div><div class="line"><span class="comment">//目的是让客户端和服务器端的通信协议从 HTTP 协议升级到 WebSocket 协议。</span></div><div class="line">Connection: Upgrade</div><div class="line">Sec-WebSocket-Key   <span class="comment">//是随机的，服务器会用这些数据构造出一个SHA-1的信息摘要 【浏览器向服务器提供的握手信息】</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//服务器回应</span></div><div class="line">HTTP/<span class="number">1.1</span> <span class="number">101</span></div><div class="line">Upgrate: websocket</div><div class="line">Connection: Upgrade</div><div class="line">Sec-WebSocket-Accept:  <span class="comment">//把Sec-WebSocket-Key加上一个魔幻字符串，使用SHA-1加密，再进行base-64编码，</span></div><div class="line"><span class="comment">//将结果赋作为'Sec-WebSocket-Accept'头的值，返回给客户端</span></div></pre></td></tr></table></figure>
+
+<p>请求中的 Sec-WebSocket-Key 是浏览器向服务器提供的握手信息，服务器解析这些头信息，并生成一个16位的安全密钥并返回客户端。以表明服务器获取了客户端的请求，同意建立 WebSocket 连接。连接一旦建立，客户端和服务器端就可以双向传输数据了。</p>
+<p>其中，websocket的实现，<br>浏览器，扮演着一个很重要的角色。<br>服务器方面，有不同对websocket</p>
+<h2 id="4-它怎么用？">4.它怎么用？</h2>
+<p>服务器端的实现不受平台和开发语言的限制，只要遵从WebSocket规范即可。目前已经有<a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">比较成熟的WebSocket服务器端实现</a>，有：php、ruby、Tomcat、node.js、python、Diango等。</p>
+<p>Web 开发人员的 WebSocket JavaScript 客户端接口是很简单的。<br>WebSocket JavaScript 定义：<br>url：WebSocket服务器的网络地址，协议通常是”ws”<br>send() 发送数据到服务器端<br>close() 关闭连接</p>
+<p>建立 WebSocket 连接的实例 JavaScript 代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  wsServer = <span class="string">'ws://localhost:8888/Demo'</span>; </div><div class="line"><span class="keyword">var</span>  websocket = <span class="keyword">new</span> WebSocket(wsServer); </div><div class="line"></div><div class="line"><span class="comment">//还有4个很重要的事件</span></div><div class="line">websocket.onopen = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"Connected to WebSocket server."</span>); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onclose = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"Disconnected"</span>); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onmessage = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Retrieved data from server: '</span> + event.data); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onerror = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Error occured: '</span> + event.data); </div><div class="line">};</div></pre></td></tr></table></figure>
+
+<h2 id="参考">参考</h2>
+<p><a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">WebSocket 维基百科</a>：维基百科，挺牛叉，信息简短但不失专业，信息量还挺大<br><a href="http://www.ibm.com/developerworks/cn/web/1112_huangxa_websocket/" target="_blank" rel="external">使用 HTML5 WebSocket 构建实时 Web 应用</a>：IBM，挺系统</p>
+<p><a href="http://www.plhwin.com/2014/05/28/nodejs-socketio/" target="_blank" rel="external">使用Node.js+Socket.IO搭建WebSocket实时应用</a>：个人博客，看起来挺完整的。不过没亲自试过代码<br><a href="http://www.zhihu.com/question/20215561" target="_blank" rel="external">WebSocket 是什么原理？为什么可以实现持久连接？</a>：知乎，里面还有些讨论，有常识类的、也有扩展类的。不错。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/11/12/webSocket/" data-id="14o1vkfi5gtm5acp" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webTecAndStand" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/12/webTecAndStand/" class="article-date">
+  <time datetime="2014-11-12T09:58:10.000Z" itemprop="datePublished">2014-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/12/webTecAndStand/">网页技术和标准</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>文档呈现语言：HTML★（HTML5★） &nbsp;&nbsp;&nbsp; XHTML★ &nbsp;&nbsp;&nbsp; XML★ &nbsp;&nbsp;&nbsp; DHTML★</li>
+<li>样式格式描述语言：CSS★ &nbsp;&nbsp;&nbsp; XSL★</li>
+<li>动态网页技术：ASP &nbsp;&nbsp;&nbsp; JSP &nbsp;&nbsp;&nbsp; Perl &nbsp;&nbsp;&nbsp; Python &nbsp;&nbsp;&nbsp; Ruby &nbsp;&nbsp;&nbsp; PHP</li>
+<li>客户端-交互技术：AJAX(XMLHTTP)★ &nbsp;&nbsp; WebSocket★ &nbsp;&nbsp; ActiveX &nbsp;&nbsp; JavaApplet &nbsp;&nbsp; Silverlight &nbsp;&nbsp; ActionScript（Flash-Flex-AIR）</li>
+<li>客户端-脚本语言：JavaScript &nbsp;&nbsp;&nbsp; JScript &nbsp;&nbsp;&nbsp; VBScript &nbsp;&nbsp;&nbsp; ECMAScript、</li>
+<li>标识定位语言：URL &nbsp;&nbsp;&nbsp; URI &nbsp;&nbsp;&nbsp; Xpath &nbsp;&nbsp;&nbsp; URL重写</li>
+<li>文档纲要语言：DTD★ &nbsp;&nbsp;&nbsp; XML Schema★</li>
+</ol>
+<p>★ 代表由W3C制定和维护的标准和规范</p>
+<p>完整的图，如下，源自<a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">维基百科</a><br><img src="\images\webTec_20141112.PNG" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/11/12/webTecAndStand/" data-id="64tla0ys67kq3pag" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-cssFlexBox" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/11/cssFlexBox/" class="article-date">
@@ -71,6 +197,7 @@
       
         <p>移动端开发接触不多，所以弹性盒子是听的很多，但实际用的很少。这次难得开发移动端那就强迫自己用下喽，抓住工作计划多接触点新东西。之前吧：<br>1.工作之余实战编码情况几乎没有。【这点正在转变中，重新计划时间分配】<br>2.对新知识不那么渴求，比如能用老方法去搞定的（浮动|定位），一般不会去主动尝试新概念（弹性盒子）。<br>&nbsp;&nbsp;&nbsp;这是思维方式的问题，一时半会不好改。【但目前在计划把小点搞懂些，先慢慢爱上自己熟悉的，在等热情之火燎技术之原】 </p>
 <p>流体布局控</p>
+<p>说明：此文重点阐述弹性盒子的理论，代码并没有考虑最新标准写法及浏览器兼容等方面。</p>
 <h2 id="弹性盒子概况">弹性盒子概况</h2>
 <p>CSS3中新的盒子模型：弹性盒子模型（Flexible Box Model）</p>
 <p>弹性盒子能干嘛？<br>1.按份分，自适应父容器 box-flex：1-1-1，1-2-1，1-2-3（至少是1的整数）<br>2.有要固定宽的 width:100px;  即优先子的width，剩余的再按比例flex<br>3.垂直|水平对齐<br>4.留白</p>
@@ -93,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="6lkwswq5ykmtprb2" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="2zwvjs5z96018k4g" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
@@ -171,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-id="0t026fzjdx3bx8nq" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-id="tzqkr6sfnqbg9539" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scroll/">scroll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
@@ -234,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="xwi9u6u3jm8o6dwg" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="xx4mgxxzn78xxm2s" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
@@ -299,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="lqwct9z7zib6egp8" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="esduzmfcshb6pl6s" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
@@ -368,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="2wczefmaf9ydt9mu" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="jw0nvtlpvzpcg3wh" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调试/">调试</a></li></ul>
@@ -421,7 +548,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="iwwjhtvu4xfmxbpl" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="kca2k8465y4ll4h5" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/快捷键/">快捷键</a></li></ul>
@@ -504,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="tsrov0uvhltjlh9t" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="tf8ul3h7o5w2pt1b" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -678,145 +805,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="s4iuekxbq2xumc2d" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="4yhgc3lg0tk2pjp5" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-regExp_js" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/regExp_js/" class="article-date">
-  <time datetime="2014-09-02T14:51:00.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="两种匹配模式">两种匹配模式</h2>
-<p>匹配模式的两种语法<br>/pattern/<br>new RegExp(string)</p>
-<h2 id="修饰符">修饰符</h2>
-<p>i  忽略大小写<br>g  全文查找所有匹配的<br>m  多行查找</p>
-<h2 id="RegExp_对象的方法">RegExp 对象的方法</h2>
-<p>test()    检索，返回 true false<br>exec()    检索，返回找到的值，并确定其位置<br>compile() 编译正则表达式</p>
-<h2 id="String对象支持正则的方法">String对象支持正则的方法</h2>
-<p>search()  检索<br>match()   查找<br>replace() 替换<br>split()   分割</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="puglir0idw30am9y" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-regExp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/regExp/" class="article-date">
-  <time datetime="2014-09-02T14:30:55.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/02/regExp/">正则表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用途">用途</h2>
-<p>模式匹配：有效性验证、提取子串、查找特定字符、替换</p>
-<h2 id="语法">语法</h2>
-<h3 id="1-定界符//">1.定界符//</h3>
-<p>格式：/匹配模式/</p>
-<h3 id="2-定位符">2.定位符</h3>
-<ol>
-<li>^  开头</li>
-<li>$  结束</li>
-<li>b  单词边界</li>
-<li>B  非单词边界</li>
-</ol>
-<h3 id="3-元字符">3.元字符</h3>
-<p>元字符：具有特殊意义的字符</p>
-<h4 id="3-1_字符类">3.1 字符类</h4>
-<ol>
-<li>s  空白字符，比如空格、tab键、换行</li>
-<li>S  非空白字符</li>
-<li>w  字母、数字、下划线</li>
-<li>W 非w</li>
-<li>d  数字</li>
-<li>D  非数字</li>
-<li>. 除换行外的所有字符</li>
-</ol>
-<p>说明：<br>d 不匹配圆角的0-9的字符<br>w 不匹配汉字、不匹配圆角的数字、字母、下划线<br>s 开头的中间的结尾的空白字符 都会匹配<br>s和S w和W d和D 等可认为是互逆运算</p>
-<h4 id="3-2_量词限定符">3.2 量词限定符</h4>
-<p>量词，限定符：规定给定的组件必须要出现多少次才能满足匹配</p>
-<ol>
-<li>+至少1次 （前导字符在目标对象中连续出现）</li>
-<li>*0次 或 多次 </li>
-<li>?0次 或 1次</li>
-<li>{n} 非负整数 匹配确定的n次</li>
-<li>{n,} 至少匹配n次</li>
-<li>{n,m} 匹配n到m次</li>
-</ol>
-<h4 id="3-3_other_运算符">3.3 other 运算符</h4>
-<ol>
-<li>[]  指定一个范围。eg. [a-zA-Z0-9]</li>
-<li>() 组合字符串，所包含的内容必须同时一起。<br>eg. ([a-z][A-Z][0-9])，aA0匹配，aAA不匹配</li>
-<li>|  管道符，或的意思，多个不同的模式。<br>eg. (fo|foo|fool)，匹配fo, 也匹配foo，也匹配 fool</li>
-<li>^ 否定运算符。<br>一般出现在[]内部的是否定运算符，[]之外的是定位符^。eg. [^0-9] 表示除0-9数字之外的所有字符</li>
-</ol>
-<h2 id="转义字符">转义字符</h2>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="3ybti40gdbxrbmtu" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
 
     </footer>
   </div>
@@ -838,7 +830,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -847,7 +839,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -857,6 +849,14 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/11/12/webSocket/">HTML5 WebSocket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/11/12/webTecAndStand/">网页技术和标准</a>
+          </li>
         
           <li>
             <a href="/2014/11/11/cssFlexBox/">弹性盒子</a>
@@ -870,14 +870,6 @@
             <a href="/2014/09/23/nodejs_0/">Node.js 入门</a>
           </li>
         
-          <li>
-            <a href="/2014/09/23/nodejs_1_expressjs/">Express 介绍</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/23/chromeDevTool/">chrome developer tool 开发者调试</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -887,7 +879,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scroll/">scroll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/调试/">调试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scroll/">scroll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/调试/">调试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

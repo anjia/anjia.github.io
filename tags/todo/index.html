@@ -43,215 +43,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-cssZindex" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/14/cssZindex/" class="article-date">
-  <time datetime="2014-11-14T12:35:59.000Z" itemprop="datePublished">2014-11-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/14/cssZindex/">z-index 的使用方法和层级树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>CSS 中的 z-index 属性用来设置节点的堆叠顺序，本文介绍下影响节点显示层级的5个规则。如下：<br>1.定位规则<br>2.顺序规则<br>3.默认值规则（浏览器兼容问题）<br>4.从父规则<br>5.层级树规则</p>
-<h2 id="1-_定位规则">1. 定位规则</h2>
-<p>position: static 不会影响节点的遮盖关系<br>position: relative|absolute|fixed  这样的节点会覆盖没有设置 position 属性或者值是 static 的节点。</p>
-<p>W3C 对 z-index 属性的描述中提到：z-index 仅在节点的 position 是 relative|absolute|fixed 才会起作用。</p>
-<h2 id="2-_顺序规则">2. 顺序规则</h2>
-<p>如果不对节点设置 position 或 position=static（即当没有 z-index 干扰）时，元素会按照 Dom 的顺序来显示（即文档流后面的节点会盖住前面的节点）。</p>
-<h2 id="3-_默认值规则">3. 默认值规则</h2>
-<p>当 z-index 有效且设置了值时，其层级高低是： 负数 &lt; 0 &lt; 正数<br>当 z-index 有效但没设置值时，会有浏览器兼容性问题：是否会参与层级排<br>（1）在 ie8+ 和 W3C 浏览器中，z-index 默认 auto 【不会参与层级排序】<br>（2）而在 ie6-7 中，z-index 默认 0 【会参与层级排序】</p>
-<p>所以，为了在不同浏览器上有相同的表现，一般都会设置 z-index:0。</p>
-<h2 id="4-_从父规则">4. 从父规则</h2>
-<p>不要固执地只设置该容器的 z-index（有时会设的很大很大比如 z-index:9999），还要考虑父容器的影响，那是无法逾越的层级。<br>在设置父的层级时，也不需要所有的父都设，那太浪费。怎么设置可以达到程序的预期，参见下条：层级树。</p>
-<h2 id="5-_层级树规则">5. 层级树规则</h2>
-<p>前4条规则都是独立的，但页面是个复杂的环境。我们可以综合以上单个规则，画出层级树，节点的最终层级便可一目了然跃然纸上。<br>此处为了直观地表达层级树的样子，从 <a href="http://www.neoease.com/css-z-index-property-and-layering-tree/comment-page-1#layering-tree-rule" target="_blank" rel="external">CSS z-index 属性的使用方法和层级树的概念</a> 直接拷贝棵过来，长相如下：</p>
-<p><img src="/images/zindex_20141114.png" alt=""></p>
-<h2 id="总结">总结</h2>
-<p>先搞清楚 position、z-index、层级的概念。<br>再将参与层级排序（即 1.定位规则 和 3.默认值规则）的节点一起，画一个层级树出来（即 5.层级树规则）。<br>最后依据：深度（即4.从父规则）+ 值（即z-index本身值比大小）便可条理清晰地理顺元素间的层级堆叠关系。</p>
-<h2 id="其他">其他</h2>
-<p>1.本文仅涉及节点属性的层级情况<br>2.未考虑特殊的页面节点（如 select、iframe）【后续 ToDo】<br>3.自我感受：Dom树的【树】本身就说明了各个元素间是存在层级关系的，即有父有兄弟有儿子。所以，有些属性要考虑父，也是合情合理的。比如 z-index的从父规则，还有上次的<br><a href="http://anjia.github.io/2014/11/11/cssFlexBox/" target="_blank" rel="external">弹性盒子那牛掰的父容器</a></p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.neoease.com/css-z-index-property-and-layering-tree/" target="_blank" rel="external">CSS z-index 属性的使用方法和层级树的概念</a>：参考的主演来源，挺清晰。<br><a href="http://www.neoease.com/tutorials/z-index/" target="_blank" rel="external">CSS 定位之 z-index 问题分析</a>：里面有作者踩的坑，可学习之。其中一条：慎用js计算z-index<br><a href="http://www.neoease.com/tutorials/z-index/" target="_blank" rel="external">CSS 定位之 z-index问题分析</a>：南瓜小米粥的，上面的作者说Ta研究的比较深</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/14/cssZindex/" data-id="vn8pt8zjavqtp71o" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsScrollTop" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/08/jsScrollTop/" class="article-date">
-  <time datetime="2014-11-08T11:41:28.000Z" itemprop="datePublished">2014-11-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/08/jsScrollTop/">scrollTop</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景">背景</h2>
-<p>至此，碰到过两次“下拉滚动条去异步加载新数据”的场景，第一次是一个瀑布流，这次是一个列表。<br>第一次接触瀑布流时，被那高大上的名字唬到了，内心就不知不觉自卑起来，导致思考问题不理智学东西没条理。看似在网搜了不少资料，但都是边边角角，没有一个概况；更不用说先自己想下怎么办，然后再带着问题去搜解决办法。总之，第一次的滚动算是稀里糊涂地做出来了。现在还记得上线后心里的那丝忐忑。<br>第二次，也就是这次，就想着，再不能糊里糊涂地边编边试了、也不能单纯copy之前做的了。而要把这个“滚动”的小点搞清楚。于是就有了这篇小blog。</p>
-<h2 id="问题本身">问题本身</h2>
-<p>下拉滚动条动态加载新数据：<br>1.监听下拉事件：scroll事件 【一滚动就触发，而不等到滚动行为结束，所以-需要合理的加载时机】<br>2.加载时机：等快滑到底部时，就去请求新数据 【关键点】</p>
-<p>而“快达到”其实就是一个临界值的问题。所以，可以把问题进一步简化成“判断滚动条到达底部了”。<br>对滚动条的感性认识：<br>1.为什么会出现滚动条？ 当要显示的内容的高度 &gt; 父容器的高度时 就会出现纵向滚动条（当然，前提是overflow-y:scroll）<br>2.滚动条到底部时是个什么状态？滚动条要向下拉的高度 === (内容的高度 - 容器的高度)</p>
-<p>脑子里的伪代码是个什么样子呢？<br>滚动条要向下拉的高度，其实就是： scrollTop() 相对于容器顶部的偏移量<br>内容的高度以及容器的高度：一般都能直接算出来。所以，问题一下就简单了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( 容器.scrollTop() == 内容.height()-容器.height() ){</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'滚动条到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>如果要加“快到底部”的条件，比如规定个100px的阈值，那代码就是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( <span class="number">100</span>+容器.scrollTop() == 内容.height()-容器.height() ){</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'滚动条快要到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>考虑到scroll事件是一直触发的，而并不一定恰好刚刚等于，所以就用 &lt;= 代替，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( <span class="number">100</span> &gt;= 内容.height()-容器.height()-容器.scrollTop() ){</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'滚动条快要到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="代码里的滚动条">代码里的滚动条</h2>
-<p>jQuery中有三个属性和滚动条的拖动有关，就是： scrollTop、scrollLeft、scrollHeight。<br>此处，只探讨纵向滚动条，即两个：scrollTop、scrollHeight<br>把以下代码去浏览器里运行下，然后实时滚动滚动条，去控制台输出 scrollTop 和 scrollHeight 去看看吧。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">style</span>=<span class="value">"overflow-y:auto; overflow-x:hidden; height:500px; border: 1px solid red;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"height:750px;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{</div><div class="line">  <span class="keyword">var</span> container = $(<span class="string">"#container"</span>);</div><div class="line">  <span class="keyword">var</span> containerHeight = container.height();</div><div class="line"></div><div class="line">  container.scroll(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="keyword">var</span> me = $(<span class="keyword">this</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">var</span> sHeight = me.scrollHeight,</div><div class="line">	    sTop = me.scrollTop;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'\nscrollHeight'</span>, sHeight);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'scrollTop'</span>, sTop);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( sTop &gt;= sHeight-containerHeight )</div><div class="line">	  alert(<span class="string">"滚动条到底部了"</span>);</div><div class="line">    });</div><div class="line">});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>在js代码里，滚动条是被抽象成一个“点”来对待的。<br>scrollHeight：就是滚动条（一个点）需要滚动的高度，即内部div的高度，750px<br>scrollTop：表示滚动条（一个点）当前的位置在这750px里占了多少。</p>
-<p>说明：<br>scrollTop() 取值，是返回第一个匹配元素的 scroll top offset<br>scrollTop() 设置值，是设置所有匹配元素的 scroll top offset</p>
-<h2 id="其他及扩展出来的点">其他及扩展出来的点</h2>
-<h4 id="一、scroll事件">一、scroll事件</h4>
-<p>scroll事件：在容器的滚动事件里检测和执行if判断，消耗cpu资源。所以，要注意代码（能挪出去的运算就挪出去）<br>scroll时：效率方面，还有其他注意事项？</p>
-<h4 id="二、scroll">二、scroll</h4>
-<p>1.scroll事件里，js对象里有滚动<br>  属性4个：scrollTop、scrollLeft、scrollWidth、scrollHeight<br>  方法2个：scrollIntoView() 、scrollViewIfNeeded()<br>2.jQuery又对scroll做了哪些封装？<br>  因为有 $.scrollTop()，但木有获取高度的。<br>  scrollHeight是否有兼容性问题…</p>
-<h4 id="三、jQuery_操作_CSS_的函数">三、jQuery 操作 CSS 的函数</h4>
-<p>可以设置|返回css相关属性<br>1.css()<br>2.height()、width()<br>3.scrollTop()、scrollLeft()：相对于滚动条顶部|左侧的偏移<br>4.position()：相对于父元素的位置<br>5.offset()：相对于文档的位置<br>6.offsetParent()：最近的定位祖先元素</p>
-<h4 id="四、其他容器和位置属性">四、其他容器和位置属性</h4>
-<p>$(window).scrollTop() 针对每一个frame  //所有浏览器都支持<br>$(document).scrollTop()</p>
-<p>window:<br>document： 网页可见区域 document.body<br>注意当浏览器窗口大小改变时(如最大化或拉大窗口后) jQuery(window).height() 随之改变，但是jQuery(document).height()是不变的。</p>
-<p>屏幕分辨率的高： window.screen.height;<br>屏幕分辨率的宽： window.screen.width;<br>屏幕可用工作区高度： window.screen.availHeight;<br>屏幕可用工作区宽度：window.screen.availWidth;</p>
-<h2 id="教训">教训</h2>
-<p>碰到问题，不要被华丽的名称吓到。而是先分析这个问题本身。<br>1.如果要你做，你如何做？ 【此时，不要着急问别人也不要着急去网上搜资料，要先自己想，不要怕自己的方法很原始很山寨】<br>2.里面有几个点？自己准备如何解决？<br>3.每个点是否有边界条件要考虑 or 还有可改进的空间？<br>4.再去查别人怎么做。 【此时，和自己的方法做个对比。看哪里想到了、哪里没想到；想到的哪里不一样、没想到的为什么漏掉了。】<br>5.对比之下，再得结论，即如何解决。</p>
-<p>不要怕浪费时间。<br>准备工作要是不充分，后续不但有坑，而且那种一知半解的状态一点都不可持续。<br>搞清核心问题，后续干活的时候都会神清气爽，而且以后碰到类似问题都可以轻而易举地解决了。</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.escience.cn/people/hehe/js_check.html" target="_blank" rel="external">js判断滚动条是否到底部</a><br><a href="http://www.w3school.com.cn/jquery/jquery_ref_css.asp" target="_blank" rel="external">jQuery参考手册-CSS操作</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-id="3xth13z0fwfoshtk" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scroll/">scroll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chromeDevTool" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/23/chromeDevTool/" class="article-date">
-  <time datetime="2014-09-23T07:42:56.000Z" itemprop="datePublished">2014-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/chromeDevTool/">chrome developer tool 开发者调试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>元素右键 【Elements】<br>（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）<br>（2）复制路径：CSS路径；XPath路径<br>（3）设置断点：子元素修改、修改属性、删除元素</li>
-<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的 js 文件</li>
-<li>查看元素绑定了哪些事件<br>【Elements】面板下的“Event Listeners”：按类型列出元素的相关事件（捕获和冒泡阶段会经过的这个节点的事件）</li>
-<li>查找<br>（1）所有js文件中搜索&amp;查找js函数定义：ctrl + shift + F<br>（2）查找函数定义：ctrl + shift + 0<br>（3）查找文件：ctrl + o</li>
-<li>command line API<br>（1）$(id) 与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements 面板最近选中的5个元素，最新的是 $0<br>更多 console API：console.log()<br>更多 command line API：</li>
-<li>【Resources】页面的资源<br>（1）请求的资源情况：字体、图片、脚本文件、样式文件<br>（2）存储相关：Cookies、HTML5的Database、Local Storage<br>  你可以对存储的内容编辑和删除。</li>
-<li>【Timeline】：JS执行时间、页面元素渲染时间</li>
-</ol>
-<ol>
-<li>Chrome 的 workspace：<br>能够在开发者工具中调试修改 js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
-<li>【Profiles】性能分析</li>
-<li>仿真测试：</li>
-</ol>
-<ol>
-<li>Ajax 时中断 【？？】</li>
-<li>console 中执行的代码可断点 【？】<br>最后一行加上 //@ sourceURL=filename.js,<br>会在 Scripts 面板中有个叫 filename.js 的文件, 然后他就和外部 js 文件一样了</li>
-<li>top frame</li>
-</ol>
-<ol>
-<li>Elements</li>
-<li>Network：分析网站请求的网络情况、查看某一请求的请求头和响应头</li>
-<li>Console</li>
-</ol>
-<p>参考：<br><a href="http://ued.taobao.org/blog/2012/06/debug-with-chrome-dev-tool/" target="_blank" rel="external">chrome developer tool调试技巧</a>：ued.taobao.org<br><a href="http://isux.tencent.com/chrome-workspace.html" target="_blank" rel="external">Chrome workspace</a>：isux.tencent.com</p>
-<p><a href="https://developer.chrome.com/devtools/docs/console" target="_blank" rel="external">https://developer.chrome.com/devtools/docs/console</a><br><a href="https://developers.google.com/chrome-developer-tools/" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/</a> </p>
-<p><a href="http://javascript.ruanyifeng.com/tool/console.html" target="_blank" rel="external">console对象</a>： 阮一峰的博客书<br><a href="https://crxdoc-zh.appspot.com/apps/tut_debugging" target="_blank" rel="external">教程：调试</a>：里面有靠谱的更多链接…</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="dhhnfjh4pnqb3wg9" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调试/">调试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-todo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/08/26/todo/" class="article-date">
@@ -278,31 +69,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="ToDo">ToDo</h2>
+        <h2 id="url">url</h2>
+<ol>
+<li>location 的一些：主域、hash、参数 等操作</li>
+<li>encodeURIComponent、decodeURIComponent</li>
+</ol>
+<h2 id="位置">位置</h2>
+<ol>
+<li>top、window、iframe</li>
+<li>屏幕、内容的宽度+高度<br>jQuery,javascript获得网页的高度和宽度 <a href="http://blog.csdn.net/ljw520204/article/details/6925775" target="_blank" rel="external">http://blog.csdn.net/ljw520204/article/details/6925775</a></li>
+<li>position.offset()</li>
+</ol>
+<h2 id="HTML">HTML</h2>
+<ol>
+<li>所有的HTML大类 + 对应的元素 + 对应的特性：后续尝试验证后再不断完善</li>
+<li>标签的嵌套：嵌套的规则，不同浏览器解析不同，div span p a （block，inline-block，p），p span a div</li>
+<li>ul 不是真正意义上的div，哪些不同？ </li>
+</ol>
+<h2 id="CSS">CSS</h2>
+<ol>
+<li>CSS 属性的继承</li>
+<li>z-index 未考虑特殊的页面节点（如 input、select、iframe）【后续 ToDo】</li>
+</ol>
+<h2 id="工具">工具</h2>
+<ol>
+<li>chrome 开发者工具</li>
+<li>sublime 快捷键</li>
+</ol>
+<h2 id="跨域">跨域</h2>
 <ol>
 <li>iframe 实现跨域：补充进 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" target="_blank" rel="external">什么是跨域</a></li>
 <li>jQuery 中的跨域：<a href="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" target="_blank" rel="external">什么是跨域</a></li>
 <li>待验证的一种说法：说ie8下不存在跨域问题…其他浏览器默认不允许跨域 [？？]</li>
-</ol>
-<ol>
-<li>top、window、iframe</li>
-<li>location 的一些：主域、hash、参数 等操作</li>
-<li>encodeURIComponent、decodeURIComponent</li>
-</ol>
-<ol>
-<li>ajax 上传图片</li>
-<li>校验码</li>
-</ol>
-<h2 id="扩展阅读">扩展阅读</h2>
-<ol>
 <li><a href="http://struts.iteye.com/blog/266446" target="_blank" rel="external">iframe跨域</a></li>
 <li><a href="http://hereson.iteye.com/blog/172107" target="_blank" rel="external">关于document.dominain的一些解释</a></li>
 </ol>
+<h2 id="功能">功能</h2>
+<ol>
+<li>ajax 上传图片</li>
+<li>校验码</li>
+<li>正则：<a href="http://www.cnblogs.com/cy163/archive/2010/04/20/1715835.html" target="_blank" rel="external">http://www.cnblogs.com/cy163/archive/2010/04/20/1715835.html</a></li>
+</ol>
+<h2 id="概念型+其他">概念型+其他</h2>
+<p>comment.js<br>angularjs<br>backbone</p>
+<p>会话，session、  浏览器窗口关闭之后<br>cookie<br>locastorage</p>
+<p>SQLite</p>
+<p>placeholder</p>
+<p>Canvas</p>
+<p>XSS：toggle device mode</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="ywkmau12hg5lqodl" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="gcghvpk6bbb7ov2k" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
@@ -345,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="vr6yp1767i2h9pg8" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="ycuinya6cpkske2w" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
@@ -366,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -375,7 +194,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -387,23 +206,23 @@
       <ul>
         
           <li>
-            <a href="/2014/11/14/cssZindex/">z-index 的使用方法和层级树</a>
+            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
           </li>
         
           <li>
-            <a href="/2014/11/12/webSocket/">HTML5 WebSocket</a>
+            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
           </li>
         
           <li>
-            <a href="/2014/11/12/webTecAndStand/">网页技术和标准</a>
+            <a href="/2015/01/03/html_codingSpec/">HTML 代码的编写规范</a>
           </li>
         
           <li>
-            <a href="/2014/11/11/cssFlexBox/">弹性盒子</a>
+            <a href="/2015/01/03/html_element/">HTML 之元素分类</a>
           </li>
         
           <li>
-            <a href="/2014/11/08/jsScrollTop/">scrollTop</a>
+            <a href="/2015/01/03/css_inherit/">CSS 属性的继承与否</a>
           </li>
         
       </ul>
@@ -415,7 +234,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scroll/">scroll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/调试/">调试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -470,7 +289,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2014 anjia<br>
+      &copy; 2015 anjia<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
       .
       Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>

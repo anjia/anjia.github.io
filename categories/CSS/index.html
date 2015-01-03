@@ -43,6 +43,252 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/03/css_0/" class="article-date">
+  <time datetime="2015-01-03T10:14:22.000Z" itemprop="datePublished">2015-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>错误的 CSS 写法将直接被认为无效<br>属性写多了：无效，则被直接忽视<br>属性写少了：则会用默认值<br>以数字开头的，无效命名</p>
+</li>
+<li><p>可见性<br>display:none 不保留空间<br>visibiliy:hidden | visible  依然占位</p>
+</li>
+<li><p>单位（相对和绝对）<br>em：随字体的大小而变，eg.缩放<br>px：按像素来，与分辨率有关</p>
+</li>
+<li><p>float 会自动生成一个块级框【BFC，haslayout】<br>所以可以省去 display:block</p>
+</li>
+<li><p>% 是相对于父的 width 而言的，content区域的width</p>
+</li>
+<li>margin 取值：auto，0，正，负<br>正常流中，若块的 margin-top 或 margin-bottom 置为auto，则它会自动计算为0<br>在正常流中，块级元素的垂直，只有height的auto能生效<br>但是，可将margin: 5% 0;   height:90%， %却能实现垂直居中</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2015/01/03/css_0/" data-id="105sb4cyppqou0my" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css_codingSpec" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/03/css_codingSpec/" class="article-date">
+  <time datetime="2015-01-03T09:39:32.000Z" itemprop="datePublished">2015-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在很多开发人员眼里，编写 CSS 不但简单有时还会显得很繁琐-相同的属性得一个劲不停地写。为此，曾经自己也迷惑过也遇到过不少问题，但随着写&amp;读的前端代码渐渐增多，慢慢体会到，“能写”和“会写”之间还是有一定距离的。很多时候，你可以“这样做”，但并不意味着“你应该”这么做。</p>
+<p>合理地编写CSS，可以让代码看起来更专业。即便是很简单的几行代码，也要写的有性格。嗯~用饱含工匠精神的态度去写码，你一定会在苦逼中作乐的。</p>
+<p>以下整理些从别人那读到学到的，同时自己认可的琐碎的点，供实战中践行。</p>
+<h2 id="属性的值">属性的值</h2>
+<ol>
+<li>对于以逗号分隔的属性值：每个逗号后，都应该插个空格。eg. background-image: url(…), url(…);</li>
+<li>值内部的多个属性之间：不要加空格</li>
+<li>避免为0指定单位：margin:0 即可</li>
+<li>值小于1的，省略小数前面的0：即 -.5px代替 -0.5px，.5代替0.5</li>
+<li>16进制尽量简写：eg. #fff 而不是#ffffff</li>
+<li>选择器中的属性：建议都加双引号，为了一致性（而且还有其他原因）</li>
+</ol>
+<h2 id="声明">声明</h2>
+<ol>
+<li>每条声明-最好独行：更准确的错误报告</li>
+<li>若有选择器分组，每个单独成行</li>
+<li>空格：声明的左花括号之前；属性值前</li>
+<li>所有声明语句后，都写分号 &lt;虽然最后一条声明语句后的分号;是可选的&gt;</li>
+</ol>
+<h2 id="声明顺序">声明顺序</h2>
+<p>相关的属性声明归为一组，按照下面的顺序排列：</p>
+<ol>
+<li>定位 positioning：可以从正常的文档流中移除元素，还能覆盖盒模型的相关样式，所以首位。</li>
+<li>盒模型 box model：决定了组件的尺寸和位置，所以第二位。</li>
+<li>排版类 typographic</li>
+<li>视觉类 visual</li>
+</ol>
+<h2 id="简写属性">简写属性</h2>
+<p>在需要显示地设置所有值的情况下，应尽量限制使用简写的属性声明。<br>常见的滥用：<br>padding, margin, font, background, border, border-radius 【？？这不就是我经常简写的么】</p>
+<p>大部分情况下，我们不需要为简写形式的属性声明指定所有值。<br>例如，HTML 的 heading 元素只需要设置上、下边距（margin）的值，因此，在必要的时候，只需覆盖这两个值就可以。<br>过度使用简写形式的属性声明会导致代码混乱，并且会对属性值带来不必要的覆盖从而引起意外的副作用。</p>
+<h2 id="class命名">class命名</h2>
+<ol>
+<li>只能出现：小写字符 和 波折号-（破折号应该用于相关的class命名，类似于命名空间） 而不是下划线也不是驼峰<br>eg. .btn .btn-danger</li>
+<li>避免过多简写，比如 .btn 代表 button，但是 .s 就啥也不是</li>
+<li>class应尽可能短 &amp; 意义明确</li>
+<li>要有意义：要有组织+有目的，不要用表现形式</li>
+<li>class的前缀：基于最近的父或基 作为新class的前缀</li>
+<li>用js-的class：来标识行为，与样式相对：且不应用到css中（同理：纯css样式的，也尽量不要用于脚本-不便于维护） </li>
+</ol>
+<h2 id="CSS_选择器">CSS 选择器</h2>
+<ol>
+<li>对于通用的元素，用class：有利于渲染性能的优化</li>
+<li>经常出现的组件，避免使用属性选择器：影响浏览器性能 【各个选择器的性能如何？？】</li>
+<li>尽可能短：建议不要超过3个</li>
+<li>只有在必要的时候，才将class限制在最近的父元素内（及后代选择器） 【选择器并非越长越好】</li>
+</ol>
+<h2 id="代码组织">代码组织</h2>
+<ol>
+<li>以组件为单位组织代码段。</li>
+<li>如果使用了多个 CSS 文件，将其按照组件而非页面的形式分拆，因为页面会被重组，而组件只会被移动。 【页面会被重组，而组件只会被移动】</li>
+<li>制定一致的注释规范。</li>
+<li>使用一致的空白符将代码分隔成块，这样利于扫描较大的文档。</li>
+</ol>
+<h2 id="代码注释">代码注释</h2>
+<ol>
+<li>代码要：自描述（嘿嘿，这个时候就可以少点注释了）</li>
+<li>好的注释：传达上下文关系、代码目的 （而不是很苍白地重申些废话） </li>
+<li>可以英文注释（长的写完整句子，短的就可以写短语）</li>
+</ol>
+<h2 id="其他">其他</h2>
+<p>因为用的少，所以。。。仅仅是知道，但还没使用场景。</p>
+<ol>
+<li>不要使用@import<br>因为：@import指令要比<link>标签慢很多（不光增加了额外的请求次数，还会导致不可预料的问题）<br>可替代的方法：<br>a.用多个<link><br>b.通过Sass或Less类似的CSS预处理器将多个CSS文件编译成一个文件<br>c.将CSS文件合并</li>
+<li>媒体查询的位置 【移动开发会较多】<br>建议：将放在尽可能相关规则的附近<br>不要将它们打包放在一个单一样式文件 or 文档底部</li>
+<li>Less和Sass中的嵌套 【表示…不曾用过】<br>避免非必要的嵌套：你可以使用，但并不意味这应该使用<br>什么时候用嵌套：限制在父元素内（即后代选择器）+ 多个需要嵌套时才用</li>
+</ol>
+<h2 id="参考">参考</h2>
+<p><a href="http://www.cnblogs.com/%20http:/codeguide.bootcss.com" target="_blank" rel="external">编码规范 by @mdo</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties" target="_blank" rel="external">关于shorthand properties 的文章</a>：对于不太熟悉简写属性声明及其行为的用户很有用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2015/01/03/css_codingSpec/" data-id="xa9wdcyytaga46u5" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css_inherit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/03/css_inherit/" class="article-date">
+  <time datetime="2015-01-03T07:23:21.000Z" itemprop="datePublished">2015-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/03/css_inherit/">CSS 属性的继承与否</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>书写时注意，可利用以下三点：<br>利用 默认值<br>利用 继承<br>利用 层叠</li>
+</ol>
+<h2 id="不可继承的">不可继承的</h2>
+<ol>
+<li><p>盒模型-布局<br>margin, border, padding<br>width, max-width, min-width<br>height, max-height, min-height</p>
+</li>
+<li><p>定位<br>float, clear, overflow<br>position (top,right,bottom,left)<br>z-index</p>
+</li>
+<li><p>所有背景属性<br>background (color,image,position)</p>
+</li>
+<li><p>文本属性<br>vertical-align (垂直居中：行内、替换元素)<br>text-decoration (文本属性)<br>text-shadow (文本阴影)<br>white-space (对空白字符的处理)<br>unicode-bidi (css处理文本方向)</p>
+</li>
+<li><p>其他<br>content (生成内容)<br>content-reset (计数器标识-eg.ol时)<br>outline (轮廓)<br>clip（没玩过）</p>
+</li>
+</ol>
+<h2 id="可继承的">可继承的</h2>
+<ol>
+<li><p>文本属性<br>font(size,weight,family)<br>line-height<br>text-indent<br>text-align<br>word-spacing<br>letter-spacing<br>text-transform<br>direction(文字方向)</p>
+</li>
+<li><p>其他<br>color<br>cursor<br>list-style(-type,-image,-position) ：eg.list-style:url() square inside<br>quotes (生成括号)<br>visibility【再确认？】</p>
+</li>
+</ol>
+<h2 id="默认值">默认值</h2>
+<ol>
+<li><p>margin:0</p>
+</li>
+<li><p>border 的默认值<br>border-style: 默认为none<br>border-color: 默认为 元素本身的前景色|父元素的文本颜色<br>border-width: 默认medium</p>
+</li>
+</ol>
+<p>没有样式，就没有宽度，所以 border 也无从谈起</p>
+<p>border-style：10个，eg.solid,dashed,dotted,…..,inset,outset<br>border-width 有4种设值：px, thin, medium, thick<br>border-color：可透明，transparent</p>
+<p>背景色 及 border 的位置关系：border是在background之上的</p>
+<h2 id="固执的元素">固执的元素</h2>
+<p>clear：只对块级元素<br>list-style：只对 display:list-item 的元素<br>position 不是 static，则为定位元素<br>background-color 默认的是 transparent（所以看起来像继承）</p>
+<h2 id="说明">说明</h2>
+<ol>
+<li>a的颜色<br>往往不继承其外层容器：因为代理自己设了a的样式</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2015/01/03/css_inherit/" data-id="pwaq43fkm5kv00jg" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-cssZindex" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/14/cssZindex/" class="article-date">
@@ -86,17 +332,17 @@
 <h2 id="总结">总结</h2>
 <p>先搞清楚 position、z-index、层级的概念。<br>再将参与层级排序（即 1.定位规则 和 3.默认值规则）的节点一起，画一个层级树出来（即 5.层级树规则）。<br>最后依据：深度（即4.从父规则）+ 值（即z-index本身值比大小）便可条理清晰地理顺元素间的层级堆叠关系。</p>
 <h2 id="其他">其他</h2>
-<p>1.本文仅涉及节点属性的层级情况<br>2.未考虑特殊的页面节点（如 select、iframe）【后续 ToDo】<br>3.自我感受：Dom树的【树】本身就说明了各个元素间是存在层级关系的，即有父有兄弟有儿子。所以，有些属性要考虑父，也是合情合理的。比如 z-index的从父规则，还有上次的<br><a href="http://anjia.github.io/2014/11/11/cssFlexBox/" target="_blank" rel="external">弹性盒子那牛掰的父容器</a></p>
+<p>1.本文仅涉及节点属性的层级情况<br>2.自我感受：Dom树的【树】本身就说明了各个元素间是存在层级关系的，即有父有兄弟有儿子。所以，有些属性要考虑父，也是合情合理的。比如 z-index的从父规则，还有上次的 <a href="http://anjia.github.io/2014/11/11/cssFlexBox/" target="_blank" rel="external">弹性盒子那牛掰的父容器</a></p>
 <h2 id="参考">参考</h2>
 <p><a href="http://www.neoease.com/css-z-index-property-and-layering-tree/" target="_blank" rel="external">CSS z-index 属性的使用方法和层级树的概念</a>：参考的主演来源，挺清晰。<br><a href="http://www.neoease.com/tutorials/z-index/" target="_blank" rel="external">CSS 定位之 z-index 问题分析</a>：里面有作者踩的坑，可学习之。其中一条：慎用js计算z-index<br><a href="http://www.neoease.com/tutorials/z-index/" target="_blank" rel="external">CSS 定位之 z-index问题分析</a>：南瓜小米粥的，上面的作者说Ta研究的比较深</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/14/cssZindex/" data-id="vn8pt8zjavqtp71o" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/11/14/cssZindex/" data-id="g6jg2xjmng15uqia" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
 
     </footer>
   </div>
@@ -156,7 +402,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="pywplsgrb55pasqz" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="eh4izp0a38mil57b" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
@@ -177,7 +423,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -186,7 +432,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -198,23 +444,23 @@
       <ul>
         
           <li>
-            <a href="/2014/11/14/cssZindex/">z-index 的使用方法和层级树</a>
+            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
           </li>
         
           <li>
-            <a href="/2014/11/12/webSocket/">HTML5 WebSocket</a>
+            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
           </li>
         
           <li>
-            <a href="/2014/11/12/webTecAndStand/">网页技术和标准</a>
+            <a href="/2015/01/03/html_codingSpec/">HTML 代码的编写规范</a>
           </li>
         
           <li>
-            <a href="/2014/11/11/cssFlexBox/">弹性盒子</a>
+            <a href="/2015/01/03/html_element/">HTML 之元素分类</a>
           </li>
         
           <li>
-            <a href="/2014/11/08/jsScrollTop/">scrollTop</a>
+            <a href="/2015/01/03/css_inherit/">CSS 属性的继承与否</a>
           </li>
         
       </ul>
@@ -226,7 +472,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scroll/">scroll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/调试/">调试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -281,7 +527,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2014 anjia<br>
+      &copy; 2015 anjia<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
       .
       Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>

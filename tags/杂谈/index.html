@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tag: 杂谈 | anjia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Web前端开发工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="anjia">
+<meta property="og:url" content="http://anjia.github.io/tags/杂谈/">
+<meta property="og:site_name" content="anjia">
+<meta property="og:description" content="Web前端开发工程师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="anjia">
+<meta name="twitter:description" content="Web前端开发工程师">
+
+  
+    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+	<span id="logo">anjia</span>
+	
+	  <span id="subtitle">
+		<a href="/" id="subtitle">静下心，慢慢来</a>
+	  </span>
+	
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-css_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/03/css_0/" class="article-date">
+  <time datetime="2015-01-03T10:14:22.000Z" itemprop="datePublished">2015-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>错误的 CSS 写法将直接被认为无效<br>属性写多了：无效，则被直接忽视<br>属性写少了：则会用默认值<br>以数字开头的，无效命名</p>
+</li>
+<li><p>可见性<br>display:none 不保留空间<br>visibiliy:hidden | visible  依然占位</p>
+</li>
+<li><p>单位（相对和绝对）<br>em：随字体的大小而变，eg.缩放<br>px：按像素来，与分辨率有关</p>
+</li>
+<li><p>float 会自动生成一个块级框【BFC，haslayout】<br>所以可以省去 display:block</p>
+</li>
+<li><p>% 是相对于父的 width 而言的，content区域的width</p>
+</li>
+<li>margin 取值：auto，0，正，负<br>正常流中，若块的 margin-top 或 margin-bottom 置为auto，则它会自动计算为0<br>在正常流中，块级元素的垂直，只有height的auto能生效<br>但是，可将margin: 5% 0;   height:90%， %却能实现垂直居中</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2015/01/03/css_0/" data-id="105sb4cyppqou0my" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/02/html_0/" class="article-date">
+  <time datetime="2015-01-02T09:03:54.000Z" itemprop="datePublished">2015-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/02/html_0/">HTML 之杂谈（1）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要说HTML，其实挺简单，不就是那几个标签在那儿来回折腾吗。但写得多了，就发现选择了一个标签 就像 上战场前选择了一种武器一样，每种武器都有它能打出来的力道和花样（即与之匹配的CSS）。选择什么样的HTML意味着选择了什么样的结构，所以在一定程度上这也算是一个根本性问题。</p>
+<h2 id="感受">感受</h2>
+<p>1.之前觉得，同一效果可以用多种方式来实现。但后来发现，其实是每种实现方式都有自己的使用场景和利弊的。<br>2.成型后自查：等写完页面后，F12看下HTML的结构。有时，还真能发现冗余或不合理。<br>3.良好的html结构，可以省去不少css样式</p>
+<h2 id="经验">经验</h2>
+<p>1.元素的选取<br>（1）table布局：高度对齐、宽度自适应<br>（2）ul|ol：无序|有序列表<br>（3）dl：用户自定义。挺有语义的，title-content的结构时<br>2.table布局<br>（1）果真用td tr来表格式布局还挺方便，但是想细致控制其样式就不灵活了（难怪见了不少-给td里还加个div或span的）<br>3.ul-li<br>（1）当内容仅一行时，用height + line-height能方便搞定<br>（2）当内容有换行时，用line-height + padding实现<br>4.盒模型<br>（1）pc端写着box-sizing:border-box，挺好的。可规避低版本ie浏览器，保证表现一致<br>（2）但总觉得border-box是个hack，有时候还挺排斥它的。尤其是移动端开发时，宁愿踩坑，也不愿意写它去提前规避未知的问题。<br>5.从语义角度：将“标识”“操作”等非文字信息，用一个span或div包起来。<br>目的：和数据分开</p>
+<h2 id="教训">教训</h2>
+<p>1.可点击区域，不能过大：滥用a(把a设置成block)。不能为了省标签，而把一整行都搞成可点击的。<br>2.多行文字换行时：br 或者 p<br>3.对“向右”的样式，不要动不动就浮动：其实完全可以用默认的（默认的div就是自左向右；默认的对齐方式是自左向右）</p>
+<h2 id="体验细节">体验细节</h2>
+<p>1.先隐藏再显示<br>2.鼠标的I 手型 箭头<br>3.详细&gt;&gt;的换行：设置inline-block就可以了（设置white-space副作用：前面的内容也在不应该的地方换行了）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2015/01/02/html_0/" data-id="st2iwr2br02x38cp" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/03/html_codingSpec/">HTML 代码的编写规范</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/03/html_element/">HTML 之元素分类</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/03/css_inherit/">CSS 属性的继承与否</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget links">
+        
+            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+        
+            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+        
+            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+        
+            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+        
+            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+        
+            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+        
+            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+        
+            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+        
+            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
+        
+            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+        
+            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+        
+            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+        
+            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+        
+            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+        
+            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+        
+            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+        
+            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
+        
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 anjia<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

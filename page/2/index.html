@@ -43,6 +43,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-cssFlexBox" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/11/cssFlexBox/" class="article-date">
+  <time datetime="2014-11-11T06:32:51.000Z" itemprop="datePublished">2014-11-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/11/cssFlexBox/">弹性盒子</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>移动端开发接触不多，所以弹性盒子是听的很多，但实际用的很少。这次难得开发移动端那就强迫自己用下喽，抓住工作计划多接触点新东西。之前吧：<br>1.工作之余实战编码情况几乎没有。【这点正在转变中，重新计划时间分配】<br>2.对新知识不那么渴求，比如能用老方法去搞定的（浮动|定位），一般不会去主动尝试新概念（弹性盒子）。<br>&nbsp;&nbsp;&nbsp;这是思维方式的问题，一时半会不好改。【但目前在计划把小点搞懂些，先慢慢爱上自己熟悉的，在等热情之火燎技术之原】 </p>
+<p>流体布局控</p>
+<p>说明：此文重点阐述弹性盒子的理论，代码并没有考虑最新标准写法及浏览器兼容等方面。</p>
+<h2 id="弹性盒子概况">弹性盒子概况</h2>
+<p>CSS3中新的盒子模型：弹性盒子模型（Flexible Box Model）</p>
+<p>弹性盒子能干嘛？<br>1.按份分，自适应父容器 box-flex：1-1-1，1-2-1，1-2-3（至少是1的整数）<br>2.有要固定宽的 width:100px;  即优先子的width，剩余的再按比例flex<br>3.垂直|水平对齐<br>4.留白</p>
+<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">鑫空间</a>[1]里举了个分房子的例子，概念上通俗易懂，如下：<br>box-flex：分配房子，子按比例分配父标签的宽度|高度空间<br>box-flex的属性 即如何分配，分配比例</p>
+<p>不论孩子们争得有多high…凡事，凡事都得有个首先。。。首先，亲爹得开金口：房子，你们自己分吧！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*在此声明下，子元素的行为和表现 和 CSS2中的传统盒子模型的表现 有显著差异*/</span></div><div class="line"><span class="id">#father</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value">box</span></span>;  <span class="comment">/*弹性盒子模型的声明*/</span></div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<h2 id="强大的老爹">强大的老爹</h2>
+<p>不管孩子们怎么折腾，父还是很牛掰的，可以做很多事情。如下：<br>1.box-orient: horizontal|vertical  决定子元素的方向，横排|竖排<br>2.box-direction: normal|reverse  决定子元素的排列顺序（normal是：左-&gt;右 上-&gt;下）</p>
+<p>3.box-align: start|end|center|baseline（文字的）|stretch（拉伸-等高布局不再愁）  决定垂直方向上的空间利用，即垂直方向的对齐<br>&nbsp;&nbsp;&nbsp;相当于CSS2的 vertical-align<br>4.box-pack: start|end|center|justify（两端对齐）  决定水平方向上的空间利用，即水平方向的对齐<br>&nbsp;&nbsp;&nbsp;相当于CSS2的 text-align:left|right|center|justify 【start更概况，是因为box还能玩倒序】</p>
+<p>5.box-lines  决定子元素是否可以换行（支持性待测）<br>&nbsp;&nbsp;&nbsp;不过，一般情况下用弹性盒子就是为一行方便的。多行的话 用浮动更直观吧~感觉</p>
+<p>对比之下，再看子元素，瞬间清晰多了。孩子的属性：<br>1.width<br>2.box-flex<br>3.box-ordinal-group：拉帮结派，值越小-位置越靠前<br>4.box-flex-group</p>
+<h2 id="其他">其他</h2>
+<p>CSS2.1中的4种布局模式：盒模型，块布局 + 行内布局 + 表格布局 + 定位布局<br>CSS3引入了新的布局模式：弹性布局，即这里的弹性盒子，很方便的自适应浏览器窗口的流动布局。</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">CSS box-flex属性，然后弹性盒子模型简介</a> 源自鑫空间。举例通俗易懂 房子-分配；里面也有各个属性的demo，很直观<br><a href="http://my.oschina.net/u/1589874/blog/222228" target="_blank" rel="external">弹性盒子模型</a> 源自Sunny_lyy。flex的新旧版写法、浏览器兼容写法；各属性值</p>
+<h2 id="扩展阅读">扩展阅读</h2>
+<p><a href="http://css-tricks.com/old-flexbox-and-new-flexbox/" target="_blank" rel="external">http://css-tricks.com/old-flexbox-and-new-flexbox/</a><br><a href="http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans" target="_blank" rel="external">http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans</a><br><a href="http://ued.ctrip.com/blog/wp-content/webkitcss/prop/flex-direction.html" target="_blank" rel="external">http://ued.ctrip.com/blog/wp-content/webkitcss/prop/flex-direction.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="wvv8kipn13ginvw4" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-jsScrollTop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/08/jsScrollTop/" class="article-date">
@@ -109,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-id="liyihzpvu30nomw4" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-id="ixv8szf3siwrr7f9" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -172,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="sps3hbqpb2momw49" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="cifovel9w1km2qpc" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
@@ -237,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="jmtemgk7p3i8gdsq" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="sp8oxeoffoyn61r2" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
@@ -306,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="5mw1xymmzci2v2m9" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="6hgzf2cl1f2fzcoj" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debug/">debug</a></li></ul>
@@ -359,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="huf4af4ffmxyfqnt" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="hcp7514tz2hqac9x" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shortcut-key/">shortcut key</a></li></ul>
@@ -442,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="308mxpwoldu2zr32" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="4who6d4h5lwgvclj" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -616,7 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="eeo8wezzll0urf74" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="emk9r0006j3w3wzx" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
@@ -666,7 +729,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="sv2bxpestuvohzsd" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="63qasfgjy86tadug" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
@@ -751,88 +814,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="psbo8908jgkjv1lq" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="mrbwcxwa9207lbfg" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsCrossDomain_methods" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/jsCrossDomain_methods/" class="article-date">
-  <time datetime="2014-09-02T13:41:23.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/02/jsCrossDomain_methods/">js 中的跨域解决办法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
-<h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
-<p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
-<p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
-<h3 id="1-_document-domain_+_iframe">1. document.domain + iframe</h3>
-<p>应用场景：主域相同，但子域不同<br>解决办法：设置 document.domain<br>具体做法：<br>在 www.a.com 上的 page1.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span>;</div><div class="line"></div><div class="line">//创建一个 iframe，去控制 iframe 的 contentWindow，这样两个js文件就可以相互“交互”了</div><div class="line">var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">ifr.src = <span class="string">'http://script.a.com/page2.html'</span>;</div><div class="line">ifr.style.display = <span class="string">'none'</span>;</div><div class="line">document.body.appendChild(ifr);</div><div class="line"></div><div class="line">ifr.onload = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	var doc = ifr.contentDocument || ifr.documentWindow.document;</div><div class="line">	//可以操作 page2.html 中的元素了</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>在 script.a.com 上的 page2.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span></div></pre></td></tr></table></figure>
-
-<p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
-<p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
-<p>问题：<br>1、安全性，当一个站点（b.a.com）被攻击后，另一个站点（c.a.com）会引起安全漏洞<br>2、若一个页面中引入了多个 iframe，要想能操作所有 iframe，则必须都得设置成相同的 domain</p>
-<h2 id="2-_动态创建_script">2. 动态创建 script</h2>
-<p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
-<h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
-<p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
-<p>比如，以下两个页面想要传递消息：a.com/page1.html 和 b.com/page2.html 相互传递数据<br>a.com 下的文件 page1.html </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//在页面中创建一个 iframe，src 指向另个域</div><div class="line">function <span class="function"><span class="title">startRequest</span></span>(){</div><div class="line">	var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">	ifr.style.display = <span class="string">'none'</span>;</div><div class="line">	ifr.src = <span class="string">'http://www.b.com/page2.html#paramdo'</span>;</div><div class="line">	document.body.appendChild(ifr);</div><div class="line">}</div><div class="line"></div><div class="line">//每隔<span class="number">2</span>s去<span class="built_in">hash</span>上检查并获取数据</div><div class="line">function <span class="function"><span class="title">checkHash</span></span>(){</div><div class="line">	try{</div><div class="line">		var data = location.hash?location.hash.substring(<span class="number">1</span>):<span class="string">''</span>;</div><div class="line">		console.log(<span class="string">'数据是：'</span>， data);</div><div class="line">	}catch(e){}</div><div class="line">}</div><div class="line"><span class="keyword">set</span>Interval( checkHash, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
-
-<p>b.com 下的文件 page2.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//模拟一个简单的参数处理操作</div><div class="line">var <span class="built_in">hash</span> = location.hash;</div><div class="line">switch(<span class="built_in">hash</span>){</div><div class="line">	<span class="keyword">case</span> <span class="string">'#paramdo'</span>:</div><div class="line">		// page2 在响应 page1 中 iframe 的 src 请求时</div><div class="line">		// 可以修改父的<span class="built_in">hash</span>，进而达到 page2-&gt;page1 传递数据的目的</div><div class="line">		callBack();</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'#paramdata'</span>: </div><div class="line">		// page1-&gt;page2 传递的话，直接取父的<span class="built_in">hash</span>即可</div><div class="line">		var <span class="built_in">hash</span> = parent.location.hash;</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">} </div><div class="line"></div><div class="line">//模拟子page2向父page1传递参数</div><div class="line">function <span class="function"><span class="title">callBack</span></span>(){</div><div class="line">	try{</div><div class="line">		// 把参数回传给父（另一个域）</div><div class="line">		parent.location.hash = <span class="string">'somedata'</span>;</div><div class="line">	}catch(e){</div><div class="line">  		// 由于不同域，ie|chrome 不允许修改 parent.location.hash（firefox 可以改）</div><div class="line">  		// 所以要借助 a.com 域名下的一个代理iframe</div><div class="line">		var ifrproxy = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">		ifrproxy.style.display = <span class="string">'none'</span>;</div><div class="line">		ifrproxy.src = <span class="string">'http://a.com/page3.html#somedata'</span>; //嘿！src指向另一个域</div><div class="line">		document.body.appendChild(ifrproxy);</div><div class="line"> 	}</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>在 a.com 域名下的代理页面 page3.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 因为 parent.parent 和 自身属于同一个域，所以可以改变其 locaiton.hash 值</div><div class="line">parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</div></pre></td></tr></table></figure>
-
-<p>问题：<br>1、数据直接暴露在了 url 中<br>2、数据容量和类型都有限</p>
-<h2 id="4-_window-name_实现跨域数据传输">4. window.name 实现跨域数据传输</h2>
-<p>详见 <a href="http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html" target="_blank" rel="external">window.name实现的跨域数据传输</a></p>
-<h2 id="5-_使用_HTML5_的_postMessage">5. 使用 HTML5 的 postMessage</h2>
-<p>HTML5 提供了跨文档消息传输 Cross Document Messaging，postMessage 支持基于 web 的实时消息传递。可参考：<br>《精通HTML5编程》第五章——跨文档消息机制<br><a href="https://developer.mozilla.org/en/dom/window.postmessage" target="_blank" rel="external">Window.postMessage</a><br>我之前的博客 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></p>
-<h2 id="6-_利用flash">6. 利用flash</h2>
-<p>YUI3 中的 IO 组件中有用到：<a href="http://yuilibrary.com/yui/docs/io/" target="_blank" rel="external">http://yuilibrary.com/yui/docs/io/</a></p>
-<h2 id="参考来源">参考来源</h2>
-<p><a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">JavaScript跨域总结与解决办法</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="jxib2yt6k0ffygep" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
 
     </footer>
   </div>
@@ -854,7 +839,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -863,7 +848,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -873,6 +858,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/01/04/jsLocation/">Location 对象</a>
+          </li>
         
           <li>
             <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
@@ -890,10 +879,6 @@
             <a href="/2015/01/03/html_element/">HTML 之元素分类</a>
           </li>
         
-          <li>
-            <a href="/2015/01/03/css_inherit/">CSS 属性的继承与否</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -903,7 +888,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

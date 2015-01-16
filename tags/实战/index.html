@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: CSS3 | anjia</title>
+  <title>Tag: 实战 | anjia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Web前端开发工程师">
 <meta property="og:type" content="website">
 <meta property="og:title" content="anjia">
-<meta property="og:url" content="http://anjia.github.io/tags/CSS3/">
+<meta property="og:url" content="http://anjia.github.io/tags/实战/">
 <meta property="og:site_name" content="anjia">
 <meta property="og:description" content="Web前端开发工程师">
 <meta name="twitter:card" content="summary">
@@ -43,14 +43,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-cssFlexBox" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-code_hover" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/11/cssFlexBox/" class="article-date">
-  <time datetime="2014-11-11T06:32:51.000Z" itemprop="datePublished">2014-11-11</time>
+    <a href="/2015/01/16/code_hover/" class="article-date">
+  <time datetime="2015-01-16T13:59:47.000Z" itemprop="datePublished">2015-01-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+    <a class="article-category-link" href="/categories/实战/">实战</a>
   </div>
 
   </div>
@@ -61,7 +61,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/11/cssFlexBox/">弹性盒子</a>
+      <a class="article-title" href="/2015/01/16/code_hover/">hover 效果</a>
     </h1>
   
 
@@ -69,35 +69,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>移动端开发接触不多，所以弹性盒子是听的很多，但实际用的很少。这次难得开发移动端那就强迫自己用下喽，抓住工作计划多接触点新东西。之前吧：<br>1.工作之余实战编码情况几乎没有。【这点正在转变中，重新计划时间分配】<br>2.对新知识不那么渴求，比如能用老方法去搞定的（浮动|定位），一般不会去主动尝试新概念（弹性盒子）。<br>&nbsp;&nbsp;&nbsp;这是思维方式的问题，一时半会不好改。【但目前在计划把小点搞懂些，先慢慢爱上自己熟悉的，在等热情之火燎技术之原】 </p>
-<p>流体布局控</p>
-<p>说明：此文重点阐述弹性盒子的理论，代码并没有考虑最新标准写法及浏览器兼容等方面。</p>
-<h2 id="弹性盒子概况">弹性盒子概况</h2>
-<p>CSS3中新的盒子模型：弹性盒子模型（Flexible Box Model）</p>
-<p>弹性盒子能干嘛？<br>1.按份分，自适应父容器 box-flex：1-1-1，1-2-1，1-2-3（至少是1的整数）<br>2.有要固定宽的 width:100px;  即优先子的width，剩余的再按比例flex<br>3.垂直|水平对齐<br>4.留白</p>
-<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">鑫空间</a>[1]里举了个分房子的例子，概念上通俗易懂，如下：<br>box-flex：分配房子，子按比例分配父标签的宽度|高度空间<br>box-flex的属性 即如何分配，分配比例</p>
-<p>不论孩子们争得有多high…凡事，凡事都得有个首先。。。首先，亲爹得开金口：房子，你们自己分吧！</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*在此声明下，子元素的行为和表现 和 CSS2中的传统盒子模型的表现 有显著差异*/</span></div><div class="line"><span class="id">#father</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value">box</span></span>;  <span class="comment">/*弹性盒子模型的声明*/</span></div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
-
-<h2 id="强大的老爹">强大的老爹</h2>
-<p>不管孩子们怎么折腾，父还是很牛掰的，可以做很多事情。如下：<br>1.box-orient: horizontal|vertical  决定子元素的方向，横排|竖排<br>2.box-direction: normal|reverse  决定子元素的排列顺序（normal是：左-&gt;右 上-&gt;下）</p>
-<p>3.box-align: start|end|center|baseline（文字的）|stretch（拉伸-等高布局不再愁）  决定垂直方向上的空间利用，即垂直方向的对齐<br>&nbsp;&nbsp;&nbsp;相当于CSS2的 vertical-align<br>4.box-pack: start|end|center|justify（两端对齐）  决定水平方向上的空间利用，即水平方向的对齐<br>&nbsp;&nbsp;&nbsp;相当于CSS2的 text-align:left|right|center|justify 【start更概况，是因为box还能玩倒序】</p>
-<p>5.box-lines  决定子元素是否可以换行（支持性待测）<br>&nbsp;&nbsp;&nbsp;不过，一般情况下用弹性盒子就是为一行方便的。多行的话 用浮动更直观吧~感觉</p>
-<p>对比之下，再看子元素，瞬间清晰多了。孩子的属性：<br>1.width<br>2.box-flex<br>3.box-ordinal-group：拉帮结派，值越小-位置越靠前<br>4.box-flex-group</p>
-<h2 id="其他">其他</h2>
-<p>CSS2.1中的4种布局模式：盒模型，块布局 + 行内布局 + 表格布局 + 定位布局<br>CSS3引入了新的布局模式：弹性布局，即这里的弹性盒子，很方便的自适应浏览器窗口的流动布局。</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">CSS box-flex属性，然后弹性盒子模型简介</a> 源自鑫空间。举例通俗易懂 房子-分配；里面也有各个属性的demo，很直观<br><a href="http://my.oschina.net/u/1589874/blog/222228" target="_blank" rel="external">弹性盒子模型</a> 源自Sunny_lyy。flex的新旧版写法、浏览器兼容写法；各属性值</p>
-<h2 id="扩展阅读">扩展阅读</h2>
-<p><a href="http://css-tricks.com/old-flexbox-and-new-flexbox/" target="_blank" rel="external">http://css-tricks.com/old-flexbox-and-new-flexbox/</a><br><a href="http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans" target="_blank" rel="external">http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans</a><br><a href="http://ued.ctrip.com/blog/wp-content/webkitcss/prop/flex-direction.html" target="_blank" rel="external">http://ued.ctrip.com/blog/wp-content/webkitcss/prop/flex-direction.html</a></p>
+        <ol>
+<li>hover 效果：<a href="http://htmlpreview.github.io/?https://github.com/anjia/code/blob/master/hover.html" target="_blank" rel="external">浏览页面</a>、<a href="https://github.com/anjia/code/blob/master/hover.html" target="_blank" rel="external">查看源码</a><br><img src="\images\code_hover1.gif" alt=""></li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="omnjvhtufvya5eh4" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/16/code_hover/" data-id="3p0fxew1ar1bil0f" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实战/">实战</a></li></ul>
 
     </footer>
   </div>

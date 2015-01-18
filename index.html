@@ -43,6 +43,133 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-html_table" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/18/html_table/" class="article-date">
+  <time datetime="2015-01-18T14:16:03.000Z" itemprop="datePublished">2015-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/18/html_table/">HTML 之 table</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>鉴于之前开发时，老能碰到一些“出乎意料”的事情，即：按照自我意愿，给 table 的某些元素设置的某些属性，但最后却发现-样式不生效！！！<br>1、给 col 设置 font-size、color 等，不生效！…平时给它设置最多的是 width，宽度正常…<br>2、给 tr 设置 padding，不生效！ …但偏偏ie7生效了…（在尝试后发现，给 td 设置 padding 是可以的）<br>3、ie7 下，tr 的 border 不生效！…而其他主流浏览器（ie8+，chrome，ff）border 正常…<br>4、有时，对到底该不该用 table 内心很纠结！…怕用了后显得自己很low，但不用有时自己又得很繁琐地去折腾 div 和 span…<br>5、早就听说什么 table 布局很慢，所以有时会主动排斥它！…但对深信“存在即合理”的我来说，就这么不用了又觉得缺点啥…</p>
+<p>以上是自己目前对 table 的疑惑。但都从事fe开发一年半了，总觉得再不把看起来很简单的 table 搞清楚了，都不好意思给别人说自己是搞前端开发的。于是在今年大目标的驱使下，table 布局是我今年攻克的第二个基础点（第一个是 <a href="http://anjia.github.io/2015/01/04/jsLocation/" target="_blank" rel="external">location</a> ）。嗯，后续会有很多类似这种规模的小问题被整理涌现出来，目的就是要填补自己的fe知识盲点。</p>
+<p>先直观地认识下 Table，以下是与 table 相关的表元素们：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">table</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">colgroup</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">col</span> <span class="attribute">class</span>=<span class="value">"col1"</span>&gt;</span><span class="tag">&lt;/<span class="title">col</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">col</span> <span class="attribute">class</span>=<span class="value">"col2"</span>&gt;</span><span class="tag">&lt;/<span class="title">col</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">colgroup</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">thead</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">th</span>&gt;</span>TH1<span class="tag">&lt;/<span class="title">th</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">th</span>&gt;</span>TH2<span class="tag">&lt;/<span class="title">th</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">thead</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">tbody</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>11<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>12<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>21<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>22<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">tbody</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">tfoot</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>This is the foot<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">tfoot</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">caption</span>&gt;</span>This is the table Title<span class="tag">&lt;/<span class="title">caption</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">table</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h1 id="表布局">表布局</h1>
+<p>介绍 CSS 中表本身如何布局。包括三点：</p>
+<ol>
+<li>表在视觉上如何组装（表的格式化）</li>
+<li>绘制单元格边框的两种方式（单元格的边框显示）</li>
+<li>确定表及其内部元素的高度和宽度的机制（计算表的宽度+高度计算、内容对齐）</li>
+</ol>
+<h2 id="1-表的格式化">1.表的格式化</h2>
+<p>表格式化（table formating）即表中的元素相互之间的关系。了解表的格式化，有助于理解如何最佳地设置表样式。<br>CSS 对于表元素和内部表元素有很分明的界限：<br>1、表元素：（约等于块元素）<br>2、内部表元素：会生成矩形框，它们只有 content padding border，但是没有 margin。除了总标题外。</p>
+<h3 id="1-1_表的编排规则">1.1 表的编排规则</h3>
+<p>表的编排规则：表格行、表格列、表格单元（矩形框 td th）</p>
+<ol>
+<li>每个行框包含一行单元表格。表中所有行框按照它在文档中出现的顺序从上到下填充表（表的标题行框 和 脚注行框例外，分别出现在表最前面和最后面）。所以，有多少个行元素，就有多少表格行</li>
+<li>行组包含多少个行框，该行组框就包含多少个表格单元</li>
+<li>列框包含一列｜多列表格单元。按顺序依次相邻放置。从左－右读、右－左读的语言。</li>
+<li>列组包含多少个列框，该列组框就包含多个表格单元</li>
+<li>单元格的跨多行｜跨多列，CSS并未对此做出定义，而是有文档语言来定义这种跨行｜跨列的。</li>
+<li>单元格框不能超出表｜行组的最后一个行框。</li>
+</ol>
+<h3 id="1-2_表显示值">1.2 表显示值</h3>
+<p><img src="\images\table_display.png" alt=""><br>CSS 表模型是面向行的（row primacy），以行为主。</p>
+<h3 id="1-3_CSS_中的列和列组">1.3 CSS 中的列和列组</h3>
+<p>CSS 中 col 和 col-group 只能接受 4 种样式：且有一些只能应用与列上下文的特殊规则时</p>
+<ol>
+<li>width：定义了列和列组的最小宽度。列｜列组中单元格的内容可能要求更宽。</li>
+<li>background：只有当 td｜th｜tr 有透明背景的时候，col 和 col-group 的背景色才可见。</li>
+<li>border：只有当 border-collapse: collapse 时才能设置 col col-group 的边框</li>
+<li>visibility：如果列｜列组的 visibility=collapse 则该列｜列组中所有单元格都不显示。<br>此时，跨列的会被裁剪；表的总宽度会减去已被合并的宽度。［木有生效？］</li>
+</ol>
+<h3 id="1-4_匿名表对象">1.4 匿名表对象</h3>
+<p>如果标记语言中没有包含足够的元素，以至于无法按照 CSS 的定义充分显示表。<br>CSS 定义了一组机制，将“遗漏”的组建作为匿名对象插入。<br>其中 CSS 表模型中可能出现 7 种不同的匿名对象插入。</p>
+<h3 id="1-5_表层">1.5 表层</h3>
+<p>为了完成表的显示，CSS 定义了6个不同的“层”，对应表的各个方面的样式都在其各自的层上进行绘制（这更多的只是个逻辑过程）。且层级越高，样式的优先级也最高。<br>6、td th 单元格<br>5、tr 行<br>4、thead tbody tfoot 行组<br>3、col 列<br>2、col-group 列组<br>1、table 表</p>
+<h3 id="1-6_表标题">1.6 表标题</h3>
+<p>caption-side: top | bottom  标题显示在表的上方还是下方</p>
+<h2 id="2-表单元格边框">2.表单元格边框</h2>
+<p>CSS 中，有两种截然不同的边框模型：<br>1、分隔边框模型：单元格相互之间是分隔的<br>2、合并边框模型：单元格之间没有可见的间隔，单元格的边框会相互合并<br>border-collapse: collapse | separate | inherit<br>应用对象：table inline-table</p>
+<h3 id="2-1_分隔单元格边框_separate">2.1 分隔单元格边框 separate</h3>
+<ol>
+<li>border-collapse: separate;  //声明是分隔单元格边框模型</li>
+<li>border-spacing: 2px 10px;   //设置单元格边框之间的间隔 ［有生效前提］</li>
+<li>empty-cells: show | hide | inherit  ［对象 table-cell，有前提］［ie没支持，算了，忽略先］</li>
+</ol>
+<p>说明：<br>分隔边框模型中，不能给 tr tbody col colgroup 设置 border（td 可以）。</p>
+<h3 id="2-2_合并单元格边框_collapse">2.2 合并单元格边框 collapse</h3>
+<p>当 border-collapse: collapse 时，会有以下规则：<br>1、table | inline-table 不能有 padding、可以有 margin<br>2、border 可用于 td tr tbody col col-group，table本身也会有border<br>3、table-cell 的边框之间肯定没有间隔，而且会合并成一个<br>4、一旦合并，table-cell 之间的边框会在单元格间的假象线的中间位置。［是假想的线］<br>说明：<br>表的边框看起来是等宽的。所有的。<br>或许，表的外边框已经超出了表的宽度 － 有一半落在了之外，不过模型就是这么定义的。<br>边框的合并：是有优先级的，谁低谁高-谁会盖谁</p>
+<h2 id="3-确定表及其内部元素的高度和宽度">3.确定表及其内部元素的高度和宽度</h2>
+<p>如何确定表及其内部元素的大小<br>1、表的宽度：固定宽度布局、自动宽度布局 ［最显著的差异：速度。前者更快］<br>2、表的高度：自定计算</p>
+<h3 id="3-1_表的宽度计算">3.1 表的宽度计算</h3>
+<p>table-layout: auto | fixed | inherit<br>对象：table inline-table</p>
+<ol>
+<li><p>表的宽度：固定布局<br>固定布局模型的速度之所以快，主要因为：布局不依赖于表单元格的内容。所有列的宽度都由表的第一行定义。<br>说明：<br>（1）首行后所有的单元格不会改变列宽，这意味为这些 table-cell 指定的 width 值都会被忽略。如果一个 table-cell 放不下内容，裁剪 or 生成滚动条取决于 overflow。<br>（2）其布局是依据：表＋列＋单元格 width 值决定的<br>（3）使用固定宽度布局模型时，没必要非得为表指定一个显示宽度（当然，指定了 width 确实会由帮助）</p>
+</li>
+<li><p>表的宽度计算：自动布局<br>这正是 HTML 表使用多年的模型<br>自动布局比较慢，是因为：在用户代理查看完表的所有内容之前，无法确定表的布局。每得到一个新单元格时，有可能触发新的一轮的宽度计算。只有完成最后一步，用户代理才算真正建立了表的布局。</p>
+</li>
+</ol>
+<h3 id="3-2_表的高度计算">3.2 表的高度计算</h3>
+<p>确定表的宽度，花的功夫大了点。但是，高度的计算，相当简单。<br>不过浏览器的开发人员可不这么认为。［哈哈，因为高度的计算交给用户代理去做了～］<br>在 2006 年发布的 CSS2.1 草案中，将表的 height 看作是表框的最小高度。［而不是说只要指定了 height 就貌似不用计算了］</p>
+<h3 id="3-3_对齐">3.3 对齐</h3>
+<p>1、水平对齐  text-align:<br>2、垂直对齐  vertical-align: top | bottom | middle | baseline<br>说明：<br>（1）相对于单元格和行的高度，定义单元格中内容的对齐要容易得多～<br>（2）与垂直对齐行内内容是一样的，但应用到 table-cell 时值稍有变化。会忽略 text-top text-bottom sub super</p>
+<h2 id="小结">小结</h2>
+<ol>
+<li>虽然表布局使用起来很简单，但这种布局的机制相当复杂［或许也正是不应该滥用table布局的原因］</li>
+<li>由于 HTML 表构造的历史渊源，CSS 表模型也是以行为中心的。</li>
+<li>不过，它确实能提供列布局，还能应用有限的列样式。［？？此处不知。。］</li>
+<li>CSS提供了一些新特性来控制单元格对齐和表宽度，现在已有更多的工具已更漂亮的方式表示表。［新特性，比如奇偶行的样式控制］</li>
+<li>可以向任意元素应用和表相关的display值（传说当年除了ie，它还不支持）</li>
+</ol>
+<h2 id="明白了…">明白了…</h2>
+<ol>
+<li>tr、td 不能设置 margin：是因为对于内部表元素，就没有 margin。见 1.表的格式化</li>
+<li>col 不能设置其他 CSS：是因为 col 和 col-group 只能接受4种样式，而且还有特殊前提。见 1.3 CSS中的列和列组</li>
+<li>有时样式的设置和生效莫名其妙：是因为table内部自己的元素也是有优先级的。见 1.5 表层</li>
+<li>分隔单元格边框时：不能给 tr tbody col colgroup 设置 border。见 2.1 分隔单元格边框</li>
+<li>table 不能设置 padding：是因为公用样式里 table 被设置了 border-collapse: collapse。见 2.2 合并单元格边框</li>
+<li>table 之所以很方便，有一点就是：tr一行保证不折行、边框灵活-collapse时；一行内容等高、一列内容等宽。</li>
+<li>table 的宽度、高度的计算</li>
+<li>table 的对齐</li>
+</ol>
+<p>回想场景：<br>1、separate 可以应用于剧集的，1-2-3-4-5 等［对齐和留白、内容自适应还］<br>2、collapse 中国好声音的那个页签［当内容过长时起码不会折行、边框］</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://anjia.github.io/2015/01/18/html_table/" data-id="41n3ya57xucm8qjn" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-code_hover" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/16/code_hover/" class="article-date">
@@ -76,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/16/code_hover/" data-id="3p0fxew1ar1bil0f" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/16/code_hover/" data-id="h9xr6uikgfjdr4xv" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实战/">实战</a></li></ul>
@@ -138,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/04/jsLocation/" data-id="1sotaeq6ttfz79zz" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/04/jsLocation/" data-id="gvwfy01uzm3agexh" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -193,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/css_0/" data-id="utfo49il9ogl8ll3" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/03/css_0/" data-id="nnf4y8n8povaqym7" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
@@ -303,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/css_codingSpec/" data-id="800h3ywuepm28aay" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/03/css_codingSpec/" data-id="rjw814yp5hcyg7x5" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -395,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/html_codingSpec/" data-id="e0i4wbmnu2iiel65" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/03/html_codingSpec/" data-id="av0xy56rie2fz76q" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
@@ -469,7 +596,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/html_element/" data-id="wmym6krsnoaipjla" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/03/html_element/" data-id="hx5rxmda1krxs4up" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
@@ -550,7 +677,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/css_inherit/" data-id="ohrtvaqp9wihomag" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/03/css_inherit/" data-id="nevxhptodsv9jix0" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -601,7 +728,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/02/html_0/" data-id="kgz94dvpsggqwp60" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2015/01/02/html_0/" data-id="p6zbcsnf8x8fd7ad" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
@@ -663,82 +790,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/14/cssZindex/" data-id="4yec0ru6sw137nn0" class="article-share-link">分享到</a>
+      <a data-url="http://anjia.github.io/2014/11/14/cssZindex/" data-id="pv7mzypmsj8cgewc" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-webSocket" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/12/webSocket/" class="article-date">
-  <time datetime="2014-11-12T10:42:38.000Z" itemprop="datePublished">2014-11-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/12/webSocket/">HTML5 WebSocket</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML5 有许多引人注目的新特性，如 Canvas、本地存储、多媒体编程接口、WebSocket 等。其中，WebSocket 有“Web的TCP”之称，它使浏览器支持 Socket 成为可能，从而在浏览器和服务器间提供了一个基于 TCP 连接的双向通道。Web 开发人员可以很方便的用 WebSocket 构建实时 Web 应用。</p>
-<p>从以下4点来认识 HTML5 WebSocket：<br>它是什么？<br>它解决了什么问题？<br>它的原理？<br>它怎么用？</p>
-<h2 id="1-它是什么">1.它是什么</h2>
-<p>WebSocket 是 HTML5 提供的一种浏览器和服务器之间进行全双工通信的网络技术。在 WebSocket API 中，浏览器和服务器只需要做一个握手动作，然后就形成了一个快速通道，二者之间就可以直接进行数据传送了。</p>
-<p>其实，WebSocket就是一个应用层的通信协议，协议名ws。它和HTTP一样，都是基于TCP（传输层协议）的。</p>
-<h2 id="2-它解决了什么问题？">2.它解决了什么问题？</h2>
-<p>当要实现对实时性要求较高的 Web 应用时，比如在线游戏、在线聊天等。传统的处理方式是用轮询和Comet技术。而Comet技术实际是对轮询技术的改进，又可分为长轮询机制和流技术。分别如下：</p>
-<p>轮询<br>客户端以一定的时间间隔向服务器发请求，以频繁请求的方式保持客户端和服务器端的同步。<br>问题：太多无谓的网络传输，低效（固定间隔请求嘛，那个时候服务器数据可能还没更新呢）</p>
-<p>长轮询<br>对定时轮询的改进，目的是降低无效的网络传输。<br>方式：当服务器没有更新时，连接会保持一段周期知道数据改变|状态改变|时间过期。<br>问题：当服务器端数据频繁变更时，就和定时轮询差不多了</p>
-<p>流<br>方式：在客户端页面使用一个隐藏窗口，向服务器发个长连接请求。服务器接到请求后作出回应，并不断更新连接状态，以保证客户端和服务器端的连接不过期。这样，就可以将服务器端的信息源源不断地推向客户端了。<br>问题：用户体验上，需要针对不同浏览器设计不同的方案来改进用户体验；同时，当并发较大时，对服务器资源也是个很大的考验。</p>
-<p>其实，这些技术都不是真正的实时技术，只是用 Ajax 模拟实时的效果。问题有：</p>
-<ol>
-<li>浏览器不断向服务器发请求：交互一次，都要一次 HTTP 的请求和应答</li>
-<li>每次 HTTP 请求和应答都带有完整的 HTTP 头信息：HTTP request 的 header是非常长的，里面包含的数据很小很小，都会占用很多的带宽和服务器资源，这就增加了每次传输的数据量</li>
-</ol>
-<p>于是~<br>HTML5 定义了 WebSocket 协议，以更好的节省服务器资源和带宽，并达到真正的实时通信。且WebSocket连接本质上就是一个TCP连接，所以在稳定性和传输量方面，都有很大优势。</p>
-<h2 id="3-它的原理？">3.它的原理？</h2>
-<p>WebSocket 协议本质上是一个基于 TCP 的协议。为建立一个 WebSocket 连接，浏览器首先向服务器发起一个 HTTP 请求。<br>这个请求和通常的 HTTP 请求很相似，但其中有些内容是和 WebSocket 协议密切相关的，包含了一些附加头信息</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//浏览器请求</span></div><div class="line">GET / HTTP/<span class="number">1.1</span></div><div class="line">Upgrade: websocket  <span class="comment">//表明这是一个特殊的HTTP请求，一个申请协议升级的HTTP请求，</span></div><div class="line"><span class="comment">//目的是让客户端和服务器端的通信协议从 HTTP 协议升级到 WebSocket 协议。</span></div><div class="line">Connection: Upgrade</div><div class="line">Sec-WebSocket-Key   <span class="comment">//是随机的，服务器会用这些数据构造出一个SHA-1的信息摘要 【浏览器向服务器提供的握手信息】</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//服务器回应</span></div><div class="line">HTTP/<span class="number">1.1</span> <span class="number">101</span></div><div class="line">Upgrate: websocket</div><div class="line">Connection: Upgrade</div><div class="line">Sec-WebSocket-Accept:  <span class="comment">//把Sec-WebSocket-Key加上一个魔幻字符串，使用SHA-1加密，再进行base-64编码，</span></div><div class="line"><span class="comment">//将结果赋作为'Sec-WebSocket-Accept'头的值，返回给客户端</span></div></pre></td></tr></table></figure>
-
-<p>请求中的 Sec-WebSocket-Key 是浏览器向服务器提供的握手信息，服务器解析这些头信息，并生成一个16位的安全密钥并返回客户端。以表明服务器获取了客户端的请求，同意建立 WebSocket 连接。连接一旦建立，客户端和服务器端就可以双向传输数据了。</p>
-<p>其中，websocket 的实现，浏览器扮演着一个很重要的角色。服务器端不受平台和开发语言的限制，只要遵从 WebSocket 规范即可。目前已经有<a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">比较成熟的 WebSocket 服务器端实现</a>，有：php、ruby、Tomcat、node.js、python、Diango等。</p>
-<h2 id="4-它怎么用？">4.它怎么用？</h2>
-<p>Web 开发人员的 WebSocket JavaScript 客户端接口是很简单的。<br>WebSocket JavaScript 定义：<br>url：WebSocket服务器的网络地址，协议通常是”ws”<br>send() 发送数据到服务器端<br>close() 关闭连接</p>
-<p>建立 WebSocket 连接的实例 JavaScript 代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  wsServer = <span class="string">'ws://localhost:8888/Demo'</span>; </div><div class="line"><span class="keyword">var</span>  websocket = <span class="keyword">new</span> WebSocket(wsServer); </div><div class="line"></div><div class="line"><span class="comment">//还有4个很重要的事件</span></div><div class="line">websocket.onopen = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"Connected to WebSocket server."</span>); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onclose = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"Disconnected"</span>); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onmessage = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Retrieved data from server: '</span> + event.data); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onerror = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Error occured: '</span> + event.data); </div><div class="line">};</div></pre></td></tr></table></figure>
-
-<h2 id="参考">参考</h2>
-<p><a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">WebSocket 维基百科</a>：维基百科，挺牛叉，信息简短但不失专业，信息量还挺大<br><a href="http://www.ibm.com/developerworks/cn/web/1112_huangxa_websocket/" target="_blank" rel="external">使用 HTML5 WebSocket 构建实时 Web 应用</a>：IBM，挺系统</p>
-<p><a href="http://www.plhwin.com/2014/05/28/nodejs-socketio/" target="_blank" rel="external">使用Node.js+Socket.IO搭建WebSocket实时应用</a>：个人博客，看起来挺完整的。不过没亲自试过代码<br><a href="http://www.zhihu.com/question/20215561" target="_blank" rel="external">WebSocket 是什么原理？为什么可以实现持久连接？</a>：知乎，里面还有些讨论，有常识类的、也有扩展类的。不错。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/12/webSocket/" data-id="fn64l7r1bhwbet11" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
 
     </footer>
   </div>
@@ -760,7 +815,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -769,7 +824,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -779,6 +834,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/01/18/html_table/">HTML 之 table</a>
+          </li>
         
           <li>
             <a href="/2015/01/16/code_hover/">hover 效果</a>
@@ -796,10 +855,6 @@
             <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
           </li>
         
-          <li>
-            <a href="/2015/01/03/html_codingSpec/">HTML 代码的编写规范</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -809,7 +864,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

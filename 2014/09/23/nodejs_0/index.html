@@ -1,76 +1,95 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>Node.js 入门 | anjia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。
-Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Node.js 入门">
-<meta property="og:url" content="http://anjia.github.io/2014/09/23/nodejs_0/">
-<meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。
-Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js 入门">
-<meta name="twitter:description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。
-Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更容易控制2.事件驱动的异">
+    <title>Node.js 入门 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Node：Evented I/O for V8 JavascriptRyan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-	<span id="logo">anjia</span>
-	
-	  <span id="subtitle">
-		<a href="/" id="subtitle">静下心，慢慢来</a>
-	  </span>
-	
-  </div>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/23/nodejs_0/" title="Node.js 入门" itemprop="url">Node.js 入门</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-23T07:52:16.000Z" itemprop="datePublished">2014-09-23</time>
+    更新日期:<time datetime="2014-09-30T12:46:10.000Z" itemprop="dateModified">2014-09-30</time>
+    
+  </p>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-nodejs_0" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/23/nodejs_0/" class="article-date">
-  <time datetime="2014-09-23T07:52:16.000Z" itemprop="datePublished">2014-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Node.js 入门
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NPM"><span class="toc-number">1.</span> <span class="toc-text">NPM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node_中的模板加载"><span class="toc-number">2.</span> <span class="toc-text">node 中的模板加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂谈1"><span class="toc-number">3.</span> <span class="toc-text">杂谈1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂谈2"><span class="toc-number">4.</span> <span class="toc-text">杂谈2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。</p>
 <p>Node.js 特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞 IO，更高并发量的网络程序<br>3.Google V8</p>
 <p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter 的 tweet 处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
 <h2 id="NPM">NPM</h2>
@@ -91,176 +110,296 @@ Node.js 特性（单线程异步编程模型）1.单线程：编程复杂性更�
 <p>node 使用 javascript 作为其应用层编程语言，所以 node 程序的语法和 js 无差。<br>console.log 和浏览器中使用习惯一致（只是打到了标准输出-命令界面）</p>
 <h2 id="参考">参考</h2>
 <p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">Node.js的系列文</a> 来自博客园，Luics的博客，有概况挺全面，质量不错<br><a href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js" target="_blank" rel="external">如何开始学习Node.js</a> 来自stackoverflow，里面对node做了简要介绍，并对资料的提供层层递进<br><a href="http://www.zhihu.com/question/19793473" target="_blank" rel="external">怎样有效地学习Node.js</a> 来自知乎，多看文档、代码、代码。。。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="t2u25g86teyhwmxs" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/笔记/">笔记</a>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2014/11/08/jsScrollTop/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          scrollTop
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/09/23/nodejs_1_expressjs/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Express 介绍</div>
-    </a>
-  
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/node/">node</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-title="Node.js 入门 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/11/08/jsScrollTop/" title="scrollTop">
+  <strong>上一篇:</strong><br/>
+  <span>
+  scrollTop</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/23/nodejs_1_expressjs/"  title="Express 介绍">
+ <strong>下一篇:</strong><br/> 
+ <span>Express 介绍
+</span>
+</a>
+</div>
+
 </nav>
 
-  
-</article>
-
+	
+<section class="comment">
+	<div class="ds-thread"></div>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章目录</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
-    </div>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NPM"><span class="toc-number">1.</span> <span class="toc-text">NPM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node_中的模板加载"><span class="toc-number">2.</span> <span class="toc-text">node 中的模板加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂谈1"><span class="toc-number">3.</span> <span class="toc-text">杂谈1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂谈2"><span class="toc-number">4.</span> <span class="toc-text">杂谈2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章归档</h3>
-    <div class="widget">
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (5)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (10)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (2)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (2)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 17.50px;">CSS</a><a href="/tags/CSS3/" style="font-size: 10.00px;">CSS3</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 15.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/实战/" style="font-size: 10.00px;">实战</a><a href="/tags/对象/" style="font-size: 15.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.50px;">杂谈</a><a href="/tags/模板/" style="font-size: 15.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 15.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 15.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 
-  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/01/18/html_table/">HTML 之 table</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/16/code_hover/">hover 效果</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/04/jsLocation/">Location 对象</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget links">
-        
-            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-        
-            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-        
-            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-        
-            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-        
-            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
-        
-            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
-        
-            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
-        
-            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-        
-            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
-        
-            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
-        
-            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
-        
-            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-        
-            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
-        
-            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
-        
-            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
-        
-            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
-        
-            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-        
-    </div>
-  </div>
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+</div>
 
-  
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 anjia<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+</div>
     </div>
-  </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
-</body>
+
+
+  </body>
 </html>

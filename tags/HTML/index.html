@@ -1,528 +1,183 @@
-<!DOCTYPE html>
-<html>
+
+  <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>Tag: HTML | anjia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Web前端开发工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="anjia">
-<meta property="og:url" content="http://anjia.github.io/tags/HTML/">
-<meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Web前端开发工程师">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="anjia">
-<meta name="twitter:description" content="Web前端开发工程师">
+    <title>Tag: HTML | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Web前端开发工程师">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-	<span id="logo">anjia</span>
-	
-	  <span id="subtitle">
-		<a href="/" id="subtitle">静下心，慢慢来</a>
-	  </span>
-	
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-html_table" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/18/html_table/" class="article-date">
-  <time datetime="2015-01-18T14:16:03.000Z" itemprop="datePublished">2015-01-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/18/html_table/">HTML 之 table</a>
-    </h1>
-  
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>鉴于之前开发时，老能碰到一些“出乎意料”的事情，即：按照自我意愿，给 table 的某些元素设置的某些属性，但最后却发现-样式不生效！！！<br>1、给 col 设置 font-size、color 等，不生效！…平时给它设置最多的是 width，宽度正常…<br>2、给 tr 设置 padding，不生效！ …但偏偏ie7生效了…（在尝试后发现，给 td 设置 padding 是可以的）<br>3、ie7 下，tr 的 border 不生效！…而其他主流浏览器（ie8+，chrome，ff）border 正常…<br>4、有时，对到底该不该用 table 内心很纠结！…怕用了后显得自己很low，但不用有时自己又得很繁琐地去折腾 div 和 span…<br>5、早就听说什么 table 布局很慢，所以有时会主动排斥它！…但对深信“存在即合理”的我来说，就这么不用了又觉得缺点啥…</p>
-<p>以上是自己目前对 table 的疑惑。但都从事fe开发一年半了，总觉得再不把看起来很简单的 table 搞清楚了，都不好意思给别人说自己是搞前端开发的。于是在今年大目标的驱使下，table 布局是我今年攻克的第二个基础点（第一个是 <a href="http://anjia.github.io/2015/01/04/jsLocation/" target="_blank" rel="external">location</a> ）。嗯，后续会有很多类似这种规模的小问题被整理涌现出来，目的就是要填补自己的fe知识盲点。</p>
-<p>先直观地认识下 Table，以下是与 table 相关的表元素们：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">table</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">colgroup</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">col</span> <span class="attribute">class</span>=<span class="value">"col1"</span>&gt;</span><span class="tag">&lt;/<span class="title">col</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">col</span> <span class="attribute">class</span>=<span class="value">"col2"</span>&gt;</span><span class="tag">&lt;/<span class="title">col</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">colgroup</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">thead</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">th</span>&gt;</span>TH1<span class="tag">&lt;/<span class="title">th</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">th</span>&gt;</span>TH2<span class="tag">&lt;/<span class="title">th</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">thead</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">tbody</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>11<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>12<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>21<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>22<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">tbody</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">tfoot</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">tr</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span>This is the foot<span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="title">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">tfoot</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">caption</span>&gt;</span>This is the table Title<span class="tag">&lt;/<span class="title">caption</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">table</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h1 id="表布局">表布局</h1>
-<p>介绍 CSS 中表本身如何布局。包括三点：</p>
-<ol>
-<li>表在视觉上如何组装（表的格式化）</li>
-<li>绘制单元格边框的两种方式（单元格的边框显示）</li>
-<li>确定表及其内部元素的高度和宽度的机制（计算表的宽度+高度计算、内容对齐）</li>
-</ol>
-<h2 id="1-表的格式化">1.表的格式化</h2>
-<p>表格式化（table formating）即表中的元素相互之间的关系。了解表的格式化，有助于理解如何最佳地设置表样式。<br>CSS 对于表元素和内部表元素有很分明的界限：<br>1、表元素：（约等于块元素）<br>2、内部表元素：会生成矩形框，它们只有 content padding border，但是没有 margin。除了总标题外。</p>
-<h3 id="1-1_表的编排规则">1.1 表的编排规则</h3>
-<p>表的编排规则：表格行、表格列、表格单元（矩形框 td th）</p>
-<ol>
-<li>每个行框包含一行单元表格。表中所有行框按照它在文档中出现的顺序从上到下填充表（表的标题行框 和 脚注行框例外，分别出现在表最前面和最后面）。所以，有多少个行元素，就有多少表格行</li>
-<li>行组包含多少个行框，该行组框就包含多少个表格单元</li>
-<li>列框包含一列｜多列表格单元。按顺序依次相邻放置。从左－右读、右－左读的语言。</li>
-<li>列组包含多少个列框，该列组框就包含多个表格单元</li>
-<li>单元格的跨多行｜跨多列，CSS并未对此做出定义，而是有文档语言来定义这种跨行｜跨列的。</li>
-<li>单元格框不能超出表｜行组的最后一个行框。</li>
-</ol>
-<h3 id="1-2_表显示值">1.2 表显示值</h3>
-<p><img src="\images\table_display.png" alt=""><br>CSS 表模型是面向行的（row primacy），以行为主。</p>
-<h3 id="1-3_CSS_中的列和列组">1.3 CSS 中的列和列组</h3>
-<p>CSS 中 col 和 col-group 只能接受 4 种样式：且有一些只能应用与列上下文的特殊规则时</p>
-<ol>
-<li>width：定义了列和列组的最小宽度。列｜列组中单元格的内容可能要求更宽。</li>
-<li>background：只有当 td｜th｜tr 有透明背景的时候，col 和 col-group 的背景色才可见。</li>
-<li>border：只有当 border-collapse: collapse 时才能设置 col col-group 的边框</li>
-<li>visibility：如果列｜列组的 visibility=collapse 则该列｜列组中所有单元格都不显示。<br>此时，跨列的会被裁剪；表的总宽度会减去已被合并的宽度。［木有生效？］</li>
-</ol>
-<h3 id="1-4_匿名表对象">1.4 匿名表对象</h3>
-<p>如果标记语言中没有包含足够的元素，以至于无法按照 CSS 的定义充分显示表。<br>CSS 定义了一组机制，将“遗漏”的组建作为匿名对象插入。<br>其中 CSS 表模型中可能出现 7 种不同的匿名对象插入。</p>
-<h3 id="1-5_表层">1.5 表层</h3>
-<p>为了完成表的显示，CSS 定义了6个不同的“层”，对应表的各个方面的样式都在其各自的层上进行绘制（这更多的只是个逻辑过程）。且层级越高，样式的优先级也最高。<br>6、td th 单元格<br>5、tr 行<br>4、thead tbody tfoot 行组<br>3、col 列<br>2、col-group 列组<br>1、table 表</p>
-<h3 id="1-6_表标题">1.6 表标题</h3>
-<p>caption-side: top | bottom  标题显示在表的上方还是下方</p>
-<h2 id="2-表单元格边框">2.表单元格边框</h2>
-<p>CSS 中，有两种截然不同的边框模型：<br>1、分隔边框模型：单元格相互之间是分隔的<br>2、合并边框模型：单元格之间没有可见的间隔，单元格的边框会相互合并<br>border-collapse: collapse | separate | inherit<br>应用对象：table inline-table</p>
-<h3 id="2-1_分隔单元格边框_separate">2.1 分隔单元格边框 separate</h3>
-<ol>
-<li>border-collapse: separate;  //声明是分隔单元格边框模型</li>
-<li>border-spacing: 2px 10px;   //设置单元格边框之间的间隔 ［有生效前提］</li>
-<li>empty-cells: show | hide | inherit  ［对象 table-cell，有前提］［ie没支持，算了，忽略先］</li>
-</ol>
-<p>说明：<br>分隔边框模型中，不能给 tr tbody col colgroup 设置 border（td 可以）。</p>
-<h3 id="2-2_合并单元格边框_collapse">2.2 合并单元格边框 collapse</h3>
-<p>当 border-collapse: collapse 时，会有以下规则：<br>1、table | inline-table 不能有 padding、可以有 margin<br>2、border 可用于 td tr tbody col col-group，table本身也会有border<br>3、table-cell 的边框之间肯定没有间隔，而且会合并成一个<br>4、一旦合并，table-cell 之间的边框会在单元格间的假象线的中间位置。［是假想的线］<br>说明：<br>表的边框看起来是等宽的。所有的。<br>或许，表的外边框已经超出了表的宽度 － 有一半落在了之外，不过模型就是这么定义的。<br>边框的合并：是有优先级的，谁低谁高-谁会盖谁</p>
-<h2 id="3-确定表及其内部元素的高度和宽度">3.确定表及其内部元素的高度和宽度</h2>
-<p>如何确定表及其内部元素的大小<br>1、表的宽度：固定宽度布局、自动宽度布局 ［最显著的差异：速度。前者更快］<br>2、表的高度：自定计算</p>
-<h3 id="3-1_表的宽度计算">3.1 表的宽度计算</h3>
-<p>table-layout: auto | fixed | inherit<br>对象：table inline-table</p>
-<ol>
-<li><p>表的宽度：固定布局<br>固定布局模型的速度之所以快，主要因为：布局不依赖于表单元格的内容。所有列的宽度都由表的第一行定义。<br>说明：<br>（1）首行后所有的单元格不会改变列宽，这意味为这些 table-cell 指定的 width 值都会被忽略。如果一个 table-cell 放不下内容，裁剪 or 生成滚动条取决于 overflow。<br>（2）其布局是依据：表＋列＋单元格 width 值决定的<br>（3）使用固定宽度布局模型时，没必要非得为表指定一个显示宽度（当然，指定了 width 确实会由帮助）</p>
-</li>
-<li><p>表的宽度计算：自动布局<br>这正是 HTML 表使用多年的模型<br>自动布局比较慢，是因为：在用户代理查看完表的所有内容之前，无法确定表的布局。每得到一个新单元格时，有可能触发新的一轮的宽度计算。只有完成最后一步，用户代理才算真正建立了表的布局。</p>
-</li>
-</ol>
-<h3 id="3-2_表的高度计算">3.2 表的高度计算</h3>
-<p>确定表的宽度，花的功夫大了点。但是，高度的计算，相当简单。<br>不过浏览器的开发人员可不这么认为。［哈哈，因为高度的计算交给用户代理去做了～］<br>在 2006 年发布的 CSS2.1 草案中，将表的 height 看作是表框的最小高度。［而不是说只要指定了 height 就貌似不用计算了］</p>
-<h3 id="3-3_对齐">3.3 对齐</h3>
-<p>1、水平对齐  text-align:<br>2、垂直对齐  vertical-align: top | bottom | middle | baseline<br>说明：<br>（1）相对于单元格和行的高度，定义单元格中内容的对齐要容易得多～<br>（2）与垂直对齐行内内容是一样的，但应用到 table-cell 时值稍有变化。会忽略 text-top text-bottom sub super</p>
-<h2 id="小结">小结</h2>
-<ol>
-<li>虽然表布局使用起来很简单，但这种布局的机制相当复杂［或许也正是不应该滥用table布局的原因］</li>
-<li>由于 HTML 表构造的历史渊源，CSS 表模型也是以行为中心的。</li>
-<li>不过，它确实能提供列布局，还能应用有限的列样式。［？？此处不知。。］</li>
-<li>CSS提供了一些新特性来控制单元格对齐和表宽度，现在已有更多的工具已更漂亮的方式表示表。［新特性，比如奇偶行的样式控制］</li>
-<li>可以向任意元素应用和表相关的display值（传说当年除了ie，它还不支持）</li>
-</ol>
-<h2 id="明白了…">明白了…</h2>
-<ol>
-<li>tr、td 不能设置 margin：是因为对于内部表元素，就没有 margin。见 1.表的格式化</li>
-<li>col 不能设置其他 CSS：是因为 col 和 col-group 只能接受4种样式，而且还有特殊前提。见 1.3 CSS中的列和列组</li>
-<li>有时样式的设置和生效莫名其妙：是因为table内部自己的元素也是有优先级的。见 1.5 表层</li>
-<li>分隔单元格边框时：不能给 tr tbody col colgroup 设置 border。见 2.1 分隔单元格边框</li>
-<li>table 不能设置 padding：是因为公用样式里 table 被设置了 border-collapse: collapse。见 2.2 合并单元格边框</li>
-<li>table 之所以很方便，有一点就是：tr一行保证不折行、边框灵活-collapse时；一行内容等高、一列内容等宽。</li>
-<li>table 的宽度、高度的计算</li>
-<li>table 的对齐</li>
-</ol>
-<p>回想场景：<br>1、separate 可以应用于剧集的，1-2-3-4-5 等［对齐和留白、内容自适应还］<br>2、collapse 中国好声音的那个页签［当内容过长时起码不会折行、边框］</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/18/html_table/" data-id="41n3ya57xucm8qjn" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-html_codingSpec" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/03/html_codingSpec/" class="article-date">
-  <time datetime="2015-01-03T09:19:04.000Z" itemprop="datePublished">2015-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <div id="container">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/03/html_codingSpec/">HTML 代码的编写规范</a>
-    </h1>
-  
 
-      </header>
+<div class="archive-title" >
+  <h2 class="tag-icon">HTML</h2>
+  
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/18/html_table/" title="HTML 之 table" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">HTML 之 table</h1>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在很多开发人员眼里，编码 HTML 简直容易极了。但随着写&amp;读的前端代码渐渐增多，慢慢体会到，“能写”和“会写”之间还是有一定距离的。很多时候，你可以“这样做”，但并不意味着“你应该”这么做。</p>
-<p>合理地编写 HTML，可以让代码看起来更专业。即便是很简单的几行代码，也要写的有性格。嗯~用饱含工匠精神的态度去写码，你一定会在苦逼中作乐的。</p>
-<p>以下整理些从别人那读到学到的，同时自己认可的琐碎的点，供实战中践行。</p>
-<h2 id="标准模式声明">标准模式声明</h2>
-<p>HTML 页面第一行，添加标准模式的声明。<br>原因：可确保在每个浏览器中拥有一致的表现。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="字符编码">字符编码</h2>
-<p>要明确声明。<br>原因：明确声明字符编码，可确保浏览器快速&amp;容易判断用哪种方式去渲染页面内容。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="引入CSS_和_JavaScript_文件时">引入CSS 和 JavaScript 文件时</h2>
-<p>不需要指定type属性。<br>原因：跟据HTML5规范，”text/css”和”text/javascript”分别都是默认值</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"xxx.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"xxx.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="HTML属性的书写顺序">HTML属性的书写顺序</h2>
-<p>建议按照以下顺序排列，可读性好。</p>
-<ol>
-<li>class：class用于标识高度可复用组件，所以排首位</li>
-<li>id, name：id用于标识具体组件，所以排第二</li>
-<li>data-</li>
-<li>src, for, type, href</li>
-<li>title, alt</li>
-<li>aria-*, role</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"xxx"</span> <span class="attribute">id</span>=<span class="value">"xxx"</span> <span class="attribute">data-index</span>=<span class="value">"x"</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"xxx"</span> <span class="attribute">alt</span>=<span class="value">"xxx"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"xxx"</span> <span class="attribute">type</span>=<span class="value">"text"</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="布尔型属性">布尔型属性</h2>
-<p>布尔型属性在声明时，可以不赋值<br>原因：XHTML 规范要求要赋，但是 HTML5 规范不需要。<a href="https://html.spec.whatwg.org/multipage/infrastructure.html#boolean-attributes" target="_blank" rel="external">点击查看更多</a></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">disabled</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"1"</span> <span class="attribute">selected</span>&gt;</span>1<span class="tag">&lt;/<span class="title">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">value</span>=<span class="value">"1"</span> <span class="attribute">checked</span>&gt;</span></div></pre></td></tr></table></figure>
-
-
-<h3 id="其他细节">其他细节</h3>
-<ol>
-<li>自闭元素在尾部不要添加斜线。input、br、img 等，参见 <a href="http://dev.w3.org/html5/spec-author-view/syntax.html#syntax-start-tag" target="_blank" rel="external">HTML5规范</a></li>
-<li>成对的标签，结束标签一定要有。</li>
-<li>定义属性时，建议用双引号，不要用单引号。</li>
-<li>尽量减少标签数量：任何时候都要尽量使用最少的标签 &amp; 保持最小的复杂度。<br>尽量减少标签数量、尽量避免多余的父元素。很多时候，这需要迭代和重构来实现。所以，当写完“实现功能”的代码后，不妨自己再通读下自己的代码（往往这个时候，可发现挺多可优化的点。嗯~因为关注点不同：前者重在功能，后者重在重构。）</li>
-<li>尽量不要用js生成标签<br>原因：这样会让内容变得不易查找不易编辑，且降低性能。</li>
-</ol>
-<h2 id="其他：待进一步考证">其他：待进一步考证</h2>
-<p>只因自己平时没碰到类似的场景，所以不好做判断。。。</p>
-<ol>
-<li>强烈建议为html根元素指定lang属性。lang属性，<a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-html-element" target="_blank" rel="external">可参考规范</a><br>原因：为文档设置正确的语言，有助于语音合成工具确定该怎么发音，有助于翻译工具确定该用啥规则等等。<br>关于lang属性的知识，点击查看规范。</li>
-<li>IE兼容模式<br>IE支持通过特定的<meta>来确定绘制当前页面所应该采用的IE版本。<br>建议设置edge mode，从而通知IE采用其所支持的最新模式。stack overflow上有篇文章谈了这个。</li>
-</ol>
-<h2 id="参考及扩展">参考及扩展</h2>
-<p><a href="http://www.cnblogs.com/%20http:/codeguide.bootcss.com" target="_blank" rel="external">编码规范 by @mdo</a></p>
-<p><a href="http://dev.w3.org/html5/spec-author-view/syntax.html" target="_blank" rel="external">HTML5规范</a><br><a href="http://www.w3.org/TR/2011/WD-html5-20110525/semantics.html" target="_blank" rel="external">HTML5规范</a>：html、head、title、base、link、meta、style<br><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes" target="_blank" rel="external">HTML5规范</a>：boolean型属性</p>
-<p><a href="http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e" target="_blank" rel="external">IE兼容模式</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/html_codingSpec/" data-id="av0xy56rie2fz76q" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-html_element" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/03/html_element/" class="article-date">
-  <time datetime="2015-01-03T07:30:00.000Z" itemprop="datePublished">2015-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/03/html_element/">HTML 之元素分类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>块级元素</li>
-<li>行内元素<br>（1）行内替换元素<br>（2）行内非替换元素</li>
-<li>表|表单元素</li>
-</ol>
-<h2 id="1-块级元素">1.块级元素</h2>
-<p>html, body</p>
-<p>h1-h6<br>div<br>p</p>
-<p>ul, ol, li<br>dl, dd</p>
-<p>table, th, tr, td<br>form</p>
-<p>blockquote<br>pre<br>fieldset<br>legend</p>
-<p>说明：<br>width、height 有效</p>
-<h2 id="2-行内元素">2.行内元素</h2>
-<h3 id="2-1_行内替换元素">2.1 行内替换元素</h3>
-<p>img<br>textarea<br>select</p>
-<p>说明：</p>
-<ol>
-<li>width、height有效</li>
-<li>padding 也有效</li>
-</ol>
-<h3 id="2-2_行内非替换元素">2.2 行内非替换元素</h3>
-<p>a<br>em<br>span</p>
-<p>说明：</p>
-<ol>
-<li>width 和 height，对其无效 【这点很重要】</li>
-<li>水平3个属性：margin-left, width, margin-right<br>外边距，也仅仅是影响了文本的起始位置，唯一的作用</li>
-<li>垂直间距：能改变行间距的仅有3个：font-size, line-height, vertical-align<br>而不是和水平相对应的那3个（height、margin-top、margin-bottom），需要用行高line-height</li>
-<li>padding：左右有效，但上下无效</li>
-<li>border 也完全不会影响到行高</li>
-</ol>
-<h2 id="3-表元素|表单元素">3.表元素|表单元素</h2>
-<p>传说 [表元素：另当别论…. input, button, textarea]<br>input-radio<br>input-check</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/03/html_element/" data-id="hx5rxmda1krxs4up" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-html_0" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/02/html_0/" class="article-date">
-  <time datetime="2015-01-02T09:03:54.000Z" itemprop="datePublished">2015-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/02/html_0/">HTML 之杂谈（1）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>要说HTML，其实挺简单，不就是那几个标签在那儿来回折腾吗。但写得多了，就发现选择了一个标签 就像 上战场前选择了一种武器一样，每种武器都有它能打出来的力道和花样（即与之匹配的CSS）。选择什么样的HTML意味着选择了什么样的结构，所以在一定程度上这也算是一个根本性问题。</p>
-<h2 id="感受">感受</h2>
-<p>1.之前觉得，同一效果可以用多种方式来实现。但后来发现，其实是每种实现方式都有自己的使用场景和利弊的。<br>2.成型后自查：等写完页面后，F12看下HTML的结构。有时，还真能发现冗余或不合理。<br>3.良好的html结构，可以省去不少css样式</p>
-<h2 id="经验">经验</h2>
-<p>1.元素的选取<br>（1）table布局：高度对齐、宽度自适应<br>（2）ul|ol：无序|有序列表<br>（3）dl：用户自定义。挺有语义的，title-content的结构时<br>2.table布局<br>（1）果真用td tr来表格式布局还挺方便，但是想细致控制其样式就不灵活了（难怪见了不少-给td里还加个div或span的）<br>3.ul-li<br>（1）当内容仅一行时，用height + line-height能方便搞定<br>（2）当内容有换行时，用line-height + padding实现<br>4.盒模型<br>（1）pc端写着box-sizing:border-box，挺好的。可规避低版本ie浏览器，保证表现一致<br>（2）但总觉得border-box是个hack，有时候还挺排斥它的。尤其是移动端开发时，宁愿踩坑，也不愿意写它去提前规避未知的问题。<br>5.从语义角度：将“标识”“操作”等非文字信息，用一个span或div包起来。<br>目的：和数据分开</p>
-<h2 id="教训">教训</h2>
-<p>1.可点击区域，不能过大：滥用a(把a设置成block)。不能为了省标签，而把一整行都搞成可点击的。<br>2.多行文字换行时：br 或者 p<br>3.对“向右”的样式，不要动不动就浮动：其实完全可以用默认的（默认的div就是自左向右；默认的对齐方式是自左向右）</p>
-<h2 id="体验细节">体验细节</h2>
-<p>1.先隐藏再显示<br>2.鼠标的I 手型 箭头<br>3.详细&gt;&gt;的换行：设置inline-block就可以了（设置white-space副作用：前面的内容也在不应该的地方换行了）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2015/01/02/html_0/" data-id="p6zbcsnf8x8fd7ad" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
+    <time datetime="2015-01-18T14:16:03.000Z" itemprop="datePublished">2015-01-18</time>
+  </a>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章目录</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/03/html_codingSpec/" title="HTML 代码的编写规范" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">HTML 代码的编写规范</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2015-01-03T09:19:04.000Z" itemprop="datePublished">2015-01-03</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/03/html_element/" title="HTML 之元素分类" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">HTML 之元素分类</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/01/18/html_table/">HTML 之 table</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/16/code_hover/">hover 效果</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/04/jsLocation/">Location 对象</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <time datetime="2015-01-03T07:30:00.000Z" itemprop="datePublished">2015-01-03</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/02/html_0/" title="HTML 之杂谈（1）" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">HTML 之杂谈（1）</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2015-01-02T09:03:54.000Z" itemprop="datePublished">2015-01-02</time>
+  </a>
+</section>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget links">
-        
-            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-        
-            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-        
-            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-        
-            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-        
-            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
-        
-            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
-        
-            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
-        
-            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-        
-            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
-        
-            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
-        
-            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
-        
-            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-        
-            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
-        
-            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
-        
-            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
-        
-            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
-        
-            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-        
-    </div>
-  </div>
 
-  
-</aside>
-        
+  </div>
+</div>
+
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 anjia<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
-    </div>
-  </div>
+      <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
-</body>
-</html>
+
+
+
+    </body>
+   </html>

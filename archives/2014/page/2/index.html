@@ -1,977 +1,251 @@
-<!DOCTYPE html>
-<html>
+
+  <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>Archives: 2014 | anjia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Web前端开发工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="anjia">
-<meta property="og:url" content="http://anjia.github.io/archives/2014/page/2/">
-<meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Web前端开发工程师">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="anjia">
-<meta name="twitter:description" content="Web前端开发工程师">
+    <title>Archives: 2014 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Web前端开发工程师">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-	<span id="logo">anjia</span>
-	
-	  <span id="subtitle">
-		<a href="/" id="subtitle">静下心，慢慢来</a>
-	  </span>
-	
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-jade_what" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/13/jade_what/" class="article-date">
-  <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/13/jade_what/">Jade 模板引擎</a>
-    </h1>
-  
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。</p>
-<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。</p>
-<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得，缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在 if-else 语句里就容易写错缩进。</p>
-<p>第三，是少敲键盘了，但失去了 HTML 的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用 Jade 写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
-<p>第四，对于 class 和 id 的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
-<p>在看文档的时候，里面有描述“Jade中的某种写法，同样是设计师友好的”。就比较好奇，为什么要对设计师友好？感觉取悦了狭义上的前端工程师就够了。产品是要只为少数人设计，语言也要一样。</p>
-<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是 undefined 或 null 时会自动忽略、模板中可以直接使用 javascript。这些针对 HTML、针对前端的特性做的优化还是很不错的。</p>
-<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用 smarty，觉得模板很方便。所以想看看其他兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上就是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出 HTML 字符串嘛。</p>
-<p>为了不让今天的付出感觉上白费掉，便决定写个博客记录下目前对它的理解，好提醒下自己：我今天确实是接触到了“新”东西。</p>
-<h2 id="Jade">Jade</h2>
-<p>Jade — Node Template Engine，一个高性能的模板引擎，为 Node 而做，用 JavaScript 实现。<br>Node.js 的 Express.js 框架默认用的就是 Jade。<br>Jade 还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
-<ol>
-<li>通过npm安装： npm install jade</li>
-<li>把Jade编译成一个可供浏览器使用的单文件，执行：make jade.js。<br>可以把 <em>.jade  编译为  </em>.html</li>
-<li>命令行：jade [options] [dir|file…]</li>
-<li>API</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">//complie</span></div><div class="line"><span class="keyword">var</span> fn = jade.compile(<span class="string">'string of jade'</span>, options);</div><div class="line"><span class="keyword">var</span> html = fn(locals);</div><div class="line"></div><div class="line"><span class="comment">//render</span></div><div class="line"><span class="keyword">var</span> html = jade.render(<span class="string">'string of jade'</span>, merge(options, locals));</div><div class="line"></div><div class="line"><span class="comment">//renderFile</span></div><div class="line"><span class="keyword">var</span> html = jade.renderFile(<span class="string">'filename.jade'</span>, merge(options, locals));</div></pre></td></tr></table></figure>
-
-<ol>
-<li>浏览器支持<br>浏览器版的 Jade 它只支持最新的浏览器，是一个很大的文件。建议使用时先把 Jade 预编译成 JavaScript，然后再在客户端使用 runtime.js 库。</li>
-</ol>
-<h2 id="Jade的语法和特性">Jade的语法和特性</h2>
-<p>Jade 的语法是简洁、对 HTML 代码空格敏感。在这点上它借鉴了 Haml 的很多地方，所以与 Haml 语法挺相近</p>
-<p>Haml 是什么？Haml 是简写 HTML 的一种办法。借用 Haml 的作者 Hampton Catlin 的一句话：“Haml 是对传统 XHTML 的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的 XHTML 构造方式。” Haml 的网站上也说：“Haml 让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
-<ol>
-<li>语法<br>（1）标签、属性、注释<br>（2）读取数据的值（转义、非转义）</li>
-<li>逻辑<br>（1）条件语句（if、unless、case）<br>（2）循环（each、for）<br>（3）过滤器<br>（4）Mixins</li>
-<li>继承和包含<br>（1）模板继承<br>（2）包含</li>
-<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的 HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
-<li>其他<br>（1）Doctype<br>（2）产生输出</li>
-</ol>
-<h2 id="1-_语法">1. 语法</h2>
-<h3 id="标签">标签</h3>
-<p>标签就是一个简单的单词</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">会被转换成 <span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的id--&gt;</span></div><div class="line">div#container</div><div class="line">会被转成 <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的class--&gt;</span></div><div class="line">div.user-details</div><div class="line"></div><div class="line"><span class="comment">&lt;!--多个class和id--&gt;</span></div><div class="line">div#foo.bar.baz</div><div class="line"></div><div class="line"><span class="comment">&lt;!--不写标签，默认就是div（语法糖）--&gt;</span></div><div class="line">#foo</div><div class="line">.bar</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="属性">属性</h3>
-<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是 true 时才会输出。为 false 时就被忽略了</p>
-<p>class 属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--普通的 JavaScript 字符串连接--&gt;</span></div><div class="line">a(href='/user/' + user.id)= user.name</div><div class="line"></div><div class="line"><span class="comment">&lt;!--用Jade--&gt;</span></div><div class="line">a(href='/user/#{user.id}')= user.name</div></pre></td></tr></table></figure>
-
-<h3 id="注释">注释</h3>
-<p>1、单行注释 // 不输出的注释，加- 即 //-<br>2、块注释<br>3、条件注释</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">body</div><div class="line"> //if IE</div><div class="line">   a()</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--[if IE]&gt;</span></div><div class="line">    &lt;a href="http://www.mozilla.com/en-US/firefox/"&gt;Get Firefox&lt;/a&gt;</div><div class="line">  &lt;![endif]--&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="读取数据的值">读取数据的值</h3>
-<p>1、读取变量的值，用 #{}<br>输出是默认是转义的。比如取变量name的值 #{name}<br>当要输出#{}，则可以转义，即 p #{name}</p>
-<p>2、不想转义变量的值 !{name}   【直接输出标签】</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- var html = "<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>"</div><div class="line">| !{html}</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接输出&lt;script&gt; 标签  【都原样了，还非转义？】--&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="2-_模板逻辑">2. 模板逻辑</h2>
-<h3 id="条件语句">条件语句</h3>
-<p>Jade 的条件语句和使用了前缀 - 的 js 语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的 js。是相等的</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//用条件表达式<span class="keyword">if</span></div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  <span class="keyword">if</span> user.role == <span class="string">'admin'</span></div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    p= user.name</div><div class="line"><span class="comment"></span></div><div class="line">//常规的js代码</div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  - <span class="keyword">if</span> (user.role == <span class="string">'admin'</span>)</div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  - <span class="keyword">else</span></div><div class="line">    p= user.name</div></pre></td></tr></table></figure>
-
-<p>Jade同时支持 unless  这和 if(!(expr)) 是等价的</p>
-<h3 id="Case">Case</h3>
-<p>case表达式</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--空格缩进--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    friends = 10</div><div class="line">    case friends</div><div class="line">      when 0</div><div class="line">        p you have no friends</div><div class="line">      when 1</div><div class="line">        p you have a friend</div><div class="line">      default</div><div class="line">        p you have #{friends} friends</div><div class="line"></div><div class="line"><span class="comment">&lt;!--块展开--&gt;</span></div><div class="line">friends = 5</div><div class="line">html</div><div class="line">  body</div><div class="line">    case friends</div><div class="line">      when 0: p you have no friends</div><div class="line">      when 1: p you have a friend</div><div class="line">      default: p you have #{friends} friends</div></pre></td></tr></table></figure>
-
-<p>此处有木有发现，关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
-<h3 id="循环">循环</h3>
-<p>Jade 支持 js 的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
-<p>Jade 在内部会把这些语句转换成原生的 js 语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用 for。</p>
-<h3 id="过滤器">过滤器</h3>
-<p>过滤器前缀:<br>比如 :markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
-<h3 id="Mixins">Mixins</h3>
-<p>Mixins 在编译的模板里会被 Jade 转换为普通的 js 函数。<br>Mixins 可以带参，但不是必需的。</p>
-<h2 id="3-_模板继承">3. 模板继承</h2>
-<h3 id="模板继承">模板继承</h3>
-<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade 的 block 就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
-<p>Jade允许你替换、前置和追加blocks。</p>
-<p>block 默认是覆盖（替换）父级块的内容（也可以在子块中实现块）<br>block append  追加代码块（block可选）<br>block prepend 前置代码块（block可选）</p>
-<h3 id="包含">包含</h3>
-<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade 解析这些文件，并插入到已经生成的语法树中</p>
-<p>被包含的块，可以用 yield 语句（明确标明 include 代码块的放置位置。）</p>
-<p>子可以用父中的变量。被包含的 Jade 会按字面解析合并到 AST 中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做 partial 的替代。</p>
-<h2 id="4-_模板特性">4. 模板特性</h2>
-<h3 id="标签文本">标签文本</h3>
-<p>1、单行的文本，用标签文本</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--单行的文本只需要把文本放在标签之后即可，即标签文本--&gt;</span></div><div class="line">p hello</div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>2、文本块 用 |</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--大段的文本，原样输出--&gt;</span></div><div class="line">p</div><div class="line"> | aaa</div><div class="line"> | bbb</div><div class="line"> | ccc</div><div class="line"></div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>aaa bbb ccc<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>3、用. 来开始一段文本块<br>p.<br>  aaa<br>  bbb<br>  ccc.</p>
-<p>带空格的 . 会被 Jade 的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注意：文本块需要两次转义--&gt;</span></div><div class="line">要输出下面的文本：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>foo\bar<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">需使用：</div><div class="line">p.</div><div class="line">  foo\\bar</div></pre></td></tr></table></figure>
-
-<p>eg1.内联标签可以使用标签文本、也可以使用文本块</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--使用标签文本--&gt;</span></div><div class="line">label</div><div class="line"> | Username:</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接使用标签文本--&gt;</span></div><div class="line">label Username</div></pre></td></tr></table></figure>
-
-<p>eg2.只包含文本的标签，比如 script style textarea，想要输出其中间的内容，不需要使用前缀字符 |</p>
-<figure class="highlight Jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">  head</div><div class="line">    title Example</div><div class="line">    <span class="keyword">script</span></div><div class="line">      <span class="keyword">if</span> (foo) {</div><div class="line">        bar();</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        baz();</div><div class="line">      }</div></pre></td></tr></table></figure>
-
-<h3 id="内联的HTML">内联的HTML</h3>
-<p>想要输出HTML代码片段，可以有以下两种方式：</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--1 使用管道定义一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    | <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    | <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--2 使用. 来告诉Jade 我们需要一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body.</div><div class="line">    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--以上两个例子都渲染出相同的结果--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="嵌套">嵌套</h3>
-<p>1、空格缩进 以自然的方式定义标签嵌套</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first</div><div class="line">    a(href=<span class="string">'#'</span>) foo</div><div class="line">  li</div><div class="line">    a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last</div><div class="line">    a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
-
-<p>2、块展开，在一行内创建嵌套标签，用符号：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first: a(href=<span class="string">'#'</span>) foo</div><div class="line">  li: a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last: a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
-
-<h3 id="可执行代码">可执行代码</h3>
-<p>Jade目前支持三种类型的可执行代码</p>
-<p>第一种前缀 -<br>这是不会被输出的<br>可用在条件语句或循环中</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby"> <span class="keyword">for</span> (var key <span class="keyword">in</span> obj)</span></div><div class="line"> p= obj[key]</div><div class="line"></div><div class="line">-<span class="ruby"><span class="keyword">if</span> (foo)</span></div><div class="line"> ul</div><div class="line">   li aaa</div><div class="line">   li bbb</div><div class="line">-<span class="ruby"><span class="keyword">else</span></span></div><div class="line"> p hehe</div></pre></td></tr></table></figure>
-
-<p>第二种要转义输出的值，用前缀=<br>我们返回一个值 可以加前缀=，输出的代码默认是转义的<br>若想不被转义，可使用 !=</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'bar'</span></div><div class="line"><span class="header">= foo</span></div><div class="line">h1= foo</div><div class="line"></div><div class="line"><span class="comment">//会被渲染成</span></div><div class="line">bar</div><div class="line">&lt;h1&gt;bar&lt;/h1&gt;</div><div class="line"></div><div class="line"><span class="comment">//以下两行是等价的</span></div><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div><div class="line">foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div></pre></td></tr></table></figure>
-
-<h2 id="5-其他">5.其他</h2>
-<h3 id="Doctype">Doctype</h3>
-<p>添加文档类型<br>!!!<br>!!! 5<br>!!! html<br>doctype html</p>
-<h3 id="产生输出">产生输出</h3>
-<p>当选项 compileDebug 的值是 true，Jade 编译时会加行号，且报错信息里会带上行号。<br>当值是 false 时，参数会被去掉。</p>
-<p>你可以通过 toString() 来编译模板而不需要在浏览器端运行整个 Jade 库，这样可以提高性能，也可以减少载入的 JavaScript 数量。</p>
-<h2 id="结束语">结束语</h2>
-<p>模板是什么？模板就是一个模子。供你套数据，并且依据不同数据去走不同的逻辑。<br>引擎是什么？引擎就是个处理器（编译、运行），最后输出个结果（HTML代码）的东西。</p>
-<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade 的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
-<p>最后查了下，还真是，关于 Jade 的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> — 来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a> — 来自stackoverflow<br>你要是也有兴趣，可加入 <a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a> 去讨论</p>
-<h2 id="在线学习Jade">在线学习Jade</h2>
-<p>【1】 <a href="http://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank" rel="external">学习Jade模板引擎的语法</a>，包括：<br>HTML的标签文本、注释<br>id、类、属性<br>变量、转义和非转义</p>
-<p>【2】<a href="http://cssdeck.com/labs/jade-templating-tutorial-codecast-part-2" target="_blank" rel="external">Jade的逻辑处理部分</a>，包括：<br>在模板中使用内嵌js（node）代码<br>条件语句（if和unless）<br>循环（loop、for、each）<br>定义函数（Mixins）<br>过滤器（Filters）</p>
-<p>【3】<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="external">在线测试Jade</a></p>
-<h2 id="参考网站">参考网站</h2>
-<p><a href="http://jade-lang.com/tutorial/" target="_blank" rel="external">Jade的官方教程</a><br><a href="http://jade-lang.com/" target="_blank" rel="external">Jade的完整文档</a><br><a href="https://github.com/visionmedia/jade#readme" target="_blank" rel="external">Jade的Git</a><br><a href="https://github.com/visionmedia/jade/blob/master/Readme_zh-cn.md" target="_blank" rel="external">Jade-模板引擎</a></p>
-<p>其他<br><a href="http://segmentfault.com/a/1190000000357534" target="_blank" rel="external">Jade-源于 Node.js 的 HTML 模板引擎</a><br><a href="http://qianduanblog.com/post/nodejs-learning-13-express3-jade.html" target="_blank" rel="external">nodejs学习13：express3之jade模板引擎入门</a><br><a href="http://blog.csdn.net/gxhacx/article/details/12490927" target="_blank" rel="external">Node学习笔记-Jade模板引擎</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="klf1cihd7d68q9c3" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-regExp_js" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/regExp_js/" class="article-date">
-  <time datetime="2014-09-02T14:51:00.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <div id="container">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/02/regExp_js/">js 中的正则表达式</a>
-    </h1>
-  
 
-      </header>
+<div class="archive-title" >
+  <h2 class="archive-icon">2014</h2>
+  
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+ </div>
+  
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/09/13/jade_what/" title="Jade 模板引擎" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Jade 模板引擎</h1>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="两种匹配模式">两种匹配模式</h2>
-<p>匹配模式的两种语法<br>/pattern/<br>new RegExp(string)</p>
-<h2 id="修饰符">修饰符</h2>
-<p>i  忽略大小写<br>g  全文查找所有匹配的<br>m  多行查找</p>
-<h2 id="RegExp_对象的方法">RegExp 对象的方法</h2>
-<p>test()    检索，返回 true false<br>exec()    检索，返回找到的值，并确定其位置<br>compile() 编译正则表达式</p>
-<h2 id="String对象支持正则的方法">String对象支持正则的方法</h2>
-<p>search()  检索<br>match()   查找<br>replace() 替换<br>split()   分割</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp_js/" data-id="m9hvuif2zwvjzspo" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-regExp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/regExp/" class="article-date">
-  <time datetime="2014-09-02T14:30:55.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/02/regExp/">正则表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用途">用途</h2>
-<p>模式匹配：有效性验证、提取子串、查找特定字符、替换</p>
-<h2 id="语法">语法</h2>
-<h3 id="1-定界符//">1.定界符//</h3>
-<p>格式：/匹配模式/</p>
-<h3 id="2-定位符">2.定位符</h3>
-<ol>
-<li>^  开头</li>
-<li>$  结束</li>
-<li>b  单词边界</li>
-<li>B  非单词边界</li>
-</ol>
-<h3 id="3-元字符">3.元字符</h3>
-<p>元字符：具有特殊意义的字符</p>
-<h4 id="3-1_字符类">3.1 字符类</h4>
-<ol>
-<li>s  空白字符，比如空格、tab键、换行</li>
-<li>S  非空白字符</li>
-<li>w  字母、数字、下划线</li>
-<li>W 非w</li>
-<li>d  数字</li>
-<li>D  非数字</li>
-<li>. 除换行外的所有字符</li>
-</ol>
-<p>说明：<br>d 不匹配圆角的0-9的字符<br>w 不匹配汉字、不匹配圆角的数字、字母、下划线<br>s 开头的中间的结尾的空白字符 都会匹配<br>s和S w和W d和D 等可认为是互逆运算</p>
-<h4 id="3-2_量词限定符">3.2 量词限定符</h4>
-<p>量词，限定符：规定给定的组件必须要出现多少次才能满足匹配</p>
-<ol>
-<li>+至少1次 （前导字符在目标对象中连续出现）</li>
-<li>*0次 或 多次 </li>
-<li>?0次 或 1次</li>
-<li>{n} 非负整数 匹配确定的n次</li>
-<li>{n,} 至少匹配n次</li>
-<li>{n,m} 匹配n到m次</li>
-</ol>
-<h4 id="3-3_other_运算符">3.3 other 运算符</h4>
-<ol>
-<li>[]  指定一个范围。eg. [a-zA-Z0-9]</li>
-<li>() 组合字符串，所包含的内容必须同时一起。<br>eg. ([a-z][A-Z][0-9])，aA0匹配，aAA不匹配</li>
-<li>|  管道符，或的意思，多个不同的模式。<br>eg. (fo|foo|fool)，匹配fo, 也匹配foo，也匹配 fool</li>
-<li>^ 否定运算符。<br>一般出现在[]内部的是否定运算符，[]之外的是定位符^。eg. [^0-9] 表示除0-9数字之外的所有字符</li>
-</ol>
-<h2 id="转义字符">转义字符</h2>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/regExp/" data-id="0am67baep1npadat" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsCrossDomain_methods" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/jsCrossDomain_methods/" class="article-date">
-  <time datetime="2014-09-02T13:41:23.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/02/jsCrossDomain_methods/">js 中的跨域解决办法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
-<h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
-<p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
-<p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
-<h3 id="1-_document-domain_+_iframe">1. document.domain + iframe</h3>
-<p>应用场景：主域相同，但子域不同<br>解决办法：设置 document.domain<br>具体做法：<br>在 www.a.com 上的 page1.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span>;</div><div class="line"></div><div class="line">//创建一个 iframe，去控制 iframe 的 contentWindow，这样两个js文件就可以相互“交互”了</div><div class="line">var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">ifr.src = <span class="string">'http://script.a.com/page2.html'</span>;</div><div class="line">ifr.style.display = <span class="string">'none'</span>;</div><div class="line">document.body.appendChild(ifr);</div><div class="line"></div><div class="line">ifr.onload = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	var doc = ifr.contentDocument || ifr.documentWindow.document;</div><div class="line">	//可以操作 page2.html 中的元素了</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>在 script.a.com 上的 page2.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span></div></pre></td></tr></table></figure>
-
-<p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
-<p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
-<p>问题：<br>1、安全性，当一个站点（b.a.com）被攻击后，另一个站点（c.a.com）会引起安全漏洞<br>2、若一个页面中引入了多个 iframe，要想能操作所有 iframe，则必须都得设置成相同的 domain</p>
-<h2 id="2-_动态创建_script">2. 动态创建 script</h2>
-<p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
-<h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
-<p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
-<p>比如，以下两个页面想要传递消息：a.com/page1.html 和 b.com/page2.html 相互传递数据<br>a.com 下的文件 page1.html </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//在页面中创建一个 iframe，src 指向另个域</div><div class="line">function <span class="function"><span class="title">startRequest</span></span>(){</div><div class="line">	var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">	ifr.style.display = <span class="string">'none'</span>;</div><div class="line">	ifr.src = <span class="string">'http://www.b.com/page2.html#paramdo'</span>;</div><div class="line">	document.body.appendChild(ifr);</div><div class="line">}</div><div class="line"></div><div class="line">//每隔<span class="number">2</span>s去<span class="built_in">hash</span>上检查并获取数据</div><div class="line">function <span class="function"><span class="title">checkHash</span></span>(){</div><div class="line">	try{</div><div class="line">		var data = location.hash?location.hash.substring(<span class="number">1</span>):<span class="string">''</span>;</div><div class="line">		console.log(<span class="string">'数据是：'</span>， data);</div><div class="line">	}catch(e){}</div><div class="line">}</div><div class="line"><span class="keyword">set</span>Interval( checkHash, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
-
-<p>b.com 下的文件 page2.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//模拟一个简单的参数处理操作</div><div class="line">var <span class="built_in">hash</span> = location.hash;</div><div class="line">switch(<span class="built_in">hash</span>){</div><div class="line">	<span class="keyword">case</span> <span class="string">'#paramdo'</span>:</div><div class="line">		// page2 在响应 page1 中 iframe 的 src 请求时</div><div class="line">		// 可以修改父的<span class="built_in">hash</span>，进而达到 page2-&gt;page1 传递数据的目的</div><div class="line">		callBack();</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'#paramdata'</span>: </div><div class="line">		// page1-&gt;page2 传递的话，直接取父的<span class="built_in">hash</span>即可</div><div class="line">		var <span class="built_in">hash</span> = parent.location.hash;</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">} </div><div class="line"></div><div class="line">//模拟子page2向父page1传递参数</div><div class="line">function <span class="function"><span class="title">callBack</span></span>(){</div><div class="line">	try{</div><div class="line">		// 把参数回传给父（另一个域）</div><div class="line">		parent.location.hash = <span class="string">'somedata'</span>;</div><div class="line">	}catch(e){</div><div class="line">  		// 由于不同域，ie|chrome 不允许修改 parent.location.hash（firefox 可以改）</div><div class="line">  		// 所以要借助 a.com 域名下的一个代理iframe</div><div class="line">		var ifrproxy = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">		ifrproxy.style.display = <span class="string">'none'</span>;</div><div class="line">		ifrproxy.src = <span class="string">'http://a.com/page3.html#somedata'</span>; //嘿！src指向另一个域</div><div class="line">		document.body.appendChild(ifrproxy);</div><div class="line"> 	}</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>在 a.com 域名下的代理页面 page3.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 因为 parent.parent 和 自身属于同一个域，所以可以改变其 locaiton.hash 值</div><div class="line">parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</div></pre></td></tr></table></figure>
-
-<p>问题：<br>1、数据直接暴露在了 url 中<br>2、数据容量和类型都有限</p>
-<h2 id="4-_window-name_实现跨域数据传输">4. window.name 实现跨域数据传输</h2>
-<p>详见 <a href="http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html" target="_blank" rel="external">window.name实现的跨域数据传输</a></p>
-<h2 id="5-_使用_HTML5_的_postMessage">5. 使用 HTML5 的 postMessage</h2>
-<p>HTML5 提供了跨文档消息传输 Cross Document Messaging，postMessage 支持基于 web 的实时消息传递。可参考：<br>《精通HTML5编程》第五章——跨文档消息机制<br><a href="https://developer.mozilla.org/en/dom/window.postmessage" target="_blank" rel="external">Window.postMessage</a><br>我之前的博客 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></p>
-<h2 id="6-_利用flash">6. 利用flash</h2>
-<p>YUI3 中的 IO 组件中有用到：<a href="http://yuilibrary.com/yui/docs/io/" target="_blank" rel="external">http://yuilibrary.com/yui/docs/io/</a></p>
-<h2 id="参考来源">参考来源</h2>
-<p><a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">JavaScript跨域总结与解决办法</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="3i1a0dlqwx70yqtr" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-useful" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/27/useful/" class="article-date">
-  <time datetime="2014-08-27T15:00:27.000Z" itemprop="datePublished">2014-08-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/blog/">blog</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/27/useful/">有用的网站</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>对属性和特性的支持情况：<a href="http://caniuse.com/" target="_blank" rel="external">http://caniuse.com/</a></li>
-<li>w3官网：<a href="http://www.w3.org/" target="_blank" rel="external">http://www.w3.org/</a><br><a href="http://www.w3.org/TR/html5/syntax.html#tokenization" target="_blank" rel="external">http://www.w3.org/TR/html5/syntax.html#tokenization</a><br><a href="http://www.w3.org/TR/html5/syntax.html#html-parser" target="_blank" rel="external">http://www.w3.org/TR/html5/syntax.html#html-parser</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/27/useful/" data-id="ni49ld3q9oy319g3" class="article-share-link">分享到</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-todo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/26/todo/" class="article-date">
-  <time datetime="2014-08-26T14:33:50.000Z" itemprop="datePublished">2014-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/blog/">blog</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/26/todo/">ToDo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>URL</li>
-<li>encodeURIComponent、decodeURIComponent、base64</li>
-</ol>
-<h2 id="table">table</h2>
-<p>1、fixed 布局的超出try<br>2、auto 布局，当给 col colgroup 指定了 width 后，计算 table 的宽度，是否也会趋向于固定布局的效率？会快么？感觉还是取决于用户代理吧。。。？？<br>3、在当前用户代理中，只要表的 width:auto; 就会触发使用这个模型。而不论 table-layout的值是什么。但这也不能保证 ［也是，那么多用户代理，谁又能保证呢。。。］</p>
-<h2 id="位置">位置</h2>
-<ol>
-<li>top、window、iframe</li>
-<li>屏幕、内容的宽度+高度<br>jQuery,javascript获得网页的高度和宽度 <a href="http://blog.csdn.net/ljw520204/article/details/6925775" target="_blank" rel="external">http://blog.csdn.net/ljw520204/article/details/6925775</a></li>
-<li>position.offset()</li>
-</ol>
-<h2 id="HTML">HTML</h2>
-<ol>
-<li>所有的HTML大类 + 对应的元素 + 对应的特性：后续尝试验证后再不断完善</li>
-<li>标签的嵌套：嵌套的规则，不同浏览器解析不同，div span p a （block，inline-block，p），p span a div</li>
-<li>ul 不是真正意义上的div，哪些不同？ </li>
-</ol>
-<h2 id="CSS">CSS</h2>
-<ol>
-<li>CSS 属性的继承</li>
-<li>z-index 未考虑特殊的页面节点（如 input、select、iframe）【后续 ToDo】</li>
-</ol>
-<h2 id="工具">工具</h2>
-<ol>
-<li>chrome 开发者工具</li>
-<li>sublime 快捷键</li>
-</ol>
-<h2 id="跨域">跨域</h2>
-<ol>
-<li>iframe 实现跨域：补充进 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" target="_blank" rel="external">什么是跨域</a></li>
-<li>jQuery 中的跨域：<a href="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" target="_blank" rel="external">什么是跨域</a></li>
-<li>待验证的一种说法：说ie8下不存在跨域问题…其他浏览器默认不允许跨域 [？？]</li>
-<li><a href="http://struts.iteye.com/blog/266446" target="_blank" rel="external">iframe跨域</a></li>
-<li><a href="http://hereson.iteye.com/blog/172107" target="_blank" rel="external">关于document.dominain的一些解释</a></li>
-</ol>
-<h2 id="功能">功能</h2>
-<ol>
-<li>ajax 上传图片</li>
-<li>校验码</li>
-<li>正则：<a href="http://www.cnblogs.com/cy163/archive/2010/04/20/1715835.html" target="_blank" rel="external">http://www.cnblogs.com/cy163/archive/2010/04/20/1715835.html</a></li>
-</ol>
-<h2 id="概念型+其他">概念型+其他</h2>
-<p>comment.js<br>angularjs<br>backbone</p>
-<p>会话，session、  浏览器窗口关闭之后<br>cookie<br>locastorage</p>
-<p>SQLite</p>
-<p>placeholder</p>
-<p>Canvas</p>
-<p>XSS：toggle device mode</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/todo/" data-id="drdntka10mfsxdmg" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsCrossDomain_postMessage" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/26/jsCrossDomain_postMessage/" class="article-date">
-  <time datetime="2014-08-26T13:43:17.000Z" itemprop="datePublished">2014-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/26/jsCrossDomain_postMessage/">HTML5 中的 postMessage 和 onmessage</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML5 有众多的崭新特性和功能，它强化了web系统|网页的表现性能，也增加了对本地数据库等 Web 应用的支持。在它的众多 API 接口中，其中 postMessage(send) 和 onmessage 有着广泛的应用。比如：</p>
-<ol>
-<li>Web Workers（工作线程）用它们实现多个线程间的 js 调用功能</li>
-<li>Cross-document messaging（跨文档消息机制） 中实现两个不同域间 js 调用功能</li>
-<li>WebSockets（浏览器本身可请求+服务器的推送）实现浏览器与后台服务器双向通讯</li>
-<li>Server-Sent Events 该事件模型允许从服务器实时推送数据到浏览器。</li>
-</ol>
-<p>此处主要讨论 postMessage 在 Web Workers 和 Cross-document messaging 的应用。其他两个详见参考[1]。</p>
-<h2 id="工作线程_Web_Workers">工作线程 Web Workers</h2>
-<p>HTML5 中提出了工作线程 Web Workers 的概念，它指出 Web Workers 的三大主要特征：能长时间运行（响应）、理想的启动性能、理想的内存消耗。Web Workers 允许开发人员编写长时间运行而不被用户所中断的后台程序，去执行事务或逻辑，并同时保证页面对用户的及时响应。它为 Web 网页的脚本提供了一种能在后台进程中运行的方法。</p>
-<p>一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完后再通过 onmessage 进行捕获。若想通过此机制改变 DOM，只能通过返回消息给创建者的回调函数进行处理。</p>
-<p>示例1. 主线程和子线程如何通信：子发送，主监听<br>主线程中创建 Worker 实例，并监听 onmessage 事件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function <span class="function"><span class="title">init</span></span>(){</div><div class="line">	var worker = new Worker(<span class="string">'compute.js'</span>);   // 子线程在 compute.js 中处理</div><div class="line">	worker.onmessage = function(event){</div><div class="line">		console.log( event.data );  // 输出子线程返回的结果数据</div><div class="line"> 	}</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>另一个线程 compute.js 中调用 postMessage 方法向主线程中发送消息，从而实现在两个线程间的数据传递</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 每隔<span class="number">1</span>秒给主线程发送一个数据</div><div class="line"><span class="keyword">set</span>Timeout(<span class="function"><span class="title">function</span></span>(){</div><div class="line">	postMessage(<span class="string">"子线程向主线程发送的数据"</span>);  </div><div class="line">}, <span class="number">1000</span>);</div></pre></td></tr></table></figure>
-
-<h2 id="跨文档消息机制_Cross-document_messaging">跨文档消息机制 Cross-document messaging</h2>
-<p>HTML5 提供了在网页文档之间相互接收和发送消息的功能。只需要获取到网页所在的窗口对象实例，两个 Web 页面就可以相互通信了，甚至是跨域的。postMessage 允许页面中多个 iframe/window 间的通信。</p>
-<ol>
-<li>要想接收从其他窗口发送来的信息，只需要监听窗口对象的 onmessage 事件即可。</li>
-<li>一个窗口想要发送消息，则通过 postMessage(message, “”) 来传递数据。两个参数代表的含义分别是：<br>第一个参数表示所要发送的消息文本，可以是任何 js对象（一般都通过 JSON 把对象转化成文本）；<br>第二个参数表示接收消息的对象窗口的url地址，通配符星号 指定全部地址。<br>不用通配符也可以指定具体的 url，那么在 onmessage 中加个来源判断<br>if( event.origin !== ‘xxxx’ ) return;</li>
-</ol>
-<p>示例2. 模拟不同域间的通信，比如父页面中嵌了个 iframe 子页面，且父子是不同源的。<br>父页面给子页面发送消息，子页面接收</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 父页面中：父向子发</div><div class="line">document.getElementById(<span class="string">'iframeId'</span>).contentWindow.postMessage(<span class="string">'父向子发送的数据'</span>);</div><div class="line"></div><div class="line">// 子页面中：子对消息监听，随时接收数据</div><div class="line">window.addEventListener(<span class="string">'message'</span>, function(event){</div><div class="line">	console.log(event.data);</div><div class="line">});</div></pre></td></tr></table></figure>
-
-<p>与之对应，如果子页面给父页面发消息的话，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 父页面中：监听</div><div class="line">window.addEventListener(<span class="string">'message'</span>, function(event){</div><div class="line">	console.log(event.data);</div><div class="line">});</div><div class="line"></div><div class="line">// 子页面中：子对父发消息</div><div class="line">window.parent.postMessage(<span class="string">'子向父发送的数据'</span>);</div></pre></td></tr></table></figure>
-
-<p>简而言之，发送消息的 postMessage() 和 监听消息的 onmessage 得是一对，即：</p>
-<ol>
-<li>父给子发，那就调 子.postMessage 去给子发消息，然后 子.onmessage 去监听收</li>
-<li>子给父发，那就掉 父.postMessage 去给父发消息，然后 父.onmessage 去监听收</li>
-</ol>
-<p>说明：代码示例不考虑浏览器的兼容性，只为了说明原理。</p>
-<h2 id="小结">小结</h2>
-<p>可见在不同场景中这两个 API 的应用模式都是类似的。postMessage 传递数据，而 onmessage 接收数据。</p>
-<p>浏览器对这个 API 的支持情况，目前支持的有 ie8+ ，ff，chrome，opera，safari。HTML5 的 postMessage 可以解决大部分场景下的跨域问题，可以不用再创建代理的 iframe 去解决跨域（ie6 和 ie7）。</p>
-<p>检测浏览器是否支持可用 !!window.postMessage == true 则支持</p>
-<h2 id="参考">参考</h2>
-<ol>
-<li><a href="http://www.ibm.com/developerworks/cn/web/1301_jiangjj_html5message/" target="_blank" rel="external">HTML5 postMessage 和 onmessage API 详细应用</a></li>
-<li><a href="http://caniuse.com/" target="_blank" rel="external">利用 HTML5 的 window.postMessage 实现跨域通信</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" data-id="569wpnk0s4lqpzw7" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsCrossDomain_what" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/26/jsCrossDomain_what/" class="article-date">
-  <time datetime="2014-08-26T13:42:18.000Z" itemprop="datePublished">2014-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/26/jsCrossDomain_what/">什么是跨域</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="为什么会跨域？">为什么会跨域？</h2>
-<p>要让两个不同源的客户端进行通信，就会遇到跨域的问题。同源策略是一个著名的安全策略，由 netscape 提出。现在所有支持 js 的浏览器都会使用这个安全策略。同源指域名、协议、端口号都相同。只要协议、域名、端口号一个不相同就会形成非同源的环境，如下。</p>
-<p><img src="/images/crossDomain.jpg" alt=""></p>
-<h2 id="常见的解决办法">常见的解决办法</h2>
-<ol>
-<li>在服务器端进行通信，因为服务器端不受跨域的限制。跨域的安全限制是对浏览器端来说的。</li>
-<li>用 script 标签来解决，因为它的 src 属性是可以跨域的。<br>eg. 往常用 script 引入外部的 js<br>eg. 也可以用 js 动态创建 script 标签，并将其 append 到 body 里，就可以用这个 js 了。</li>
-<li>jsonp：它其实是一个非官方的协议，有特定的通信逻辑，但平时原生用的不多，因为 jQuery 本身就支持了 jsonp。</li>
-<li><a href="http://api.jquery.com/jQuery.ajax/" target="_blank" rel="external">$.ajax()</a>，<a href="http://api.jquery.com/jQuery.getJSON/" target="_blank" rel="external">$.getJSON()</a>：jQuery 提供的现成函数来实现跨域。这两种方式（其实就是一种调用方式，需要传特定的参数）的原理是将 json 数据填充进回调函数，即创建一个回调函数，在远程服务器上调用这个函数并将 json 数据形式作为参数，完成回调。</li>
-<li>iFrame 实现跨域</li>
-<li>HTML5 的 postMessage 和 onmessage</li>
-</ol>
-<p>其实 jsonp 里面也是创建了 script 标签，然后通过 js 回调的形式实现了跨域访问。而 jQuery 对 jsonp 也仅仅是支持，其核心也是 jsonp。所以，归根结底，这三种方式都是常见又经常被忽略的 script 标签。</p>
-<h2 id="自己整理">自己整理</h2>
-<ol>
-<li><a href="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" target="_blank" rel="external">js 中常用的6种跨域解决办法</a><br>里面详细谈了以下两点：<br>（1）相同主域 + iframe<br>（2）跨域 + iframe 用代理页</li>
-<li><a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/26/jsCrossDomain_what/" data-id="i1ec62mo9rw011e7" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsPrototype" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/24/jsPrototype/" class="article-date">
-  <time datetime="2014-08-24T13:47:45.000Z" itemprop="datePublished">2014-08-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/24/jsPrototype/">js 原型对象 prototype</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ECMAScript 中的原型对象</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/24/jsPrototype/" data-id="3fjfjhlafzr066vi" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo/">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-smartyEscape" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/13/smartyEscape/" class="article-date">
-  <time datetime="2014-08-13T13:04:41.000Z" itemprop="datePublished">2014-08-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/13/smartyEscape/">smarty 中的转义 escape</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>探究下 smarty 对谁做了什么样的转义。</p>
-<h2 id="smarty_的转义">smarty 的转义</h2>
-<p>可对以下内容进行转义（转码）</p>
-<ol>
-<li>html   可转义 &amp; “ ‘ &lt; &gt;</li>
-<li>htmlall 可转义 all html entities</li>
-<li>url  可转义 : / ? = &amp; # 汉字</li>
-<li>mail 可转义 @ .</li>
-<li>quotes</li>
-<li>hex 十六进制</li>
-<li>hexentity 十六进制实体</li>
-<li>javascript</li>
-</ol>
-<p>参考 smarty3 手册：<a href="http://www.php100.com/manual/smarty3/language.modifier.escape.html" target="_blank" rel="external">http://www.php100.com/manual/smarty3/language.modifier.escape.html</a></p>
-<h3 id="escape:_‘html’">escape: ‘html’</h3>
-<p>它会对以下5个字符进行转义 &amp; “ ‘ &lt; &gt;<br>会分别转义成 HTML 中对应的转义字符（&amp;  “  ‘  &lt;  &gt;），以保证在页面上能正常显示。如下：<br><img src="http://blogkiki.qiniudn.com/pic-1.png" alt=""><br>感觉前两天脑袋掉进一个深坑里了，不，不是深坑，是一个浅坑的拐角了，死都想不明白下面的 case。而且得出了这样的测试结论：</p>
-<ul>
-<li>当&lt;后跟的是英文字母（不论大小写）时，若直接输出，则会导致后面内容的缺失</li>
-<li>当&lt;后跟的是空格、数字、汉字等时，直接输出，则可显示正常</li>
-</ul>
-<p>我的 case 是这样的：<br><img src="http://blogkiki.qiniudn.com/pic2.png" alt=""><br>靠！刚才写到这里的时候，简直是秒懂了。只能说明之前脑袋瓜档机是真的。原因：是因为我是在 smarty 中输出 然后直接显示在网页里的。所以究其原因不在于 escape:’html’ 时做了什么诡异的事情，而在于浏览器在解析 HTML 页面时碰到&lt;会怎么处理。</p>
-<h3 id="escape:_‘url’">escape: ‘url’</h3>
-<p>其中对以下7处进行转义：<br><img src="http://blogkiki.qiniudn.com/pic3.png" alt=""><br>而对英文字母数字点号 则原样保留<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic4.png" alt=""></p>
-<h3 id="escape:_‘javascript’">escape: ‘javascript’</h3>
-<p>如果有个变量要在 js 中使用，则需要对其进行 javascript 转义</p>
-<h3 id="escape:_‘mail’">escape: ‘mail’</h3>
-<p>会对 @ . 这两个字符进行转义</p>
-<ul>
-<li>@  [AT]</li>
-<li>.  [DOT]</li>
-</ul>
-<p>举例：<br><img src="http://blogkiki.qiniudn.com/pic5.png" alt=""></p>
-<h3 id="escape:_‘quotes’">escape: ‘quotes’</h3>
-<p>会对单引号进行转义，把 ‘ 变成  \’<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic6.png" alt=""><br>对单引号串没有转义的原因，在于单引号串和双引号串的区别。详见下方。</p>
-<h2 id="双引号串_vs-_单引号串">双引号串 vs. 单引号串</h2>
-<p>在 php（smarty 同理）中，双引号串中的内容可以被解释被替换，而单引号串中的内容总被认为是普通字符。<br>所以，当想在字符串中进行 变量代换 和 包含\n(\t \r \n)等转义序列时，应该使用双引号。比如：<br><img src="http://blogkiki.qiniudn.com/pic7.png" alt=""><br>在脚本中，<br>处理单引号串更快些，因为语法分析器会很单纯地处理单引号串<br>处理双引号串会慢些，因为会对其内部的东东进行解析</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/13/smartyEscape/" data-id="ofqx5n6bz48j9et2" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转义/">转义</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2014/">&laquo; Prev</a><a class="page-number" href="/archives/2014/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2014/page/3/">3</a><a class="extend next" rel="next" href="/archives/2014/page/3/">Next &raquo;</a>
-    </nav>
-  
+    <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
+  </a>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章目录</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/09/02/regExp_js/" title="js 中的正则表达式" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">js 中的正则表达式</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2014-09-02T14:51:00.000Z" itemprop="datePublished">2014-09-02</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/09/02/regExp/" title="正则表达式" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">正则表达式</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/01/18/html_table/">HTML 之 table</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/16/code_hover/">hover 效果</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/04/jsLocation/">Location 对象</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <time datetime="2014-09-02T14:30:55.000Z" itemprop="datePublished">2014-09-02</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/09/02/jsCrossDomain_methods/" title="js 中的跨域解决办法" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">js 中的跨域解决办法</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2014-09-02T13:41:23.000Z" itemprop="datePublished">2014-09-02</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/08/27/useful/" title="有用的网站" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">有用的网站</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget links">
-        
-            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-        
-            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-        
-            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-        
-            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-        
-            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
-        
-            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
-        
-            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
-        
-            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-        
-            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
-        
-            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
-        
-            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
-        
-            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-        
-            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
-        
-            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
-        
-            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
-        
-            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
-        
-            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-        
-    </div>
-  </div>
+    <time datetime="2014-08-27T15:00:27.000Z" itemprop="datePublished">2014-08-27</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
-</aside>
-        
+    <a href="/2014/08/26/todo/" title="ToDo" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">ToDo</h1>
+    
+    <time datetime="2014-08-26T14:33:50.000Z" itemprop="datePublished">2014-08-26</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/08/26/jsCrossDomain_postMessage/" title="HTML5 中的 postMessage 和 onmessage" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">HTML5 中的 postMessage 和 onmessage</h1>
+    
+    <time datetime="2014-08-26T13:43:17.000Z" itemprop="datePublished">2014-08-26</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/08/26/jsCrossDomain_what/" title="什么是跨域" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">什么是跨域</h1>
+    
+    <time datetime="2014-08-26T13:42:18.000Z" itemprop="datePublished">2014-08-26</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/08/24/jsPrototype/" title="js 原型对象 prototype" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">js 原型对象 prototype</h1>
+    
+    <time datetime="2014-08-24T13:47:45.000Z" itemprop="datePublished">2014-08-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/08/13/smartyEscape/" title="smarty 中的转义 escape" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">smarty 中的转义 escape</h1>
+    
+    <time datetime="2014-08-13T13:04:41.000Z" itemprop="datePublished">2014-08-13</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/2014/">&laquo; Prev</a><a class="page-number" href="/archives/2014/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2014/page/3/">3</a><a class="extend next" rel="next" href="/archives/2014/page/3/">Next &raquo;</a>
+  </nav>
+
+  </div>
+</div>
+
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 anjia<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
-    </div>
-  </div>
+      <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
-</body>
-</html>
+
+
+
+    </body>
+   </html>

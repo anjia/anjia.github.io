@@ -1,83 +1,101 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>js 中的跨域解决办法 | anjia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
+    <title>js 中的跨域解决办法 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
 同源策略是把双刃剑
-同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域">
-<meta property="og:type" content="article">
-<meta property="og:title" content="js 中的跨域解决办法">
-<meta property="og:url" content="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/">
-<meta property="og:site_name" content="anjia">
-<meta property="og:description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
-同源策略是把双刃剑
-同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js 中的跨域解决办法">
-<meta name="twitter:description" content="本文来自 网络，觉得作者写得既简短又系统，故在此做个笔记框架。
-同源策略是把双刃剑
-同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域">
+同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。关于“同源”，此处做三点说明：1、如果是协议|端口造成的跨域问题，在前端是无能为力的2、跨域">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-	<span id="logo">anjia</span>
-	
-	  <span id="subtitle">
-		<a href="/" id="subtitle">静下心，慢慢来</a>
-	  </span>
-	
-  </div>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/02/jsCrossDomain_methods/" title="js 中的跨域解决办法" itemprop="url">js 中的跨域解决办法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-02T13:41:23.000Z" itemprop="datePublished">2014-09-02</time>
+    更新日期:<time datetime="2015-01-25T14:49:50.000Z" itemprop="dateModified">2015-01-25</time>
+    
+  </p>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-jsCrossDomain_methods" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/02/jsCrossDomain_methods/" class="article-date">
-  <time datetime="2014-09-02T13:41:23.000Z" itemprop="datePublished">2014-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      js 中的跨域解决办法
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略是把双刃剑"><span class="toc-number">1.</span> <span class="toc-text">同源策略是把双刃剑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-domain_+_iframe"><span class="toc-number">1.1.</span> <span class="toc-text">document.domain + iframe</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态创建_script"><span class="toc-number">2.</span> <span class="toc-text">动态创建 script</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用_iframe_和_location-hash"><span class="toc-number">3.</span> <span class="toc-text">利用 iframe 和 location.hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-name_实现跨域数据传输"><span class="toc-number">4.</span> <span class="toc-text">window.name 实现跨域数据传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用_HTML5_的_postMessage"><span class="toc-number">5.</span> <span class="toc-text">使用 HTML5 的 postMessage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用flash"><span class="toc-number">6.</span> <span class="toc-text">利用flash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考来源"><span class="toc-number">7.</span> <span class="toc-text">参考来源</span></a></li></ol>
+		</div>
+		
+		<p>本文来自 <a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">网络</a>，觉得作者写得既简短又系统，故在此做个笔记框架。</p>
 <h2 id="同源策略是把双刃剑">同源策略是把双刃剑</h2>
 <p>同源策略在保证了安全性（不允许跨域调用其他页面的对象）的同时，也给注入 iframe 和 ajax 的应用上带来了不少麻烦。<br>关于“同源”，此处做三点说明：<br>1、如果是协议|端口造成的跨域问题，在前端是无能为力的<br>2、跨域中的“域”仅仅是通过“URL的首部”来标识的，而不会去判断相同的ip地址是否对应着两个域 或 两个域是否在同一个ip上。<br>3、URL的首部，即：location.protocal + location.host。也可以理解为：domains + protocols + ports = 必须相同</p>
 <p>在前端处理跨域的方法，一般的有以下6种：<br>1、document.domain + iframe<br>2、动态创建 script<br>3、利用 iframe 和 location.hash<br>4、window.name 实现的跨域数据传输<br>5、用 HTML5 中的 postMessage<br>6、利用 flash</p>
-<h3 id="1-_document-domain_+_iframe">1. document.domain + iframe</h3>
+<h3 id="document-domain_+_iframe">document.domain + iframe</h3>
 <p>应用场景：主域相同，但子域不同<br>解决办法：设置 document.domain<br>具体做法：<br>在 www.a.com 上的 page1.html</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//设置 domain 属性</div><div class="line">document.domain = <span class="string">'a.com'</span>;</div><div class="line"></div><div class="line">//创建一个 iframe，去控制 iframe 的 contentWindow，这样两个js文件就可以相互“交互”了</div><div class="line">var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">ifr.src = <span class="string">'http://script.a.com/page2.html'</span>;</div><div class="line">ifr.style.display = <span class="string">'none'</span>;</div><div class="line">document.body.appendChild(ifr);</div><div class="line"></div><div class="line">ifr.onload = <span class="function"><span class="title">function</span></span>(){</div><div class="line">	var doc = ifr.contentDocument || ifr.documentWindow.document;</div><div class="line">	//可以操作 page2.html 中的元素了</div><div class="line">}</div></pre></td></tr></table></figure>
 
@@ -87,9 +105,9 @@
 <p>关于主域名：<br>1、一个页面的 domain 默认是 window.location.hostname<br>2、主域名是不带 www 的域名，例如 a.com<br>3、主域名前带前缀的通常都是二级域名或多级域名，比如 www.a.com 其实是个二级域名<br>4、domain 只能设置成主域名，不可以将 domain 设置成 x.a.com</p>
 <p>所以，这种方式适合于 {www.aaa.com, aaa.com, css.aaa.com, script.aaa.com} 中的任何页面间相互通信。</p>
 <p>问题：<br>1、安全性，当一个站点（b.a.com）被攻击后，另一个站点（c.a.com）会引起安全漏洞<br>2、若一个页面中引入了多个 iframe，要想能操作所有 iframe，则必须都得设置成相同的 domain</p>
-<h2 id="2-_动态创建_script">2. 动态创建 script</h2>
+<h2 id="动态创建_script">动态创建 script</h2>
 <p>可以通过创建 script 节点的方法来实现完全跨域通信，具体做法可以参考：YUI的 <a href="http://yui.github.io/yui2/" target="_blank" rel="external">Get Utility</a><br>如何判断 script 节点是否加载完毕呢，ie只能 readystatechange 属性，其他浏览器是用 script 的 load 事件。<br>jQuery 应该提供了兼容所有浏览器的写法~ </p>
-<h2 id="3-_利用_iframe_和_location-hash">3. 利用 iframe 和 location.hash</h2>
+<h2 id="利用_iframe_和_location-hash">利用 iframe 和 location.hash</h2>
 <p>这种方式虽然比较绕，但可以完全解决跨域情况下的脚本置换问题。<br>原理：利用 locaiton.hash 去传值。改变 hash 并不会导致页面刷新，所以可以利用 hash 来进行数据传递。在 url “<a href="http://a.com#helloword" target="_blank" rel="external">http://a.com#helloword</a>“ 中的 “#helloword” 就是 location.hash。</p>
 <p>比如，以下两个页面想要传递消息：a.com/page1.html 和 b.com/page2.html 相互传递数据<br>a.com 下的文件 page1.html </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//在页面中创建一个 iframe，src 指向另个域</div><div class="line">function <span class="function"><span class="title">startRequest</span></span>(){</div><div class="line">	var ifr = document.createElement(<span class="string">'iframe'</span>);</div><div class="line">	ifr.style.display = <span class="string">'none'</span>;</div><div class="line">	ifr.src = <span class="string">'http://www.b.com/page2.html#paramdo'</span>;</div><div class="line">	document.body.appendChild(ifr);</div><div class="line">}</div><div class="line"></div><div class="line">//每隔<span class="number">2</span>s去<span class="built_in">hash</span>上检查并获取数据</div><div class="line">function <span class="function"><span class="title">checkHash</span></span>(){</div><div class="line">	try{</div><div class="line">		var data = location.hash?location.hash.substring(<span class="number">1</span>):<span class="string">''</span>;</div><div class="line">		console.log(<span class="string">'数据是：'</span>， data);</div><div class="line">	}catch(e){}</div><div class="line">}</div><div class="line"><span class="keyword">set</span>Interval( checkHash, <span class="number">2000</span>);</div></pre></td></tr></table></figure>
@@ -101,184 +119,304 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 因为 parent.parent 和 自身属于同一个域，所以可以改变其 locaiton.hash 值</div><div class="line">parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</div></pre></td></tr></table></figure>
 
 <p>问题：<br>1、数据直接暴露在了 url 中<br>2、数据容量和类型都有限</p>
-<h2 id="4-_window-name_实现跨域数据传输">4. window.name 实现跨域数据传输</h2>
+<h2 id="window-name_实现跨域数据传输">window.name 实现跨域数据传输</h2>
 <p>详见 <a href="http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html" target="_blank" rel="external">window.name实现的跨域数据传输</a></p>
-<h2 id="5-_使用_HTML5_的_postMessage">5. 使用 HTML5 的 postMessage</h2>
+<h2 id="使用_HTML5_的_postMessage">使用 HTML5 的 postMessage</h2>
 <p>HTML5 提供了跨文档消息传输 Cross Document Messaging，postMessage 支持基于 web 的实时消息传递。可参考：<br>《精通HTML5编程》第五章——跨文档消息机制<br><a href="https://developer.mozilla.org/en/dom/window.postmessage" target="_blank" rel="external">Window.postMessage</a><br>我之前的博客 <a href="http://anjia.github.io/2014/08/26/jsCrossDomain_postMessage/" target="_blank" rel="external">HTML5 中的 postMessage 和 onmessage</a></p>
-<h2 id="6-_利用flash">6. 利用flash</h2>
+<h2 id="利用flash">利用flash</h2>
 <p>YUI3 中的 IO 组件中有用到：<a href="http://yuilibrary.com/yui/docs/io/" target="_blank" rel="external">http://yuilibrary.com/yui/docs/io/</a></p>
 <h2 id="参考来源">参考来源</h2>
 <p><a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">JavaScript跨域总结与解决办法</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-id="3i1a0dlqwx70yqtr" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-
-    </footer>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/跨域/">跨域</a>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2014/09/02/regExp/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          正则表达式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/08/27/useful/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">有用的网站</div>
-    </a>
-  
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2014/09/02/jsCrossDomain_methods/" data-title="js 中的跨域解决办法 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/02/regExp/" title="正则表达式">
+  <strong>上一篇:</strong><br/>
+  <span>
+  正则表达式</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/27/useful/"  title="有用的网站">
+ <strong>下一篇:</strong><br/> 
+ <span>有用的网站
+</span>
+</a>
+</div>
+
 </nav>
 
-  
-</article>
-
+	
+<section class="comment">
+	<div class="ds-thread"></div>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章目录</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
-    </div>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略是把双刃剑"><span class="toc-number">1.</span> <span class="toc-text">同源策略是把双刃剑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-domain_+_iframe"><span class="toc-number">1.1.</span> <span class="toc-text">document.domain + iframe</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态创建_script"><span class="toc-number">2.</span> <span class="toc-text">动态创建 script</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用_iframe_和_location-hash"><span class="toc-number">3.</span> <span class="toc-text">利用 iframe 和 location.hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-name_实现跨域数据传输"><span class="toc-number">4.</span> <span class="toc-text">window.name 实现跨域数据传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用_HTML5_的_postMessage"><span class="toc-number">5.</span> <span class="toc-text">使用 HTML5 的 postMessage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用flash"><span class="toc-number">6.</span> <span class="toc-text">利用flash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考来源"><span class="toc-number">7.</span> <span class="toc-text">参考来源</span></a></li></ol>
   </div>
 
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章归档</h3>
-    <div class="widget">
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (5)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (10)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (2)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (2)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 17.50px;">CSS</a><a href="/tags/CSS3/" style="font-size: 10.00px;">CSS3</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 15.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/实战/" style="font-size: 10.00px;">实战</a><a href="/tags/对象/" style="font-size: 15.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.50px;">杂谈</a><a href="/tags/模板/" style="font-size: 15.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 15.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 15.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 
-  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/01/18/html_table/">HTML 之 table</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/16/code_hover/">hover 效果</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/04/jsLocation/">Location 对象</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget links">
-        
-            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-        
-            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-        
-            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-        
-            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-        
-            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
-        
-            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
-        
-            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
-        
-            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-        
-            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
-        
-            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
-        
-            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
-        
-            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-        
-            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
-        
-            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
-        
-            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
-        
-            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
-        
-            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-        
-    </div>
-  </div>
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+</div>
 
-  
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 anjia<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
+</div>
     </div>
-  </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
-</body>
+
+
+  </body>
 </html>

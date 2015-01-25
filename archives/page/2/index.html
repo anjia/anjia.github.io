@@ -1,961 +1,251 @@
-<!DOCTYPE html>
-<html>
+
+  <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>Archives | anjia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Web前端开发工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="anjia">
-<meta property="og:url" content="http://anjia.github.io/archives/page/2/">
-<meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Web前端开发工程师">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="anjia">
-<meta name="twitter:description" content="Web前端开发工程师">
+    <title>Archives | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Web前端开发工程师">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-	<span id="logo">anjia</span>
-	
-	  <span id="subtitle">
-		<a href="/" id="subtitle">静下心，慢慢来</a>
-	  </span>
-	
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-webSocket" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/12/webSocket/" class="article-date">
-  <time datetime="2014-11-12T10:42:38.000Z" itemprop="datePublished">2014-11-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/12/webSocket/">HTML5 WebSocket</a>
-    </h1>
-  
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML5 有许多引人注目的新特性，如 Canvas、本地存储、多媒体编程接口、WebSocket 等。其中，WebSocket 有“Web的TCP”之称，它使浏览器支持 Socket 成为可能，从而在浏览器和服务器间提供了一个基于 TCP 连接的双向通道。Web 开发人员可以很方便的用 WebSocket 构建实时 Web 应用。</p>
-<p>从以下4点来认识 HTML5 WebSocket：<br>它是什么？<br>它解决了什么问题？<br>它的原理？<br>它怎么用？</p>
-<h2 id="1-它是什么">1.它是什么</h2>
-<p>WebSocket 是 HTML5 提供的一种浏览器和服务器之间进行全双工通信的网络技术。在 WebSocket API 中，浏览器和服务器只需要做一个握手动作，然后就形成了一个快速通道，二者之间就可以直接进行数据传送了。</p>
-<p>其实，WebSocket就是一个应用层的通信协议，协议名ws。它和HTTP一样，都是基于TCP（传输层协议）的。</p>
-<h2 id="2-它解决了什么问题？">2.它解决了什么问题？</h2>
-<p>当要实现对实时性要求较高的 Web 应用时，比如在线游戏、在线聊天等。传统的处理方式是用轮询和Comet技术。而Comet技术实际是对轮询技术的改进，又可分为长轮询机制和流技术。分别如下：</p>
-<p>轮询<br>客户端以一定的时间间隔向服务器发请求，以频繁请求的方式保持客户端和服务器端的同步。<br>问题：太多无谓的网络传输，低效（固定间隔请求嘛，那个时候服务器数据可能还没更新呢）</p>
-<p>长轮询<br>对定时轮询的改进，目的是降低无效的网络传输。<br>方式：当服务器没有更新时，连接会保持一段周期知道数据改变|状态改变|时间过期。<br>问题：当服务器端数据频繁变更时，就和定时轮询差不多了</p>
-<p>流<br>方式：在客户端页面使用一个隐藏窗口，向服务器发个长连接请求。服务器接到请求后作出回应，并不断更新连接状态，以保证客户端和服务器端的连接不过期。这样，就可以将服务器端的信息源源不断地推向客户端了。<br>问题：用户体验上，需要针对不同浏览器设计不同的方案来改进用户体验；同时，当并发较大时，对服务器资源也是个很大的考验。</p>
-<p>其实，这些技术都不是真正的实时技术，只是用 Ajax 模拟实时的效果。问题有：</p>
-<ol>
-<li>浏览器不断向服务器发请求：交互一次，都要一次 HTTP 的请求和应答</li>
-<li>每次 HTTP 请求和应答都带有完整的 HTTP 头信息：HTTP request 的 header是非常长的，里面包含的数据很小很小，都会占用很多的带宽和服务器资源，这就增加了每次传输的数据量</li>
-</ol>
-<p>于是~<br>HTML5 定义了 WebSocket 协议，以更好的节省服务器资源和带宽，并达到真正的实时通信。且WebSocket连接本质上就是一个TCP连接，所以在稳定性和传输量方面，都有很大优势。</p>
-<h2 id="3-它的原理？">3.它的原理？</h2>
-<p>WebSocket 协议本质上是一个基于 TCP 的协议。为建立一个 WebSocket 连接，浏览器首先向服务器发起一个 HTTP 请求。<br>这个请求和通常的 HTTP 请求很相似，但其中有些内容是和 WebSocket 协议密切相关的，包含了一些附加头信息</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//浏览器请求</span></div><div class="line">GET / HTTP/<span class="number">1.1</span></div><div class="line">Upgrade: websocket  <span class="comment">//表明这是一个特殊的HTTP请求，一个申请协议升级的HTTP请求，</span></div><div class="line"><span class="comment">//目的是让客户端和服务器端的通信协议从 HTTP 协议升级到 WebSocket 协议。</span></div><div class="line">Connection: Upgrade</div><div class="line">Sec-WebSocket-Key   <span class="comment">//是随机的，服务器会用这些数据构造出一个SHA-1的信息摘要 【浏览器向服务器提供的握手信息】</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//服务器回应</span></div><div class="line">HTTP/<span class="number">1.1</span> <span class="number">101</span></div><div class="line">Upgrate: websocket</div><div class="line">Connection: Upgrade</div><div class="line">Sec-WebSocket-Accept:  <span class="comment">//把Sec-WebSocket-Key加上一个魔幻字符串，使用SHA-1加密，再进行base-64编码，</span></div><div class="line"><span class="comment">//将结果赋作为'Sec-WebSocket-Accept'头的值，返回给客户端</span></div></pre></td></tr></table></figure>
-
-<p>请求中的 Sec-WebSocket-Key 是浏览器向服务器提供的握手信息，服务器解析这些头信息，并生成一个16位的安全密钥并返回客户端。以表明服务器获取了客户端的请求，同意建立 WebSocket 连接。连接一旦建立，客户端和服务器端就可以双向传输数据了。</p>
-<p>其中，websocket 的实现，浏览器扮演着一个很重要的角色。服务器端不受平台和开发语言的限制，只要遵从 WebSocket 规范即可。目前已经有<a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">比较成熟的 WebSocket 服务器端实现</a>，有：php、ruby、Tomcat、node.js、python、Diango等。</p>
-<h2 id="4-它怎么用？">4.它怎么用？</h2>
-<p>Web 开发人员的 WebSocket JavaScript 客户端接口是很简单的。<br>WebSocket JavaScript 定义：<br>url：WebSocket服务器的网络地址，协议通常是”ws”<br>send() 发送数据到服务器端<br>close() 关闭连接</p>
-<p>建立 WebSocket 连接的实例 JavaScript 代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  wsServer = <span class="string">'ws://localhost:8888/Demo'</span>; </div><div class="line"><span class="keyword">var</span>  websocket = <span class="keyword">new</span> WebSocket(wsServer); </div><div class="line"></div><div class="line"><span class="comment">//还有4个很重要的事件</span></div><div class="line">websocket.onopen = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"Connected to WebSocket server."</span>); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onclose = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"Disconnected"</span>); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onmessage = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Retrieved data from server: '</span> + event.data); </div><div class="line">}; </div><div class="line"></div><div class="line">websocket.onerror = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{ </div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Error occured: '</span> + event.data); </div><div class="line">};</div></pre></td></tr></table></figure>
-
-<h2 id="参考">参考</h2>
-<p><a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">WebSocket 维基百科</a>：维基百科，挺牛叉，信息简短但不失专业，信息量还挺大<br><a href="http://www.ibm.com/developerworks/cn/web/1112_huangxa_websocket/" target="_blank" rel="external">使用 HTML5 WebSocket 构建实时 Web 应用</a>：IBM，挺系统</p>
-<p><a href="http://www.plhwin.com/2014/05/28/nodejs-socketio/" target="_blank" rel="external">使用Node.js+Socket.IO搭建WebSocket实时应用</a>：个人博客，看起来挺完整的。不过没亲自试过代码<br><a href="http://www.zhihu.com/question/20215561" target="_blank" rel="external">WebSocket 是什么原理？为什么可以实现持久连接？</a>：知乎，里面还有些讨论，有常识类的、也有扩展类的。不错。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/12/webSocket/" data-id="mhkgruck9wojbm9l" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-webTecAndStand" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/12/webTecAndStand/" class="article-date">
-  <time datetime="2014-11-12T09:58:10.000Z" itemprop="datePublished">2014-11-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <div id="container">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/12/webTecAndStand/">网页技术和标准</a>
-    </h1>
-  
 
-      </header>
+<div class="archive-title" >
+  <h2 class="archive-icon">文章归档</h2>
+  
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+ </div>
+  
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/11/12/webSocket/" title="HTML5 WebSocket" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">HTML5 WebSocket</h1>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>文档呈现语言：HTML★（HTML5★） &nbsp;&nbsp;&nbsp; XHTML★ &nbsp;&nbsp;&nbsp; XML★ &nbsp;&nbsp;&nbsp; DHTML★</li>
-<li>样式格式描述语言：CSS★ &nbsp;&nbsp;&nbsp; XSL★</li>
-<li>动态网页技术：ASP &nbsp;&nbsp;&nbsp; JSP &nbsp;&nbsp;&nbsp; Perl &nbsp;&nbsp;&nbsp; Python &nbsp;&nbsp;&nbsp; Ruby &nbsp;&nbsp;&nbsp; PHP</li>
-<li>客户端-交互技术：AJAX(XMLHTTP)★ &nbsp;&nbsp; WebSocket★ &nbsp;&nbsp; ActiveX &nbsp;&nbsp; JavaApplet &nbsp;&nbsp; Silverlight &nbsp;&nbsp; ActionScript（Flash-Flex-AIR）</li>
-<li>客户端-脚本语言：JavaScript &nbsp;&nbsp;&nbsp; JScript &nbsp;&nbsp;&nbsp; VBScript &nbsp;&nbsp;&nbsp; ECMAScript、</li>
-<li>标识定位语言：URL &nbsp;&nbsp;&nbsp; URI &nbsp;&nbsp;&nbsp; Xpath &nbsp;&nbsp;&nbsp; URL重写</li>
-<li>文档纲要语言：DTD★ &nbsp;&nbsp;&nbsp; XML Schema★</li>
-</ol>
-<p>★ 代表由W3C制定和维护的标准和规范</p>
-<p>完整的图，如下，源自<a href="http://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="external">维基百科</a><br><img src="\images\webTec_20141112.PNG" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/12/webTecAndStand/" data-id="narxiaoyjt9qylbo" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cssFlexBox" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/11/cssFlexBox/" class="article-date">
-  <time datetime="2014-11-11T06:32:51.000Z" itemprop="datePublished">2014-11-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/11/cssFlexBox/">弹性盒子</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>移动端开发接触不多，所以弹性盒子是听的很多，但实际用的很少。这次难得开发移动端那就强迫自己用下喽，抓住工作计划多接触点新东西。之前吧：<br>1.工作之余实战编码情况几乎没有。【这点正在转变中，重新计划时间分配】<br>2.对新知识不那么渴求，比如能用老方法去搞定的（浮动|定位），一般不会去主动尝试新概念（弹性盒子）。<br>&nbsp;&nbsp;&nbsp;这是思维方式的问题，一时半会不好改。【但目前在计划把小点搞懂些，先慢慢爱上自己熟悉的，在等热情之火燎技术之原】 </p>
-<p>流体布局控</p>
-<p>说明：此文重点阐述弹性盒子的理论，代码并没有考虑最新标准写法及浏览器兼容等方面。</p>
-<h2 id="弹性盒子概况">弹性盒子概况</h2>
-<p>CSS3中新的盒子模型：弹性盒子模型（Flexible Box Model）</p>
-<p>弹性盒子能干嘛？<br>1.按份分，自适应父容器 box-flex：1-1-1，1-2-1，1-2-3（至少是1的整数）<br>2.有要固定宽的 width:100px;  即优先子的width，剩余的再按比例flex<br>3.垂直|水平对齐<br>4.留白</p>
-<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">鑫空间</a>[1]里举了个分房子的例子，概念上通俗易懂，如下：<br>box-flex：分配房子，子按比例分配父标签的宽度|高度空间<br>box-flex的属性 即如何分配，分配比例</p>
-<p>不论孩子们争得有多high…凡事，凡事都得有个首先。。。首先，亲爹得开金口：房子，你们自己分吧！</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*在此声明下，子元素的行为和表现 和 CSS2中的传统盒子模型的表现 有显著差异*/</span></div><div class="line"><span class="id">#father</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value">box</span></span>;  <span class="comment">/*弹性盒子模型的声明*/</span></div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
-
-<h2 id="强大的老爹">强大的老爹</h2>
-<p>不管孩子们怎么折腾，父还是很牛掰的，可以做很多事情。如下：<br>1.box-orient: horizontal|vertical  决定子元素的方向，横排|竖排<br>2.box-direction: normal|reverse  决定子元素的排列顺序（normal是：左-&gt;右 上-&gt;下）</p>
-<p>3.box-align: start|end|center|baseline（文字的）|stretch（拉伸-等高布局不再愁）  决定垂直方向上的空间利用，即垂直方向的对齐<br>&nbsp;&nbsp;&nbsp;相当于CSS2的 vertical-align<br>4.box-pack: start|end|center|justify（两端对齐）  决定水平方向上的空间利用，即水平方向的对齐<br>&nbsp;&nbsp;&nbsp;相当于CSS2的 text-align:left|right|center|justify 【start更概况，是因为box还能玩倒序】</p>
-<p>5.box-lines  决定子元素是否可以换行（支持性待测）<br>&nbsp;&nbsp;&nbsp;不过，一般情况下用弹性盒子就是为一行方便的。多行的话 用浮动更直观吧~感觉</p>
-<p>对比之下，再看子元素，瞬间清晰多了。孩子的属性：<br>1.width<br>2.box-flex<br>3.box-ordinal-group：拉帮结派，值越小-位置越靠前<br>4.box-flex-group</p>
-<h2 id="其他">其他</h2>
-<p>CSS2.1中的4种布局模式：盒模型，块布局 + 行内布局 + 表格布局 + 定位布局<br>CSS3引入了新的布局模式：弹性布局，即这里的弹性盒子，很方便的自适应浏览器窗口的流动布局。</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">CSS box-flex属性，然后弹性盒子模型简介</a> 源自鑫空间。举例通俗易懂 房子-分配；里面也有各个属性的demo，很直观<br><a href="http://my.oschina.net/u/1589874/blog/222228" target="_blank" rel="external">弹性盒子模型</a> 源自Sunny_lyy。flex的新旧版写法、浏览器兼容写法；各属性值</p>
-<h2 id="扩展阅读">扩展阅读</h2>
-<p><a href="http://css-tricks.com/old-flexbox-and-new-flexbox/" target="_blank" rel="external">http://css-tricks.com/old-flexbox-and-new-flexbox/</a><br><a href="http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans" target="_blank" rel="external">http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans</a><br><a href="http://ued.ctrip.com/blog/wp-content/webkitcss/prop/flex-direction.html" target="_blank" rel="external">http://ued.ctrip.com/blog/wp-content/webkitcss/prop/flex-direction.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/11/cssFlexBox/" data-id="ukeavapo0xak3qdv" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsScrollTop" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/08/jsScrollTop/" class="article-date">
-  <time datetime="2014-11-08T11:41:28.000Z" itemprop="datePublished">2014-11-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/08/jsScrollTop/">scrollTop</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景">背景</h2>
-<p>至此，碰到过两次“下拉滚动条去异步加载新数据”的场景，第一次是一个瀑布流，这次是一个列表。<br>第一次接触瀑布流时，被那高大上的名字唬到了，内心就不知不觉自卑起来，导致思考问题不理智学东西没条理。看似在网搜了不少资料，但都是边边角角，没有一个概况；更不用说先自己想下怎么办，然后再带着问题去搜解决办法。总之，第一次的滚动算是稀里糊涂地做出来了。现在还记得上线后心里的那丝忐忑。<br>第二次，也就是这次，就想着，再不能糊里糊涂地边编边试了、也不能单纯copy之前做的了。而要把这个“滚动”的小点搞清楚。于是就有了这篇小blog。</p>
-<h2 id="问题本身">问题本身</h2>
-<p>下拉滚动条动态加载新数据：<br>1.监听下拉事件：scroll事件 【一滚动就触发，而不等到滚动行为结束，所以-需要合理的加载时机】<br>2.加载时机：等快滑到底部时，就去请求新数据 【关键点】</p>
-<p>而“快达到”其实就是一个临界值的问题。所以，可以把问题进一步简化成“判断滚动条到达底部了”。<br>对滚动条的感性认识：<br>1.为什么会出现滚动条？ 当要显示的内容的高度 &gt; 父容器的高度时 就会出现纵向滚动条（当然，前提是overflow-y:scroll）<br>2.滚动条到底部时是个什么状态？滚动条要向下拉的高度 === (内容的高度 - 容器的高度)</p>
-<p>脑子里的伪代码是个什么样子呢？<br>滚动条要向下拉的高度，其实就是： scrollTop() 相对于容器顶部的偏移量<br>内容的高度以及容器的高度：一般都能直接算出来。所以，问题一下就简单了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( 容器.scrollTop() == 内容.height()-容器.height() ){</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'滚动条到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>如果要加“快到底部”的条件，比如规定个100px的阈值，那代码就是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( <span class="number">100</span>+容器.scrollTop() == 内容.height()-容器.height() ){</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'滚动条快要到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>考虑到scroll事件是一直触发的，而并不一定恰好刚刚等于，所以就用 &lt;= 代替，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( <span class="number">100</span> &gt;= 内容.height()-容器.height()-容器.scrollTop() ){</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'滚动条快要到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="代码里的滚动条">代码里的滚动条</h2>
-<p>jQuery中有三个属性和滚动条的拖动有关，就是： scrollTop、scrollLeft、scrollHeight。<br>此处，只探讨纵向滚动条，即两个：scrollTop、scrollHeight<br>把以下代码去浏览器里运行下，然后实时滚动滚动条，去控制台输出 scrollTop 和 scrollHeight 去看看吧。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">style</span>=<span class="value">"overflow-y:auto; overflow-x:hidden; height:500px; border: 1px solid red;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"height:750px;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{</div><div class="line">  <span class="keyword">var</span> container = $(<span class="string">"#container"</span>);</div><div class="line">  <span class="keyword">var</span> containerHeight = container.height();</div><div class="line"></div><div class="line">  container.scroll(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="keyword">var</span> me = $(<span class="keyword">this</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">var</span> sHeight = me.scrollHeight,</div><div class="line">	    sTop = me.scrollTop;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'\nscrollHeight'</span>, sHeight);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'scrollTop'</span>, sTop);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( sTop &gt;= sHeight-containerHeight )</div><div class="line">	  alert(<span class="string">"滚动条到底部了"</span>);</div><div class="line">    });</div><div class="line">});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>在js代码里，滚动条是被抽象成一个“点”来对待的。<br>scrollHeight：就是滚动条（一个点）需要滚动的高度，即内部div的高度，750px<br>scrollTop：表示滚动条（一个点）当前的位置在这750px里占了多少。</p>
-<p>说明：<br>scrollTop() 取值，是返回第一个匹配元素的 scroll top offset<br>scrollTop() 设置值，是设置所有匹配元素的 scroll top offset</p>
-<h2 id="其他及扩展出来的点">其他及扩展出来的点</h2>
-<h4 id="一、scroll事件">一、scroll事件</h4>
-<p>scroll事件：在容器的滚动事件里检测和执行if判断，消耗cpu资源。所以，要注意代码（能挪出去的运算就挪出去）<br>scroll时：效率方面，还有其他注意事项？</p>
-<h4 id="二、scroll">二、scroll</h4>
-<p>1.scroll事件里，js对象里有滚动<br>  属性4个：scrollTop、scrollLeft、scrollWidth、scrollHeight<br>  方法2个：scrollIntoView() 、scrollViewIfNeeded()<br>2.jQuery又对scroll做了哪些封装？<br>  因为有 $.scrollTop()，但木有获取高度的。<br>  scrollHeight是否有兼容性问题…</p>
-<h4 id="三、jQuery_操作_CSS_的函数">三、jQuery 操作 CSS 的函数</h4>
-<p>可以设置|返回css相关属性<br>1.css()<br>2.height()、width()<br>3.scrollTop()、scrollLeft()：相对于滚动条顶部|左侧的偏移<br>4.position()：相对于父元素的位置<br>5.offset()：相对于文档的位置<br>6.offsetParent()：最近的定位祖先元素</p>
-<h4 id="四、其他容器和位置属性">四、其他容器和位置属性</h4>
-<p>$(window).scrollTop() 针对每一个frame  //所有浏览器都支持<br>$(document).scrollTop()</p>
-<p>window:<br>document： 网页可见区域 document.body<br>注意当浏览器窗口大小改变时(如最大化或拉大窗口后) jQuery(window).height() 随之改变，但是jQuery(document).height()是不变的。</p>
-<p>屏幕分辨率的高： window.screen.height;<br>屏幕分辨率的宽： window.screen.width;<br>屏幕可用工作区高度： window.screen.availHeight;<br>屏幕可用工作区宽度：window.screen.availWidth;</p>
-<h2 id="教训">教训</h2>
-<p>碰到问题，不要被华丽的名称吓到。而是先分析这个问题本身。<br>1.如果要你做，你如何做？ 【此时，不要着急问别人也不要着急去网上搜资料，要先自己想，不要怕自己的方法很原始很山寨】<br>2.里面有几个点？自己准备如何解决？<br>3.每个点是否有边界条件要考虑 or 还有可改进的空间？<br>4.再去查别人怎么做。 【此时，和自己的方法做个对比。看哪里想到了、哪里没想到；想到的哪里不一样、没想到的为什么漏掉了。】<br>5.对比之下，再得结论，即如何解决。</p>
-<p>不要怕浪费时间。<br>准备工作要是不充分，后续不但有坑，而且那种一知半解的状态一点都不可持续。<br>搞清核心问题，后续干活的时候都会神清气爽，而且以后碰到类似问题都可以轻而易举地解决了。</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.escience.cn/people/hehe/js_check.html" target="_blank" rel="external">js判断滚动条是否到底部</a><br><a href="http://www.w3school.com.cn/jquery/jquery_ref_css.asp" target="_blank" rel="external">jQuery参考手册-CSS操作</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-id="ncfxrla5uv2nweau" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nodejs_0" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/23/nodejs_0/" class="article-date">
-  <time datetime="2014-09-23T07:52:16.000Z" itemprop="datePublished">2014-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/nodejs_0/">Node.js 入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Node：Evented I/O for V8 Javascript<br>Ryan Dahl 给 Chrome V8 Javascript 引擎添加了一组友好的 JavaScript API，并让 V8 能够独立运行于多个平台上（暂且把 V8 看做是 js 虚拟机），这样 js 也能写出跨平台非浏览器页面的应用。</p>
-<p>Node.js 特性（单线程异步编程模型）<br>1.单线程：编程复杂性更容易控制<br>2.事件驱动的异步编程：非阻塞 IO，更高并发量的网络程序<br>3.Google V8</p>
-<p>适用场景：高并发小数据（实时数据统计、Restful API、Twitter 的 tweet 处理队列）<br>“Node.js”是官方称呼，交流多用node简称。</p>
-<h2 id="NPM">NPM</h2>
-<p>npm 是 node 的内置功能，目的：让 node 具有很好的扩展性。<br>npm：用来管理依赖模块<br>node 本身只提供实现应用程序的精简api集合。</p>
-<p>为了让 node 能提供更强大的功能，Ryan 借鉴了 Perl、Python 等语言的经验，提出了 NPM（Node Packaged Module，简称模块）的概念，并创建了一整套的模块发布、安装、依赖管理机制。<br>node 后来的成功，也是所有 node 社区成员共同努力的结果，npm 起了关键的作用。没有 npm 就没有近日风靡全球的 node，庞大丰富的 npm 库。可见npm 在 node 生态中的重要地位。</p>
-<p>我们可以看到大家提交的 npm 库。可以通过两个重要榜单去看模板的质量：最多依赖模块和最受欢迎模块<br>通过看榜单，可以对 node 有个概况的了解，以最多依赖模板为例：<br>1.1698 underscore util库，Backbone.js 项目的一部分<br>2.1033 request，Http request method<br>3.1002 async，用同步的代码风格写异步代码<br>4.935 coffee-script<br>5.832 express，轻量Web App Framework，基于connect<br>6.812 optimist，命令行辅助<br>7.634 commander，命令行辅助<br>8.571 colors，命令行着色辅助<br>9.436 uglify-js，压缩<br>10.421 connect，Http Server中间件库</p>
-<p>有各种 util、app 框架、编译器等<br>Backbone.js、request、express、connect</p>
-<h2 id="node_中的模板加载">node 中的模板加载</h2>
-<p>node 中的模块分类：<br>1.核心模块(Core Module)：node 内置模块，通常存在于 node 安装路径 lib 目录下<br>2.第三方模块：</p>
-<p>require 是 node 中加载模块的全局函数，涉及到 node.js 的模块机制。<br>node 如何寻找到对应模块的呢？规则是：<br>1.路径为Y的module中使用 require(X)<br>2.如果是X为核心模块，命中则结束<br>3.如果X以‘./’、‘/’、‘../’开头时，加载第三方模块，命中则结束<br>4.查找失败抛出异常</p>
-<h2 id="杂谈1">杂谈1</h2>
-<p>Node 是一个使用了 CommonJS 风格的代码加载。</p>
-<p>接着：都提供了什么<br>1.NPM：node.js package management<br>2.命令行工具，管理你的项目依赖的那堆东西<br>3.Node和NPM之间的联系：文件夹 node_modules、package.json<br>4.一个注册工具，几乎每一个来自外部的 Node.js package</p>
-<p>最后：常见任务的流行的 package<br>1.对项目有用的工具：<br>2.单元测试：Mocha<br>3.web框架：Express.js、Koa<br>4.模板引擎：Jade、EJS<br>5.网络：Connect、Request、socket.io<br>6.命令行交互：参数解析器（Optimist、Commander）、Colors（美化CLI输出）</p>
-<h2 id="杂谈2">杂谈2</h2>
-<p>说开了 NodeJs 只是 JavaScript 作为 CommonJS 的实现，使得 JavaScript 在服务器端有了用武之地。所以 NodeJs 从语法层面来说还是 JavaScript。</p>
-<p>但是与客户端的 JavaScript 又有所区别。需要注意：<br>1.要有js基础、理解事件模型、了解js的语法和特性、理解js的面向对象编程<br>2.代码组织方式：包机制、require、exports<br>3.基本的操作系统、数据库（尤其非关系型数据库）、Web编程、HTTP等网络通信</p>
-<p>node 使用 javascript 作为其应用层编程语言，所以 node 程序的语法和 js 无差。<br>console.log 和浏览器中使用习惯一致（只是打到了标准输出-命令界面）</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">Node.js的系列文</a> 来自博客园，Luics的博客，有概况挺全面，质量不错<br><a href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js" target="_blank" rel="external">如何开始学习Node.js</a> 来自stackoverflow，里面对node做了简要介绍，并对资料的提供层层递进<br><a href="http://www.zhihu.com/question/19793473" target="_blank" rel="external">怎样有效地学习Node.js</a> 来自知乎，多看文档、代码、代码。。。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_0/" data-id="t2u25g86teyhwmxs" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nodejs_1_expressjs" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/23/nodejs_1_expressjs/" class="article-date">
-  <time datetime="2014-09-23T07:47:09.000Z" itemprop="datePublished">2014-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node/">node</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/nodejs_1_expressjs/">Express 介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>还记得<a href="anjia.github.io/2014/09/23/nodejs_0/">《Node.js 入门》</a>中提到的最多依赖模板吗，前10名中的有两个，它们是：<br>05.express：轻量 Web App Framework，基于 connect<br>10.connect：Http Server 中间件库</p>
-<p>connect 和 express 出自同一作者 TJ Holowaychuk。<br>express 是基于 connect的（从两个项目的git提交历史上看，先有 express 后有 connect）。</p>
-<p>Connect 是一个 node 中间件（middleware）框架。为什么要用 connect？原生的 api 依然有简单静态文件服务器的诸多方面未经处理的问题，比如：404等异常未处理、没有基本的文件路径安全验证（实际上我们可以访问到整个os文件系统）、全局异常处理等等。但 connect 已经将这些问题都处理好了（写得更少做得更多）。</p>
-<p>Express 是以 web 应用框架的面貌出现的，基于 connect；准确的说是在 connect 基础上添加一个更接近业务开发的框架。<br><img src="\images\express_20140923.png" alt=""></p>
-<p>Express 提供的框架比较灵活，你可以在 express 基础上实现 MVC。<br>从上图中可以看到，express 也实现了一些特殊的 connect 中间件<br>1.route middleware 实现路由<br>2.express.middleware 初始化express全局参数<br>3.mounted child app middleware 挂载子app</p>
-<p>ps.<br>1.Express 是一个非常小的框架，3.0.0正式发布版只有932行源码，Express 强烈依赖 Connect 的只有267行源码，Connect 可选的中间件和扩展总共1143行源码，并且只有到使用时才会加载。<br>2.Node.js 虽然提供了 http 模块，却不是让你直接用这个模块进行 Web 开发的。http 模块仅仅是一个 HTTP 服务器内核的封装。<br>3.中间件（middleware）就是处理 HTTP 请求的函数，用来完成各种特定的任务。use 是 express 调用中间件的方法。每个中间件在 http 处理过程中通过改写 request 或（和）response 的数据、状态，实现了特定的功能。</p>
-<h3 id="Express_介绍">Express 介绍</h3>
-<p>基于 nodejs 的 websocket 的框架<br>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具，中间件随取随用。它不对 node.js 已有的特性进行二次抽象，只是在它之上扩展了 Web 应用所需的功能。它也没有涉及到数据库，这个任务留给了第三方的 node 模块，有了第三方的模块基本上可以与任何数据库交互</p>
-<h3 id="安装_Express">安装 Express</h3>
-<p>全局安装 Express，Express 作为命令被安装到了系统中。<br>-g 代表安装到 NODE_PATH 的 li b里面<br>-d 代表把相依性套件也一起安装</p>
-<h3 id="Express支持的模板引擎">Express支持的模板引擎</h3>
-<p>Express 支持许多模板引擎，常用的有：<br>1.Haml，haml 的实现<br>2.Jade，haml.js 接替者，同时也是 Express 的默认模板引擎<br>3.EJS，嵌入 JavaScript 模板<br>4.CoffeeKup，基于 CoffeeScript 的模板引擎<br>5.jQuery Templates 的 NodeJS 版本</p>
-<h3 id="Express的API">Express的API</h3>
-<p>除了 get 方法以外，Express 还提供 post、put、delete 方法，即 HTTP 动词都是 Express 的方法。<br>set 方法用于指定变量的值。</p>
-<p>赋给变量xxx</p>
-<p>框架设置 express 实例的参数：<br>port 访问端口<br>view 视图存放的目录<br>view engine 网页模板引擎</p>
-<p>set 方法用于设定内部变量<br>use 方法用于调用 express 中间件</p>
-<p>任何遵守这样回调的 (path, locals, callback) .<br>为了统一模板引擎接口和缓存，推荐查看 <a href="https://github.com/visionmedia/consolidate.js" target="_blank" rel="external">consolidate.js</a>寻找帮助.<br>有些没有列出来的模板引擎没准也支持 Express.</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.cnblogs.com/luics/archive/2012/11/28/2775206.html" target="_blank" rel="external">connect &amp; express简介</a> 来自博客园，Luics的博客，简介明了。还有demo+更多链接</p>
-<p><a href="http://expressjs.jser.us/" target="_blank" rel="external">Express 中文文档</a><br><a href="http://expressjs.com/guide.html" target="_blank" rel="external">express API</a><br><a href="https://github.com/senchalabs/connect" target="_blank" rel="external">connect</a><br><a href="http://nodejs.org/docs/v0.5.10/api/" target="_blank" rel="external">Node.js 的API</a></p>
-<p><a href="http://javascript.ruanyifeng.com/nodejs/express.html" target="_blank" rel="external">Express 框架</a> 来自《JavaScript标准参考教程》阮一峰</p>
-<p><a href="http://my.oschina.net/youdoce/blog/68476" target="_blank" rel="external">Express.js 中文入门指引手册</a>：其他</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" data-id="xwdacheod6plbbiq" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chromeDevTool" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/23/chromeDevTool/" class="article-date">
-  <time datetime="2014-09-23T07:42:56.000Z" itemprop="datePublished">2014-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/chromeDevTool/">chrome developer tool 开发者调试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>元素右键 【Elements】<br>（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）<br>（2）复制路径：CSS路径；XPath路径<br>（3）设置断点：子元素修改、修改属性、删除元素</li>
-<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的 js 文件</li>
-<li>查看元素绑定了哪些事件<br>【Elements】面板下的“Event Listeners”：按类型列出元素的相关事件（捕获和冒泡阶段会经过的这个节点的事件）</li>
-<li>查找<br>（1）所有js文件中搜索&amp;查找js函数定义：ctrl + shift + F<br>（2）查找函数定义：ctrl + shift + 0<br>（3）查找文件：ctrl + o</li>
-<li>command line API<br>（1）$(id) 与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements 面板最近选中的5个元素，最新的是 $0<br>更多 console API：console.log()<br>更多 command line API：</li>
-<li>【Resources】页面的资源<br>（1）请求的资源情况：字体、图片、脚本文件、样式文件<br>（2）存储相关：Cookies、HTML5的Database、Local Storage<br>  你可以对存储的内容编辑和删除。</li>
-<li>【Timeline】：JS执行时间、页面元素渲染时间</li>
-</ol>
-<ol>
-<li>Chrome 的 workspace：<br>能够在开发者工具中调试修改 js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
-<li>【Profiles】性能分析</li>
-<li>仿真测试：</li>
-</ol>
-<ol>
-<li>Ajax 时中断 【？？】</li>
-<li>console 中执行的代码可断点 【？】<br>最后一行加上 //@ sourceURL=filename.js,<br>会在 Scripts 面板中有个叫 filename.js 的文件, 然后他就和外部 js 文件一样了</li>
-<li>top frame</li>
-</ol>
-<ol>
-<li>Elements</li>
-<li>Network：分析网站请求的网络情况、查看某一请求的请求头和响应头</li>
-<li>Console</li>
-</ol>
-<p>参考：<br><a href="http://ued.taobao.org/blog/2012/06/debug-with-chrome-dev-tool/" target="_blank" rel="external">chrome developer tool调试技巧</a>：ued.taobao.org<br><a href="http://isux.tencent.com/chrome-workspace.html" target="_blank" rel="external">Chrome workspace</a>：isux.tencent.com</p>
-<p><a href="https://developer.chrome.com/devtools/docs/console" target="_blank" rel="external">https://developer.chrome.com/devtools/docs/console</a><br><a href="https://developers.google.com/chrome-developer-tools/" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/</a> </p>
-<p><a href="http://javascript.ruanyifeng.com/tool/console.html" target="_blank" rel="external">console对象</a>： 阮一峰的博客书<br><a href="https://crxdoc-zh.appspot.com/apps/tut_debugging" target="_blank" rel="external">教程：调试</a>：里面有靠谱的更多链接…</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-id="ikgoxc6jnn0yxc1h" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debug/">debug</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-funning_0" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/23/funning_0/" class="article-date">
-  <time datetime="2014-09-23T07:42:09.000Z" itemprop="datePublished">2014-09-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/funning_0/">ALT+小键盘数字打的特殊符号</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>按住 Alt 键，在小键盘上输入数字出来的特殊符号。再松开 Alt</p>
-<p>41459 ◇<br>41460 ◆ </p>
-<p>41461 □<br>41462 ■</p>
-<p>41463 △<br>41464 ▲</p>
-<p>41465 ※</p>
-<p>41466 →<br>41467 ←<br>41468 ↑<br>41469 ↓</p>
-<p>41470 〓</p>
-<p>41456 ○<br>41457 ●<br>41458 ◎</p>
-<p>41454 ☆<br>41455 ★</p>
-<p>41441 ♂<br>41442 ♀</p>
-<p>43081 ↖<br>43082 ↗<br>43083 ↘<br>43084 ↙</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/23/funning_0/" data-id="lkc6sqakmc2ljrx8" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shortcut-key/">shortcut key</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-handlebars" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/17/handlebars/" class="article-date">
-  <time datetime="2014-09-17T13:13:03.000Z" itemprop="datePublished">2014-09-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/17/handlebars/">Handlebars.js 模板引擎</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。<br>它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；<br>它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
-<p>其他：<br>一个弱逻辑模板引擎；Mustache.js 的超集；在服务端预编译模板；支持 Helper 方法；在模板中支持 this 的概念。<br><strong></strong></p>
-<p>想要了解以下概念，点击查看 <a href="http://www.html-js.com/article/1595" target="_blank" rel="external">学习Javascript模板Handlebars.js</a><br>1.Handlebars.js 是怎样运行的？<br>2.为什么使用 Javascript 模板引擎？<br>3.什么情况下使用 Javascript 模板？<br>4.为什么要选择 Handlebars.js？</p>
-<h2 id="目录">目录</h2>
-<ol>
-<li>安装和使用</li>
-<li>表达式<br><strong> Block 表达式</strong>：可以改变js的上下文<br><strong> Handlebars 的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个 section 里面（编译时候进行）<br><strong> 自定义helper：</strong>在 js 中用 Handlebars.registerHelper 注册 helpers</li>
-<li>其他<br>（1）Handlebar 的注释（comments）<br>（2）Handlebars 的访问（Path）<br>（3）调试技巧<br>（4）handlebars 的 jquery 插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
-</ol>
-<h2 id="安装和使用">安装和使用</h2>
-<p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
-<p>如何使用？见【3】<br>1.在 HTML 页面上，通过使用 Handlebars 表达式设定模板，将模板添加到 script 标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在 js 中，初始化数据对象<br>3.在 js 中，使用 Handlebars 编译函数来编译模板</p>
-<p><img src="\images\use_20140918.png" alt=""></p>
-<h2 id="Handlebar的表达式">Handlebar的表达式</h2>
-<p>Handlebars expressions 是 handlebars 模板中最基本的单元，使用方法是用双大括号。<br>表达式也支持点操作符 content.title，该形式可以调用嵌套的值或者方法。<br>handlebars 会根据上下文来自动对表达式进行匹配，对象甚至是函数：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
-<h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
-<p>如果当前的表达式是一个数组，则 Handlebars 会“自动展开数组”，并将 Blocks 的上下文设为数组中的元素。</p>
-<p><img src="\images\block_20140918.png" alt=""></p>
-<h3 id="内置块表达式（Block_helper）">内置块表达式（Block helper）</h3>
-<p>用 Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
-<h4 id="1-_each_block_helper">1. each block helper</h4>
-<p>内置的 each helper遍 历列表块内容，用 this 来引用遍历的元素，this 指的是数组里的每一项元素。</p>
-<p><img src="\images\each_20140918.png" alt=""></p>
-<p>这和上面的Block很像，但是原理不一样。name是数组，而内置的each就是为了遍历数组用的，更复杂的数据也同样使用。 【？】</p>
-<h4 id="2-_if_else_block_helper">2. if else block helper</h4>
-<p>if 就像你使用 JavaScript 一样，指定条件渲染 DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar 将不会渲染 DOM。</p>
-<h4 id="3-_unless_block_helper">3. unless block helper</h4>
-<p>反向的if</p>
-<h4 id="4-_with_block_helper">4. with block helper</h4>
-<p>一般情况下，Handlebars 模板会在编译的阶段的时候进行 context 传递和赋值。<br>使用 with 的方法，我们可以将 context 转移到数据的一个 section 里面（如果你的数据包含 section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
-<p><img src="\images\with_20140918.png" alt=""></p>
-<h3 id="自定义helper">自定义helper</h3>
-<h2 id="其他">其他</h2>
-<h3 id="Handlebars的访问（Path）">Handlebars的访问（Path）</h3>
-<p>Handlebar 支持路径和 mustache，Handlebar 还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
-<h3 id="调试技巧">调试技巧</h3>
-<p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
-<h2 id="参考">参考</h2>
-<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
-<p>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
-<p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="xaqern2psst2w4t0" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jade_what" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/13/jade_what/" class="article-date">
-  <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/13/jade_what/">Jade 模板引擎</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。</p>
-<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。</p>
-<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得，缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在 if-else 语句里就容易写错缩进。</p>
-<p>第三，是少敲键盘了，但失去了 HTML 的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用 Jade 写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
-<p>第四，对于 class 和 id 的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
-<p>在看文档的时候，里面有描述“Jade中的某种写法，同样是设计师友好的”。就比较好奇，为什么要对设计师友好？感觉取悦了狭义上的前端工程师就够了。产品是要只为少数人设计，语言也要一样。</p>
-<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是 undefined 或 null 时会自动忽略、模板中可以直接使用 javascript。这些针对 HTML、针对前端的特性做的优化还是很不错的。</p>
-<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用 smarty，觉得模板很方便。所以想看看其他兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上就是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出 HTML 字符串嘛。</p>
-<p>为了不让今天的付出感觉上白费掉，便决定写个博客记录下目前对它的理解，好提醒下自己：我今天确实是接触到了“新”东西。</p>
-<h2 id="Jade">Jade</h2>
-<p>Jade — Node Template Engine，一个高性能的模板引擎，为 Node 而做，用 JavaScript 实现。<br>Node.js 的 Express.js 框架默认用的就是 Jade。<br>Jade 还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
-<ol>
-<li>通过npm安装： npm install jade</li>
-<li>把Jade编译成一个可供浏览器使用的单文件，执行：make jade.js。<br>可以把 <em>.jade  编译为  </em>.html</li>
-<li>命令行：jade [options] [dir|file…]</li>
-<li>API</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">//complie</span></div><div class="line"><span class="keyword">var</span> fn = jade.compile(<span class="string">'string of jade'</span>, options);</div><div class="line"><span class="keyword">var</span> html = fn(locals);</div><div class="line"></div><div class="line"><span class="comment">//render</span></div><div class="line"><span class="keyword">var</span> html = jade.render(<span class="string">'string of jade'</span>, merge(options, locals));</div><div class="line"></div><div class="line"><span class="comment">//renderFile</span></div><div class="line"><span class="keyword">var</span> html = jade.renderFile(<span class="string">'filename.jade'</span>, merge(options, locals));</div></pre></td></tr></table></figure>
-
-<ol>
-<li>浏览器支持<br>浏览器版的 Jade 它只支持最新的浏览器，是一个很大的文件。建议使用时先把 Jade 预编译成 JavaScript，然后再在客户端使用 runtime.js 库。</li>
-</ol>
-<h2 id="Jade的语法和特性">Jade的语法和特性</h2>
-<p>Jade 的语法是简洁、对 HTML 代码空格敏感。在这点上它借鉴了 Haml 的很多地方，所以与 Haml 语法挺相近</p>
-<p>Haml 是什么？Haml 是简写 HTML 的一种办法。借用 Haml 的作者 Hampton Catlin 的一句话：“Haml 是对传统 XHTML 的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的 XHTML 构造方式。” Haml 的网站上也说：“Haml 让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
-<ol>
-<li>语法<br>（1）标签、属性、注释<br>（2）读取数据的值（转义、非转义）</li>
-<li>逻辑<br>（1）条件语句（if、unless、case）<br>（2）循环（each、for）<br>（3）过滤器<br>（4）Mixins</li>
-<li>继承和包含<br>（1）模板继承<br>（2）包含</li>
-<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的 HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
-<li>其他<br>（1）Doctype<br>（2）产生输出</li>
-</ol>
-<h2 id="1-_语法">1. 语法</h2>
-<h3 id="标签">标签</h3>
-<p>标签就是一个简单的单词</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">会被转换成 <span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的id--&gt;</span></div><div class="line">div#container</div><div class="line">会被转成 <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的class--&gt;</span></div><div class="line">div.user-details</div><div class="line"></div><div class="line"><span class="comment">&lt;!--多个class和id--&gt;</span></div><div class="line">div#foo.bar.baz</div><div class="line"></div><div class="line"><span class="comment">&lt;!--不写标签，默认就是div（语法糖）--&gt;</span></div><div class="line">#foo</div><div class="line">.bar</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="属性">属性</h3>
-<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是 true 时才会输出。为 false 时就被忽略了</p>
-<p>class 属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--普通的 JavaScript 字符串连接--&gt;</span></div><div class="line">a(href='/user/' + user.id)= user.name</div><div class="line"></div><div class="line"><span class="comment">&lt;!--用Jade--&gt;</span></div><div class="line">a(href='/user/#{user.id}')= user.name</div></pre></td></tr></table></figure>
-
-<h3 id="注释">注释</h3>
-<p>1、单行注释 // 不输出的注释，加- 即 //-<br>2、块注释<br>3、条件注释</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">body</div><div class="line"> //if IE</div><div class="line">   a()</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--[if IE]&gt;</span></div><div class="line">    &lt;a href="http://www.mozilla.com/en-US/firefox/"&gt;Get Firefox&lt;/a&gt;</div><div class="line">  &lt;![endif]--&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="读取数据的值">读取数据的值</h3>
-<p>1、读取变量的值，用 #{}<br>输出是默认是转义的。比如取变量name的值 #{name}<br>当要输出#{}，则可以转义，即 p #{name}</p>
-<p>2、不想转义变量的值 !{name}   【直接输出标签】</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- var html = "<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>"</div><div class="line">| !{html}</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接输出&lt;script&gt; 标签  【都原样了，还非转义？】--&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="2-_模板逻辑">2. 模板逻辑</h2>
-<h3 id="条件语句">条件语句</h3>
-<p>Jade 的条件语句和使用了前缀 - 的 js 语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的 js。是相等的</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//用条件表达式<span class="keyword">if</span></div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  <span class="keyword">if</span> user.role == <span class="string">'admin'</span></div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    p= user.name</div><div class="line"><span class="comment"></span></div><div class="line">//常规的js代码</div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  - <span class="keyword">if</span> (user.role == <span class="string">'admin'</span>)</div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  - <span class="keyword">else</span></div><div class="line">    p= user.name</div></pre></td></tr></table></figure>
-
-<p>Jade同时支持 unless  这和 if(!(expr)) 是等价的</p>
-<h3 id="Case">Case</h3>
-<p>case表达式</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--空格缩进--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    friends = 10</div><div class="line">    case friends</div><div class="line">      when 0</div><div class="line">        p you have no friends</div><div class="line">      when 1</div><div class="line">        p you have a friend</div><div class="line">      default</div><div class="line">        p you have #{friends} friends</div><div class="line"></div><div class="line"><span class="comment">&lt;!--块展开--&gt;</span></div><div class="line">friends = 5</div><div class="line">html</div><div class="line">  body</div><div class="line">    case friends</div><div class="line">      when 0: p you have no friends</div><div class="line">      when 1: p you have a friend</div><div class="line">      default: p you have #{friends} friends</div></pre></td></tr></table></figure>
-
-<p>此处有木有发现，关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
-<h3 id="循环">循环</h3>
-<p>Jade 支持 js 的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
-<p>Jade 在内部会把这些语句转换成原生的 js 语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用 for。</p>
-<h3 id="过滤器">过滤器</h3>
-<p>过滤器前缀:<br>比如 :markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
-<h3 id="Mixins">Mixins</h3>
-<p>Mixins 在编译的模板里会被 Jade 转换为普通的 js 函数。<br>Mixins 可以带参，但不是必需的。</p>
-<h2 id="3-_模板继承">3. 模板继承</h2>
-<h3 id="模板继承">模板继承</h3>
-<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade 的 block 就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
-<p>Jade允许你替换、前置和追加blocks。</p>
-<p>block 默认是覆盖（替换）父级块的内容（也可以在子块中实现块）<br>block append  追加代码块（block可选）<br>block prepend 前置代码块（block可选）</p>
-<h3 id="包含">包含</h3>
-<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade 解析这些文件，并插入到已经生成的语法树中</p>
-<p>被包含的块，可以用 yield 语句（明确标明 include 代码块的放置位置。）</p>
-<p>子可以用父中的变量。被包含的 Jade 会按字面解析合并到 AST 中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做 partial 的替代。</p>
-<h2 id="4-_模板特性">4. 模板特性</h2>
-<h3 id="标签文本">标签文本</h3>
-<p>1、单行的文本，用标签文本</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--单行的文本只需要把文本放在标签之后即可，即标签文本--&gt;</span></div><div class="line">p hello</div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>2、文本块 用 |</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--大段的文本，原样输出--&gt;</span></div><div class="line">p</div><div class="line"> | aaa</div><div class="line"> | bbb</div><div class="line"> | ccc</div><div class="line"></div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>aaa bbb ccc<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>3、用. 来开始一段文本块<br>p.<br>  aaa<br>  bbb<br>  ccc.</p>
-<p>带空格的 . 会被 Jade 的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注意：文本块需要两次转义--&gt;</span></div><div class="line">要输出下面的文本：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>foo\bar<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">需使用：</div><div class="line">p.</div><div class="line">  foo\\bar</div></pre></td></tr></table></figure>
-
-<p>eg1.内联标签可以使用标签文本、也可以使用文本块</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--使用标签文本--&gt;</span></div><div class="line">label</div><div class="line"> | Username:</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接使用标签文本--&gt;</span></div><div class="line">label Username</div></pre></td></tr></table></figure>
-
-<p>eg2.只包含文本的标签，比如 script style textarea，想要输出其中间的内容，不需要使用前缀字符 |</p>
-<figure class="highlight Jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">  head</div><div class="line">    title Example</div><div class="line">    <span class="keyword">script</span></div><div class="line">      <span class="keyword">if</span> (foo) {</div><div class="line">        bar();</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        baz();</div><div class="line">      }</div></pre></td></tr></table></figure>
-
-<h3 id="内联的HTML">内联的HTML</h3>
-<p>想要输出HTML代码片段，可以有以下两种方式：</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--1 使用管道定义一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    | <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    | <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--2 使用. 来告诉Jade 我们需要一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body.</div><div class="line">    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--以上两个例子都渲染出相同的结果--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="嵌套">嵌套</h3>
-<p>1、空格缩进 以自然的方式定义标签嵌套</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first</div><div class="line">    a(href=<span class="string">'#'</span>) foo</div><div class="line">  li</div><div class="line">    a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last</div><div class="line">    a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
-
-<p>2、块展开，在一行内创建嵌套标签，用符号：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first: a(href=<span class="string">'#'</span>) foo</div><div class="line">  li: a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last: a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
-
-<h3 id="可执行代码">可执行代码</h3>
-<p>Jade目前支持三种类型的可执行代码</p>
-<p>第一种前缀 -<br>这是不会被输出的<br>可用在条件语句或循环中</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby"> <span class="keyword">for</span> (var key <span class="keyword">in</span> obj)</span></div><div class="line"> p= obj[key]</div><div class="line"></div><div class="line">-<span class="ruby"><span class="keyword">if</span> (foo)</span></div><div class="line"> ul</div><div class="line">   li aaa</div><div class="line">   li bbb</div><div class="line">-<span class="ruby"><span class="keyword">else</span></span></div><div class="line"> p hehe</div></pre></td></tr></table></figure>
-
-<p>第二种要转义输出的值，用前缀=<br>我们返回一个值 可以加前缀=，输出的代码默认是转义的<br>若想不被转义，可使用 !=</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'bar'</span></div><div class="line"><span class="header">= foo</span></div><div class="line">h1= foo</div><div class="line"></div><div class="line"><span class="comment">//会被渲染成</span></div><div class="line">bar</div><div class="line">&lt;h1&gt;bar&lt;/h1&gt;</div><div class="line"></div><div class="line"><span class="comment">//以下两行是等价的</span></div><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div><div class="line">foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div></pre></td></tr></table></figure>
-
-<h2 id="5-其他">5.其他</h2>
-<h3 id="Doctype">Doctype</h3>
-<p>添加文档类型<br>!!!<br>!!! 5<br>!!! html<br>doctype html</p>
-<h3 id="产生输出">产生输出</h3>
-<p>当选项 compileDebug 的值是 true，Jade 编译时会加行号，且报错信息里会带上行号。<br>当值是 false 时，参数会被去掉。</p>
-<p>你可以通过 toString() 来编译模板而不需要在浏览器端运行整个 Jade 库，这样可以提高性能，也可以减少载入的 JavaScript 数量。</p>
-<h2 id="结束语">结束语</h2>
-<p>模板是什么？模板就是一个模子。供你套数据，并且依据不同数据去走不同的逻辑。<br>引擎是什么？引擎就是个处理器（编译、运行），最后输出个结果（HTML代码）的东西。</p>
-<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade 的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
-<p>最后查了下，还真是，关于 Jade 的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> — 来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a> — 来自stackoverflow<br>你要是也有兴趣，可加入 <a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a> 去讨论</p>
-<h2 id="在线学习Jade">在线学习Jade</h2>
-<p>【1】 <a href="http://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank" rel="external">学习Jade模板引擎的语法</a>，包括：<br>HTML的标签文本、注释<br>id、类、属性<br>变量、转义和非转义</p>
-<p>【2】<a href="http://cssdeck.com/labs/jade-templating-tutorial-codecast-part-2" target="_blank" rel="external">Jade的逻辑处理部分</a>，包括：<br>在模板中使用内嵌js（node）代码<br>条件语句（if和unless）<br>循环（loop、for、each）<br>定义函数（Mixins）<br>过滤器（Filters）</p>
-<p>【3】<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="external">在线测试Jade</a></p>
-<h2 id="参考网站">参考网站</h2>
-<p><a href="http://jade-lang.com/tutorial/" target="_blank" rel="external">Jade的官方教程</a><br><a href="http://jade-lang.com/" target="_blank" rel="external">Jade的完整文档</a><br><a href="https://github.com/visionmedia/jade#readme" target="_blank" rel="external">Jade的Git</a><br><a href="https://github.com/visionmedia/jade/blob/master/Readme_zh-cn.md" target="_blank" rel="external">Jade-模板引擎</a></p>
-<p>其他<br><a href="http://segmentfault.com/a/1190000000357534" target="_blank" rel="external">Jade-源于 Node.js 的 HTML 模板引擎</a><br><a href="http://qianduanblog.com/post/nodejs-learning-13-express3-jade.html" target="_blank" rel="external">nodejs学习13：express3之jade模板引擎入门</a><br><a href="http://blog.csdn.net/gxhacx/article/details/12490927" target="_blank" rel="external">Node学习笔记-Jade模板引擎</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="klf1cihd7d68q9c3" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
-  
+    <time datetime="2014-11-12T10:42:38.000Z" itemprop="datePublished">2014-11-12</time>
+  </a>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章目录</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/11/12/webTecAndStand/" title="网页技术和标准" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">网页技术和标准</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2014-11-12T09:58:10.000Z" itemprop="datePublished">2014-11-12</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/11/11/cssFlexBox/" title="弹性盒子" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">弹性盒子</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/01/18/html_table/">HTML 之 table</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/16/code_hover/">hover 效果</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/04/jsLocation/">Location 对象</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <time datetime="2014-11-11T06:32:51.000Z" itemprop="datePublished">2014-11-11</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/11/08/jsScrollTop/" title="scrollTop" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">scrollTop</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2014-11-08T11:41:28.000Z" itemprop="datePublished">2014-11-08</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/09/23/nodejs_0/" title="Node.js 入门" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Node.js 入门</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget links">
-        
-            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-        
-            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-        
-            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-        
-            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-        
-            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
-        
-            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
-        
-            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
-        
-            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-        
-            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
-        
-            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
-        
-            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
-        
-            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-        
-            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
-        
-            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
-        
-            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
-        
-            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
-        
-            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-        
-    </div>
-  </div>
+    <time datetime="2014-09-23T07:52:16.000Z" itemprop="datePublished">2014-09-23</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
-</aside>
-        
+    <a href="/2014/09/23/nodejs_1_expressjs/" title="Express 介绍" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Express 介绍</h1>
+    
+    <time datetime="2014-09-23T07:47:09.000Z" itemprop="datePublished">2014-09-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/09/23/chromeDevTool/" title="chrome developer tool 开发者调试" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">chrome developer tool 开发者调试</h1>
+    
+    <time datetime="2014-09-23T07:42:56.000Z" itemprop="datePublished">2014-09-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/09/23/funning_0/" title="ALT+小键盘数字打的特殊符号" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">ALT+小键盘数字打的特殊符号</h1>
+    
+    <time datetime="2014-09-23T07:42:09.000Z" itemprop="datePublished">2014-09-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/09/17/handlebars/" title="Handlebars.js 模板引擎" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Handlebars.js 模板引擎</h1>
+    
+    <time datetime="2014-09-17T13:13:03.000Z" itemprop="datePublished">2014-09-17</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/09/13/jade_what/" title="Jade 模板引擎" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Jade 模板引擎</h1>
+    
+    <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
+  </nav>
+
+  </div>
+</div>
+
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 anjia<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
-    </div>
-  </div>
+      <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
-</body>
-</html>
+
+
+
+    </body>
+   </html>

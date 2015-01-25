@@ -1,519 +1,173 @@
-<!DOCTYPE html>
-<html>
+
+  <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>Category: 后端 | anjia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Web前端开发工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="anjia">
-<meta property="og:url" content="http://anjia.github.io/categories/后端/">
-<meta property="og:site_name" content="anjia">
-<meta property="og:description" content="Web前端开发工程师">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="anjia">
-<meta name="twitter:description" content="Web前端开发工程师">
+    <title>Category: 后端 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Web前端开发工程师">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="anjia" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-	<span id="logo">anjia</span>
-	
-	  <span id="subtitle">
-		<a href="/" id="subtitle">静下心，慢慢来</a>
-	  </span>
-	
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-handlebars" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/17/handlebars/" class="article-date">
-  <time datetime="2014-09-17T13:13:03.000Z" itemprop="datePublished">2014-09-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/17/handlebars/">Handlebars.js 模板引擎</a>
-    </h1>
-  
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。<br>它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；<br>它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
-<p>其他：<br>一个弱逻辑模板引擎；Mustache.js 的超集；在服务端预编译模板；支持 Helper 方法；在模板中支持 this 的概念。<br><strong></strong></p>
-<p>想要了解以下概念，点击查看 <a href="http://www.html-js.com/article/1595" target="_blank" rel="external">学习Javascript模板Handlebars.js</a><br>1.Handlebars.js 是怎样运行的？<br>2.为什么使用 Javascript 模板引擎？<br>3.什么情况下使用 Javascript 模板？<br>4.为什么要选择 Handlebars.js？</p>
-<h2 id="目录">目录</h2>
-<ol>
-<li>安装和使用</li>
-<li>表达式<br><strong> Block 表达式</strong>：可以改变js的上下文<br><strong> Handlebars 的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个 section 里面（编译时候进行）<br><strong> 自定义helper：</strong>在 js 中用 Handlebars.registerHelper 注册 helpers</li>
-<li>其他<br>（1）Handlebar 的注释（comments）<br>（2）Handlebars 的访问（Path）<br>（3）调试技巧<br>（4）handlebars 的 jquery 插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
-</ol>
-<h2 id="安装和使用">安装和使用</h2>
-<p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
-<p>如何使用？见【3】<br>1.在 HTML 页面上，通过使用 Handlebars 表达式设定模板，将模板添加到 script 标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在 js 中，初始化数据对象<br>3.在 js 中，使用 Handlebars 编译函数来编译模板</p>
-<p><img src="\images\use_20140918.png" alt=""></p>
-<h2 id="Handlebar的表达式">Handlebar的表达式</h2>
-<p>Handlebars expressions 是 handlebars 模板中最基本的单元，使用方法是用双大括号。<br>表达式也支持点操作符 content.title，该形式可以调用嵌套的值或者方法。<br>handlebars 会根据上下文来自动对表达式进行匹配，对象甚至是函数：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
-<h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
-<p>如果当前的表达式是一个数组，则 Handlebars 会“自动展开数组”，并将 Blocks 的上下文设为数组中的元素。</p>
-<p><img src="\images\block_20140918.png" alt=""></p>
-<h3 id="内置块表达式（Block_helper）">内置块表达式（Block helper）</h3>
-<p>用 Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
-<h4 id="1-_each_block_helper">1. each block helper</h4>
-<p>内置的 each helper遍 历列表块内容，用 this 来引用遍历的元素，this 指的是数组里的每一项元素。</p>
-<p><img src="\images\each_20140918.png" alt=""></p>
-<p>这和上面的Block很像，但是原理不一样。name是数组，而内置的each就是为了遍历数组用的，更复杂的数据也同样使用。 【？】</p>
-<h4 id="2-_if_else_block_helper">2. if else block helper</h4>
-<p>if 就像你使用 JavaScript 一样，指定条件渲染 DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar 将不会渲染 DOM。</p>
-<h4 id="3-_unless_block_helper">3. unless block helper</h4>
-<p>反向的if</p>
-<h4 id="4-_with_block_helper">4. with block helper</h4>
-<p>一般情况下，Handlebars 模板会在编译的阶段的时候进行 context 传递和赋值。<br>使用 with 的方法，我们可以将 context 转移到数据的一个 section 里面（如果你的数据包含 section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
-<p><img src="\images\with_20140918.png" alt=""></p>
-<h3 id="自定义helper">自定义helper</h3>
-<h2 id="其他">其他</h2>
-<h3 id="Handlebars的访问（Path）">Handlebars的访问（Path）</h3>
-<p>Handlebar 支持路径和 mustache，Handlebar 还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
-<h3 id="调试技巧">调试技巧</h3>
-<p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
-<h2 id="参考">参考</h2>
-<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
-<p>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
-<p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/17/handlebars/" data-id="xaqern2psst2w4t0" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jade_what" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/13/jade_what/" class="article-date">
-  <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <div id="container">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/13/jade_what/">Jade 模板引擎</a>
-    </h1>
-  
 
-      </header>
+<div class="archive-title" >
+  <h2 class="category-icon">后端</h2>
+  
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/09/17/handlebars/" title="Handlebars.js 模板引擎" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Handlebars.js 模板引擎</h1>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>怎么说呢，心情起伏有点大。兴高采烈地翻译了2个小时40分钟，把关于 Jade 的语法和特性都过了一遍。但是完事之后发现，对它的态度更多的是怪异。</p>
-<p>第一，有些操作符和它的真实意思对应不那么直观<br>比如 !=(非转义输出) 分明是不等于好么；|（原样输出的管道）初识的时候不易接受。</p>
-<p>第二，空格缩进过于灵活了吧<br>一缩进就代表嵌套了，这太吓人了，我就多打了两空格，就从兄弟变成了儿子了；少打两空格，就从儿子变兄弟了。这太容易坑爹了吧。个人觉得，缩进嵌套这本身就挺诡异的，前者是风格，后者是结构，真心觉得没必要绑在一起。比如在 if-else 语句里就容易写错缩进。</p>
-<p>第三，是少敲键盘了，但失去了 HTML 的原貌<br>标签就标签嘛，干嘛要脱掉&lt;&gt;的外衣呢。本来打开一个网页，F12 就能看到现有页面的源码结构，但是当要用 Jade 写时，反而还得再要折腾地变个形。为了所谓的简洁性，代码看起来却更不易读了。</p>
-<p>第四，对于 class 和 id 的书写，是更瘦身了，但总觉得不妥<br>这种借鉴css语法的形式，熟悉css语法的人读起来是so easy了。但对一个外人来说，可读性不好了。原本就像读一句话的id=”container” class=”wrap” 结果变成了符号文 #container.wrap。</p>
-<p>在看文档的时候，里面有描述“Jade中的某种写法，同样是设计师友好的”。就比较好奇，为什么要对设计师友好？感觉取悦了狭义上的前端工程师就够了。产品是要只为少数人设计，语言也要一样。</p>
-<p>当然，它的优势（个人认为是优势的）也有，比如变量默认是转义的、当属性值是 undefined 或 null 时会自动忽略、模板中可以直接使用 javascript。这些针对 HTML、针对前端的特性做的优化还是很不错的。</p>
-<p>之所以选择翻译“模板引擎”这章，主要考虑到：<br>1、我们正在用 smarty，觉得模板很方便。所以想看看其他兄弟模板是怎么个回事，进而借此机会探究下模板。<br>2、虚荣心作怪吧，就想探探那高大上的名词“模板”“引擎”。但是今天看到一个大牛这么说“模板技术并不是什么神秘的技术，它干的实际上就是拼接字符串这样很底层的活，只是各种模板有着各自的优缺点和技巧。”  想想人家说的也挺中肯的，模板不就是套数据+加逻辑，最后输出 HTML 字符串嘛。</p>
-<p>为了不让今天的付出感觉上白费掉，便决定写个博客记录下目前对它的理解，好提醒下自己：我今天确实是接触到了“新”东西。</p>
-<h2 id="Jade">Jade</h2>
-<p>Jade — Node Template Engine，一个高性能的模板引擎，为 Node 而做，用 JavaScript 实现。<br>Node.js 的 Express.js 框架默认用的就是 Jade。<br>Jade 还有其他语言的实现，可以实现前后端渲染的统一。比如 php、ruby、python、java、scala。</p>
-<ol>
-<li>通过npm安装： npm install jade</li>
-<li>把Jade编译成一个可供浏览器使用的单文件，执行：make jade.js。<br>可以把 <em>.jade  编译为  </em>.html</li>
-<li>命令行：jade [options] [dir|file…]</li>
-<li>API</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">//complie</span></div><div class="line"><span class="keyword">var</span> fn = jade.compile(<span class="string">'string of jade'</span>, options);</div><div class="line"><span class="keyword">var</span> html = fn(locals);</div><div class="line"></div><div class="line"><span class="comment">//render</span></div><div class="line"><span class="keyword">var</span> html = jade.render(<span class="string">'string of jade'</span>, merge(options, locals));</div><div class="line"></div><div class="line"><span class="comment">//renderFile</span></div><div class="line"><span class="keyword">var</span> html = jade.renderFile(<span class="string">'filename.jade'</span>, merge(options, locals));</div></pre></td></tr></table></figure>
-
-<ol>
-<li>浏览器支持<br>浏览器版的 Jade 它只支持最新的浏览器，是一个很大的文件。建议使用时先把 Jade 预编译成 JavaScript，然后再在客户端使用 runtime.js 库。</li>
-</ol>
-<h2 id="Jade的语法和特性">Jade的语法和特性</h2>
-<p>Jade 的语法是简洁、对 HTML 代码空格敏感。在这点上它借鉴了 Haml 的很多地方，所以与 Haml 语法挺相近</p>
-<p>Haml 是什么？Haml 是简写 HTML 的一种办法。借用 Haml 的作者 Hampton Catlin 的一句话：“Haml 是对传统 XHTML 的生成方式的一种反叛。它既不是纯粹的代码，也不是一种文本处理语言。它是与众不同的，是一种在我看来最为自然的 XHTML 构造方式。” Haml 的网站上也说：“Haml 让你撇开臃肿丑陋的模板，将它们以优雅整洁的代码代替。”</p>
-<ol>
-<li>语法<br>（1）标签、属性、注释<br>（2）读取数据的值（转义、非转义）</li>
-<li>逻辑<br>（1）条件语句（if、unless、case）<br>（2）循环（each、for）<br>（3）过滤器<br>（4）Mixins</li>
-<li>继承和包含<br>（1）模板继承<br>（2）包含</li>
-<li>特性<br>（1）输出文本（3种方式：标签文本 | .）<br>（2）内联的 HTML（2种方式：| .）<br>（3）嵌套（2种方式：缩进嵌套、块展开）<br>（4）可执行代码（3种方式：- = ）</li>
-<li>其他<br>（1）Doctype<br>（2）产生输出</li>
-</ol>
-<h2 id="1-_语法">1. 语法</h2>
-<h3 id="标签">标签</h3>
-<p>标签就是一个简单的单词</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">会被转换成 <span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的id--&gt;</span></div><div class="line">div#container</div><div class="line">会被转成 <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!--标签的class--&gt;</span></div><div class="line">div.user-details</div><div class="line"></div><div class="line"><span class="comment">&lt;!--多个class和id--&gt;</span></div><div class="line">div#foo.bar.baz</div><div class="line"></div><div class="line"><span class="comment">&lt;!--不写标签，默认就是div（语法糖）--&gt;</span></div><div class="line">#foo</div><div class="line">.bar</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="属性">属性</h3>
-<p>属性分隔符是左右括号 ()<br>当值是 undefined 或 null时，属性不会被加上（所以它不会编译出 xxx=null）<br>布尔属性，只有当值是 true 时才会输出。为 false 时就被忽略了</p>
-<p>class 属性是一个特殊的属性，可以接受一个数组<br>bodyClasses = [‘user’, ‘authenticated’] :<br>body(class=bodyClasses)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--普通的 JavaScript 字符串连接--&gt;</span></div><div class="line">a(href='/user/' + user.id)= user.name</div><div class="line"></div><div class="line"><span class="comment">&lt;!--用Jade--&gt;</span></div><div class="line">a(href='/user/#{user.id}')= user.name</div></pre></td></tr></table></figure>
-
-<h3 id="注释">注释</h3>
-<p>1、单行注释 // 不输出的注释，加- 即 //-<br>2、块注释<br>3、条件注释</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">body</div><div class="line"> //if IE</div><div class="line">   a()</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--[if IE]&gt;</span></div><div class="line">    &lt;a href="http://www.mozilla.com/en-US/firefox/"&gt;Get Firefox&lt;/a&gt;</div><div class="line">  &lt;![endif]--&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="读取数据的值">读取数据的值</h3>
-<p>1、读取变量的值，用 #{}<br>输出是默认是转义的。比如取变量name的值 #{name}<br>当要输出#{}，则可以转义，即 p #{name}</p>
-<p>2、不想转义变量的值 !{name}   【直接输出标签】</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- var html = "<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>"</div><div class="line">| !{html}</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接输出&lt;script&gt; 标签  【都原样了，还非转义？】--&gt;</span></div></pre></td></tr></table></figure>
-
-<h2 id="2-_模板逻辑">2. 模板逻辑</h2>
-<h3 id="条件语句">条件语句</h3>
-<p>Jade 的条件语句和使用了前缀 - 的 js 语句是一致的，只是条件语句允许你可以不用括号。<br>一定要在心里明白：这个表达式渲染出的是常规的 js。是相等的</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//用条件表达式<span class="keyword">if</span></div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  <span class="keyword">if</span> user.role == <span class="string">'admin'</span></div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    p= user.name</div><div class="line"><span class="comment"></span></div><div class="line">//常规的js代码</div><div class="line"><span class="keyword">for</span> user <span class="operator">in</span> users</div><div class="line">  - <span class="keyword">if</span> (user.role == <span class="string">'admin'</span>)</div><div class="line">    p <span class="comment">#{user.name} is an admin</span></div><div class="line">  - <span class="keyword">else</span></div><div class="line">    p= user.name</div></pre></td></tr></table></figure>
-
-<p>Jade同时支持 unless  这和 if(!(expr)) 是等价的</p>
-<h3 id="Case">Case</h3>
-<p>case表达式</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--空格缩进--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    friends = 10</div><div class="line">    case friends</div><div class="line">      when 0</div><div class="line">        p you have no friends</div><div class="line">      when 1</div><div class="line">        p you have a friend</div><div class="line">      default</div><div class="line">        p you have #{friends} friends</div><div class="line"></div><div class="line"><span class="comment">&lt;!--块展开--&gt;</span></div><div class="line">friends = 5</div><div class="line">html</div><div class="line">  body</div><div class="line">    case friends</div><div class="line">      when 0: p you have no friends</div><div class="line">      when 1: p you have a friend</div><div class="line">      default: p you have #{friends} friends</div></pre></td></tr></table></figure>
-
-<p>此处有木有发现，关键字 case、when、default 就和标签傻傻分不清楚了。<br>有人说可以靠高亮。但是，单词的语义应该是自描述的，你看，一加&lt;&gt;很明显就是标签了嘛。</p>
-<h3 id="循环">循环</h3>
-<p>Jade 支持 js 的原生代码，还支持了一些特殊的标签，让模板更易理解。其中之一就是 each。<br>each val,key in obj<br>each item,i in arr</p>
-<p>Jade 在内部会把这些语句转换成原生的 js 语句，即 users.foreach(function(user){})<br>词法作用域和嵌套和在普通的js中一样。<br>也可以用 for。</p>
-<h3 id="过滤器">过滤器</h3>
-<p>过滤器前缀:<br>比如 :markdown 会把下面块的文本交给专门的函数进行处理<br>可用的过滤器都有<br>:stylus 必须安装 stylus<br>:less 必须安装 less.js<br>:marddown 必须安装 markdown-js 或者 node-discount<br>:cdata<br>:coffeescript 必须安装  coffee-script</p>
-<h3 id="Mixins">Mixins</h3>
-<p>Mixins 在编译的模板里会被 Jade 转换为普通的 js 函数。<br>Mixins 可以带参，但不是必需的。</p>
-<h2 id="3-_模板继承">3. 模板继承</h2>
-<h3 id="模板继承">模板继承</h3>
-<p>支持通过 block 和 extends 关键字来实现模板继承（继承布局）。<br>Jade 的 block 就是一个块，它将在子模板中实现。同时支持递归的。<br>继承的话，extends parent-layout</p>
-<p>Jade允许你替换、前置和追加blocks。</p>
-<p>block 默认是覆盖（替换）父级块的内容（也可以在子块中实现块）<br>block append  追加代码块（block可选）<br>block prepend 前置代码块（block可选）</p>
-<h3 id="包含">包含</h3>
-<p>includes 允许你静态包含一段 Jade，或其他的普通文本（头部、页脚的CSS、HTML）<br>Jade 解析这些文件，并插入到已经生成的语法树中</p>
-<p>被包含的块，可以用 yield 语句（明确标明 include 代码块的放置位置。）</p>
-<p>子可以用父中的变量。被包含的 Jade 会按字面解析合并到 AST 中，词法范围的变量的效果和直接在一个文件里写时一样。这就意味着 include 可以用做 partial 的替代。</p>
-<h2 id="4-_模板特性">4. 模板特性</h2>
-<h3 id="标签文本">标签文本</h3>
-<p>1、单行的文本，用标签文本</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--单行的文本只需要把文本放在标签之后即可，即标签文本--&gt;</span></div><div class="line">p hello</div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>2、文本块 用 |</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--大段的文本，原样输出--&gt;</span></div><div class="line">p</div><div class="line"> | aaa</div><div class="line"> | bbb</div><div class="line"> | ccc</div><div class="line"></div><div class="line">输出 <span class="tag">&lt;<span class="title">p</span>&gt;</span>aaa bbb ccc<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>3、用. 来开始一段文本块<br>p.<br>  aaa<br>  bbb<br>  ccc.</p>
-<p>带空格的 . 会被 Jade 的解析器忽略，当做一个普通的文字。<br>所以要输出文本块 就不要带空格了，直接.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注意：文本块需要两次转义--&gt;</span></div><div class="line">要输出下面的文本：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>foo\bar<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">需使用：</div><div class="line">p.</div><div class="line">  foo\\bar</div></pre></td></tr></table></figure>
-
-<p>eg1.内联标签可以使用标签文本、也可以使用文本块</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--使用标签文本--&gt;</span></div><div class="line">label</div><div class="line"> | Username:</div><div class="line"></div><div class="line"><span class="comment">&lt;!--直接使用标签文本--&gt;</span></div><div class="line">label Username</div></pre></td></tr></table></figure>
-
-<p>eg2.只包含文本的标签，比如 script style textarea，想要输出其中间的内容，不需要使用前缀字符 |</p>
-<figure class="highlight Jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">html</div><div class="line">  head</div><div class="line">    title Example</div><div class="line">    <span class="keyword">script</span></div><div class="line">      <span class="keyword">if</span> (foo) {</div><div class="line">        bar();</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        baz();</div><div class="line">      }</div></pre></td></tr></table></figure>
-
-<h3 id="内联的HTML">内联的HTML</h3>
-<p>想要输出HTML代码片段，可以有以下两种方式：</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--1 使用管道定义一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body</div><div class="line">    | <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    | <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--2 使用. 来告诉Jade 我们需要一段文本--&gt;</span></div><div class="line">html</div><div class="line">  body.</div><div class="line">    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--以上两个例子都渲染出相同的结果--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">p</span>&gt;</span>foo bar baz<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<h3 id="嵌套">嵌套</h3>
-<p>1、空格缩进 以自然的方式定义标签嵌套</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first</div><div class="line">    a(href=<span class="string">'#'</span>) foo</div><div class="line">  li</div><div class="line">    a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last</div><div class="line">    a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
-
-<p>2、块展开，在一行内创建嵌套标签，用符号：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first: a(href=<span class="string">'#'</span>) foo</div><div class="line">  li: a(href=<span class="string">'#'</span>) bar</div><div class="line">  li.last: a(href=<span class="string">'#'</span>) baz</div></pre></td></tr></table></figure>
-
-<h3 id="可执行代码">可执行代码</h3>
-<p>Jade目前支持三种类型的可执行代码</p>
-<p>第一种前缀 -<br>这是不会被输出的<br>可用在条件语句或循环中</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby"> <span class="keyword">for</span> (var key <span class="keyword">in</span> obj)</span></div><div class="line"> p= obj[key]</div><div class="line"></div><div class="line">-<span class="ruby"><span class="keyword">if</span> (foo)</span></div><div class="line"> ul</div><div class="line">   li aaa</div><div class="line">   li bbb</div><div class="line">-<span class="ruby"><span class="keyword">else</span></span></div><div class="line"> p hehe</div></pre></td></tr></table></figure>
-
-<p>第二种要转义输出的值，用前缀=<br>我们返回一个值 可以加前缀=，输出的代码默认是转义的<br>若想不被转义，可使用 !=</p>
-<figure class="highlight jade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'bar'</span></div><div class="line"><span class="header">= foo</span></div><div class="line">h1= foo</div><div class="line"></div><div class="line"><span class="comment">//会被渲染成</span></div><div class="line">bar</div><div class="line">&lt;h1&gt;bar&lt;/h1&gt;</div><div class="line"></div><div class="line"><span class="comment">//以下两行是等价的</span></div><div class="line"><span class="bullet">- </span>var foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div><div class="line">foo = <span class="emphasis">'foo '</span> + <span class="emphasis">'bar'</span></div></pre></td></tr></table></figure>
-
-<h2 id="5-其他">5.其他</h2>
-<h3 id="Doctype">Doctype</h3>
-<p>添加文档类型<br>!!!<br>!!! 5<br>!!! html<br>doctype html</p>
-<h3 id="产生输出">产生输出</h3>
-<p>当选项 compileDebug 的值是 true，Jade 编译时会加行号，且报错信息里会带上行号。<br>当值是 false 时，参数会被去掉。</p>
-<p>你可以通过 toString() 来编译模板而不需要在浏览器端运行整个 Jade 库，这样可以提高性能，也可以减少载入的 JavaScript 数量。</p>
-<h2 id="结束语">结束语</h2>
-<p>模板是什么？模板就是一个模子。供你套数据，并且依据不同数据去走不同的逻辑。<br>引擎是什么？引擎就是个处理器（编译、运行），最后输出个结果（HTML代码）的东西。</p>
-<p>好奇心固然重要，但不要被自我无根据的很高预期暗伤到（期望越大失望越大么）。是否会随着翻译的深入，对Jade 的态度有所改观呢？自己留个悬念吧，走着瞧呗。</p>
-<p>最后查了下，还真是，关于 Jade 的讨论挺多，褒贬不一。以下的两处讨论都挺激烈，也很严肃。<br><a href="http://www.zhihu.com/question/20355486" target="_blank" rel="external">关于nodejs的模板引擎，如何选择 EJS 和 Jade</a> — 来自知乎<br><a href="http://stackoverflow.com/questions/16513168/is-jade-or-ejs-better-for-node-js-templating/16513790#16513790" target="_blank" rel="external">Node.js的模板Jade和EJS哪个好？</a> — 来自stackoverflow<br>你要是也有兴趣，可加入 <a href="http://groups.google.com/group/jadejs" target="_blank" rel="external">谷歌组</a> 去讨论</p>
-<h2 id="在线学习Jade">在线学习Jade</h2>
-<p>【1】 <a href="http://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank" rel="external">学习Jade模板引擎的语法</a>，包括：<br>HTML的标签文本、注释<br>id、类、属性<br>变量、转义和非转义</p>
-<p>【2】<a href="http://cssdeck.com/labs/jade-templating-tutorial-codecast-part-2" target="_blank" rel="external">Jade的逻辑处理部分</a>，包括：<br>在模板中使用内嵌js（node）代码<br>条件语句（if和unless）<br>循环（loop、for、each）<br>定义函数（Mixins）<br>过滤器（Filters）</p>
-<p>【3】<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="external">在线测试Jade</a></p>
-<h2 id="参考网站">参考网站</h2>
-<p><a href="http://jade-lang.com/tutorial/" target="_blank" rel="external">Jade的官方教程</a><br><a href="http://jade-lang.com/" target="_blank" rel="external">Jade的完整文档</a><br><a href="https://github.com/visionmedia/jade#readme" target="_blank" rel="external">Jade的Git</a><br><a href="https://github.com/visionmedia/jade/blob/master/Readme_zh-cn.md" target="_blank" rel="external">Jade-模板引擎</a></p>
-<p>其他<br><a href="http://segmentfault.com/a/1190000000357534" target="_blank" rel="external">Jade-源于 Node.js 的 HTML 模板引擎</a><br><a href="http://qianduanblog.com/post/nodejs-learning-13-express3-jade.html" target="_blank" rel="external">nodejs学习13：express3之jade模板引擎入门</a><br><a href="http://blog.csdn.net/gxhacx/article/details/12490927" target="_blank" rel="external">Node学习笔记-Jade模板引擎</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/09/13/jade_what/" data-id="klf1cihd7d68q9c3" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-smartyEscape" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/13/smartyEscape/" class="article-date">
-  <time datetime="2014-08-13T13:04:41.000Z" itemprop="datePublished">2014-08-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/后端/">后端</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/13/smartyEscape/">smarty 中的转义 escape</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>探究下 smarty 对谁做了什么样的转义。</p>
-<h2 id="smarty_的转义">smarty 的转义</h2>
-<p>可对以下内容进行转义（转码）</p>
-<ol>
-<li>html   可转义 &amp; “ ‘ &lt; &gt;</li>
-<li>htmlall 可转义 all html entities</li>
-<li>url  可转义 : / ? = &amp; # 汉字</li>
-<li>mail 可转义 @ .</li>
-<li>quotes</li>
-<li>hex 十六进制</li>
-<li>hexentity 十六进制实体</li>
-<li>javascript</li>
-</ol>
-<p>参考 smarty3 手册：<a href="http://www.php100.com/manual/smarty3/language.modifier.escape.html" target="_blank" rel="external">http://www.php100.com/manual/smarty3/language.modifier.escape.html</a></p>
-<h3 id="escape:_‘html’">escape: ‘html’</h3>
-<p>它会对以下5个字符进行转义 &amp; “ ‘ &lt; &gt;<br>会分别转义成 HTML 中对应的转义字符（&amp;  “  ‘  &lt;  &gt;），以保证在页面上能正常显示。如下：<br><img src="http://blogkiki.qiniudn.com/pic-1.png" alt=""><br>感觉前两天脑袋掉进一个深坑里了，不，不是深坑，是一个浅坑的拐角了，死都想不明白下面的 case。而且得出了这样的测试结论：</p>
-<ul>
-<li>当&lt;后跟的是英文字母（不论大小写）时，若直接输出，则会导致后面内容的缺失</li>
-<li>当&lt;后跟的是空格、数字、汉字等时，直接输出，则可显示正常</li>
-</ul>
-<p>我的 case 是这样的：<br><img src="http://blogkiki.qiniudn.com/pic2.png" alt=""><br>靠！刚才写到这里的时候，简直是秒懂了。只能说明之前脑袋瓜档机是真的。原因：是因为我是在 smarty 中输出 然后直接显示在网页里的。所以究其原因不在于 escape:’html’ 时做了什么诡异的事情，而在于浏览器在解析 HTML 页面时碰到&lt;会怎么处理。</p>
-<h3 id="escape:_‘url’">escape: ‘url’</h3>
-<p>其中对以下7处进行转义：<br><img src="http://blogkiki.qiniudn.com/pic3.png" alt=""><br>而对英文字母数字点号 则原样保留<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic4.png" alt=""></p>
-<h3 id="escape:_‘javascript’">escape: ‘javascript’</h3>
-<p>如果有个变量要在 js 中使用，则需要对其进行 javascript 转义</p>
-<h3 id="escape:_‘mail’">escape: ‘mail’</h3>
-<p>会对 @ . 这两个字符进行转义</p>
-<ul>
-<li>@  [AT]</li>
-<li>.  [DOT]</li>
-</ul>
-<p>举例：<br><img src="http://blogkiki.qiniudn.com/pic5.png" alt=""></p>
-<h3 id="escape:_‘quotes’">escape: ‘quotes’</h3>
-<p>会对单引号进行转义，把 ‘ 变成  \’<br>举例：<br><img src="http://blogkiki.qiniudn.com/pic6.png" alt=""><br>对单引号串没有转义的原因，在于单引号串和双引号串的区别。详见下方。</p>
-<h2 id="双引号串_vs-_单引号串">双引号串 vs. 单引号串</h2>
-<p>在 php（smarty 同理）中，双引号串中的内容可以被解释被替换，而单引号串中的内容总被认为是普通字符。<br>所以，当想在字符串中进行 变量代换 和 包含\n(\t \r \n)等转义序列时，应该使用双引号。比如：<br><img src="http://blogkiki.qiniudn.com/pic7.png" alt=""><br>在脚本中，<br>处理单引号串更快些，因为语法分析器会很单纯地处理单引号串<br>处理双引号串会慢些，因为会对其内部的东东进行解析</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://anjia.github.io/2014/08/13/smartyEscape/" data-id="ofqx5n6bz48j9et2" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模板/">模板</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转义/">转义</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
+    <time datetime="2014-09-17T13:13:03.000Z" itemprop="datePublished">2014-09-17</time>
+  </a>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章目录</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实战/">实战</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/09/13/jade_what/" title="Jade 模板引擎" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">Jade 模板引擎</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">文章归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
-    </div>
-  </div>
+    <time datetime="2014-09-13T13:06:55.000Z" itemprop="datePublished">2014-09-13</time>
+  </a>
+</section>
 
+  <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2014/08/13/smartyEscape/" title="smarty 中的转义 escape" itemprop="url" class="brief">
+  
+    <h1 itemprop="name">smarty 中的转义 escape</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/01/18/html_table/">HTML 之 table</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/16/code_hover/">hover 效果</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/04/jsLocation/">Location 对象</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_0/">CSS 之杂谈（1）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/03/css_codingSpec/">CSS 代码的编写规范</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <time datetime="2014-08-13T13:04:41.000Z" itemprop="datePublished">2014-08-13</time>
+  </a>
+</section>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js高级程序设计/">js高级程序设计</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortcut-key/">shortcut key</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo/">todo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实战/">实战</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象/">对象</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转义/">转义</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget links">
-        
-            <a href="http://www.75team.com/" target="_blank">奇舞团</a>
-        
-            <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
-        
-            <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
-        
-            <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
-        
-            <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
-        
-            <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
-        
-            <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
-        
-            <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-        
-            <a href="http://blog.csdn.net/mine666" target="_blank">JiaoLong_H</a>
-        
-            <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
-        
-            <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
-        
-            <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
-        
-            <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
-        
-            <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
-        
-            <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
-        
-            <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
-        
-            <a href="http://themes.xiguabaobao.com" target="_blank">主题作者</a>
-        
-    </div>
   </div>
+</div>
 
-  
-</aside>
-        
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 anjia<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape+</a>
-    </div>
-  </div>
+      <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
-</body>
-</html>
+
+
+
+    </body>
+   </html>

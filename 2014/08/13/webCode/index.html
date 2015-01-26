@@ -1,0 +1,435 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>编码方式 ASCII, Unicode, UTF-8, GBK | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="信息编码方式
+1、ASCII 编码：American Standand Code for Information Interchange 美国标准信息交换码2、非ASCII 编码世界的（Unicode）中国汉字编码（GB2312，GBK，GB18030）
+ASCII
+1、ASCII 是美国制定的字符">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/13/webCode/" title="编码方式 ASCII, Unicode, UTF-8, GBK" itemprop="url">编码方式 ASCII, Unicode, UTF-8, GBK</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-08-13T12:50:30.000Z" itemprop="datePublished">2014-08-13</time>
+    更新日期:<time datetime="2014-08-24T11:33:18.000Z" itemprop="dateModified">2014-08-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息编码方式"><span class="toc-number">1.</span> <span class="toc-text">信息编码方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ASCII"><span class="toc-number">2.</span> <span class="toc-text">ASCII</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非_ASCII"><span class="toc-number">3.</span> <span class="toc-text">非  ASCII</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unicode"><span class="toc-number">3.1.</span> <span class="toc-text">Unicode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-8"><span class="toc-number">3.2.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#汉字编码"><span class="toc-number">3.3.</span> <span class="toc-text">汉字编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBK_和_UTF-8"><span class="toc-number">4.</span> <span class="toc-text">GBK 和 UTF-8</span></a></li></ol>
+		</div>
+		
+		<h2 id="信息编码方式">信息编码方式</h2>
+<p>1、ASCII 编码：American Standand Code for Information Interchange 美国标准信息交换码<br>2、非ASCII 编码<br>世界的（Unicode）<br>中国汉字编码（GB2312，GBK，GB18030）</p>
+<h2 id="ASCII">ASCII</h2>
+<p>1、ASCII 是美国制定的字符编码，对应关系：英语字符 之与 二进制位 （鼻祖，最简单的方式）<br>2、标准的 ASCII 是由7位二进制数组成，用来表示26个英文大小写字母 和 特殊符号</p>
+<ul>
+<li>从0000 0000 到 0111 1111，共128个字符 【1个字节，最高位为0】</li>
+<li>详细的ASCII码对照表，可参考 <a href="http://wenku.baidu.com/view/f1c0e2fec8d376eeaeaa31fd.html" target="_blank" rel="external">http://wenku.baidu.com/view/f1c0e2fec8d376eeaeaa31fd.html</a></li>
+</ul>
+<h2 id="非_ASCII">非  ASCII</h2>
+<h3 id="Unicode">Unicode</h3>
+<p>1、解决的问题：将世界上所有文字统一编码<br>与 ASCII 码的区分，eg.“汉”用十六进制表示6C49，用二进制表示（1101100 01001001）至少2个字节or更多。<br>2、带来的问题<br>对英文来讲，存储浪费。已知的英文 ASCII 码表示只需一个字节，足矣。造成的后果是： </p>
+<ul>
+<li>出现了 Unicode 的多种存储方式</li>
+<li>无法推广，直到互联网的出现（强烈要求统一的编码方式）</li>
+</ul>
+<p>3、Unicode 只是一个符号集，只规定了符号的二进制码 【却没有规定，这个二进制代码如何存储】<br>   中文的Unicode，可参考 <a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="external">http://www.chi2ko.com/tool/CJK.htm</a><br>4、Unicode是理论，UTF是存储、传输方式 （eg. UTF-8：Unicode TransformationFormat-8bits）<br>   3套编码方式（Unicode用基本保留字）：UTF-8，UTF-16，UTF-32</p>
+<h3 id="UTF-8">UTF-8</h3>
+<p>1、UTF-8 是 Unicode 的实现方式之一，互联网上使用最广泛<br>2、特点：变长的字节编码方式（有控制位）<br>   对于一个字符的 UTF-8 编码，如下。</p>
+<ul>
+<li>1字节 0xxxxxxx                 【 Unicode 兼容 ASCII 】</li>
+<li>2字节 110xxxxx 10xxxxxx</li>
+<li>3字节 1110xxxx 10xxxxxx 10xxxxxx</li>
+<li>4字节 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>5字节 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>6字节 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </li>
+</ul>
+<p>UTF-8 最多可用到6个字节。因此，UTF-8 中可用来表示字符编码的实际位数，最多有31位。<br>而x所表示的值，与 Unicode 编码是一一对应的，高低位也相同。<br>3、unicode 和 UTF-8 的相互转换。<br>  有关utf-8，可参考 <a href="http://www.cnblogs.com/chenwenbiao/archive/2011/08/11/2134503.html" target="_blank" rel="external">http://www.cnblogs.com/chenwenbiao/archive/2011/08/11/2134503.html</a></p>
+<h3 id="汉字编码">汉字编码</h3>
+<p>1、UTF-8 是兼容 ASCII 的：英文1个字节，中文3个字节。<br>2、中国汉字的编码，有GB2312、GBK、GB18030</p>
+<ul>
+<li>表示范围：GB2312 &lt; GBK &lt; GB18030，均用2字节表一个汉字（高字节为1，以区分ASCII码）</li>
+<li>GB2312出来较早，有些汉字和繁体字不支持</li>
+<li>均兼容ASCII</li>
+</ul>
+<h2 id="GBK_和_UTF-8">GBK 和 UTF-8</h2>
+<p>1、区别：字节不同</p>
+<ul>
+<li>GBK 中英文统一两字节</li>
+<li>UTF-8 英文1个字节，中文3个字节</li>
+</ul>
+<p>2、区分：可用BOM（Byte Order Mark）标记<br>3、互换：必须通过 Unicode 编码<br>4、字符集合：GB2312 &lt; GBK &lt; UTF-8<br>5、各自的适用场合：</p>
+<ul>
+<li>英文字符多时，用 UTF-8 省空间</li>
+<li>中文多时，用 GBK 省空间</li>
+<li>GBK 是中国的，在国家标准 GB2312 基础上扩充的，通用性差</li>
+<li>UTF-8 世界的，国际编码，通用性好</li>
+</ul>
+<p>温馨提示：<br>现在几乎不用 GBK 了，大家默认的都是直接上 UTF-8。原因你懂的。<br>之所以还去查这一坨东西，主要是因为我之前不很清楚这些编码们之间的区别。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/web/">web</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Web/">Web</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2014/08/13/webCode/" data-title="编码方式 ASCII, Unicode, UTF-8, GBK | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/08/13/smartyEscape/" title="smarty 中的转义 escape">
+  <strong>上一篇:</strong><br/>
+  <span>
+  smarty 中的转义 escape</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/13/webUrl/"  title="URL 回车后发生了什么？">
+ <strong>下一篇:</strong><br/> 
+ <span>URL 回车后发生了什么？
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息编码方式"><span class="toc-number">1.</span> <span class="toc-text">信息编码方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ASCII"><span class="toc-number">2.</span> <span class="toc-text">ASCII</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非_ASCII"><span class="toc-number">3.</span> <span class="toc-text">非  ASCII</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unicode"><span class="toc-number">3.1.</span> <span class="toc-text">Unicode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-8"><span class="toc-number">3.2.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#汉字编码"><span class="toc-number">3.3.</span> <span class="toc-text">汉字编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBK_和_UTF-8"><span class="toc-number">4.</span> <span class="toc-text">GBK 和 UTF-8</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (5)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (10)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (2)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (2)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 17.50px;">CSS</a><a href="/tags/CSS3/" style="font-size: 10.00px;">CSS3</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 15.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/实战/" style="font-size: 10.00px;">实战</a><a href="/tags/对象/" style="font-size: 15.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.50px;">杂谈</a><a href="/tags/模板/" style="font-size: 15.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 15.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 15.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

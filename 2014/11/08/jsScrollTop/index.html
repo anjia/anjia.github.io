@@ -1,0 +1,421 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>scrollTop | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="背景
+至此，碰到过两次“下拉滚动条去异步加载新数据”的场景，第一次是一个瀑布流，这次是一个列表。第一次接触瀑布流时，被那高大上的名字唬到了，内心就不知不觉自卑起来，导致思考问题不理智学东西没条理。看似在网搜了不少资料，但都是边边角角，没有一个概况；更不用说先自己想下怎么办，然后再带着问题去搜解决办法">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/08/jsScrollTop/" title="scrollTop" itemprop="url">scrollTop</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-11-08T11:41:28.000Z" itemprop="datePublished">2014-11-08</time>
+    更新日期:<time datetime="2015-01-25T14:48:57.000Z" itemprop="dateModified">2015-01-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题本身"><span class="toc-number">2.</span> <span class="toc-text">问题本身</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码里的滚动条"><span class="toc-number">3.</span> <span class="toc-text">代码里的滚动条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他及扩展出来的点"><span class="toc-number">4.</span> <span class="toc-text">其他及扩展出来的点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scroll事件"><span class="toc-number">4.1.</span> <span class="toc-text">scroll事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scroll"><span class="toc-number">4.2.</span> <span class="toc-text">scroll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_操作_CSS_的函数"><span class="toc-number">4.3.</span> <span class="toc-text">jQuery 操作 CSS 的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他容器和位置属性"><span class="toc-number">4.4.</span> <span class="toc-text">其他容器和位置属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#教训"><span class="toc-number">5.</span> <span class="toc-text">教训</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<h2 id="背景">背景</h2>
+<p>至此，碰到过两次“下拉滚动条去异步加载新数据”的场景，第一次是一个瀑布流，这次是一个列表。<br>第一次接触瀑布流时，被那高大上的名字唬到了，内心就不知不觉自卑起来，导致思考问题不理智学东西没条理。看似在网搜了不少资料，但都是边边角角，没有一个概况；更不用说先自己想下怎么办，然后再带着问题去搜解决办法。总之，第一次的滚动算是稀里糊涂地做出来了。现在还记得上线后心里的那丝忐忑。<br>第二次，也就是这次，就想着，再不能糊里糊涂地边编边试了、也不能单纯copy之前做的了。而要把这个“滚动”的小点搞清楚。于是就有了这篇小blog。</p>
+<h2 id="问题本身">问题本身</h2>
+<p>下拉滚动条动态加载新数据：<br>1.监听下拉事件：scroll事件 【一滚动就触发，而不等到滚动行为结束，所以-需要合理的加载时机】<br>2.加载时机：等快滑到底部时，就去请求新数据 【关键点】</p>
+<p>而“快达到”其实就是一个临界值的问题。所以，可以把问题进一步简化成“判断滚动条到达底部了”。<br>对滚动条的感性认识：<br>1.为什么会出现滚动条？ 当要显示的内容的高度 &gt; 父容器的高度时 就会出现纵向滚动条（当然，前提是overflow-y:scroll）<br>2.滚动条到底部时是个什么状态？滚动条要向下拉的高度 === (内容的高度 - 容器的高度)</p>
+<p>脑子里的伪代码是个什么样子呢？<br>滚动条要向下拉的高度，其实就是： scrollTop() 相对于容器顶部的偏移量<br>内容的高度以及容器的高度：一般都能直接算出来。所以，问题一下就简单了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( 容器.scrollTop() == 内容.height()-容器.height() ){</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'滚动条到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>如果要加“快到底部”的条件，比如规定个100px的阈值，那代码就是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( <span class="number">100</span>+容器.scrollTop() == 内容.height()-容器.height() ){</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'滚动条快要到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>考虑到scroll事件是一直触发的，而并不一定恰好刚刚等于，所以就用 &lt;= 代替，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( <span class="number">100</span> &gt;= 内容.height()-容器.height()-容器.scrollTop() ){</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'滚动条快要到底部了'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="代码里的滚动条">代码里的滚动条</h2>
+<p>jQuery中有三个属性和滚动条的拖动有关，就是： scrollTop、scrollLeft、scrollHeight。<br>此处，只探讨纵向滚动条，即两个：scrollTop、scrollHeight<br>把以下代码去浏览器里运行下，然后实时滚动滚动条，去控制台输出 scrollTop 和 scrollHeight 去看看吧。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">style</span>=<span class="value">"overflow-y:auto; overflow-x:hidden; height:500px; border: 1px solid red;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"height:750px;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{</div><div class="line">  <span class="keyword">var</span> container = $(<span class="string">"#container"</span>);</div><div class="line">  <span class="keyword">var</span> containerHeight = container.height();</div><div class="line"></div><div class="line">  container.scroll(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="keyword">var</span> me = $(<span class="keyword">this</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">var</span> sHeight = me.scrollHeight,</div><div class="line">	    sTop = me.scrollTop;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'\nscrollHeight'</span>, sHeight);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'scrollTop'</span>, sTop);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( sTop &gt;= sHeight-containerHeight )</div><div class="line">	  alert(<span class="string">"滚动条到底部了"</span>);</div><div class="line">    });</div><div class="line">});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>在js代码里，滚动条是被抽象成一个“点”来对待的。<br>scrollHeight：就是滚动条（一个点）需要滚动的高度，即内部div的高度，750px<br>scrollTop：表示滚动条（一个点）当前的位置在这750px里占了多少。</p>
+<p>说明：<br>scrollTop() 取值，是返回第一个匹配元素的 scroll top offset<br>scrollTop() 设置值，是设置所有匹配元素的 scroll top offset</p>
+<h2 id="其他及扩展出来的点">其他及扩展出来的点</h2>
+<h3 id="scroll事件">scroll事件</h3>
+<p>scroll事件：在容器的滚动事件里检测和执行if判断，消耗cpu资源。所以，要注意代码（能挪出去的运算就挪出去）<br>scroll时：效率方面，还有其他注意事项？</p>
+<h3 id="scroll">scroll</h3>
+<p>1.scroll事件里，js对象里有滚动<br>  属性4个：scrollTop、scrollLeft、scrollWidth、scrollHeight<br>  方法2个：scrollIntoView() 、scrollViewIfNeeded()<br>2.jQuery又对scroll做了哪些封装？<br>  因为有 $.scrollTop()，但木有获取高度的。<br>  scrollHeight是否有兼容性问题…</p>
+<h3 id="jQuery_操作_CSS_的函数">jQuery 操作 CSS 的函数</h3>
+<p>可以设置|返回css相关属性<br>1.css()<br>2.height()、width()<br>3.scrollTop()、scrollLeft()：相对于滚动条顶部|左侧的偏移<br>4.position()：相对于父元素的位置<br>5.offset()：相对于文档的位置<br>6.offsetParent()：最近的定位祖先元素</p>
+<h3 id="其他容器和位置属性">其他容器和位置属性</h3>
+<p>$(window).scrollTop() 针对每一个frame  //所有浏览器都支持<br>$(document).scrollTop()</p>
+<p>window:<br>document： 网页可见区域 document.body<br>注意当浏览器窗口大小改变时(如最大化或拉大窗口后) jQuery(window).height() 随之改变，但是jQuery(document).height()是不变的。</p>
+<p>屏幕分辨率的高： window.screen.height;<br>屏幕分辨率的宽： window.screen.width;<br>屏幕可用工作区高度： window.screen.availHeight;<br>屏幕可用工作区宽度：window.screen.availWidth;</p>
+<h2 id="教训">教训</h2>
+<p>碰到问题，不要被华丽的名称吓到。而是先分析这个问题本身。<br>1.如果要你做，你如何做？ 【此时，不要着急问别人也不要着急去网上搜资料，要先自己想，不要怕自己的方法很原始很山寨】<br>2.里面有几个点？自己准备如何解决？<br>3.每个点是否有边界条件要考虑 or 还有可改进的空间？<br>4.再去查别人怎么做。 【此时，和自己的方法做个对比。看哪里想到了、哪里没想到；想到的哪里不一样、没想到的为什么漏掉了。】<br>5.对比之下，再得结论，即如何解决。</p>
+<p>不要怕浪费时间。<br>准备工作要是不充分，后续不但有坑，而且那种一知半解的状态一点都不可持续。<br>搞清核心问题，后续干活的时候都会神清气爽，而且以后碰到类似问题都可以轻而易举地解决了。</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://www.escience.cn/people/hehe/js_check.html" target="_blank" rel="external">js判断滚动条是否到底部</a><br><a href="http://www.w3school.com.cn/jquery/jquery_ref_css.asp" target="_blank" rel="external">jQuery参考手册-CSS操作</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2014/11/08/jsScrollTop/" data-title="scrollTop | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/11/11/cssFlexBox/" title="弹性盒子">
+  <strong>上一篇:</strong><br/>
+  <span>
+  弹性盒子</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/23/nodejs_0/"  title="Node.js 入门">
+ <strong>下一篇:</strong><br/> 
+ <span>Node.js 入门
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题本身"><span class="toc-number">2.</span> <span class="toc-text">问题本身</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码里的滚动条"><span class="toc-number">3.</span> <span class="toc-text">代码里的滚动条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他及扩展出来的点"><span class="toc-number">4.</span> <span class="toc-text">其他及扩展出来的点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scroll事件"><span class="toc-number">4.1.</span> <span class="toc-text">scroll事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scroll"><span class="toc-number">4.2.</span> <span class="toc-text">scroll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_操作_CSS_的函数"><span class="toc-number">4.3.</span> <span class="toc-text">jQuery 操作 CSS 的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他容器和位置属性"><span class="toc-number">4.4.</span> <span class="toc-text">其他容器和位置属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#教训"><span class="toc-number">5.</span> <span class="toc-text">教训</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (5)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (10)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (2)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (2)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 17.50px;">CSS</a><a href="/tags/CSS3/" style="font-size: 10.00px;">CSS3</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 15.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/实战/" style="font-size: 10.00px;">实战</a><a href="/tags/对象/" style="font-size: 15.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.50px;">杂谈</a><a href="/tags/模板/" style="font-size: 15.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 15.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 15.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,425 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Handlebars.js 模板引擎 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；它是一个 Javascript 库，就像你在页面中包含其他.js文件">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/17/handlebars/" title="Handlebars.js 模板引擎" itemprop="url">Handlebars.js 模板引擎</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-17T13:13:03.000Z" itemprop="datePublished">2014-09-17</time>
+    更新日期:<time datetime="2015-01-25T14:52:07.000Z" itemprop="dateModified">2015-01-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装和使用"><span class="toc-number">2.</span> <span class="toc-text">安装和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handlebar的表达式"><span class="toc-number">3.</span> <span class="toc-text">Handlebar的表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块表达式（Block_Expressions）"><span class="toc-number">3.1.</span> <span class="toc-text">块表达式（Block Expressions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置块表达式（Block_helper）"><span class="toc-number">3.2.</span> <span class="toc-text">内置块表达式（Block helper）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#each_block_helper"><span class="toc-number">3.2.1.</span> <span class="toc-text">each block helper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if_else_block_helper"><span class="toc-number">3.2.2.</span> <span class="toc-text">if else block helper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unless_block_helper"><span class="toc-number">3.2.3.</span> <span class="toc-text">unless block helper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#with_block_helper"><span class="toc-number">3.2.4.</span> <span class="toc-text">with block helper</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义helper"><span class="toc-number">3.3.</span> <span class="toc-text">自定义helper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handlebars的访问（Path）"><span class="toc-number">4.1.</span> <span class="toc-text">Handlebars的访问（Path）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调试技巧"><span class="toc-number">4.2.</span> <span class="toc-text">调试技巧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<p>Handlebars.js 是一个 Javascript 客户端的模板引擎，它通过对 view 和 data 的分离来快速构建 Web 模板。<br>它是在加载时被预编译，而不是到了客户端执行到代码时再去编译，可以保证模板加载和运行的速度；<br>它是一个 Javascript 库，就像你在页面中包含其他.js文件一样。有了它，你可以在HTML页面内添加模板。</p>
+<p>其他：<br>一个弱逻辑模板引擎；Mustache.js 的超集；在服务端预编译模板；支持 Helper 方法；在模板中支持 this 的概念。<br><strong></strong></p>
+<p>想要了解以下概念，点击查看 <a href="http://www.html-js.com/article/1595" target="_blank" rel="external">学习Javascript模板Handlebars.js</a><br>1.Handlebars.js 是怎样运行的？<br>2.为什么使用 Javascript 模板引擎？<br>3.什么情况下使用 Javascript 模板？<br>4.为什么要选择 Handlebars.js？</p>
+<h2 id="目录">目录</h2>
+<ol>
+<li>安装和使用</li>
+<li>表达式<br><strong> Block 表达式</strong>：可以改变js的上下文<br><strong> Handlebars 的内置块表达式（Block helper）：</strong>对数据的逻辑操作<br>  （1）each block helper<br>  （2）if else block helper<br>  （3）unless block helper<br>  （4）with block helper：可将上下文转移到数据的一个 section 里面（编译时候进行）<br><strong> 自定义helper：</strong>在 js 中用 Handlebars.registerHelper 注册 helpers</li>
+<li>其他<br>（1）Handlebar 的注释（comments）<br>（2）Handlebars 的访问（Path）<br>（3）调试技巧<br>（4）handlebars 的 jquery 插件<br>（5）partials<br>当你想要复用模板的一部分，或者将长模板分割成为多个模板方便维护时，partials就派上用场了。</li>
+</ol>
+<h2 id="安装和使用">安装和使用</h2>
+<p>从 <a href="http://handlebarsjs.com/" target="_blank" rel="external">Github</a> 上下载最新版本。它是一个纯JS库，你可以像使用其他JS脚本一样用script标签来包含handlebars.js。</p>
+<p>如何使用？见【3】<br>1.在 HTML 页面上，通过使用 Handlebars 表达式设定模板，将模板添加到 script 标签中<br>  单独建立一个模板，注意type和id（目前Handlebars仅支持id操作），要用它们来获取模板内容。<br>2.在 js 中，初始化数据对象<br>3.在 js 中，使用 Handlebars 编译函数来编译模板</p>
+<p><img src="\images\use_20140918.png" alt=""></p>
+<h2 id="Handlebar的表达式">Handlebar的表达式</h2>
+<p>Handlebars expressions 是 handlebars 模板中最基本的单元，使用方法是用双大括号。<br>表达式也支持点操作符 content.title，该形式可以调用嵌套的值或者方法。<br>handlebars 会根据上下文来自动对表达式进行匹配，对象甚至是函数：<br>1.如果匹配项是个变量，则会输出变量的值<br>2.如果匹配项是个函数，则函数会被调用<br>3.如果没找到匹配项，则没有输出</p>
+<h3 id="块表达式（Block_Expressions）">块表达式（Block Expressions）</h3>
+<p>如果当前的表达式是一个数组，则 Handlebars 会“自动展开数组”，并将 Blocks 的上下文设为数组中的元素。</p>
+<p><img src="\images\block_20140918.png" alt=""></p>
+<h3 id="内置块表达式（Block_helper）">内置块表达式（Block helper）</h3>
+<p>用 Helpers，用户可以操作 handlebars 模板中的数据，添加相应的逻辑等等。</p>
+<h4 id="each_block_helper">each block helper</h4>
+<p>内置的 each helper遍 历列表块内容，用 this 来引用遍历的元素，this 指的是数组里的每一项元素。</p>
+<p><img src="\images\each_20140918.png" alt=""></p>
+<p>这和上面的Block很像，但是原理不一样。name是数组，而内置的each就是为了遍历数组用的，更复杂的数据也同样使用。 【？】</p>
+<h4 id="if_else_block_helper">if else block helper</h4>
+<p>if 就像你使用 JavaScript 一样，指定条件渲染 DOM。<br>如果它的参数返回false，undefined, null, “” 或者 [] (a “false” value), Handlebar 将不会渲染 DOM。</p>
+<h4 id="unless_block_helper">unless block helper</h4>
+<p>反向的if</p>
+<h4 id="with_block_helper">with block helper</h4>
+<p>一般情况下，Handlebars 模板会在编译的阶段的时候进行 context 传递和赋值。<br>使用 with 的方法，我们可以将 context 转移到数据的一个 section 里面（如果你的数据包含 section）。<br>这个方法在操作复杂的 template 时候非常有用。</p>
+<p><img src="\images\with_20140918.png" alt=""></p>
+<h3 id="自定义helper">自定义helper</h3>
+<h2 id="其他">其他</h2>
+<h3 id="Handlebars的访问（Path）">Handlebars的访问（Path）</h3>
+<p>Handlebar 支持路径和 mustache，Handlebar 还支持嵌套的路径，使得能够查找嵌套低于当前上下文的属性<br>可以通过.来访问属性，也可以使用../,来访问父级属性。</p>
+<h3 id="调试技巧">调试技巧</h3>
+<p>加载一段”debug helper”，就可以在模板文件里通过 debug 或是 debug someValue 方便数据了。</p>
+<h2 id="参考">参考</h2>
+<p>【1】<a href="http://www.ghostchina.com/introducing-the-handlebars-js-templating-engine/" target="_blank" rel="external">Handlebars.js 模板引擎</a>：全面详细<br>【2】<a href="https://software.intel.com/zh-cn/articles/html5handlebars" target="_blank" rel="external">HTML5应用开发：JavaScript语义模板库handlebars教程</a>：简单说明+完整demo。用代码说，所见即所得<br>【3】<a href="http://www.html-js.com/article/1595" target="_blank" rel="external">Handlebars.js初级教程：学习Javascript模板Handlebars.js </a>：说的很贴心，表示很同意作者</p>
+<p>【4】<a href="http://xvfeng.me/posts/Using-Handlebarsjs-with-Expressjs/" target="_blank" rel="external">在Express项目中使用Handlebars模板引擎</a>：很客观的一个人，项目经验，值得借鉴<br>【5】<a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a>：讨论、七嘴八舌</p>
+<p>【6】<a href="http://www.emberjs.cn/guides/templates/handlebars-basics/" target="_blank" rel="external">Ember.js-Handlebars系列</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/模板/">模板</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/后端/">后端</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2014/09/17/handlebars/" data-title="Handlebars.js 模板引擎 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/23/funning_0/" title="ALT+小键盘数字打的特殊符号">
+  <strong>上一篇:</strong><br/>
+  <span>
+  ALT+小键盘数字打的特殊符号</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/13/jade_what/"  title="Jade 模板引擎">
+ <strong>下一篇:</strong><br/> 
+ <span>Jade 模板引擎
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装和使用"><span class="toc-number">2.</span> <span class="toc-text">安装和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handlebar的表达式"><span class="toc-number">3.</span> <span class="toc-text">Handlebar的表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块表达式（Block_Expressions）"><span class="toc-number">3.1.</span> <span class="toc-text">块表达式（Block Expressions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置块表达式（Block_helper）"><span class="toc-number">3.2.</span> <span class="toc-text">内置块表达式（Block helper）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#each_block_helper"><span class="toc-number">3.2.1.</span> <span class="toc-text">each block helper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if_else_block_helper"><span class="toc-number">3.2.2.</span> <span class="toc-text">if else block helper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unless_block_helper"><span class="toc-number">3.2.3.</span> <span class="toc-text">unless block helper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#with_block_helper"><span class="toc-number">3.2.4.</span> <span class="toc-text">with block helper</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义helper"><span class="toc-number">3.3.</span> <span class="toc-text">自定义helper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handlebars的访问（Path）"><span class="toc-number">4.1.</span> <span class="toc-text">Handlebars的访问（Path）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调试技巧"><span class="toc-number">4.2.</span> <span class="toc-text">调试技巧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (5)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (10)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (2)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (2)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 17.50px;">CSS</a><a href="/tags/CSS3/" style="font-size: 10.00px;">CSS3</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 15.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/实战/" style="font-size: 10.00px;">实战</a><a href="/tags/对象/" style="font-size: 15.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.50px;">杂谈</a><a href="/tags/模板/" style="font-size: 15.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 15.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 15.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

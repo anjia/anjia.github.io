@@ -1498,6 +1498,9 @@ section.comment {
     margin: 1em 0 0;
   }
 }
+.categorieslist li {
+  font-size: 0.9em;
+}
 .categorieslist li a {
   display: block;
 }
@@ -1587,6 +1590,9 @@ section.comment {
     margin: 1em 0 0;
   }
 }
+.archiveslist li a {
+  font-size: 0.9em;
+}
 .archiveslist li a:hover {
   color: #c00;
   text-decoration: underline;
@@ -1622,6 +1628,9 @@ section.comment {
     margin: 1em 0 0;
   }
 }
+.tagcloudlist .tagcloudlist {
+  font-size: 0.9em;
+}
 .tagcloudlist .tagcloudlist a {
   padding: 0.2em;
   display: block;
@@ -1649,6 +1658,7 @@ section.comment {
   .linkslist a {
     margin-right: 10px;
     white-space: nowrap;
+    font-size: 0.9em;
   }
   .linkslist a:hover {
     color: #c00;

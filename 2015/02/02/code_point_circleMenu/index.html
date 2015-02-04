@@ -84,7 +84,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
     </p>
   <p class="article-time">
     <time datetime="2015-02-02T13:18:30.000Z" itemprop="datePublished">2015-02-02</time>
-    更新日期:<time datetime="2015-02-03T13:09:45.000Z" itemprop="dateModified">2015-02-03</time>
+    更新日期:<time datetime="2015-02-04T10:51:15.000Z" itemprop="dateModified">2015-02-04</time>
     
   </p>
 </header>
@@ -124,6 +124,10 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 
 <h4 id="定位之绝对定位">定位之绝对定位</h4>
 <h4 id="垂直居中之_translate">垂直居中之 translate</h4>
+<p>垂直居中有多种实现方式，此处用 CSS3 中的移动属性 <a href="http://anjia.github.io/2015/02/04/code_point_css2d/#translate" target="_blank" rel="external">translate </a> 来实现。<br>原来的位置是灰色背景的框，目标位置是红色背景的框。</p>
+<p><img src="\images\code_point_translate.png" alt=""></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">	<span class="class">.wrap</span> <span class="rules">{</span></div><div class="line">		<span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">200px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</div><div class="line">	<span class="rule">}</span></div><div class="line">	<span class="class">.ori</span> <span class="rules">{</span></div><div class="line">		<span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50%</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">50%</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</div><div class="line">	<span class="rule">}</span></div><div class="line">	<span class="class">.target</span> <span class="rules">{</span></div><div class="line">		<span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>)</span></span>;</div><div class="line">	<span class="rule">}</span></div><div class="line"><span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"wrap"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ori"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ori target"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
 <h2 id="扩展练习">扩展练习</h2>
 <p>实现椭圆型菜单<br><img src="\images\point_tuoyuan.png" alt=""></p>
 <p>实现任意角度区间、任意方向的菜单<br><img src="\images\point_circlemenu_p.png" alt=""></p>
@@ -135,7 +139,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/实战/">实战</a><a href="/tags/知识点/">知识点</a>
+  <span></span> <a href="/tags/实战/">实战</a><a href="/tags/CSS/">CSS</a>
   </div>
 
 
@@ -157,6 +161,14 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/02/04/code_point_css2d/" title="CSS3 2D Transform">
+  <strong>上一篇:</strong><br/>
+  <span>
+  CSS3 2D Transform</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/01/30/code_hover_pop/"  title="hover 后弹框">
@@ -218,7 +230,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 				<a href="/categories/实战/" title="实战">实战 (2)</a></li>
 		
 			<li>
-				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (1)</a></li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
 		
 		</ul>
 </div>
@@ -227,7 +239,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -235,7 +247,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 17.50px;">CSS</a><a href="/tags/CSS3/" style="font-size: 10.00px;">CSS3</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 15.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/实战/" style="font-size: 15.00px;">实战</a><a href="/tags/对象/" style="font-size: 15.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.50px;">杂谈</a><a href="/tags/模板/" style="font-size: 15.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/知识点/" style="font-size: 10.00px;">知识点</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 15.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 15.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 15.00px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 11.67px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 11.67px;">笔记</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 

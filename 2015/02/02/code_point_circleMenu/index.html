@@ -4,19 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【知识点】径向动画菜单 | anjia</title>
+    <title>【知识点】径向动画菜单的效果 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
     <meta name="description" content="效果预览
 
-效果说明：圆形展开：径向展开子菜单展开过程：逐渐放大 &amp;amp; 逐渐显现
+效果说明：径向展开子菜单，展开过程淡入淡出效果源码：http://codepen.io/anjia/pen/qEyXNR
 知识点
 主要知识点
-过渡 Transition
-CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间内平滑的过渡。
-语法：transition: transition-property">
+缩放 scale
+scale 属于 CSS3 2D 转换 的一种效果。scale() 根据给定的宽度（X 轴）和高度（Y 轴）参数改变元素的尺寸，">
     
     
     
@@ -76,7 +75,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/02/02/code_point_circleMenu/" title="【知识点】径向动画菜单" itemprop="url">【知识点】径向动画菜单</a>
+      <a href="/2015/02/02/code_point_circleMenu/" title="【知识点】径向动画菜单的效果" itemprop="url">【知识点】径向动画菜单的效果</a>
   </h1>
   <p class="article-author">By
     
@@ -84,7 +83,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
     </p>
   <p class="article-time">
     <time datetime="2015-02-02T13:18:30.000Z" itemprop="datePublished">2015-02-02</time>
-    更新日期:<time datetime="2015-02-04T10:51:15.000Z" itemprop="dateModified">2015-02-04</time>
+    更新日期:<time datetime="2015-03-09T07:58:03.000Z" itemprop="dateModified">2015-03-09</time>
     
   </p>
 </header>
@@ -93,36 +92,35 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.</span> <span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点"><span class="toc-number">2.1.</span> <span class="toc-text">主要知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#过渡_Transition"><span class="toc-number">2.1.1.</span> <span class="toc-text">过渡 Transition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效果的三个小动画"><span class="toc-number">2.1.2.</span> <span class="toc-text">效果的三个小动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位置计算-圆的极坐标"><span class="toc-number">2.1.3.</span> <span class="toc-text">位置计算-圆的极坐标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助知识点"><span class="toc-number">2.2.</span> <span class="toc-text">辅助知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#border"><span class="toc-number">2.2.1.</span> <span class="toc-text">border</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定位之绝对定位"><span class="toc-number">2.2.2.</span> <span class="toc-text">定位之绝对定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#垂直居中之_translate"><span class="toc-number">2.2.3.</span> <span class="toc-text">垂直居中之 translate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展练习"><span class="toc-number">3.</span> <span class="toc-text">扩展练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多"><span class="toc-number">4.</span> <span class="toc-text">更多</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.</span> <span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点"><span class="toc-number">2.1.</span> <span class="toc-text">主要知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#缩放_scale"><span class="toc-number">2.1.1.</span> <span class="toc-text">缩放 scale</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定位之绝对定位"><span class="toc-number">2.1.2.</span> <span class="toc-text">定位之绝对定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位置计算-圆的极坐标"><span class="toc-number">2.1.3.</span> <span class="toc-text">位置计算-圆的极坐标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助知识点"><span class="toc-number">2.2.</span> <span class="toc-text">辅助知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#过渡_Transition"><span class="toc-number">2.2.1.</span> <span class="toc-text">过渡 Transition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不透明度_opacity"><span class="toc-number">2.2.2.</span> <span class="toc-text">不透明度 opacity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#border"><span class="toc-number">2.2.3.</span> <span class="toc-text">border</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#垂直居中之_translate"><span class="toc-number">2.2.4.</span> <span class="toc-text">垂直居中之 translate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展练习"><span class="toc-number">3.</span> <span class="toc-text">扩展练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多"><span class="toc-number">4.</span> <span class="toc-text">更多</span></a></li></ol>
 		</div>
 		
 		<h2 id="效果预览">效果预览</h2>
 <p><img src="\images\point_menu_1.gif" alt=""></p>
-<p>效果说明：<br>圆形展开：径向展开子菜单<br>展开过程：逐渐放大 &amp; 逐渐显现</p>
+<p>效果说明：径向展开子菜单，展开过程淡入淡出<br>效果源码：<a href="http://codepen.io/anjia/pen/qEyXNR" target="_blank" rel="external">http://codepen.io/anjia/pen/qEyXNR</a></p>
 <h2 id="知识点">知识点</h2>
 <h3 id="主要知识点">主要知识点</h3>
-<h4 id="过渡_Transition">过渡 Transition</h4>
-<p>CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间内平滑的过渡。</p>
-<p><strong>语法：</strong><br>transition: transition-property transition-duration transition-timing-function transition-delay<br>transition: 执行过渡效果的属性 完成过渡效果的持续时间 过渡效果的速度曲线 过渡效果何时开始的延迟时间<br>transition: 属性 持续时间 动画方式 延迟</p>
-<p><strong>举例：</strong><br>transition: width 5s ease-in-out 1s;<br>意思是：当元素的 width 值发生改变时，该变化会持续 5s 来慢慢完成。动画是慢开始再慢结束。且需延迟 1s 再开始动画。</p>
-<p><strong>说明：</strong><br>过渡的点就在于：让动画看起来别那么突兀，平滑点。利器也，很实用。<br>当要声明多个属性的过渡时，用逗号 , 隔开，然后各自设置各自的持续时间、变化速率、延迟。</p>
-<p><strong>动画方式：</strong><br>过渡的动画速度，现有的属性值：<br>linear  匀速<br>ease    慢速开始-变快-慢速结束<br>ease-in 以慢速开始，加速运动<br>ease-out 以慢速结束，减速运动<br>ease-in-out 慢速开始和慢速结束，先加速再减速<br>cubic-bezier 自定义cubic-bezier曲线，所有值在[0,1]区域内</p>
-<p><strong>参考：</strong><br>w3school：<a href="http://www.w3school.com.cn/cssref/pr_transition.asp" target="_blank" rel="external">http://www.w3school.com.cn/cssref/pr_transition.asp</a><br>w3cplus：<a href="http://www.w3cplus.com/content/css3-transition" target="_blank" rel="external">http://www.w3cplus.com/content/css3-transition</a></p>
-<h4 id="效果的三个小动画">效果的三个小动画</h4>
-<p>1.位置移动 (left0,top0) -&gt; (left1,top1)<br>2.逐渐显现 - 不透明度 opacity<br>3.逐渐变大 - 缩放 scale</p>
-<p>最明显的动画就是位置的变动。这个主要用到了绝对定位，让每个子菜单从 (left0,top0) 变为 (left1,top1)。目标位置 (left1,top1) 的具体计算详见 <a href="http://anjia.github.io/2015/02/02/code_point_circleMenu/#位置计算-圆的极坐标" target="_blank" rel="external">位置计算-圆的极坐标</a>，严格说这属于数学知识，故不在动画这节细谈了。</p>
-<p>后两个动画透明度 opacity 和缩放 scale 算是锦上添花的小细节，这会让子菜单在展开的过程中变化更细腻些。有时，这些小细节反而才是动画的精髓，我个人一直这么认为 (^.^)。动画不单是个装饰性的炫酷东东，更重要的是它基于场景的功能性作用，即向用户反馈信息的流动形式（比如这个交互效果 <a href="http://www.zhangxinxu.com/study/200908/jQuery-round-shade-content-big.html" target="_blank" rel="external">单击图片后放大</a>）。</p>
-<p><strong>不透明度 opacity</strong><br>opacity：元素的不透明度，值 [0.0, 1.0] 即 [完全透明, 完全不透明]<br>ie8- 用替代属性 filter: alpha(opacity=50);  值是 [1, 100]</p>
-<p><strong>缩放 scale</strong><br>scale 属于 <a href="http://www.w3school.com.cn/css3/css3_2dtransform.asp" target="_blank" rel="external">CSS3 2D 转换</a> 的一种效果。<br>scale() 根据给定的宽度（X 轴）和高度（Y 轴）参数改变元素的尺寸，让其放大或缩小。<br>eg.<br>transform: scale(2,4); 意思是把元素的宽度变为原来的2倍 高度变为原来的4倍<br>transform: scale(2); 意思是把元素的宽度和高度都变为原来的2倍</p>
+<h4 id="缩放_scale">缩放 scale</h4>
+<p>scale 属于 <a href="http://www.w3school.com.cn/css3/css3_2dtransform.asp" target="_blank" rel="external">CSS3 2D 转换</a> 的一种效果。<br>scale() 根据给定的宽度（X 轴）和高度（Y 轴）参数改变元素的尺寸，让其放大或缩小。<br>eg.<br>transform: scale(2,4); 意思是把元素的宽度变为原来的2倍 高度变为原来的4倍<br>transform: scale(2); 意思是把元素的宽度和高度都变为原来的2倍</p>
+<h4 id="定位之绝对定位">定位之绝对定位</h4>
 <h4 id="位置计算-圆的极坐标">位置计算-圆的极坐标</h4>
 <p>极坐标系是用 (r,θ) 来表示平面中的任意一点。r 代表半径，θ 代表极角（方位角），极轴就是平面直角坐标系中 X 轴的方向。如图1<br>圆的极坐标轴如图2，圆的极坐标方程是：x=r<em>cos(θ)，y=r</em>sin(θ)<br>网页中的直角坐标轴如图3。<br>综合以上即可轻松地算出每个子菜单的目标位置 (left, top)，具体的算法可参考源码。</p>
 <p><img src="\images\point_circle_jizuobiao.png" alt=""></p>
 <h3 id="辅助知识点">辅助知识点</h3>
+<h4 id="过渡_Transition">过渡 Transition</h4>
+<p>CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间内平滑的过渡。</p>
+<p><strong>语法：</strong><br>transition: transition-property transition-duration transition-timing-function transition-delay<br>transition: 执行过渡效果的属性 完成过渡效果的持续时间 过渡效果的速度曲线 过渡效果何时开始的延迟时间<br>transition: 属性 持续时间 动画方式 延迟</p>
+<p><strong>举例：</strong><br>transition: width 5s ease-in-out 1s;<br>意思是：当元素的 width 值发生改变时，该变化会持续 5s 来慢慢完成。动画是慢开始再慢结束。且需延迟 1s 再开始动画。</p>
+<p><strong>说明：</strong><br>过渡的点就在于：让动画看起来不那么突兀，平滑一些。动画的利器，简单实用。<br>当要声明多个属性的过渡时，用逗号 , 隔开，然后各自设置各自的持续时间、变化速率、延迟。</p>
+<p><strong>动画方式：</strong><br>过渡的动画速度，现有的属性值：<br>linear  匀速<br>ease    慢速开始-变快-慢速结束<br>ease-in 以慢速开始，加速运动<br>ease-out 以慢速结束，减速运动<br>ease-in-out 慢速开始和慢速结束，先加速再减速<br>cubic-bezier 自定义cubic-bezier曲线，所有值在[0,1]区域内</p>
+<p><strong>参考：</strong><br>w3school：<a href="http://www.w3school.com.cn/cssref/pr_transition.asp" target="_blank" rel="external">http://www.w3school.com.cn/cssref/pr_transition.asp</a><br>w3cplus：<a href="http://www.w3cplus.com/content/css3-transition" target="_blank" rel="external">http://www.w3cplus.com/content/css3-transition</a></p>
+<h4 id="不透明度_opacity">不透明度 opacity</h4>
+<p><strong>不透明度 opacity</strong><br>opacity：元素的不透明度，值 [0.0, 1.0] 即 [完全透明, 完全不透明]<br>ie8- 用替代属性 filter: alpha(opacity=50);  值是 [1, 100]</p>
+<p>后两个动画透明度 opacity 和transition 算是锦上添花的小细节，这会让子菜单在展开的过程中变化更细腻些。有时，这些小细节反而才是动画的精髓，我个人一直这么认为 (^.^)。动画不单是个装饰性的炫酷东东，更重要的是它基于场景的功能性作用，即向用户反馈信息的流动形式（比如这个交互效果 <a href="http://www.zhangxinxu.com/study/200908/jQuery-round-shade-content-big.html" target="_blank" rel="external">单击图片后放大</a>）。</p>
 <h4 id="border">border</h4>
 <p>用下面的这个例子来认识下 border 本身和边框半径 border-raduis<br><img src="\images\point_border.PNG" alt=""></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">	<span class="comment">/*border本身*/</span></div><div class="line">	<span class="class">.border</span> <span class="rules">{</span></div><div class="line">		<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border-style</span>:<span class="value"> solid</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border-width</span>:<span class="value"> <span class="number">20px</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border-top-color</span>:<span class="value"> red</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border-right-color</span>:<span class="value"> blue</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border-bottom-color</span>:<span class="value"> green</span></span>;</div><div class="line">		<span class="rule"><span class="attribute">border-left-color</span>:<span class="value"> black</span></span>;</div><div class="line">	<span class="rule">}</span></div><div class="line"></div><div class="line">	<span class="comment">/*border半径*/</span></div><div class="line">	<span class="class">.border-radius</span> <span class="rules">{</span></div><div class="line">		<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</div><div class="line">	<span class="rule">}</span></div><div class="line"></div><div class="line">	<span class="comment">/*用border可实现三角*/</span></div><div class="line">	<span class="class">.border-triangle</span> <span class="rules">{</span></div><div class="line">		<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">		<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">	<span class="rule">}</span></div><div class="line"><span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"border"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"border border-radius"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"border border-triangle"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<h4 id="定位之绝对定位">定位之绝对定位</h4>
 <h4 id="垂直居中之_translate">垂直居中之 translate</h4>
 <p>垂直居中有多种实现方式，此处用 CSS3 中的移动属性 <a href="http://anjia.github.io/2015/02/04/code_point_css2d/#translate" target="_blank" rel="external">translate </a> 来实现。<br>原来的位置是灰色背景的框，目标位置是红色背景的框。</p>
 <p><img src="\images\code_point_translate.png" alt=""></p>
@@ -131,8 +129,9 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 <h2 id="扩展练习">扩展练习</h2>
 <p>实现椭圆型菜单<br><img src="\images\point_tuoyuan.png" alt=""></p>
 <p>实现任意角度区间、任意方向的菜单<br><img src="\images\point_circlemenu_p.png" alt=""></p>
+<p>扩展练习源码：<a href="http://codepen.io/anjia/pen/JoByoK" target="_blank" rel="external">http://codepen.io/anjia/pen/JoByoK</a></p>
 <h2 id="更多">更多</h2>
-<p>视频链接<br>源码</p>
+<p>讲解的视频：<a href="http://www.75team.com/archives/851" target="_blank" rel="external">http://www.75team.com/archives/851</a><br>效果源码：<a href="http://codepen.io/anjia/pen/qEyXNR" target="_blank" rel="external">http://codepen.io/anjia/pen/qEyXNR</a><br>扩展练习源码：<a href="http://codepen.io/anjia/pen/JoByoK" target="_blank" rel="external">http://codepen.io/anjia/pen/JoByoK</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -152,7 +151,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2015/02/02/code_point_circleMenu/" data-title="【知识点】径向动画菜单 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/02/02/code_point_circleMenu/" data-title="【知识点】径向动画菜单的效果 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -190,7 +189,7 @@ CSS3 的过渡属性 transition：允许 CSS 的属性值在一定时间区间�
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.</span> <span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点"><span class="toc-number">2.1.</span> <span class="toc-text">主要知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#过渡_Transition"><span class="toc-number">2.1.1.</span> <span class="toc-text">过渡 Transition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效果的三个小动画"><span class="toc-number">2.1.2.</span> <span class="toc-text">效果的三个小动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位置计算-圆的极坐标"><span class="toc-number">2.1.3.</span> <span class="toc-text">位置计算-圆的极坐标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助知识点"><span class="toc-number">2.2.</span> <span class="toc-text">辅助知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#border"><span class="toc-number">2.2.1.</span> <span class="toc-text">border</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定位之绝对定位"><span class="toc-number">2.2.2.</span> <span class="toc-text">定位之绝对定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#垂直居中之_translate"><span class="toc-number">2.2.3.</span> <span class="toc-text">垂直居中之 translate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展练习"><span class="toc-number">3.</span> <span class="toc-text">扩展练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多"><span class="toc-number">4.</span> <span class="toc-text">更多</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.</span> <span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点"><span class="toc-number">2.1.</span> <span class="toc-text">主要知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#缩放_scale"><span class="toc-number">2.1.1.</span> <span class="toc-text">缩放 scale</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定位之绝对定位"><span class="toc-number">2.1.2.</span> <span class="toc-text">定位之绝对定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位置计算-圆的极坐标"><span class="toc-number">2.1.3.</span> <span class="toc-text">位置计算-圆的极坐标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助知识点"><span class="toc-number">2.2.</span> <span class="toc-text">辅助知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#过渡_Transition"><span class="toc-number">2.2.1.</span> <span class="toc-text">过渡 Transition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不透明度_opacity"><span class="toc-number">2.2.2.</span> <span class="toc-text">不透明度 opacity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#border"><span class="toc-number">2.2.3.</span> <span class="toc-text">border</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#垂直居中之_translate"><span class="toc-number">2.2.4.</span> <span class="toc-text">垂直居中之 translate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展练习"><span class="toc-number">3.</span> <span class="toc-text">扩展练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多"><span class="toc-number">4.</span> <span class="toc-text">更多</span></a></li></ol>
   </div>
 
 <div id="asidepart">

@@ -4,18 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CSS 属性的继承与否 | anjia</title>
+    <title>Canvas 入门 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="书写时注意，可利用以下三点：利用 默认值利用 继承利用 层叠
-
-不可继承的
-
-盒模型-布局margin, border, paddingwidth, max-width, min-widthheight, max-height, min-height
-
-定位float, clear, overflo">
+    <meta name="description" content="canvas 标签
+&amp;lt;canvas&amp;gt; 是 HTML5 中的新标签，它是为了让客户端显示矢量图形设计的（必须使用脚本来绘制图形）。
+如何用 canvas 标签来绘制图形
+API 并没有定义在 &amp;lt;canvas&amp;gt; 元素本身上，而是定义在通过画布的 getContext() 获得的一">
     
     
     
@@ -75,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/03/css_inherit/" title="CSS 属性的继承与否" itemprop="url">CSS 属性的继承与否</a>
+      <a href="/2015/03/13/html_canvas-start/" title="Canvas 入门" itemprop="url">Canvas 入门</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://anjia.github.io" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-03T07:23:21.000Z" itemprop="datePublished">2015-01-03</time>
-    更新日期:<time datetime="2015-01-03T11:29:49.000Z" itemprop="dateModified">2015-01-03</time>
+    <time datetime="2015-03-13T10:56:16.000Z" itemprop="datePublished">2015-03-13</time>
+    更新日期:<time datetime="2015-03-13T11:23:53.000Z" itemprop="dateModified">2015-03-13</time>
     
   </p>
 </header>
@@ -92,68 +89,51 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不可继承的"><span class="toc-number">1.</span> <span class="toc-text">不可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可继承的"><span class="toc-number">2.</span> <span class="toc-text">可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认值"><span class="toc-number">3.</span> <span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#固执的元素"><span class="toc-number">4.</span> <span class="toc-text">固执的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#canvas_标签"><span class="toc-number">1.</span> <span class="toc-text">canvas 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何用_canvas_标签来绘制图形"><span class="toc-number">2.</span> <span class="toc-text">如何用 canvas 标签来绘制图形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas_对象"><span class="toc-number">2.1.</span> <span class="toc-text">Canvas 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas_API"><span class="toc-number">2.2.</span> <span class="toc-text">Canvas API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比：canvas、SVG、VML"><span class="toc-number">3.</span> <span class="toc-text">对比：canvas、SVG、VML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考及扩展"><span class="toc-number">4.</span> <span class="toc-text">参考及扩展</span></a></li></ol>
 		</div>
 		
-		<ol>
-<li>书写时注意，可利用以下三点：<br>利用 默认值<br>利用 继承<br>利用 层叠</li>
-</ol>
-<h2 id="不可继承的">不可继承的</h2>
+		<h2 id="canvas_标签">canvas 标签</h2>
+<p>&lt;canvas&gt; 是 HTML5 中的新标签，它是为了让客户端显示矢量图形设计的（必须使用脚本来绘制图形）。</p>
+<h2 id="如何用_canvas_标签来绘制图形">如何用 canvas 标签来绘制图形</h2>
+<p>API 并没有定义在 &lt;canvas&gt; 元素本身上，而是定义在通过画布的 getContext() 获得的一个“绘图环境”上。<br>通过 Canvas 对象的 getContext(“2d”) 获得 CanvasRenderingContext2D 对象（这个绘图的东东里面才提供了真正的绘图功能）。下面来看看 Canvas 对象。</p>
+<h3 id="Canvas_对象">Canvas 对象</h3>
+<p>Canvas 对象就是一个 HTML 画布元素 &lt;canvas&gt;。它没有自己的行为，而是把绘图的 API 给了客户端的 JS，让脚本在画布上绘制图形。它本身拥有标准属性、事件属性。</p>
+<p><strong>Canvas 对象的属性</strong><br>height 画布的高度（当改变时，已经完成的任何绘图都会擦除掉重新画）<br>width 画布的宽度（当改变时，同上）</p>
+<p>&lt;canvas&gt; 默认大小 300*150px，当然可以通过属性来动态设置其大小</p>
+<p><strong>Canvas 对象的方法</strong><br>getContext(“2d”)  //当前唯一的合法值是”2d”<br>它返回作用于画布上的绘图环境，是一个 CanvasRenderingContext2D 对象，该对象导出一个二维绘图的 API，使用它可以绘制图形到 Canvas 元素中。</p>
+<h3 id="Canvas_API">Canvas API</h3>
+<p>Canvas API 使用了路径的表示法。只是，路径由一系列的方法调用来定义的，而不是描述为字母和数字的字符串。一旦定义了路径，其他的方法都是对此路径来操作的。</p>
+<h2 id="对比：canvas、SVG、VML">对比：canvas、SVG、VML</h2>
+<p>它们都是适量图，唯一的不同：</p>
 <ol>
-<li><p>盒模型-布局<br>margin, border, padding<br>width, max-width, min-width<br>height, max-height, min-height</p>
-</li>
-<li><p>定位<br>float, clear, overflow<br>position (top,right,bottom,left)<br>z-index</p>
-</li>
-<li><p>所有背景属性<br>background (color,image,position)</p>
-</li>
-<li><p>文本属性<br>vertical-align (垂直居中：行内、替换元素)<br>text-decoration (文本属性)<br>text-shadow (文本阴影)<br>white-space (对空白字符的处理)<br>unicode-bidi (css处理文本方向)</p>
-</li>
-<li><p>其他<br>content (生成内容)<br>content-reset (计数器标识-eg.ol时)<br>outline (轮廓)<br>clip（没玩过）</p>
-</li>
+<li>&lt;canvas&gt; 标记：有一个基于JS绘图的API</li>
+<li>SVG和VML：有一个XML文档来描述绘图</li>
 </ol>
-<h2 id="可继承的">可继承的</h2>
-<ol>
-<li><p>文本属性<br>font(size,weight,family)<br>line-height<br>text-indent<br>text-align<br>word-spacing<br>letter-spacing<br>text-transform<br>direction(文字方向)</p>
-</li>
-<li><p>其他<br>color<br>cursor<br>list-style(-type,-image,-position) ：eg.list-style:url() square inside<br>quotes (生成括号)<br>visibility【再确认？】</p>
-</li>
-</ol>
-<h2 id="默认值">默认值</h2>
-<ol>
-<li><p>margin:0</p>
-</li>
-<li><p>border 的默认值<br>border-style: 默认为none<br>border-color: 默认为 元素本身的前景色|父元素的文本颜色<br>border-width: 默认medium</p>
-</li>
-</ol>
-<p>没有样式，就没有宽度，所以 border 也无从谈起</p>
-<p>border-style：10个，eg.solid,dashed,dotted,…..,inset,outset<br>border-width 有4种设值：px, thin, medium, thick<br>border-color：可透明，transparent</p>
-<p>背景色 及 border 的位置关系：border是在background之上的</p>
-<h2 id="固执的元素">固执的元素</h2>
-<p>clear：只对块级元素<br>list-style：只对 display:list-item 的元素<br>position 不是 static，则为定位元素<br>background-color 默认的是 transparent（所以看起来像继承）</p>
-<h2 id="说明">说明</h2>
-<ol>
-<li>a的颜色<br>往往不继承其外层容器：因为代理自己设了a的样式</li>
-</ol>
+<p>各有强弱项，比如当要修改画图时，SVG 绘图容易编辑，只要从其描述中移除元素就行了。而 &lt;canvas&gt; 标记中移除元素，往往需要擦掉绘图-再重新绘制。</p>
+<h2 id="参考及扩展">参考及扩展</h2>
+<p>&lt;canvas&gt; 标签：<a href="http://www.w3school.com.cn/tags/tag_canvas.asp" target="_blank" rel="external">http://www.w3school.com.cn/tags/tag_canvas.asp</a></p>
+<p>Canvas 教程（用Canvas在网页上绘制图形）：<a href="http://www.w3school.com.cn/html5/html_5_canvas.asp" target="_blank" rel="external">http://www.w3school.com.cn/html5/html_5_canvas.asp</a><br>Canvas 教程：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Canvas_tutorial" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Canvas_tutorial</a></p>
+<p>Canvas 参考手册：<a href="http://www.w3school.com.cn/tags/html_ref_canvas.asp" target="_blank" rel="external">http://www.w3school.com.cn/tags/html_ref_canvas.asp</a><br>Canvas API（来自 <a href="http://javascript.ruanyifeng.com/" target="_blank" rel="external">《JavaScript 标准参考教程》</a>）：<a href="http://javascript.ruanyifeng.com/htmlapi/canvas.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/htmlapi/canvas.html</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CSS/">CSS</a>
+  <span></span> <a href="/tags/HTML/">HTML</a><a href="/tags/canvas/">canvas</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  <a class="article-category-link" href="/categories/HTML/">HTML</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2015/01/03/css_inherit/" data-title="CSS 属性的继承与否 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/03/13/html_canvas-start/" data-title="Canvas 入门 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -162,19 +142,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/03/html_element/" title="HTML 之元素分类">
-  <strong>上一篇:</strong><br/>
-  <span>
-  HTML 之元素分类</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/01/02/html_0/"  title="HTML 之杂谈（1）">
+<a href="/2015/03/13/translate_shorthand-properties/"  title="【译】 CSS 的简写属性">
  <strong>下一篇:</strong><br/> 
- <span>HTML 之杂谈（1）
+ <span>【译】 CSS 的简写属性
 </span>
 </a>
 </div>
@@ -191,7 +163,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不可继承的"><span class="toc-number">1.</span> <span class="toc-text">不可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可继承的"><span class="toc-number">2.</span> <span class="toc-text">可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认值"><span class="toc-number">3.</span> <span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#固执的元素"><span class="toc-number">4.</span> <span class="toc-text">固执的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#canvas_标签"><span class="toc-number">1.</span> <span class="toc-text">canvas 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何用_canvas_标签来绘制图形"><span class="toc-number">2.</span> <span class="toc-text">如何用 canvas 标签来绘制图形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas_对象"><span class="toc-number">2.1.</span> <span class="toc-text">Canvas 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas_API"><span class="toc-number">2.2.</span> <span class="toc-text">Canvas API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比：canvas、SVG、VML"><span class="toc-number">3.</span> <span class="toc-text">对比：canvas、SVG、VML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考及扩展"><span class="toc-number">4.</span> <span class="toc-text">参考及扩展</span></a></li></ol>
   </div>
 
 <div id="asidepart">

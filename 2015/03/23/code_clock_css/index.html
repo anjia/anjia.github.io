@@ -4,12 +4,16 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>anjia</title>
+    <title>CSS 时钟效果 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="Web前端开发工程师">
+    <meta name="description" content="效果：浏览效果
+code review 了下，收获颇丰啊。一对比源码就知道差别（差距）在哪里了。
+
+原始的 V1.0：原始代码 
+修改后的 V1.5 ：修改后的代码修改点：HTML结构：（1）不是链接的就不要随便用 a 标签（2）命名：不 needle 和 digit，换成了通俗的 pointer ">
     
     
     
@@ -64,199 +68,89 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/03/23/code_clock_css/" title="CSS 时钟效果" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">CSS 时钟效果</h1>
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >效果：浏览效果
-code review 了下，收获颇丰啊。一对比源码就知道差别（差距）在哪里了。
-
-原始的 V1.0：原始代码 
-修改后的 V1.5 ：修改后的代码修改点：HTML结构：（1）不是链接的就不要随便用 a 标签（2）命名：不 needle 和 digit，换成了通俗</p>
-        
+      <a href="/2015/03/23/code_clock_css/" title="CSS 时钟效果" itemprop="url">CSS 时钟效果</a>
+  </h1>
+  <p class="article-author">By
     
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
     <time datetime="2015-03-23T13:54:59.000Z" itemprop="datePublished">2015-03-23</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/03/13/html_canvas-start/" title="Canvas 入门" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">Canvas 入门</h1>
+    更新日期:<time datetime="2015-03-23T14:03:03.000Z" itemprop="dateModified">2015-03-23</time>
     
-     
-           <p itemprop="description" >canvas 标签
-&amp;lt;canvas&amp;gt; 是 HTML5 中的新标签，它是为了让客户端显示矢量图形设计的（必须使用脚本来绘制图形）。
-如何用 canvas 标签来绘制图形
-API 并没有定义在 &amp;lt;canvas&amp;gt; 元素本身上，而是定义在通过画布的 getCont</p>
-        
-    
-    <time datetime="2015-03-13T10:56:16.000Z" itemprop="datePublished">2015-03-13</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<p>效果：<a href="http://htmlpreview.github.io/?https://github.com/anjia/code/blob/master/clock_afterReview.html" target="_blank" rel="external">浏览效果</a></p>
+<p>code review 了下，收获颇丰啊。一对比源码就知道差别（差距）在哪里了。</p>
+<ol>
+<li>原始的 V1.0：<a href="https://github.com/anjia/code/blob/master/clock_beforeReview.html" target="_blank" rel="external">原始代码</a> </li>
+<li>修改后的 V1.5 ：<a href="https://github.com/anjia/code/blob/master/clock_afterReview.html" target="_blank" rel="external">修改后的代码</a><br>修改点：<br>HTML结构：<br>（1）不是链接的就不要随便用 a 标签<br>（2）命名：不 needle 和 digit，换成了通俗的 pointer 和 number<br>JS<br>（1）去掉了繁琐的 var me = this;<br>（2）合并循环：画线和数字时<br>（3）简化计算公式：画数字时<br>其他：<br>（1）trim()<br>（2）switch-case  vs. if-else<br>（3）htmlArray.length vs. $.isEmptyObject(x)<br>（4）this.<br>（5）setInterval() 传参this过去-作用域上下文</li>
+</ol>
+<p>目前，遗留问题：<br>1.用 jQuery 提供的插件形式书写，并简化 HTML 结构和配置项<br>（1）直接只写一个div，然后 $(‘.clock’).Clock()<br>（2）配置项中牵扯到选择器的，可尽量自动生成<br>2.时间的校验，setInterval()<br>（1）当网页在后台打开<br>（2）当网页被关闭，比如手机锁屏等<br>3.浏览器的兼容性</p>
   
-    <a href="/2015/03/13/translate_shorthand-properties/" title="【译】 CSS 的简写属性" itemprop="url" class="brief">
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
   
-    <h1 itemprop="name">【译】 CSS 的简写属性</h1>
-    
-     
-           <p itemprop="description" >CSS 的简写属性想必大家平时都会用到，但是你对其中的“坑”了解吗？比如简写属性有可能覆盖之前的设置的值，比如关键字 inherit 不能用于简写属性的属性的值里，再比如简写属性中的对属性的顺序要求。
-完整译文，请查看：https://developer.mozilla.org/</p>
-        
-    
-    <time datetime="2015-03-13T07:27:05.000Z" itemprop="datePublished">2015-03-13</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/03/13/translate_background-size/" title="【译】 background-size 缩放背景图像" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">【译】 background-size 缩放背景图像</h1>
-    
-     
-           <p itemprop="description" >CSS 的 background-size 属性能调整背景图片的大小，从而替代了用原始大小显示图片的默认行为。
-完整译文，请查看：https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Scaling_background_i</p>
-        
-    
-    <time datetime="2015-03-13T07:06:43.000Z" itemprop="datePublished">2015-03-13</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/03/13/translate_html5/" title="【译】我们盲目地奔跑在语义化的道路上" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">【译】我们盲目地奔跑在语义化的道路上</h1>
-    
-     
-           <p itemprop="description" >原文作者对那时吹捧的语义化优势进行了“抨击”，作者认为：
-
-易理解性和语义化标记之间几乎没有任何关联
-语义化标记并不会让搜索引擎给页面一个高的可信值
-语义化 Web 并不能提高数据的可移植性
-
-作者也认为，语义化是为了以后的文档阅读者，让代码读起来更有意义一些（至少在现在看来的真</p>
-        
-    
-    <time datetime="2015-03-13T06:46:37.000Z" itemprop="datePublished">2015-03-13</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/02/04/code_point_catalog/" title="【知识点】 一览表" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">【知识点】 一览表</h1>
-    
-     
-           <p itemprop="description" >CSS
-
-border
-CSS3 制作动画常用的3个属性2.1 transform 变形：CSS3 2D 变形、CSS3 3D 变形2.2 transition 过渡2.3 animation 动画
-
-其他
-
-圆的极坐标</p>
-        
-    
-    <time datetime="2015-02-04T03:52:40.000Z" itemprop="datePublished">2015-02-04</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/02/04/code_point_css2d/" title="CSS3 2D Transform" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">CSS3 2D Transform</h1>
-    
-     
-           <p itemprop="description" >CSS3 制作动画常用的3个属性：
-
-transform 变形：CSS3 2D 变形、CSS3 3D 变形 【今天讲解 2D 变形】
-transition 过渡
-animation 动画
-
-transform
-transform：对元素进行 2D 或 3D 变形，包括旋转 rot</p>
-        
-    
-    <time datetime="2015-02-04T03:34:59.000Z" itemprop="datePublished">2015-02-04</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/02/02/code_point_circleMenu/" title="【知识点】径向动画菜单的效果" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">【知识点】径向动画菜单的效果</h1>
-    
-     
-           <p itemprop="description" >效果预览
-
-效果说明：径向展开子菜单，展开过程淡入淡出效果源码：http://codepen.io/anjia/pen/qEyXNR
-知识点
-主要知识点
-缩放 scale
-scale 属于 CSS3 2D 转换 的一种效果。scale() 根据给定的宽度（X 轴）和高度（Y 轴）</p>
-        
-    
-    <time datetime="2015-02-02T13:18:30.000Z" itemprop="datePublished">2015-02-02</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/30/code_hover_pop/" title="hover 后弹框" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">hover 后弹框</h1>
-    
-     
-           <p itemprop="description" >效果说明：浏览页面、查看源码 
-
-hover 弹出悬浮框
-悬浮框跟随移动：延迟消失 + transition (IE10+)
-快速滑入时不出弹框：延迟显示
-
-知识点
-
-位置：position() offset()
-事件函数 hover()：mouseenter mouseleav</p>
-        
-    
-    <time datetime="2015-01-30T07:16:08.000Z" itemprop="datePublished">2015-01-30</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/18/html_table/" title="HTML 之 table" itemprop="url" class="brief">
-  
-    <h1 itemprop="name">HTML 之 table</h1>
-    
-     
-           <p itemprop="description" >鉴于之前开发时，老能碰到一些“出乎意料”的事情，即：按照自我意愿，给 table 的某些元素设置的某些属性，但最后却发现-样式不生效！！！1、给 col 设置 font-size、color 等，不生效！…平时给它设置最多的是 width，宽度正常…2、给 tr 设置 paddi</p>
-        
-    
-    <time datetime="2015-01-18T14:16:03.000Z" itemprop="datePublished">2015-01-18</time>
-  </a>
-</section>
+  <span></span> <a href="/tags/实战/">实战</a>
+  </div>
 
 
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-  </nav>
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/实战/">实战</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/03/23/code_clock_css/" data-title="CSS 时钟效果 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
 
 </div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/03/13/html_canvas-start/"  title="Canvas 入门">
+ <strong>下一篇:</strong><br/> 
+ <span>Canvas 入门
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -395,6 +289,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -414,7 +310,79 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -422,4 +390,4 @@ $(document).ready(function(){
 
 
   </body>
- </html>
+</html>

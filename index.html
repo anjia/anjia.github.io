@@ -68,14 +68,14 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/04/15/jsURIEncode/" title="encodeURI() 和 encodeURIComponent()" itemprop="url" class="brief">
+    <a href="/2015/04/15/jsURIEncode/" title="URL 编码" itemprop="url" class="brief">
   
-    <h1 itemprop="name">encodeURI() 和 encodeURIComponent()</h1>
+    <h1 itemprop="name">URL 编码</h1>
     
      
-           <p itemprop="description" >encodeURI()
-目的：对 URI 进行完整编码所以，它对在 URI 中具有特殊含义的 ASCII 标点符号，它是不会进行转义的，比如以下11个字符 ;/?:@&amp;amp;=+$,#
-它不会对以下进行编码：1.ASCII 字母2.数字3.ASCII 标点符号，以下9个 -_.</p>
+           <p itemprop="description" >为什么要编码？
+如果一样东西需要编码，那说明它不适合传输，原因有多种（有些字符有歧义、包含隐私数据、Size过大）。
+在 URL 中，之所以要编码，是因为有些字符会引起歧义。比如参数中的key=value键值对，当value里含有= &amp;amp; ? 等，就会造成 URL 服务器的</p>
         
     
     <time datetime="2015-04-15T10:57:19.000Z" itemprop="datePublished">2015-04-15</time>
@@ -307,7 +307,7 @@ transform：对元素进行 2D 或 3D 变形，包括旋转 rot</p>
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/tool/" style="font-size: 11.67px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 11.67px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 11.67px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+       <a href="/tags/CSS/" style="font-size: 18.00px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.00px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 14.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 14.00px;">todo</a><a href="/tags/tool/" style="font-size: 12.00px;">tool</a><a href="/tags/web/" style="font-size: 14.00px;">web</a><a href="/tags/实战/" style="font-size: 16.00px;">实战</a><a href="/tags/对象/" style="font-size: 14.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.00px;">杂谈</a><a href="/tags/模板/" style="font-size: 14.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.00px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.00px;">笔记</a><a href="/tags/编码/" style="font-size: 12.00px;">编码</a><a href="/tags/翻译/" style="font-size: 14.00px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 14.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 14.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 

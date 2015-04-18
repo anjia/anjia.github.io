@@ -79,7 +79,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-04-17T04:19:16.000Z" itemprop="datePublished">2015-04-17</time>
-    更新日期:<time datetime="2015-04-17T11:02:01.000Z" itemprop="dateModified">2015-04-17</time>
+    更新日期:<time datetime="2015-04-18T08:32:06.000Z" itemprop="dateModified">2015-04-18</time>
     
   </p>
 </header>
@@ -105,7 +105,7 @@
 <p>只需用 script 标签引入 require.js 即可，其他的文件模块都不再使用 script 标签引入 </p>
 <h3 id="主模块">主模块</h3>
 <p>主模块 main.js<br>常见的情况是主模块依赖其他模块，这时就使用 AMD 规范定义的 require() 函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config({</div><div class="line">	baseUrl: <span class="string">'js/'</span>, </div><div class="line">	paths: {</div><div class="line">		jquery: <span class="string">'jquery-1.11.2'</span>   <span class="comment">// 【默认省略.js，否则会报错】</span></div><div class="line">	}</div><div class="line">});</div><div class="line"></div><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'math'</span>], <span class="function"><span class="keyword">function</span><span class="params">($, math)</span></span>{</div><div class="line"></div><div class="line">	alert($().jquery);  <span class="comment">//弹框显示当前jQuery的版本</span></div><div class="line"></div><div class="line">	<span class="keyword">var</span> ele = math.sum(<span class="number">4</span>,<span class="number">5</span>);</div><div class="line">	<span class="built_in">console</span>.log(ele);</div><div class="line">});</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config({</div><div class="line">	baseUrl: <span class="string">'js/'</span>, </div><div class="line">	paths: {</div><div class="line">		jquery: <span class="string">'jquery-1.11.2'</span>   <span class="comment">// 【默认省略.js，否则写着.js会报错】</span></div><div class="line">	}</div><div class="line">});</div><div class="line"></div><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'math'</span>], <span class="function"><span class="keyword">function</span><span class="params">($, math)</span></span>{</div><div class="line"></div><div class="line">	alert($().jquery);  <span class="comment">//弹框显示当前jQuery的版本</span></div><div class="line"></div><div class="line">	<span class="keyword">var</span> ele = math.sum(<span class="number">4</span>,<span class="number">5</span>);</div><div class="line">	<span class="built_in">console</span>.log(ele);</div><div class="line">});</div></pre></td></tr></table></figure>
 
 <p>main.js 中有两个函数调用</p>
 <ol>
@@ -113,6 +113,12 @@
 <li>require() 有两个参数<br>（1）第一个参数是一个数组，表示所依赖的模块名，是字符串类型<br>（2）第二个参数是回调函数，加载的模块会以参数形式传入该函数，从而实现在回调函数内部使用这些模块</li>
 </ol>
 <p>require() 异步加载各个模块，浏览器不会失去响应。它指定的回调函数，只有当前面的模块都加载成功后，才会运行。解决了依赖性问题。</p>
+<p>说明：</p>
+<ol>
+<li>如果 require.config() 里的 baseUrl<br>（1）baseUrl 没有定义，则默认是和主模块 main.js 同目录<br>（2）baseUrl 的值是空字符串’’，则默认是和主页面 index.html 同目录</li>
+<li>如果 require() 里的模块名在 require.config() 的 paths 里没有定义，比如上例中的 ‘math’，则默认路径是和主模块 main.js 同目录，且默认文件名字是 模块名.js。</li>
+<li>在 require 中是以模块名字为唯一标识的。【符合预期嘛，减少相同模块的重复加载。但使用不当会造成文件的覆盖】<br>（1）主模板依赖了 jquery，如果子模块也依赖 jquery，且模块的名字和主模块里的相同，都是’jquery’，那么整个程序就只加载其中一个，且只加载一次。具体加载谁，依据依赖顺序（因为在子模块里也可以重新设置 require.config() 去配置）。此例会优先加载主模块里的 jquery。<br>（2）如果不同的子模块都用到了 cookie 插件，但 cookie 里的代码不同。在使用时，请将两个模块名字赋成不同的值，否则会造成 js 的相互覆盖。</li>
+</ol>
 <h3 id="其他模块">其他模块</h3>
 <p>math.js 的内容：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(a, b)</span></span>{</div><div class="line">		<span class="keyword">return</span> a+b;</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="keyword">return</span> {</div><div class="line">		sum: sum</div><div class="line">	};</div><div class="line">});</div></pre></td></tr></table></figure>
@@ -186,6 +192,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/04/18/js_timer/" title="JS 中的计时器">
+  <strong>上一篇:</strong><br/>
+  <span>
+  JS 中的计时器</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/04/15/jsURIEncode/"  title="URL 编码">
@@ -235,7 +249,7 @@
 				<a href="/categories/blog/" title="blog">blog (4)</a></li>
 		
 			<li>
-				<a href="/categories/javascript/" title="javascript">javascript (11)</a></li>
+				<a href="/categories/javascript/" title="javascript">javascript (12)</a></li>
 		
 			<li>
 				<a href="/categories/node/" title="node">node (2)</a></li>
@@ -262,7 +276,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -294,6 +308,8 @@
     
         <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
     
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
         <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
     
         <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
@@ -309,6 +325,8 @@
         <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
     
         <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
     
 </div>
 

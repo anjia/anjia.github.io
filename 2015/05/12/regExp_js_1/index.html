@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CSS 属性的继承与否 | anjia</title>
+    <title>JS 中的 RegExp 类型 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="书写时注意，可利用以下三点：利用 默认值利用 继承利用 层叠
+    <meta name="description" content="ECMAScript 通过 RegExp 类型支持正则表达式
+JS 如何定义正则？
+用字面量形式
+用字面量形式定义正则表达式，格式是：
+1var expession = /pattern/flags;  //patttern 是模式，flags 是标识
 
-不可继承的
-
-盒模型-布局margin, border, paddingwidth, max-width, min-widthheight, max-height, min-height
-
-定位float, clear, overflo">
+3个 flags 标识g 全局模式（glob">
     
     
     
@@ -75,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/03/css_inherit/" title="CSS 属性的继承与否" itemprop="url">CSS 属性的继承与否</a>
+      <a href="/2015/05/12/regExp_js_1/" title="JS 中的 RegExp 类型" itemprop="url">JS 中的 RegExp 类型</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://anjia.github.io" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-03T07:23:21.000Z" itemprop="datePublished">2015-01-03</time>
-    更新日期:<time datetime="2015-01-03T11:29:49.000Z" itemprop="dateModified">2015-01-03</time>
+    <time datetime="2015-05-12T09:36:39.000Z" itemprop="datePublished">2015-05-12</time>
+    更新日期:<time datetime="2015-05-12T11:58:54.000Z" itemprop="dateModified">2015-05-12</time>
     
   </p>
 </header>
@@ -92,68 +92,71 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不可继承的"><span class="toc-number">1.</span> <span class="toc-text">不可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可继承的"><span class="toc-number">2.</span> <span class="toc-text">可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认值"><span class="toc-number">3.</span> <span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#固执的元素"><span class="toc-number">4.</span> <span class="toc-text">固执的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_如何定义正则？"><span class="toc-number">1.</span> <span class="toc-text">JS 如何定义正则？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用字面量形式"><span class="toc-number">1.1.</span> <span class="toc-text">用字面量形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用_RegExp_构造函数"><span class="toc-number">1.2.</span> <span class="toc-text">用 RegExp 构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">1.3.</span> <span class="toc-text">对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例属性"><span class="toc-number">2.</span> <span class="toc-text">RegExp 的实例属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例方法"><span class="toc-number">3.</span> <span class="toc-text">RegExp 的实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec()"><span class="toc-number">3.1.</span> <span class="toc-text">exec()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test()"><span class="toc-number">3.2.</span> <span class="toc-text">test()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_构造函数的属性"><span class="toc-number">4.</span> <span class="toc-text">RegExp 构造函数的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
-		<ol>
-<li>书写时注意，可利用以下三点：<br>利用 默认值<br>利用 继承<br>利用 层叠</li>
-</ol>
-<h2 id="不可继承的">不可继承的</h2>
+		<p>ECMAScript 通过 RegExp 类型支持正则表达式</p>
+<h2 id="JS_如何定义正则？">JS 如何定义正则？</h2>
+<h3 id="用字面量形式">用字面量形式</h3>
+<p>用字面量形式定义正则表达式，格式是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expession = <span class="regexp">/pattern/</span>flags;  <span class="comment">//patttern 是模式，flags 是标识</span></div></pre></td></tr></table></figure>
+
+<p><strong>3个 flags 标识</strong><br>g 全局模式（global）<br>i 不区分大小写模式（case-insensitive）<br>m 多行模式（multiline）</p>
+<p>比如：<br>/at/g  匹配字符串中所有”at”的实例<br>/[bc]at/i  匹配第一个”bat”或”cat”，不区分大小写<br>/.at/gi  匹配所有以”at”结尾的3个字符的组合，不区分大小写</p>
+<p><strong>patttern 模式中的元字符</strong><br>元字符共有14个 ^$.  []{}?+*  ()|  \<br>在模式中使用元字符时，都必须进行转义<br>比如：<br>/[bc]at/i  匹配第一个”[bc]at”，不区分大小写<br>/.at/gi  匹配所有以”.at”结尾的字符组合，不区分大小写</p>
+<h3 id="用_RegExp_构造函数">用 RegExp 构造函数</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"pattern"</span>, <span class="string">"flags"</span>);  <span class="comment">//patttern 是模式，flags 是标识</span></div></pre></td></tr></table></figure>
+
+<p>注意，此处参数 pattern 和 flag 都是 string 类型，而不带正则表达式的定界符 //</p>
+<h3 id="对比">对比</h3>
+<p><strong>相同点：</strong>以下的两个正则表达式是完全等价的<br>var pattern1 = /[bc]at/i;<br>var pattern2 = new RegExp(“[bc]at”, “i”);</p>
+<p><strong>不同点：</strong>RegExp 的构造函数的参数都是字符串，所以在某些情况下就需要对字符进行双重转义，比如字符 \ 在字符串中通常被转义成 \ </p>
+<h2 id="RegExp_的实例属性">RegExp 的实例属性</h2>
+<p>正则表达式的每一个实例都具有以下属性（可以取得有关模式的基本信息）</p>
 <ol>
-<li><p>盒模型-布局<br>margin, border, padding<br>width, max-width, min-width<br>height, max-height, min-height</p>
-</li>
-<li><p>定位<br>float, clear, overflow<br>position (top,right,bottom,left)<br>z-index</p>
-</li>
-<li><p>所有背景属性<br>background (color,image,position)</p>
-</li>
-<li><p>文本属性<br>vertical-align (垂直居中：行内、替换元素)<br>text-decoration (文本属性)<br>text-shadow (文本阴影)<br>white-space (对空白字符的处理)<br>unicode-bidi (css处理文本方向)</p>
-</li>
-<li><p>其他<br>content (生成内容)<br>content-reset (计数器标识-eg.ol时)<br>outline (轮廓)<br>clip（没玩过）</p>
-</li>
+<li>global</li>
+<li>ignoreCase</li>
+<li>multiline</li>
+<li>source 正则表达式的字符串表示，按照字面量形式传入的（而不管它是以字面量形式创建还是 RegExp 构造函数创建的）</li>
+<li>lastIndex 整数，表示开始搜索下一个匹配项的字符位置，从0开始</li>
 </ol>
-<h2 id="可继承的">可继承的</h2>
-<ol>
-<li><p>文本属性<br>font(size,weight,family)<br>line-height<br>text-indent<br>text-align<br>word-spacing<br>letter-spacing<br>text-transform<br>direction(文字方向)</p>
-</li>
-<li><p>其他<br>color<br>cursor<br>list-style(-type,-image,-position) ：eg.list-style:url() square inside<br>quotes (生成括号)<br>visibility【再确认？】</p>
-</li>
-</ol>
-<h2 id="默认值">默认值</h2>
-<ol>
-<li><p>margin:0</p>
-</li>
-<li><p>border 的默认值<br>border-style: 默认为none<br>border-color: 默认为 元素本身的前景色|父元素的文本颜色<br>border-width: 默认medium</p>
-</li>
-</ol>
-<p>没有样式，就没有宽度，所以 border 也无从谈起</p>
-<p>border-style：10个，eg.solid,dashed,dotted,…..,inset,outset<br>border-width 有4种设值：px, thin, medium, thick<br>border-color：可透明，transparent</p>
-<p>背景色 及 border 的位置关系：border是在background之上的</p>
-<h2 id="固执的元素">固执的元素</h2>
-<p>clear：只对块级元素<br>list-style：只对 display:list-item 的元素<br>position 不是 static，则为定位元素<br>background-color 默认的是 transparent（所以看起来像继承）</p>
-<h2 id="说明">说明</h2>
-<ol>
-<li>a的颜色<br>往往不继承其外层容器：因为代理自己设了a的样式</li>
-</ol>
+<p><img src="\images\20150512_regexp_attrs.jpg" alt=""><br>通过这些属性可以获得一个正则表达式的各方面的信息，不过没多大用处。因为这些信息大部分都包含在模式声明中。<br>lastIndex 属性在配合方法 exec() 时还是有用处的。</p>
+<h2 id="RegExp_的实例方法">RegExp 的实例方法</h2>
+<h3 id="exec()">exec()</h3>
+<p>exec() 专门为捕获组而设计<br><strong>参数：</strong>要应用模式的字符串<br><strong>返回：</strong>包含第一个匹配项信息的数组 或者 null<br>数组的第一项是：与整个模式匹配的字符串<br>数组的第二项（及其他项都是）是：与模式中的捕获组匹配的字符串（如果模式中没有捕获组，那数据就只含有1项！）<br><img src="\images\20150512_regexp_exec_1.png" alt=""></p>
+<p>数组的实例，有两个额外的属性：<br>index 表示匹配项在字符串中的位置<br>input 表示应用正则表达式的字符串<br><img src="\images\20150512_regexp_exec_2.png" alt=""></p>
+<p>对 exec()而言，即使在模式中设置了全局标志 g，它每次也只会返回一个匹配性<br>它的作用在于：每次调用 exec() 都会在字符串中继续查找新的匹配项。<br>而不设置 g 时，在同一个字符串上多次调用 exec() 将始终返回第一个匹配项的信息。<br>此外，注意 lastIndex 属性的变化！<br><img src="\images\20150512_regexp_exec_3.png" alt=""></p>
+<h3 id="test()">test()</h3>
+<p>test() 只判断是否匹配，<br>参数：字符串<br>返回：当模式与字符串匹配时，返回true；否则返回false</p>
+<p>如果只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的情况下，这个方法很方便。test() 方法经常用于 if() 语句中。<br>场景：验证用户输入的情况下<br><img src="\images\20150512_regexp_test.png" alt=""></p>
+<p>其他方法：<br>.toString() 和 .toLocaleString() 这两方法都会返回正则表达式的字面量，与创建的方式无关。字符串形式的字面量。<br>.valueOf()  返回正则表达式本身<br><img src="\images\20150512_regexp_methods.png" alt=""></p>
+<h2 id="RegExp_构造函数的属性">RegExp 构造函数的属性</h2>
+<p>这些属性，可以理解为是：静态的。即是全局的。<br>它们适用于作用域中的所有正则表达式，并且是基于最近一次执行的正则表达式操作而变化。</p>
+<p>利用这些属性，可以从 exec() 和 test() 执行的操纵中提取更具体的信息。比如：最近一次要匹配的字符串；最近一次的匹配项；最近一次匹配的捕获组；匹配项目左边、右边的内容（自我感觉用处不大，故未列出。详情参考P108）</p>
+<p>除了这些外，还有多达9个用于存储捕获组的构造函数属性。可以像如下访问：<br>RegExp.$1<br>RegExp.$2<br>…<br>RegExp.$9<br>分别存储第1到9个匹配的捕获组。</p>
+<p>在调用 exec() 和 test() 方法时，这些属性会被自动填充。然后我们就可以直接使用啦。</p>
+<h2 id="参考">参考</h2>
+<p>《JavaScript高级程序设计（第3版）》 中的第5章 引用类型： 5.4 RegExp 类型<br>问题：<br>Q1: 字符串中的字符为什么要进行转义？都有哪些字符？eg. \ 会被转义成 \</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CSS/">CSS</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/正则表达式/">正则表达式</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2015/01/03/css_inherit/" data-title="CSS 属性的继承与否 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/05/12/regExp_js_1/" data-title="JS 中的 RegExp 类型 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -162,19 +165,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/03/html_element/" title="HTML 之元素分类">
-  <strong>上一篇:</strong><br/>
-  <span>
-  HTML 之元素分类</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/01/02/html_0/"  title="HTML 之杂谈（1）">
+<a href="/2015/04/18/js_timer/"  title="JS 中的计时器">
  <strong>下一篇:</strong><br/> 
- <span>HTML 之杂谈（1）
+ <span>JS 中的计时器
 </span>
 </a>
 </div>
@@ -191,7 +186,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不可继承的"><span class="toc-number">1.</span> <span class="toc-text">不可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可继承的"><span class="toc-number">2.</span> <span class="toc-text">可继承的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认值"><span class="toc-number">3.</span> <span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#固执的元素"><span class="toc-number">4.</span> <span class="toc-text">固执的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_如何定义正则？"><span class="toc-number">1.</span> <span class="toc-text">JS 如何定义正则？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用字面量形式"><span class="toc-number">1.1.</span> <span class="toc-text">用字面量形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用_RegExp_构造函数"><span class="toc-number">1.2.</span> <span class="toc-text">用 RegExp 构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">1.3.</span> <span class="toc-text">对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例属性"><span class="toc-number">2.</span> <span class="toc-text">RegExp 的实例属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例方法"><span class="toc-number">3.</span> <span class="toc-text">RegExp 的实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec()"><span class="toc-number">3.1.</span> <span class="toc-text">exec()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test()"><span class="toc-number">3.2.</span> <span class="toc-text">test()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_构造函数的属性"><span class="toc-number">4.</span> <span class="toc-text">RegExp 构造函数的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">

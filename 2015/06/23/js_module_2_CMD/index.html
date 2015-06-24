@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>chrome developer tool 开发者调试 | anjia</title>
+    <title>JS 的模块化编程（四）- CMD | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="元素右键 【Elements】（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）（2）复制路径：CSS路径；XPath路径（3）设置断点：子元素修改、修改属性、删除元素
-Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
+    <meta name="description" content="本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。
+JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二）- CommonJSJS 的模块化编程（三）- AMDJS 的模块化编程（四）- CMDJS 的模块化编程（五）- AMD 和 CMD 的区别JS 的模块化编程">
     
     
     
@@ -70,15 +70,15 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/23/chromeDevTool/" title="chrome developer tool 开发者调试" itemprop="url">chrome developer tool 开发者调试</a>
+      <a href="/2015/06/23/js_module_2_CMD/" title="JS 的模块化编程（四）- CMD" itemprop="url">JS 的模块化编程（四）- CMD</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://anjia.github.io" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-23T07:42:56.000Z" itemprop="datePublished">2014-09-23</time>
-    更新日期:<time datetime="2015-01-03T11:32:29.000Z" itemprop="dateModified">2015-01-03</time>
+    <time datetime="2015-06-23T08:09:10.000Z" itemprop="datePublished">2015-06-23</time>
+    更新日期:<time datetime="2015-06-23T11:35:54.000Z" itemprop="dateModified">2015-06-23</time>
     
   </p>
 </header>
@@ -87,56 +87,33 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD"><span class="toc-number">1.</span> <span class="toc-text">CMD</span></a></li></ol>
 		</div>
 		
-		<ol>
-<li>元素右键 【Elements】<br>（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）<br>（2）复制路径：CSS路径；XPath路径<br>（3）设置断点：子元素修改、修改属性、删除元素</li>
-<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的 js 文件</li>
-<li>查看元素绑定了哪些事件<br>【Elements】面板下的“Event Listeners”：按类型列出元素的相关事件（捕获和冒泡阶段会经过的这个节点的事件）</li>
-<li>查找<br>（1）所有js文件中搜索&amp;查找js函数定义：ctrl + shift + F<br>（2）查找函数定义：ctrl + shift + 0<br>（3）查找文件：ctrl + o</li>
-<li>command line API<br>（1）$(id) 与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements 面板最近选中的5个元素，最新的是 $0<br>更多 console API：console.log()<br>更多 command line API：</li>
-<li>【Resources】页面的资源<br>（1）请求的资源情况：字体、图片、脚本文件、样式文件<br>（2）存储相关：Cookies、HTML5的Database、Local Storage<br>  你可以对存储的内容编辑和删除。</li>
-<li>【Timeline】：JS执行时间、页面元素渲染时间</li>
-</ol>
-<ol>
-<li>Chrome 的 workspace：<br>能够在开发者工具中调试修改 js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
-<li>【Profiles】性能分析</li>
-<li>仿真测试：</li>
-</ol>
-<ol>
-<li>Ajax 时中断 【？？】</li>
-<li>console 中执行的代码可断点 【？】<br>最后一行加上 //@ sourceURL=filename.js,<br>会在 Scripts 面板中有个叫 filename.js 的文件, 然后他就和外部 js 文件一样了</li>
-<li>top frame</li>
-</ol>
-<ol>
-<li>Elements</li>
-<li>Network：分析网站请求的网络情况、查看某一请求的请求头和响应头</li>
-<li>Console</li>
-</ol>
-<p>参考：<br><a href="http://ued.taobao.org/blog/2012/06/debug-with-chrome-dev-tool/" target="_blank" rel="external">chrome developer tool调试技巧</a>：ued.taobao.org<br><a href="http://isux.tencent.com/chrome-workspace.html" target="_blank" rel="external">Chrome workspace</a>：isux.tencent.com</p>
-<p><a href="https://developer.chrome.com/devtools/docs/console" target="_blank" rel="external">https://developer.chrome.com/devtools/docs/console</a><br><a href="https://developers.google.com/chrome-developer-tools/" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/</a> </p>
-<p><a href="http://javascript.ruanyifeng.com/tool/console.html" target="_blank" rel="external">console对象</a>： 阮一峰的博客书<br><a href="https://crxdoc-zh.appspot.com/apps/tut_debugging" target="_blank" rel="external">教程：调试</a>：里面有靠谱的更多链接…</p>
+		<p>本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。</p>
+<p><a href="http://anjia.github.io/2015/05/15/js_module_1_basic/" target="_blank" rel="external">JS 的模块化编程（一）- 模块的基本写法</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CommonJS/" target="_blank" rel="external">JS 的模块化编程（二）- CommonJS</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD/" target="_blank" rel="external">JS 的模块化编程（三）- AMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CMD/" target="_blank" rel="external">JS 的模块化编程（四）- CMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD和CMD/" target="_blank" rel="external">JS 的模块化编程（五）- AMD 和 CMD 的区别</a><br><a href="http://anjia.github.io/2015/04/17/js_module_3_requireJS/" target="_blank" rel="external">JS 的模块化编程（六）-  requireJS</a></p>
+<h1 id="CMD">CMD</h1>
+<p>未完待续。。。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/debug/">debug</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/模块化/">模块化</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/tool/">tool</a>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2014/09/23/chromeDevTool/" data-title="chrome developer tool 开发者调试 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/06/23/js_module_2_CMD/" data-title="JS 的模块化编程（四）- CMD | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -146,18 +123,18 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/09/23/nodejs_1_expressjs/" title="Express 介绍">
+ <a href="/2015/06/23/js_module_2_AMD和CMD/" title="JS 的模块化编程（五）- AMD vs. CMD">
   <strong>上一篇:</strong><br/>
   <span>
-  Express 介绍</span>
+  JS 的模块化编程（五）- AMD vs. CMD</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/09/23/funning_0/"  title="ALT+小键盘数字打的特殊符号">
+<a href="/2015/06/23/js_module_2_AMD/"  title="JS 的模块化编程（三）- AMD">
  <strong>下一篇:</strong><br/> 
- <span>ALT+小键盘数字打的特殊符号
+ <span>JS 的模块化编程（三）- AMD
 </span>
 </a>
 </div>
@@ -174,7 +151,7 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD"><span class="toc-number">1.</span> <span class="toc-text">CMD</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -187,10 +164,10 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 		<ul>
 		
 			<li>
-				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
 		
 			<li>
-				<a href="/categories/HTML/" title="HTML">HTML (6)</a></li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
 		
 			<li>
 				<a href="/categories/Web/" title="Web">Web (3)</a></li>
@@ -199,13 +176,13 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 				<a href="/categories/blog/" title="blog">blog (4)</a></li>
 		
 			<li>
-				<a href="/categories/javascript/" title="javascript">javascript (10)</a></li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
 		
 			<li>
 				<a href="/categories/node/" title="node">node (2)</a></li>
 		
 			<li>
-				<a href="/categories/tool/" title="tool">tool (2)</a></li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
 		
 			<li>
 				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
@@ -216,9 +193,6 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 			<li>
 				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
 		
-			<li>
-				<a href="/categories/翻译/" title="翻译">翻译 (3)</a></li>
-		
 		</ul>
 </div>
 
@@ -226,7 +200,7 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -234,7 +208,7 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 18.00px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.00px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 14.00px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 14.00px;">todo</a><a href="/tags/web/" style="font-size: 14.00px;">web</a><a href="/tags/实战/" style="font-size: 16.00px;">实战</a><a href="/tags/对象/" style="font-size: 14.00px;">对象</a><a href="/tags/杂谈/" style="font-size: 12.00px;">杂谈</a><a href="/tags/模板/" style="font-size: 14.00px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.00px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.00px;">笔记</a><a href="/tags/翻译/" style="font-size: 14.00px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 14.00px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 14.00px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 11.67px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 
@@ -258,6 +232,8 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
     
         <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
     
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
         <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
     
         <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
@@ -273,6 +249,8 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
         <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
     
         <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
     
 </div>
 

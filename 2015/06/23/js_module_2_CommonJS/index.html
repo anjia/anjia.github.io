@@ -1,0 +1,417 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JS 的模块化编程（二）- CommonJS | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。
+JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二）- CommonJSJS 的模块化编程（三）- AMDJS 的模块化编程（四）- CMDJS 的模块化编程（五）- AMD 和 CMD 的区别JS 的模块化编程">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/23/js_module_2_CommonJS/" title="JS 的模块化编程（二）- CommonJS" itemprop="url">JS 的模块化编程（二）- CommonJS</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-06-23T08:01:53.000Z" itemprop="datePublished">2015-06-23</time>
+    更新日期:<time datetime="2015-06-23T11:24:41.000Z" itemprop="dateModified">2015-06-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_的模块化规范"><span class="toc-number">1.</span> <span class="toc-text">JS 的模块化规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">2.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展"><span class="toc-number">2.3.</span> <span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<p>本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。</p>
+<p><a href="http://anjia.github.io/2015/05/15/js_module_1_basic/" target="_blank" rel="external">JS 的模块化编程（一）- 模块的基本写法</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CommonJS/" target="_blank" rel="external">JS 的模块化编程（二）- CommonJS</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD/" target="_blank" rel="external">JS 的模块化编程（三）- AMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CMD/" target="_blank" rel="external">JS 的模块化编程（四）- CMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD和CMD/" target="_blank" rel="external">JS 的模块化编程（五）- AMD 和 CMD 的区别</a><br><a href="http://anjia.github.io/2015/04/17/js_module_3_requireJS/" target="_blank" rel="external">JS 的模块化编程（六）-  requireJS</a></p>
+<h2 id="JS_的模块化规范">JS 的模块化规范</h2>
+<p>由于 JS 本身没有内置的模块系统（ES6之前），于是就有了 JS 的模块化规范。模块化规范的目的就是统一模块化的编写方式，比如不同的 java 团队总可以用 import 的方式来加载彼此写的代码，C# 可以用 using 来加载。</p>
+<p>目前，比较通行的 JS 模块化规范，有三个：CommonJS/AMD/CMD。下面我们来分别介绍。</p>
+<h2 id="CommonJS">CommonJS</h2>
+<h3 id="简介">简介</h3>
+<p><a href="https://en.wikipedia.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a> 是一个旨在构建涵盖web服务器端、桌面应用、命令行app和浏览器JS的JS生态系统。</p>
+<h3 id="标准">标准</h3>
+<p>CommonJS 的标准是符合 <a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank" rel="external">module1.1</a> 规范的。CommonJS 的标准如下：</p>
+<p>1.require() 全局方法，用来加载模块<br>假设我们要导入 math 模块（math.js 是一个单独的文件）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>); <span class="comment">//导入模块</span></div><div class="line">math.add(<span class="number">2</span>,<span class="number">5</span>); <span class="comment">//使用模块的方法</span></div></pre></td></tr></table></figure>
+
+<p>2.exports 全局变量，用来导入模块的方法<br>我们来看下在 math.js 中如何定义上面用到的 add() 方法的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//math.js</span></div><div class="line">exports.add = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	<span class="keyword">var</span> sum=<span class="number">0</span>, i=<span class="number">0</span>,</div><div class="line">		args=<span class="built_in">arguments</span>, l=args.length;</div><div class="line">	<span class="keyword">while</span>(i&lt;l){</div><div class="line">		sum += args[o];</div><div class="line">	}</div><div class="line">	<span class="keyword">return</span> sum;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>3.模块里还有变量 module，它有一个只读的id属性，还有一个uri属性，还有其它的一些命名规范。更多内容可查看 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS 规范的文档页面</a>。</p>
+<h3 id="发展">发展</h3>
+<p>其实，CommonJS 最早是叫 ServerJS，它是伴随着服务器端的一个 JS 项目而产生的，又伴随着 node.js 的火爆发展而成名的。Module1.0 规范在 node.js 上实践的很好，但由于知道自身在浏览器中的不足，CommonJS 社区便于2009年8月把它的名字改成了 CommonJS，意是想统一服务器端和浏览器端。</p>
+<p>通过 CommonJS 的规范和代码可以看出，require() 是同步的，模块系统需要同步读取模块文件的内容，并编译执行以得到模块的接口。在服务端，比如 node.js 中，这一般来说没什么问题，请求的文件（即要加载的模块）都在存放在本地硬盘，可以同步加载，等待的时间就是硬盘读取的时间。</p>
+<p>但是，在浏览器端，同步就有问题了，因为浏览器中模块都放在服务器端。要请求文件，就要有网络请求，而一牵扯到网络请求，时间就不可控了。若依然同步加载模块，万一网络请求的时间太长就会导致浏览器假死。</p>
+<p>要实现浏览器端的，就要制定新的标准，而在制定新标准的过程中，CommonJS 社区中有了分歧，于是就分出了 AMD 规范。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://en.wikipedia.org/wiki/CommonJS" target="_blank" rel="external">https://en.wikipedia.org/wiki/CommonJS</a><br><a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">http://wiki.commonjs.org/wiki/CommonJS</a></p>
+<p><a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank" rel="external">http://wiki.commonjs.org/wiki/Modules/1.1</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/模块化/">模块化</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/06/23/js_module_2_CommonJS/" data-title="JS 的模块化编程（二）- CommonJS | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/06/23/js_module_2_AMD/" title="JS 的模块化编程（三）- AMD">
+  <strong>上一篇:</strong><br/>
+  <span>
+  JS 的模块化编程（三）- AMD</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/19/tool_svn_usage/"  title="svn in Linux">
+ <strong>下一篇:</strong><br/> 
+ <span>svn in Linux
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_的模块化规范"><span class="toc-number">1.</span> <span class="toc-text">JS 的模块化规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">2.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展"><span class="toc-number">2.3.</span> <span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (2)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 11.67px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

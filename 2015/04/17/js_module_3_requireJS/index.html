@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>requireJS | anjia</title>
+    <title>JS 的模块化编程（六）-  requireJS | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="解决了什么问题？
-早期，所有的 JS 代码都写在一个文件里，只要加载这一个文件就可以了。后来，代码越来越多，就分成了多个文件，再依次加载。诸如：
-123456&amp;lt;script src=&quot;1.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;2.js&quot;&amp;gt;&amp;lt;/s">
+    <meta name="description" content="本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。
+JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二）- CommonJSJS 的模块化编程（三）- AMDJS 的模块化编程（四）- CMDJS 的模块化编程（五）- AMD 和 CMD 的区别JS 的模块化编程">
     
     
     
@@ -71,7 +70,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/17/fe_requireJS/" title="requireJS" itemprop="url">requireJS</a>
+      <a href="/2015/04/17/js_module_3_requireJS/" title="JS 的模块化编程（六）-  requireJS" itemprop="url">JS 的模块化编程（六）-  requireJS</a>
   </h1>
   <p class="article-author">By
     
@@ -79,7 +78,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-04-17T04:19:16.000Z" itemprop="datePublished">2015-04-17</time>
-    更新日期:<time datetime="2015-04-18T08:32:06.000Z" itemprop="dateModified">2015-04-18</time>
+    更新日期:<time datetime="2015-06-23T11:23:36.000Z" itemprop="dateModified">2015-06-23</time>
     
   </p>
 </header>
@@ -88,10 +87,20 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#解决了什么问题？"><span class="toc-number">1.</span> <span class="toc-text">解决了什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用？"><span class="toc-number">2.</span> <span class="toc-text">如何使用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主页面"><span class="toc-number">2.1.</span> <span class="toc-text">主页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主模块"><span class="toc-number">2.2.</span> <span class="toc-text">主模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他模块"><span class="toc-number">2.3.</span> <span class="toc-text">其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">2.4.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD模块的写法"><span class="toc-number">3.</span> <span class="toc-text">AMD模块的写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不依赖其他模块"><span class="toc-number">3.1.</span> <span class="toc-text">不依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖其他模块"><span class="toc-number">3.2.</span> <span class="toc-text">依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery"><span class="toc-number">3.3.</span> <span class="toc-text">jQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载非规范的模块"><span class="toc-number">3.4.</span> <span class="toc-text">加载非规范的模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requireJS_插件"><span class="toc-number">4.</span> <span class="toc-text">requireJS 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决了什么问题？"><span class="toc-number">2.</span> <span class="toc-text">解决了什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用？"><span class="toc-number">3.</span> <span class="toc-text">如何使用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主页面"><span class="toc-number">3.1.</span> <span class="toc-text">主页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主模块"><span class="toc-number">3.2.</span> <span class="toc-text">主模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他模块"><span class="toc-number">3.3.</span> <span class="toc-text">其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">3.4.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD模块的写法"><span class="toc-number">4.</span> <span class="toc-text">AMD模块的写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不依赖其他模块"><span class="toc-number">4.1.</span> <span class="toc-text">不依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖其他模块"><span class="toc-number">4.2.</span> <span class="toc-text">依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery"><span class="toc-number">4.3.</span> <span class="toc-text">jQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载非规范的模块"><span class="toc-number">4.4.</span> <span class="toc-text">加载非规范的模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requireJS_插件"><span class="toc-number">5.</span> <span class="toc-text">requireJS 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">6.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
-		<h2 id="解决了什么问题？">解决了什么问题？</h2>
+		<p>本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。</p>
+<p><a href="http://anjia.github.io/2015/05/15/js_module_1_basic/" target="_blank" rel="external">JS 的模块化编程（一）- 模块的基本写法</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CommonJS/" target="_blank" rel="external">JS 的模块化编程（二）- CommonJS</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD/" target="_blank" rel="external">JS 的模块化编程（三）- AMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CMD/" target="_blank" rel="external">JS 的模块化编程（四）- CMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD和CMD/" target="_blank" rel="external">JS 的模块化编程（五）- AMD 和 CMD 的区别</a><br><a href="http://anjia.github.io/2015/04/17/js_module_3_requireJS/" target="_blank" rel="external">JS 的模块化编程（六）-  requireJS</a></p>
+<h2 id="简介">简介</h2>
+<p>requireJS 就是一个工具库，用户客户端的模块化管理。<br>它的模块管理遵守 AMD 规范。它让客户端的代码可以分成一个模块，实现异步或动态加载，提高代码的性能和维护性。</p>
+<p>如何使用 requireJS：</p>
+<ul>
+<li>通过 define() 将代码定义成模块</li>
+<li>通过 require() 实现代码的模块加载</li>
+<li>要求每个模块单独放在一个单独的文件里</li>
+</ul>
+<h2 id="解决了什么问题？">解决了什么问题？</h2>
 <p>早期，所有的 JS 代码都写在一个文件里，只要加载这一个文件就可以了。后来，代码越来越多，就分成了多个文件，再依次加载。诸如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"1.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"2.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"3.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"4.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"5.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"6.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
 
@@ -161,29 +170,40 @@
 
 <h2 id="requireJS_插件">requireJS 插件</h2>
 <p>requireJS 还提供了一系列插件，实现特定的功能。比如：<br>domready 插件（回调函数在页面 DOM 结构加载完成后再运行）、<br>text 和 image 插件（允许 requireJS 加载文本和图片文件）、<br>json 和 mdown（用来加载 json 文件和 markdown 文件）等等。</p>
+<h2 id="其他">其他</h2>
+<p>当依赖模块很多时…参数和模块一一对应，就太麻烦了，可以这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require)</span></span>{</div><div class="line">	<span class="keyword">var</span> dep1 = <span class="built_in">require</span>(<span class="string">'dep1'</span>),</div><div class="line">		dep2 = <span class="built_in">require</span>(<span class="string">'dep2'</span>),</div><div class="line">		dep3 = <span class="built_in">require</span>(<span class="string">'dep3'</span>),</div><div class="line">		dep4 = <span class="built_in">require</span>(<span class="string">'dep4'</span>),</div><div class="line">		dep5 = <span class="built_in">require</span>(<span class="string">'dep5'</span>),</div><div class="line">		...;</div><div class="line">	<span class="comment">//遍历文件夹，把每个文件都给require进来</span></div><div class="line">	<span class="comment">//or 一个人自己的书单....</span></div><div class="line">	<span class="comment">//or 一本书生成一个.js 想用的时候就require进来？但是它的接口是？</span></div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p><a href="http://www.douban.com/note/283566440/" target="_blank" rel="external">有人评论说：</a>「define 后面跟着一长串的依赖感觉就像一场噩梦」，这个确实是个问题。我暂时的处理办法是通过 Sublime Text 插件来自动管理 AMD 依赖。当然这样只是让书写上更便捷，视觉上依赖数组一大坨还是不太美观。</p>
+<p>//以上是异步加载</p>
+<p>//下面是动态加载<br><a href="http://javascript.ruanyifeng.com/tool/requirejs.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/tool/requirejs.html</a><br>可以根据 isReady 属性的值，决定下一步的动作</p>
+<p>//服务器端采用 JSONP 模式，则可直接在 require 调用，来看下面的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([</div><div class="line">	<span class="string">"http://someapi.com/foo?callback=define"</span></div><div class="line">],</div><div class="line"><span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>{ <span class="comment">//</span></div><div class="line">	<span class="built_in">console</span>.log(data);  <span class="comment">// VS. ajax 呢？？</span></div><div class="line">},</div><div class="line"><span class="function"><span class="keyword">function</span><span class="params">(err)</span></span>{ <span class="comment">//处理错误的回调函数</span></div><div class="line">});</div><div class="line"><span class="comment">//指定一个全局性的Error事件的监听函数</span></div><div class="line">requirejs.onError = <span class="function"><span class="keyword">function</span><span class="params">(err)</span></span>{</div><div class="line">};</div></pre></td></tr></table></figure>
+
 <h2 id="参考">参考</h2>
 <p>RequireJS 入门（一二）<br><a href="http://www.cnblogs.com/snandy/archive/2012/05/22/2513652.html" target="_blank" rel="external">http://www.cnblogs.com/snandy/archive/2012/05/22/2513652.html</a><br><a href="http://www.cnblogs.com/snandy/archive/2012/05/23/2513712.html" target="_blank" rel="external">http://www.cnblogs.com/snandy/archive/2012/05/23/2513712.html</a></p>
 <p>Javascript模块化编程（三）：require.js的用法<br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/11/require_js.html</a></p>
+<p>Q:<br>1.动态加载JS的应用场景：eg.当用户是否登录的时候-页面不同-加载的东东也就不同？eg.如果浏览器本身就支持 JSON 那就直接原生的，否则就用第三方的库<br>2.嗯~ 模块也可以是路径样子….Q：路径 和 模块名 它是如何查找的？？<br>3.JSONP</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/FE/">FE</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/模块化/">模块化</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/FE/">FE</a>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2015/04/17/fe_requireJS/" data-title="requireJS | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/04/17/js_module_3_requireJS/" data-title="JS 的模块化编程（六）-  requireJS | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -221,7 +241,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#解决了什么问题？"><span class="toc-number">1.</span> <span class="toc-text">解决了什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用？"><span class="toc-number">2.</span> <span class="toc-text">如何使用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主页面"><span class="toc-number">2.1.</span> <span class="toc-text">主页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主模块"><span class="toc-number">2.2.</span> <span class="toc-text">主模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他模块"><span class="toc-number">2.3.</span> <span class="toc-text">其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">2.4.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD模块的写法"><span class="toc-number">3.</span> <span class="toc-text">AMD模块的写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不依赖其他模块"><span class="toc-number">3.1.</span> <span class="toc-text">不依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖其他模块"><span class="toc-number">3.2.</span> <span class="toc-text">依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery"><span class="toc-number">3.3.</span> <span class="toc-text">jQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载非规范的模块"><span class="toc-number">3.4.</span> <span class="toc-text">加载非规范的模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requireJS_插件"><span class="toc-number">4.</span> <span class="toc-text">requireJS 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决了什么问题？"><span class="toc-number">2.</span> <span class="toc-text">解决了什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用？"><span class="toc-number">3.</span> <span class="toc-text">如何使用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主页面"><span class="toc-number">3.1.</span> <span class="toc-text">主页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主模块"><span class="toc-number">3.2.</span> <span class="toc-text">主模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他模块"><span class="toc-number">3.3.</span> <span class="toc-text">其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">3.4.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD模块的写法"><span class="toc-number">4.</span> <span class="toc-text">AMD模块的写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不依赖其他模块"><span class="toc-number">4.1.</span> <span class="toc-text">不依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖其他模块"><span class="toc-number">4.2.</span> <span class="toc-text">依赖其他模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery"><span class="toc-number">4.3.</span> <span class="toc-text">jQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载非规范的模块"><span class="toc-number">4.4.</span> <span class="toc-text">加载非规范的模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requireJS_插件"><span class="toc-number">5.</span> <span class="toc-text">requireJS 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">6.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -234,13 +254,10 @@
 		<ul>
 		
 			<li>
-				<a href="/categories/CSS/" title="CSS">CSS (5)</a></li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
 		
 			<li>
-				<a href="/categories/FE/" title="FE">FE (1)</a></li>
-		
-			<li>
-				<a href="/categories/HTML/" title="HTML">HTML (6)</a></li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
 		
 			<li>
 				<a href="/categories/Web/" title="Web">Web (3)</a></li>
@@ -249,7 +266,7 @@
 				<a href="/categories/blog/" title="blog">blog (4)</a></li>
 		
 			<li>
-				<a href="/categories/javascript/" title="javascript">javascript (14)</a></li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
 		
 			<li>
 				<a href="/categories/node/" title="node">node (2)</a></li>
@@ -266,9 +283,6 @@
 			<li>
 				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
 		
-			<li>
-				<a href="/categories/翻译/" title="翻译">翻译 (3)</a></li>
-		
 		</ul>
 </div>
 
@@ -276,7 +290,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -284,7 +298,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/FE/" style="font-size: 10.00px;">FE</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 10.00px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 11.67px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 11.67px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 

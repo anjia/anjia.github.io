@@ -78,7 +78,7 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
     </p>
   <p class="article-time">
     <time datetime="2015-06-23T08:01:53.000Z" itemprop="datePublished">2015-06-23</time>
-    更新日期:<time datetime="2015-06-23T11:24:41.000Z" itemprop="dateModified">2015-06-23</time>
+    更新日期:<time datetime="2015-06-24T08:00:34.000Z" itemprop="dateModified">2015-06-24</time>
     
   </p>
 </header>
@@ -87,7 +87,7 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_的模块化规范"><span class="toc-number">1.</span> <span class="toc-text">JS 的模块化规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">2.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展"><span class="toc-number">2.3.</span> <span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_的模块化规范"><span class="toc-number">1.</span> <span class="toc-text">JS 的模块化规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">2.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展"><span class="toc-number">2.3.</span> <span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在最后"><span class="toc-number">3.</span> <span class="toc-text">写在最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
 		<p>本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。</p>
@@ -112,6 +112,9 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
 <p>通过 CommonJS 的规范和代码可以看出，require() 是同步的，模块系统需要同步读取模块文件的内容，并编译执行以得到模块的接口。在服务端，比如 node.js 中，这一般来说没什么问题，请求的文件（即要加载的模块）都在存放在本地硬盘，可以同步加载，等待的时间就是硬盘读取的时间。</p>
 <p>但是，在浏览器端，同步就有问题了，因为浏览器中模块都放在服务器端。要请求文件，就要有网络请求，而一牵扯到网络请求，时间就不可控了。若依然同步加载模块，万一网络请求的时间太长就会导致浏览器假死。</p>
 <p>要实现浏览器端的，就要制定新的标准，而在制定新标准的过程中，CommonJS 社区中有了分歧，于是就分出了 AMD 规范。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>模块化规范其实都是为了 JS 的模块化开发而服务的，模块化是前端工程化的基石。</p>
+<p>此处引用 ServerJS（即 CommonJS 的前身）创始人 Kevin Dangoor 的一句话作为结尾：<br>“What I’m describing here is not a technical problem. It’s a matter of people getting together and making a decision to step forward and start building up something bigger and cooler together.”</p>
 <h2 id="参考">参考</h2>
 <p><a href="https://en.wikipedia.org/wiki/CommonJS" target="_blank" rel="external">https://en.wikipedia.org/wiki/CommonJS</a><br><a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">http://wiki.commonjs.org/wiki/CommonJS</a></p>
 <p><a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank" rel="external">http://wiki.commonjs.org/wiki/Modules/1.1</a></p>
@@ -172,7 +175,7 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_的模块化规范"><span class="toc-number">1.</span> <span class="toc-text">JS 的模块化规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">2.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展"><span class="toc-number">2.3.</span> <span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS_的模块化规范"><span class="toc-number">1.</span> <span class="toc-text">JS 的模块化规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">2.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展"><span class="toc-number">2.3.</span> <span class="toc-text">发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在最后"><span class="toc-number">3.</span> <span class="toc-text">写在最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">

@@ -78,7 +78,7 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
     </p>
   <p class="article-time">
     <time datetime="2015-06-23T08:09:10.000Z" itemprop="datePublished">2015-06-23</time>
-    更新日期:<time datetime="2015-06-23T11:35:54.000Z" itemprop="dateModified">2015-06-23</time>
+    更新日期:<time datetime="2015-06-24T08:39:53.000Z" itemprop="dateModified">2015-06-24</time>
     
   </p>
 </header>
@@ -87,13 +87,63 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD"><span class="toc-number">1.</span> <span class="toc-text">CMD</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD_简介"><span class="toc-number">1.</span> <span class="toc-text">CMD 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD_规范的_API"><span class="toc-number">2.</span> <span class="toc-text">CMD 规范的 API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#define()"><span class="toc-number">2.1.</span> <span class="toc-text">define()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#factory()"><span class="toc-number">2.1.1.</span> <span class="toc-text">factory()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加载模块_require"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">加载模块 require</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提供模块接口"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">提供模块接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#module_对象"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">module 对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#define-cmd"><span class="toc-number">2.2.</span> <span class="toc-text">define.cmd</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
 		<p>本系列博客更像是读blog读文档的笔记，从诸多资料中梳理出了自己的认识。</p>
 <p><a href="http://anjia.github.io/2015/05/15/js_module_1_basic/" target="_blank" rel="external">JS 的模块化编程（一）- 模块的基本写法</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CommonJS/" target="_blank" rel="external">JS 的模块化编程（二）- CommonJS</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD/" target="_blank" rel="external">JS 的模块化编程（三）- AMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_CMD/" target="_blank" rel="external">JS 的模块化编程（四）- CMD</a><br><a href="http://anjia.github.io/2015/06/23/js_module_2_AMD和CMD/" target="_blank" rel="external">JS 的模块化编程（五）- AMD 和 CMD 的区别</a><br><a href="http://anjia.github.io/2015/04/17/js_module_3_requireJS/" target="_blank" rel="external">JS 的模块化编程（六）-  requireJS</a></p>
-<h1 id="CMD">CMD</h1>
-<p>未完待续。。。</p>
+<h1 id="CMD_简介">CMD 简介</h1>
+<p>Common Module Definition，CMD<br>兼容 CommonJS 规范，它与 AMD 有很多相似之处</p>
+<h1 id="CMD_规范的_API">CMD 规范的 API</h1>
+<h2 id="define()">define()</h2>
+<p>define(id?, dependencies?, factory)，定义模块</p>
+<ol>
+<li>当 id, dependencies 被省略时，可通过构建工具自动生成</li>
+<li>factory 函数|对象|字符串</li>
+</ol>
+<ul>
+<li>当是对象|字符串时，模块的接口就是该对象|字符串</li>
+<li>当是函数时－模块的构造方法，执行后得到模块的对外接口<br>默认三个参数 define(factory(require, exports, module){})，下面依次介绍 factory 的这三个参数</li>
+</ul>
+<h3 id="factory()">factory()</h3>
+<p>define(factory(require, exports, module){})</p>
+<h4 id="加载模块_require">加载模块 require</h4>
+<p>1.require(id) id 是模块标识，同步加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require, exports, module)</span></span>{</div><div class="line">	<span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);  <span class="comment">//加载模块a</span></div><div class="line">	a.doSomething();  <span class="comment">//使用模块</span></div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>2.require.async(id, callback?) 异步加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require, exports, module)</span></span>{</div><div class="line">	<span class="comment">//异步加载多个模块，在两个模块都加载完成后，会执行回调</span></div><div class="line">	<span class="built_in">require</span>.async([<span class="string">'./c'</span>,<span class="string">'./d'</span>], <span class="function"><span class="keyword">function</span><span class="params">(c, d)</span></span>{</div><div class="line">		c.doSomething();</div><div class="line">		d.doSomething();</div><div class="line">	});</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<h4 id="提供模块接口">提供模块接口</h4>
+<p>1.exports 对象，向外提供模块接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require, exports, module)</span></span>{</div><div class="line">	exports.foo = <span class="string">"hello world"</span>;  <span class="comment">//对外提供的foo属性</span></div><div class="line">	exports.add = <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span></span>{  <span class="comment">//对外提供的add方法</span></div><div class="line">		<span class="keyword">return</span> a+b;</div><div class="line">	};</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>2.return 直接向外提供接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require, exports, module)</span></span>{</div><div class="line">	<span class="keyword">return</span> {</div><div class="line">		foo: <span class="string">""</span>,  <span class="comment">//对外提供的foo属性</span></div><div class="line">		add: <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span></span>{  <span class="comment">//对外提供的add方法</span></div><div class="line">			<span class="keyword">return</span> a+b;</div><div class="line">		}</div><div class="line">	};</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<h4 id="module_对象">module 对象</h4>
+<p>module.exports, module.id, module.url, module.dependencies，更多详情查看 <a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">CMD 模块定义规范</a>。</p>
+<h2 id="define-cmd">define.cmd</h2>
+<p>define.cmd 对象<br>判断页面中是否有 CMD 模块加载器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> define===<span class="string">"function"</span> && define.cmd){</div><div class="line">	<span class="comment">//有CMD模块加载器存在，eg. sea.js</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h1 id="小结">小结</h1>
+<p>CMD 对模块是按需加载的。它与 AMD（对依赖的模块是提前预加载的）的区别，我们来看下面的例子。</p>
+<p>假设，模块 app.js 中用到了三个模块，分别是 jquery、math 和 exception。用到它们的逻辑是：<br>1.首先通过 math 模块进行一大坨计算<br>2.然后在最最最末尾，通过 jquery 选择器将计算结果显示在页面上。<br>3.在显示前，如果计算抛出了异常，则会用到异常模块 exception 将结果友好地显示在页面上</p>
+<p>AMD 的模块预加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//app.js</span></div><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'math'</span>, <span class="string">'exception'</span>], <span class="function"><span class="keyword">function</span><span class="params">($, math, exception)</span></span>{</div><div class="line">	<span class="comment">//当执行这里面的脚本时，依赖的三个模块都已经加载完了！</span></div><div class="line">	<span class="keyword">var</span> result = {};  <span class="comment">//math的最终计算结果  </span></div><div class="line">	<span class="comment">//使用math </span></div><div class="line">	math.doSomething();</div><div class="line">	...</div><div class="line">	...</div><div class="line">	<span class="comment">//使用exception</span></div><div class="line">	<span class="keyword">if</span>(result.exception){</div><div class="line">		result.msg = exception( result.exception );</div><div class="line">	}</div><div class="line">	<span class="comment">//使用jquery</span></div><div class="line">	$(<span class="string">'#result'</span>).html( result.msg );</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>CMD 的模块按需加载 - 懒加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//app.js</span></div><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require, exports, module)</span></span>{</div><div class="line">	<span class="comment">//当执行这里的脚本时，依赖的三个模块都还没有加载呢！下面是用到谁了，才会加载谁...</span></div><div class="line">	<span class="comment">//加载math模块，并通过它进行一系列计算</span></div><div class="line">	<span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'./math'</span>);</div><div class="line">	<span class="keyword">var</span> result = {};  <span class="comment">//math的最终计算结果</span></div><div class="line">	math.doSomething();</div><div class="line">	...</div><div class="line">	...</div><div class="line">	<span class="comment">//若计算结果有异常，则加载exception模块，对异常信息进行加工</span></div><div class="line">	<span class="keyword">if</span>(result.exception){</div><div class="line">		<span class="keyword">var</span> exception = <span class="built_in">require</span>(<span class="string">'./exception'</span>);</div><div class="line">		result.msg = exception( result.exception );</div><div class="line">	}</div><div class="line">	<span class="comment">//加载jquery，并显示结果</span></div><div class="line">	<span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'./jquery'</span>);</div><div class="line">	$(<span class="string">'#result'</span>).html( result.msg );</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>结合上面的例子，来理解下 CMD 对模块的按需加载：</p>
+<ol>
+<li>当开始执行脚本的时候，<br>AMD 是那三个模块都已加载完成了<br>而 CMD 是还没开始加载呢，下面等用到的时候，再 require() 加载</li>
+<li>当某个模块是动态加载的，比如 exception 模块，只有当计算结果出现异常时才会加载的时候，<br>AMD 是把依赖的都提前加载好了，不管代码里是否会真正用到 exception 模块；<br>CMD 是等用到了再 require() 加载</li>
+</ol>
+<p>当然，上面的例子很生硬，只为了单纯地说明什么是“预加载” 什么是 “懒加载”。<br>因为，AMD 也是可以实现模块的动态加载的，详见 <a href="http://anjia.github.io/2015/04/17/js_module_3_requireJS/#其他" target="_blank" rel="external">对 requireJS 的介绍</a>；而 CMD 同时也是支持异步加载的。<br>由于自己还在学习requireJS和SeaJS中，故对两者之间的区别和pk暂时保持沉默。关于更多 AMD 和 CMD 区别的“口舌之战”详见 <a href="http://anjia.github.io/2015/06/23/js_module_2_AMD和CMD/" target="_blank" rel="external">AMD 和 CMD 的区别</a>。</p>
+<h1 id="参考">参考</h1>
+<p><a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">https://github.com/seajs/seajs/issues/242</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -151,7 +201,7 @@ JS 的模块化编程（一）- 模块的基本写法JS 的模块化编程（二
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD"><span class="toc-number">1.</span> <span class="toc-text">CMD</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD_简介"><span class="toc-number">1.</span> <span class="toc-text">CMD 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CMD_规范的_API"><span class="toc-number">2.</span> <span class="toc-text">CMD 规范的 API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#define()"><span class="toc-number">2.1.</span> <span class="toc-text">define()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#factory()"><span class="toc-number">2.1.1.</span> <span class="toc-text">factory()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加载模块_require"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">加载模块 require</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提供模块接口"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">提供模块接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#module_对象"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">module 对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#define-cmd"><span class="toc-number">2.2.</span> <span class="toc-text">define.cmd</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">

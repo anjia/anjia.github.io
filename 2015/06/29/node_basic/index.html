@@ -1,0 +1,466 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>nodeJS 常识 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="本篇算是笔记，零散地记录下自己觉得有用的小东东。
+实战简介
+如何使用
+
+管理员 node.js command prompt
+cmd.exe 下直接执行也可以node -vnpm -v
+
+
+REPL
+REPL，Read-Eval-Print Loopnode 有自己的虚拟运行环境，输入 node 并">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/29/node_basic/" title="nodeJS 常识" itemprop="url">nodeJS 常识</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-06-29T07:07:14.000Z" itemprop="datePublished">2015-06-29</time>
+    更新日期:<time datetime="2015-06-29T08:05:59.000Z" itemprop="dateModified">2015-06-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实战简介"><span class="toc-number">1.</span> <span class="toc-text">实战简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用"><span class="toc-number">1.1.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REPL"><span class="toc-number">1.2.</span> <span class="toc-text">REPL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">1.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nodeJS_和_javascript"><span class="toc-number">2.</span> <span class="toc-text">nodeJS 和 javascript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相似之处"><span class="toc-number">2.1.</span> <span class="toc-text">相似之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要区别"><span class="toc-number">2.2.</span> <span class="toc-text">主要区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nodeJS_进程相关信息"><span class="toc-number">2.2.1.</span> <span class="toc-text">nodeJS 进程相关信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局对象"><span class="toc-number">2.2.2.</span> <span class="toc-text">全局对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导入和导出模块"><span class="toc-number">2.2.3.</span> <span class="toc-text">导入和导出模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nodeJS"><span class="toc-number">3.</span> <span class="toc-text">nodeJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心模块"><span class="toc-number">3.1.</span> <span class="toc-text">核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非核心模块"><span class="toc-number">3.2.</span> <span class="toc-text">非核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm"><span class="toc-number">3.3.</span> <span class="toc-text">npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多"><span class="toc-number">3.4.</span> <span class="toc-text">更多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器_API_工具"><span class="toc-number">3.4.1.</span> <span class="toc-text">浏览器 API 工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建_web_应用"><span class="toc-number">3.4.2.</span> <span class="toc-text">创建 web 应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#读写文件"><span class="toc-number">3.4.3.</span> <span class="toc-text">读写文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调试"><span class="toc-number">3.4.4.</span> <span class="toc-text">调试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<p>本篇算是笔记，零散地记录下自己觉得有用的小东东。</p>
+<h2 id="实战简介">实战简介</h2>
+<h3 id="如何使用">如何使用</h3>
+<ol>
+<li>管理员 node.js command prompt</li>
+<li>cmd.exe 下直接执行也可以<br>node -v<br>npm -v</li>
+</ol>
+<p><img src="\images\20150629_node_use_node.PNG" alt=""><br><img src="\images\20150629_node_use_cmd.PNG" alt=""></p>
+<h3 id="REPL">REPL</h3>
+<p>REPL，Read-Eval-Print Loop<br>node 有自己的虚拟运行环境，输入 node 并回车，就会打开控制台，当提示符从 $（window下依然是&gt;）变成 &gt;（不同 shell 可能会有不同的提示符）就可以输入你想执行的任何 js 或 nodejs 代码了。此处，类似于 Chrome 的开发工具中的控制台。ctrl+c 退出<br><img src="\images\20150629_node_REPL.PNG" alt=""></p>
+<h3 id="其他">其他</h3>
+<p>可以用 node 加载直接运行一个 js 文件（ node_ppp 目录下有一个 add.js 文件）<br><img src="\images\20150629_node_js1.PNG" alt=""><br>也可以用 node 直接执行js脚本<br><img src="\images\20150629_node_js2.PNG" alt=""></p>
+<h2 id="nodeJS_和_javascript">nodeJS 和 javascript</h2>
+<h3 id="相似之处">相似之处</h3>
+<p>nodeJS 是建立在 Google chrome 的 V8 引擎和它的 ECMAScript 之上。所以，它的语法和前端的 JS 是非常类似的。它和浏览器中对 ECMAScript 的实现有一些比较细微的差别，但总体而言，两者没啥区别。</p>
+<p>nodeJS 和 javascrip 都有的：</p>
+<ol>
+<li>自动类型转换：</li>
+<li>JS 中的基本类型：<br>String Number Boolean<br>Undefined Null<br>RegExp<br>Object</li>
+</ol>
+<p>此外，Buffer - 是 nodeJS 特殊的数据类型<br>buffer，做数据存储非常有效，eg. 从文件系统中读取内容 or 接受网络包内容等</p>
+<h3 id="主要区别">主要区别</h3>
+<p>虽然是同一个标准下的模型，它们之间还是有些主要区别的。</p>
+<h4 id="nodeJS_进程相关信息">nodeJS 进程相关信息</h4>
+<p>每一个运行中的 nodeJS 脚本本质上都是一个进程。比如：<br>输出当前机器上所有运行的 nodeJS 程序，也可以获取同一个进程的相关的有用信息<br><img src="\images\20150629_node_js3.PNG" alt=""><br>pid: process id 进程 id<br>cwd: current work direction 当前工作目录</p>
+<h4 id="全局对象">全局对象</h4>
+<ol>
+<li>JS 的全局是 window，当没写 var 时，变量会默认为全局变量</li>
+<li>nodeJS 使用了不同的设计方法，它默认所有的东西都是本地的<br>某种意义上：window = global（全局对象） + process（进程）<br>当然，用来展现 web 页面中的 DOM 中的 document对象在 nodeJS 中不会存在的啦<br>nodeJS 中还有：module.exports 和 exports</li>
+</ol>
+<h4 id="导入和导出模块">导入和导出模块</h4>
+<p>JS 中没有模块的概念（当然是 ES6 之前），但是 nodeJS 是直接支持模块的（ nodeJS 是 CommonJS 规范的实现）。<br>模块相关的概念，详见博客的 <a href="http://anjia.github.io/2015/06/23/js_module_2_CommonJS/" target="_blank" rel="external">模块化编程的系列介绍</a></p>
+<h2 id="nodeJS">nodeJS</h2>
+<h3 id="核心模块">核心模块</h3>
+<p>nodeJS 的核心模块，是轻量的，它被有意地控制在很小的体积。主要有：</p>
+<ol>
+<li>http： nodeJS 从 HTTP 服务器获取相应内容</li>
+<li>util：模块提供了 调试用的工具方法</li>
+<li>querystring：模块提供了 处理查询字符串的工具</li>
+<li>url：模块提供了 URL 的相关处理和转化</li>
+<li>fs：模块主要处理文件系统相关的操作，比如读写文件等。所有的方法都有同步和异步两种操作</li>
+</ol>
+<p>使用核心模块不需要安装，只要需要的时候直接 require() 进来就可以了。</p>
+<h3 id="非核心模块">非核心模块</h3>
+<p>非核心的模块（其他的模块可以通过 npm 来注册安装）<br>如何编写自己的模块：<br>非常重要的工具，如：<br>（1）Crypto：包含随机生成器、MD5、HMAC-SHA1 和其他一些算法<br>（2）Path：处理系统路径（不同的文件分隔符）<br>（3）String decoder：将 buffer 或字符串类型数据解码</p>
+<h3 id="npm">npm</h3>
+<p>npm 最大优势在于：它的所有依赖都是本地模式安装<br>作为初学者，我们只需要知道，用以下两个来对模块进行本地模式安装：<br>（1）package.json 文件<br>（2）node_modules 文件夹（ 管理依赖啊 依赖更新啊）<br>安装命令是  npm install name 就可以了~~</p>
+<p>看我们通过 npm 安装好了的模块，就在下面的文件夹中：<br>%appdata%  npm\node_modules\</p>
+<h3 id="更多">更多</h3>
+<h4 id="浏览器_API_工具">浏览器 API 工具</h4>
+<p>nodeJS 中许多工具函数都来自于浏览器端 JS 的应用程序接口 (API)<br>eg.<br>Array 的方法 join() pop() slice() 等等；<br>Math 的方法 random()；<br>String 的方法 substr() indexof()；<br>还有 setInterval() setTimeout() foreach() console() 等等</p>
+<h4 id="创建_web_应用">创建 web 应用</h4>
+<p>nodeJS 的一个重要作用：创建 web 应用。它在网络上的繁荣发展，得益于它的异步特性和它的内置模块（ net 和 http ）<br>使用 nodeJS 的 HTTP 模块来创建一个简单的服务器。eg.省略…</p>
+<p>执行，在浏览器中打开 <a href="http://localhost:1337" target="_blank" rel="external">http://localhost:1337</a><br>或者再终端/命令行中执行  $ curl “http:://localhost:1337”</p>
+<p>nodeJS 应用是存储在内存中的，所以修改了源码后，必须重启进程（也就是 node）才能看到变化。<br>当然已经有工具实现了自动化-它们通过 fs 模块的方法监听，当文件内容发生变化时就重启服务器。eg.forever、node-dev、nodemon、supervisor。</p>
+<p>我们都知道，<a href="http://anjia.github.io/2014/09/23/nodejs_1_expressjs/" target="_blank" rel="external">ExpressJS</a> 在默认情况下每次都会为新请求重新加载模板文件。因此，一定不要重启服务。不过我们可以通过设置 view cache 来缓存模板（更多的设置）。<br>$ node -help //帮助</p>
+<h4 id="读写文件">读写文件</h4>
+<p>在 nodeJS 中读写文件：<br>nodeJS 的数据流：数据流-应用在处理数据的的时候还可以同时接收数据（适用于处理超大数据集合 eg.视频处理、数据库迁移）<br>—使用流输出二进制文件内容的基本例子<br>—默认情况下，nodeJS 使用 buffer 来处理流。</p>
+<p>回调代码可以用事件的 emit 或者 promise 的方式来替代 or 直接使用异步库</p>
+<h4 id="调试">调试</h4>
+<ol>
+<li>nodeJS 的调试有以下工具：<br>Core NodeJS Debugger：没有图形化用户接口的精简工具<br>Node Inspector：Google Chrome开发者工具的接口<br>WebStorm 和其他集成开发环境一起</li>
+<li>核心 nodeJS 调试：<br>console.log()<br>debugger;//<br>并且使用 $ node debug program.js //来启动调式进程<br>主要的调试命令：<br>（1）next, n:  单步执行<br>（2）cont, c: 继续执行，直到遇到下一个断点  continue<br>（3）step, s: 单步执行并进入函数<br>（4）out, o: 才函数中跳出<br>（5）watch(expression): 把表达式 expression 加入监视列表</li>
+</ol>
+<h2 id="参考">参考</h2>
+<p>读书笔记-第一章：<a href="http://book.douban.com/subject/26391998/" target="_blank" rel="external">http://book.douban.com/subject/26391998/</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/笔记/">笔记</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/node/">node</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/06/29/node_basic/" data-title="nodeJS 常识 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/06/29/fe_phantomjs/" title="phantomJS">
+  <strong>上一篇:</strong><br/>
+  <span>
+  phantomJS</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/06/23/js_module_2_AMD和CMD/"  title="JS 的模块化编程（五）- AMD vs. CMD">
+ <strong>下一篇:</strong><br/> 
+ <span>JS 的模块化编程（五）- AMD vs. CMD
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实战简介"><span class="toc-number">1.</span> <span class="toc-text">实战简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用"><span class="toc-number">1.1.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REPL"><span class="toc-number">1.2.</span> <span class="toc-text">REPL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">1.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nodeJS_和_javascript"><span class="toc-number">2.</span> <span class="toc-text">nodeJS 和 javascript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相似之处"><span class="toc-number">2.1.</span> <span class="toc-text">相似之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要区别"><span class="toc-number">2.2.</span> <span class="toc-text">主要区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nodeJS_进程相关信息"><span class="toc-number">2.2.1.</span> <span class="toc-text">nodeJS 进程相关信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局对象"><span class="toc-number">2.2.2.</span> <span class="toc-text">全局对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导入和导出模块"><span class="toc-number">2.2.3.</span> <span class="toc-text">导入和导出模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nodeJS"><span class="toc-number">3.</span> <span class="toc-text">nodeJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心模块"><span class="toc-number">3.1.</span> <span class="toc-text">核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非核心模块"><span class="toc-number">3.2.</span> <span class="toc-text">非核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm"><span class="toc-number">3.3.</span> <span class="toc-text">npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多"><span class="toc-number">3.4.</span> <span class="toc-text">更多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器_API_工具"><span class="toc-number">3.4.1.</span> <span class="toc-text">浏览器 API 工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建_web_应用"><span class="toc-number">3.4.2.</span> <span class="toc-text">创建 web 应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#读写文件"><span class="toc-number">3.4.3.</span> <span class="toc-text">读写文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调试"><span class="toc-number">3.4.4.</span> <span class="toc-text">调试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 10.00px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

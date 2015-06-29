@@ -1,0 +1,426 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>phantomJS | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="简介
+在英语单词中，phantom [‘fæntəm] 的意思是“幽灵的、幻觉的”。那么，在计算机这里，phantomJS 是个什么东东？
+phantomJS 是一个基于 webkit 的服务器端 JavaScript API。它无需浏览器的支持即可实现对 web 的支持，且原生支持各种 web 标">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/29/fe_phantomjs/" title="phantomJS" itemprop="url">phantomJS</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-06-29T07:16:27.000Z" itemprop="datePublished">2015-06-29</time>
+    更新日期:<time datetime="2015-06-29T11:04:07.000Z" itemprop="dateModified">2015-06-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm"><span class="toc-number">2.1.</span> <span class="toc-text">npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方式"><span class="toc-number">2.2.</span> <span class="toc-text">其他方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行"><span class="toc-number">3.</span> <span class="toc-text">运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#REPL"><span class="toc-number">3.1.</span> <span class="toc-text">REPL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行独立_js"><span class="toc-number">3.2.</span> <span class="toc-text">执行独立 js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">4.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<h2 id="简介">简介</h2>
+<p>在英语单词中，phantom [‘fæntəm] 的意思是“幽灵的、幻觉的”。那么，在计算机这里，phantomJS 是个什么东东？</p>
+<p>phantomJS 是一个基于 webkit 的服务器端 JavaScript API。它无需浏览器的支持即可实现对 web 的支持，且原生支持各种 web 标准，比如 Dom 处理、JS、CSS、JSON 和 Canvas、SVG。 <a href="http://www.infoq.com/cn/news/2015/01/phantomjs-webkit-javascript-api" target="_blank" rel="external">点击查看更多介绍</a> </p>
+<p>可以理解为，phantomJS 是埋伏在后端的不可见的浏览器幽灵。来看看它的非常卡哇伊的图标，有木有很形象的赶脚。左侧是官网的，右侧是打开phantomjs.exe后的任务栏图标，萌萌哒。<br><img src="\images\20150629_phantomjs_ico.png" alt=""></p>
+<h2 id="安装">安装</h2>
+<h3 id="npm">npm</h3>
+<p>用 npm 全局安装，命令：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install phantomjs -g</div></pre></td></tr></table></figure>
+
+<p>很方便，且也方便后期和 node 配合。<br>安装完后，下载的模块在这个目录下：%appdata%\npm\node_modules</p>
+<p>当然前提是成功安装了 node 和 npm。当 phantomJS 成功安装后，可以用 —version 查看其版本<br><img src="\images\20150629_phantomjs_npm.png" alt=""></p>
+<h3 id="其他方式">其他方式</h3>
+<p>也可以在 <a href="http://phantomjs.org/download.html" target="_blank" rel="external">官网</a> 上下载：直接下载一个已经编译好了的二进制包。下载后解压，它的代码其实和用 npm 下载下来的是一样的，也就是目录下的文件夹 %appdata%\npm\node_modules\phantomjs </p>
+<p>也可以在 git 上下载，直接 clone 下来。大家可以选择自己习惯的方式去安装。</p>
+<h2 id="运行">运行</h2>
+<h3 id="REPL">REPL</h3>
+<p>REPL，Read-Eval-Print Loop，即自己的虚拟运行环境，即相当于 chrome 的控制台，可以执行任意 JS 代码。<br>直接打开可执行的文件 phantomjs\lib\phantom\phantomjs.exe，看到的便是 phantomJS 的 <a href="http://phantomjs.org/repl.html" target="_blank" rel="external">REPL</a> 环境。<br>退出：直接按 ctrl+c，或者执行函数 phantom.exit()<br><img src="\images\20150629_phantomjs_repl.png" alt=""></p>
+<p>如果是用 npm 安装的 phantomJS，通过命令行进入 phantomJS 提供的完整的 PERL 环境中，如下<br><img src="\images\20150629_phantomjs_repl_node.png" alt=""></p>
+<h3 id="执行独立_js">执行独立 js</h3>
+<p>当然，phantomJS 也可以执行一个独立的 js 文件。<br>方便文件整理，我们专门建立一个文件夹 node_ppp 来存放这些示例文件，执行 add.js<br><img src="\images\20150529_phantomjs_addjs.png" alt=""></p>
+<figure class="highlight javacript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//<span class="built_in">add</span>.js</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a,b)</span>{</span></div><div class="line">	<span class="keyword">return</span> <span class="keyword">a</span>+<span class="keyword">b</span>;</div><div class="line">}</div><div class="line">console.<span class="built_in">log</span>(<span class="string">'...add.js'</span>);</div><div class="line">console.<span class="built_in">log</span>( <span class="built_in">add</span>(<span class="number">3</span>,<span class="number">4</span>) );</div><div class="line">phantom.<span class="keyword">exit</span>();</div></pre></td></tr></table></figure>
+
+<h2 id="语法">语法</h2>
+<p>语法部分，可以参考博客 <a href="http://javascript.ruanyifeng.com/tool/phantomjs.html#toc2" target="_blank" rel="external">PhantomJS</a> 。此处，就简要介绍下 phantomJS 能干什么？</p>
+<ol>
+<li>加载webpage模块，并创建一个网页实例，打开网页<br>打开具体网页（默认是get方式，也可以是post-也可以传参数）</li>
+<li>打开网页后，在页面中执行 JS 代码 page.evaluate()<br>page.onConsoleMessage() 的回调函数—监听page.evaluate()中写的console语句-以输出到命令行中</li>
+<li>加载外部脚本 page.includeJS()</li>
+<li>把网页保存成图片 page.render()<br>也可以指定浏览器视口的大小，即网页加载的初始浏览器大小</li>
+<li>当页面上请求资源时…<br>onResourceRequested 回调函数，当页面请求一个资源时，就会触发<br>onResourceError 回调函数，当上面的网络请求错误时，包括abort()终止当前的网络请求</li>
+</ol>
+<p>附上示例代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//test1.js</span></div><div class="line">		</div><div class="line"><span class="comment">//webpage 模块主要用于网页操作，是PhantonJS的核心模块</span></div><div class="line"><span class="keyword">var</span> webPage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webPage.create();<span class="comment">//创建一个网页实例</span></div><div class="line">	</div><div class="line"><span class="comment">//onConsoleMessage() 回调函数 [以输出evaluate()方法中的console]</span></div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span><span class="params">(msg)</span></span>{</div><div class="line">	<span class="built_in">console</span>.log(msg);</div><div class="line">}</div><div class="line">	</div><div class="line"><span class="comment">//open() 打开具体网页，默认是get方法</span></div><div class="line">page.open(<span class="string">'http://anjia.github.io'</span>, <span class="function"><span class="keyword">function</span><span class="params">(status)</span></span>{</div><div class="line">	<span class="comment">//表示状态的字符串 [只要收到服务器的返回结果，就会认为成功-而不管400/500]</span></div><div class="line">	<span class="built_in">console</span>.log(status);</div><div class="line">	</div><div class="line">	<span class="comment">//evaluate() 打开网页后，在页面中执行JS代码</span></div><div class="line">	<span class="keyword">var</span> title = page.evaluate(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		<span class="comment">//网页内部和evaluate()内部的console语句，默认不会显示在命令行中</span></div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'This is in evaluate()...'</span>);</div><div class="line">		<span class="keyword">return</span> <span class="built_in">document</span>.title;</div><div class="line">	});</div><div class="line">	</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'The title of page is: '</span> + title);</div><div class="line">	</div><div class="line">	phantom.exit();</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>截网页图的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//test2.js</span></div><div class="line">		</div><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">	</div><div class="line"><span class="comment">//表示设置宽高木有生效！！！</span></div><div class="line">page.viewportSize = {</div><div class="line">	width: <span class="number">480</span>,</div><div class="line">	height: <span class="number">800</span></div><div class="line">};</div><div class="line">		</div><div class="line">page.open(<span class="string">'http://anjia.github.io'</span>, <span class="function"><span class="keyword">function</span><span class="params">(status)</span></span>{</div><div class="line">	<span class="built_in">console</span>.log(status);</div><div class="line">	page.render(<span class="string">'anjia_blog.jpeg'</span>, {format:<span class="string">'jpeg'</span>, quality:<span class="string">'100'</span>});</div><div class="line">	phantom.exit();</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>已上两个例子的运行结果如下：<br><img src="\images\20150629_phantomjs_result.PNG" alt=""><br>test2.js 中的截图结果 anjia_blog.jpeg 太长了，此处就不贴了，可 <a href="http://p1.qhimg.com/t01041226728ad8be85.jpg" target="_blank" rel="external">点击链接</a> 单独查看（代码设置宽高-但是截图依然是瘦长版的—）</p>
+<p>// other<br>system 模块可加载操作系统变量</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://phantomjs.org/quick-start.html" target="_blank" rel="external">http://phantomjs.org/quick-start.html</a><br><a href="http://javascript.ruanyifeng.com/tool/phantomjs.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/tool/phantomjs.html</a><br><a href="http://www.infoq.com/cn/news/2015/01/phantomjs-webkit-javascript-api" target="_blank" rel="external">http://www.infoq.com/cn/news/2015/01/phantomjs-webkit-javascript-api</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/fe/">fe</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/node/">node</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/06/29/fe_phantomjs/" data-title="phantomJS | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/06/29/node_basic/"  title="nodeJS 常识">
+ <strong>下一篇:</strong><br/> 
+ <span>nodeJS 常识
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm"><span class="toc-number">2.1.</span> <span class="toc-text">npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方式"><span class="toc-number">2.2.</span> <span class="toc-text">其他方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行"><span class="toc-number">3.</span> <span class="toc-text">运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#REPL"><span class="toc-number">3.1.</span> <span class="toc-text">REPL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行独立_js"><span class="toc-number">3.2.</span> <span class="toc-text">执行独立 js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">4.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 10.00px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.33px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 13.33px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

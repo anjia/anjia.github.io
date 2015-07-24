@@ -1,0 +1,412 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>React 的其他概念 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="接上篇 React 简介和原理，本节介绍下 React 的其他概念。
+其他概念
+单向的数据流动 Flux
+React 提倡单向数据流动，永远只有从数据到视图的数据流动。Flux 框架，专门管理数据流。Dispatcher：全局的分发器，负责接收 ActionAction：可以来自于用户的界面操作（e">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/24/fe_react_2/" title="React 的其他概念" itemprop="url">React 的其他概念</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-07-24T09:33:48.000Z" itemprop="datePublished">2015-07-24</time>
+    更新日期:<time datetime="2015-07-24T11:07:26.000Z" itemprop="dateModified">2015-07-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#其他概念"><span class="toc-number">1.</span> <span class="toc-text">其他概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单向的数据流动_Flux"><span class="toc-number">1.1.</span> <span class="toc-text">单向的数据流动 Flux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#只读数据_Immutability"><span class="toc-number">1.2.</span> <span class="toc-text">只读数据 Immutability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观的编程方式_JSX"><span class="toc-number">1.3.</span> <span class="toc-text">直观的编程方式 JSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React_思想的延伸"><span class="toc-number">1.4.</span> <span class="toc-text">React 思想的延伸</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#碎碎念"><span class="toc-number">2.</span> <span class="toc-text">碎碎念</span></a></li></ol>
+		</div>
+		
+		<p>接上篇 <a href="http://anjia.github.io/2015/07/24/fe_react/" target="_blank" rel="external">React 简介和原理</a>，本节介绍下 React 的其他概念。</p>
+<h1 id="其他概念">其他概念</h1>
+<h2 id="单向的数据流动_Flux">单向的数据流动 Flux</h2>
+<p>React 提倡单向数据流动，永远只有从数据到视图的数据流动。Flux 框架，专门管理数据流。<br><img src="\images\20150724_react_flux.png" alt=""><br>Dispatcher：全局的分发器，负责接收 Action<br>Action：可以来自于用户的界面操作（eg点击提交按钮）也可以来自服务器端的数据更新<br>Store：可以在 Dispatcher 上监听到 Action，并作出相应的操作。</p>
+<p>当数据模型发生变化时，就触发刷新整个界面。类似“全局的消息发布订阅模型”。</p>
+<h2 id="只读数据_Immutability">只读数据 Immutability</h2>
+<p>React 提倡用只读数据来建立数据模型，即所有数据都是只读的，如果要修改它，那么你只能生产一份包含新的修改的数据。此时，是把修改过的对象应用到界面组件上来进行界面的更新。结合 React，只读数据能让 React 组件仅仅通过比较对象引用是否相当来决定自身是否要重新 Render，这在复杂的界面上可以提高性能。</p>
+<p>只读数据，并不是 Facebook 的全新发明，它起源于 Clojure、Scala、Hashell 等函数式编程语言。只读的数据让代码更安全和易于维护，不用担心数据在某个角落被某段神奇的代码修改了。</p>
+<h2 id="直观的编程方式_JSX">直观的编程方式 JSX</h2>
+<p>JSX 不是什么新技术，它就是为了方便 FE 在 JS 里声明组件。它呢，算是一个“模板语言”，只是它牵扯到语法都是FE最最常用的（HTML、CSS、JS），所以学习成本小到忽略不计。</p>
+<p>关于 JSX 更详细的介绍，可以参考 <a href="http://www.infoq.com/cn/articles/react-jsx-and-component" target="_blank" rel="external">系列三：理解JSX和组件</a></p>
+<h2 id="React_思想的延伸">React 思想的延伸</h2>
+<p>React Native 将 React 的思想延伸到原生的移动开发，React 对 UI 层进行了完美的抽象。写 web 页面时，甚至能够做到完全的去 DOM 化，开发者无需进行任何 DOM 操作，直接更新数据写 js 即可。因此，这也让对UI层进行整体替换成了可能，React Native 正式将基于浏览器DOM的UI层换成了Android和IOS的原生控件。React Native 参考了 React 强大的特性（组件化的思想 调式工具 动态代码加载），可对以后的移动开发布局产生重要影响。</p>
+<p>Flipboard 则是将 UI 层换成了 Canvas。React Canvas 是一套前端框架，所有的界面元素都通过 Canvas 来绘制。</p>
+<h1 id="碎碎念">碎碎念</h1>
+<p>??JS对于字符串的操作 也是这样的，只读数据<br>??只读数据，那就是值set的时候 需要验证咯~<br>??只读数据的应用场景 更适合</p>
+<p>?? 这几点，很赞同<br>1.两层数据模式：数据层、UI层<br>2.不要’模板’<br>3.一个不要 UI DOM 操作的未来</p>
+<p>??两层模型。话说，我觉得这种形式挺好的。bootstrap我几乎没用过，因为它要兼容很多种情况，导致html的结构复杂的混乱-css也是。而当要修改它的时候，就要看它源码—好多不明所以的写法（要不是自己想想可能是为了兼容某种情况，真心觉得它对自己的需求来说输出的是冗余的）而这种思想吧，就是把 组件-模块化了，更在乎它的功能—觉得这点真心很好</p>
+<p>??完全去DOM化，哇咔咔，这么多美好的未来呀！！！很开心过几年可以很自豪的拍着胸脯说：想当年我们操作原生dom的时候呀~从此成为经历过web开发历史的人…【我觉得可以实现的哦】</p>
+<p>??传说13年提出来，结果15年初的时候突然又火了，更是因为它的衍生吧，eg.延伸到了原生的移动开发—maybe~<br>??所有界面元素用Canvas绘制：图搜的分享的那次，发现问题并换种方式去解决的思路和精神都是值得大家去学习的</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/fe/">fe</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/FE/">FE</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/07/24/fe_react_2/" data-title="React 的其他概念 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/07/24/fe_react/"  title="React 简介和原理">
+ <strong>下一篇:</strong><br/> 
+ <span>React 简介和原理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#其他概念"><span class="toc-number">1.</span> <span class="toc-text">其他概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单向的数据流动_Flux"><span class="toc-number">1.1.</span> <span class="toc-text">单向的数据流动 Flux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#只读数据_Immutability"><span class="toc-number">1.2.</span> <span class="toc-text">只读数据 Immutability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观的编程方式_JSX"><span class="toc-number">1.3.</span> <span class="toc-text">直观的编程方式 JSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React_思想的延伸"><span class="toc-number">1.4.</span> <span class="toc-text">React 思想的延伸</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#碎碎念"><span class="toc-number">2.</span> <span class="toc-text">碎碎念</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+		
+			<li>
+				<a href="/categories/FE/" title="FE">FE (3)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/jQuery/" title="jQuery">jQuery (1)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (3)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 13.33px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/jquery/" style="font-size: 10.00px;">jquery</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 15.00px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

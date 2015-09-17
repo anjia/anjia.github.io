@@ -1,0 +1,460 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>用 jQuery 编写第三方插件 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="用 jQuery 编写第三方插件，常见的三种方式：
+
+新的全局函数 $.xxx()
+jQuery 的对象方法 $(‘div’).xxx()
+jQuery UI 的部件工厂：少量编码，复杂插件
+
+本节重点介绍前两种。插件的基本结构如下：
+1234//传参 + IIFE(function($){	//d">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/17/jq_plugin_dev/" title="用 jQuery 编写第三方插件" itemprop="url">用 jQuery 编写第三方插件</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-17T03:40:40.000Z" itemprop="datePublished">2015-09-17</time>
+    更新日期:<time datetime="2015-09-17T12:56:16.000Z" itemprop="dateModified">2015-09-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery_全局函数"><span class="toc-number">1.</span> <span class="toc-text">jQuery 全局函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给_jQuery_对象新加一个属性"><span class="toc-number">1.1.</span> <span class="toc-text">给 jQuery 对象新加一个属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用_$-extend()"><span class="toc-number">1.2.</span> <span class="toc-text">用 $.extend()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#封装在一个对象"><span class="toc-number">1.3.</span> <span class="toc-text">封装在一个对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery_对象的方法"><span class="toc-number">2.</span> <span class="toc-text">jQuery 对象的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象方法的上下文"><span class="toc-number">2.1.</span> <span class="toc-text">对象方法的上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式迭代_+_方法连缀"><span class="toc-number">2.2.</span> <span class="toc-text">隐式迭代 + 方法连缀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法参数"><span class="toc-number">2.3.</span> <span class="toc-text">方法参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others"><span class="toc-number">3.</span> <span class="toc-text">others</span></a></li></ol>
+		</div>
+		
+		<p>用 jQuery 编写第三方插件，常见的三种方式：</p>
+<ol>
+<li>新的全局函数 $.xxx()</li>
+<li>jQuery 的对象方法 $(‘div’).xxx()</li>
+<li>jQuery UI 的部件工厂：少量编码，复杂插件</li>
+</ol>
+<p>本节重点介绍前两种。插件的基本结构如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//传参 + IIFE</span></div><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	<span class="comment">//do something</span></div><div class="line">})(jQuery);</div></pre></td></tr></table></figure>
+
+<p>目的：保证 $ 不会有冲突<br>原因：由于代码中的其他部分可能会让渡快捷键 $ 的使用权，即 $.noConflict();<br>所以，在自定义插件时，最好始终都用 jQuery，然后在内部定义一个别名 $。定义一个函数，立马调用它（立即调用的函数表达式 IIFE），这样就不会有 $ 的冲突了。</p>
+<h2 id="jQuery_全局函数">jQuery 全局函数</h2>
+<p>jQuery 的全局函数，即位于 jQuery 命名空间内部的函数。在核心 jQuery 库里，有很多全局函数，都是实用方法（实用方法，即一些常用功能的快捷方式），比如常见的 $.ajax()、$.each().map().get()、$.find()、$.grep() 等。放在 jQuery 的命名空间内，只需避免和 jQuery 其他的方法名冲突即可。下面介绍三种方式。</p>
+<h3 id="给_jQuery_对象新加一个属性">给 jQuery 对象新加一个属性</h3>
+<p>给 jQuery 的命名空间中添加一个函数，只需给 jQuery对象新添加一个属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义</span></div><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.sum = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		<span class="comment">//do something</span></div><div class="line">	};</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//使用，和基本的调用一样</span></div><div class="line">$.sum();</div></pre></td></tr></table></figure>
+
+<h3 id="用_$-extend()">用 $.extend()</h3>
+<p>还可以通过另外一种语法来定义全局函数，利用 $.extend()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.extend({</div><div class="line">		sum: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="comment">//do something</span></div><div class="line">		},</div><div class="line">		average: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="comment">//do something</span></div><div class="line">		}</div><div class="line">	});</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//使用</span></div><div class="line">$.sum(); </div><div class="line">$.average();</div></pre></td></tr></table></figure>
+
+<p>当然，这也有可能污染命名空间，即和 jQuery 其他的插件冲突。<br>解决：最好把属于一个插件的全局函数都封装在一个对象中。</p>
+<h3 id="封装在一个对象">封装在一个对象</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.mathUtils = {</div><div class="line">		sum: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="comment">//do something</span></div><div class="line">		},</div><div class="line">		average: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="comment">//do something</span></div><div class="line">		}</div><div class="line">	};</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//使用</span></div><div class="line">$.mathUtils.sum(); </div><div class="line">$.mathUtils.average();</div></pre></td></tr></table></figure>
+
+<p>该模式的本质：为所有的全局变量又创建了一个命名空间。虽然还称它们为全局函数，但实际上它们已经是 mathUtils 对象的方法了，而 mathUtils 对象则保存在 jQuery 对象的属性中。</p>
+<h3 id="小结">小结</h3>
+<p>一般情况下，不把函数保存在 jQuery 命名空间里，而是选择一个我们自己的全局对象。比如可以把 OB 作为全局对象，那么 $.mathUtils.sum() 就要写成 OB.mathUtils.sum() 了。这样，就可以彻底避免自定义插件和第三方插件方法命名上的冲突了。这种技术+足够有特色的命名空间，可在一定程度上避免全局函数的污染命名空间。这，就是开发插件的基本方法。</p>
+<p>以上呢，都是组织上的好处，着眼于如何保护命名空间。真正体验 jQuery 插件的威力，是为个别 jQuery 对象实例创建新的方法。来，下面继续。</p>
+<h2 id="jQuery_对象的方法">jQuery 对象的方法</h2>
+<p>前面介绍的添加全局函数，以新方法来扩展 jQuery 对象<br>添加实例方法，扩展的是 jQuery.fn 对象。jQuery.fn 对象是 jQuery.prototype 的别名，用别名是为了简洁。</p>
+<p>jQuery 大多数内置的功能，都是通过对其对象实例的方法提供的，使用这个方法是插件之所以诱人的关键。eg.当函数需要操作 Dom 元素时，就是将函数创建成 jQuery对象方法的好机会。首先，我们来举个反例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义</span></div><div class="line">jQuery.fn.myMethod = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Hello World'</span>);</div><div class="line">};</div><div class="line">	</div><div class="line"><span class="comment">//使用</span></div><div class="line">$(<span class="string">'div'</span>).myMethod();</div></pre></td></tr></table></figure>
+
+<p>结果是：当页面中有多个 div 时只会输出一次；当页面中没有 div 时，依然也会输出一次。我们会发现，这么使用并没有什么卵用。所以呢，一个合理的实例方法，应该包含它对上下文的操作，即有操作匹配到的 DOM 结构。</p>
+<h3 id="对象方法的上下文">对象方法的上下文</h3>
+<p>举例：写一个调换两个类名的方法 .swapClass()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义</span></div><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.fn.swapClass = <span class="function"><span class="keyword">function</span><span class="params">(class1, class2)</span></span>{</div><div class="line">		<span class="comment">// this 引用当前 jQuery 对象 </span></div><div class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.hasClass(class1)){</div><div class="line">			<span class="keyword">this</span>.removeClass(class1).addClass(class2);</div><div class="line">		}<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.hasClass(class2)){</div><div class="line">			<span class="keyword">this</span>.removeClass(class2).addClass(class1);</div><div class="line">		}</div><div class="line">	};</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//使用</span></div><div class="line">$(<span class="string">'.demo'</span>).swapClass(<span class="string">'one'</span>,<span class="string">'two'</span>);</div></pre></td></tr></table></figure>
+
+<p>在插件方法的内部，this 引用当前的 jQuery 对象。所以，我们可以在 this 上调用任何内置的 jQuery 方法，或者提取它包含的 DOM 节点并操作该节点。</p>
+<p>问题是：不论有没有元素被选中（当元素是空[] 或者多个元素时），它依然会显示一次，仅一次。而且，在上面的代码中，在调用 .hasClass() 时只会检查匹配到的第一个元素。</p>
+<p>我们知道，jQuery 选择符表达式可能匹配0到多个元素，所以，在设计插件时，要考虑这些情况。要解决上面的问题，我们要独立检查和操作每一个元素，无论匹配多少个时都可以行为正确。最简单的方法是：始终在方法的上下文调用 .each() 方法。这样，就会执行隐式迭代。隐式迭代对维护插件与内置方法的一致性至关重要。</p>
+<h3 id="隐式迭代_+_方法连缀">隐式迭代 + 方法连缀</h3>
+<p>隐式迭代：始终在方法上调用 .each()<br>方法连缀：在插件的方法中返回 jQuery 对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义</span></div><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.fn.swapClass = <span class="function"><span class="keyword">function</span><span class="params">(class1, class2)</span></span>{</div><div class="line">		<span class="comment">//在插件方法内，this 引用一个 jQuery 对象</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="comment">//在 each 内，this 引用一个 DOM 元素</span></div><div class="line">			<span class="keyword">var</span> me = $(<span class="keyword">this</span>);</div><div class="line">			<span class="keyword">if</span>(me.hasClass(class1)){</div><div class="line">				me.removeClass(class1).addClass(class2);</div><div class="line">			}<span class="keyword">else</span> <span class="keyword">if</span>(me.hasClass(class2)){</div><div class="line">				me.removeClass(class2).addClass(class1);</div><div class="line">			}</div><div class="line">		});</div><div class="line">	};</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//使用</span></div><div class="line">$(<span class="string">'.demo'</span>).swapClass(<span class="string">'one'</span>,<span class="string">'two'</span>);</div></pre></td></tr></table></figure>
+
+<h3 id="方法参数">方法参数</h3>
+<p>在参数层面，我们需要注意以下4点：</p>
+<ol>
+<li>定义恰当的默认值</li>
+<li>允许覆盖默认值：给插件传参，向插件用户公开选项的方式</li>
+<li>回调函数：极大增加插件的灵活性，但却不用在创建插件时编写过多代码</li>
+<li>默认值可定制</li>
+</ol>
+<p>eg1.<br>给一个元素添加投影，有覆盖到上面提到的 1-2-3 点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.fn.shadow = <span class="function"><span class="keyword">function</span><span class="params">(opts)</span></span>{</div><div class="line">		<span class="comment">//1. 定义恰当默认值</span></div><div class="line">		<span class="keyword">var</span> defaults = {</div><div class="line">			copies: <span class="number">5</span>,</div><div class="line">			opacity: <span class="number">0.1</span>,</div><div class="line">			copyOffset: <span class="function"><span class="keyword">function</span><span class="params">(index)</span></span>{  <span class="comment">//3. 接受一个函数对象作为参数-让用户自定义投影相对于文本的位置</span></div><div class="line">				<span class="keyword">return</span> {</div><div class="line">					x: index,</div><div class="line">					y: index</div><div class="line">				}</div><div class="line">			}</div><div class="line">		};</div><div class="line">		</div><div class="line">		<span class="comment">//2. 允许覆盖默认值</span></div><div class="line">		<span class="keyword">var</span> options = $.extend(defaults, opts);</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="keyword">var</span> ori = $(<span class="keyword">this</span>);</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;options.copies; i++){</div><div class="line">				<span class="keyword">var</span> offset = options.copyOffset(i); <span class="comment">//3. 调用回调，取得投影相对于文本的位置</span></div><div class="line">				ori.clone()</div><div class="line">				   .css({</div><div class="line">				   		position: <span class="string">'absolute'</span>,</div><div class="line">				   		left: ori.offset().left+offset.x,</div><div class="line">				   		top: ori.offset().top+offset.y,</div><div class="line">				   		margin: <span class="number">0</span>,</div><div class="line">				   		zIndex: -<span class="number">1</span>,</div><div class="line">				   		opacity: options.opacity</div><div class="line">				   })</div><div class="line">				   .appendTo(<span class="string">'body'</span>);</div><div class="line">			}</div><div class="line">		});</div><div class="line">	};</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//使用：不传参</span></div><div class="line">$(<span class="string">'h1'</span>).shadow();</div><div class="line">	</div><div class="line"><span class="comment">//使用：部分参数</span></div><div class="line">$(<span class="string">'h2'</span>).shadow({</div><div class="line">	copies: <span class="number">3</span>,</div><div class="line">	opacity: <span class="number">0.5</span></div><div class="line">});</div><div class="line">		</div><div class="line"><span class="comment">//使用：回调函数，简单地修改投影方向-根据插件用户的定义</span></div><div class="line">$(<span class="string">'h3'</span>).shadow({</div><div class="line">	copyOffset: <span class="function"><span class="keyword">function</span><span class="params">(i)</span></span>{</div><div class="line">		<span class="keyword">return</span> {</div><div class="line">			x: -i,</div><div class="line">			y: -<span class="number">2</span>*i</div><div class="line">		};</div><div class="line">	}</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>eg2. 可定制的默认值<br>上面第1点有提到“定义恰当的默认值”，但是，没有什么默认值是真正恰当的。试想这种场景：如果脚本中多次调用了我们的插件，若要统一修改该插件的参数，那么，就需要在每次调用时都传递一组参数值-去覆盖插件中写死的默认参数。<br>这，就是定制默认值的应用场景，它可以减少很多代码量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">($)</span></span>{</div><div class="line">	$.fn.shadow = <span class="function"><span class="keyword">function</span><span class="params">(opts)</span></span>{</div><div class="line">		<span class="comment">//4. 启用全局默认：为了不覆盖其他值-故使用了 {}</span></div><div class="line">		<span class="keyword">var</span> options = $.extend({}, $.fn.shadow.defaults, opts); </div><div class="line">	</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			<span class="comment">//同上，此处省略...</span></div><div class="line">		});</div><div class="line">	};</div><div class="line">})(jQuery);</div><div class="line">	</div><div class="line"><span class="comment">//在定义插件的外面，统一设置默认值</span></div><div class="line">$.fn.shadow.defaults = {</div><div class="line">	copies: <span class="number">5</span>,</div><div class="line">	opacity: <span class="number">0.1</span>,</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<h2 id="others">others</h2>
+<p>CSS3 选择器<br>td:nth-child(2) css3选择器  其父元素-的第N个子元素<br>tr:nth-child(odd)<br>tr:nth-child(even)</p>
+<p>jQuery的全局函数<br>.map() 后是数组<br>.get()<br>.toFixed()<br>//链式调用用起来果然和读英语一样，前提是用的炉火纯青</p>
+<p>.clone()<br>.appendTo() //方便链式调用哦~<br>.css()</p>
+<p>??<br>【?? 彻底~~？？不还是在$上挂着么，只是换了个别名嘛…】<br>通过插件模仿jQuery API，用映射来提高一致性和易用性 【那个啥，好想知道-jQuery 自带的API是怎么写的呢】<br>可定制的默认值：话说，应用的真实场景-没找到一个合适的。感觉….把默认值暴露在外面了，也不安全 | 也破坏了封装性。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jQuery/">jQuery</a><a href="/tags/插件/">插件</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/09/17/jq_plugin_dev/" data-title="用 jQuery 编写第三方插件 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/03/node_demo/"  title="nodeJS 入门实战">
+ <strong>下一篇:</strong><br/> 
+ <span>nodeJS 入门实战
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery_全局函数"><span class="toc-number">1.</span> <span class="toc-text">jQuery 全局函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给_jQuery_对象新加一个属性"><span class="toc-number">1.1.</span> <span class="toc-text">给 jQuery 对象新加一个属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用_$-extend()"><span class="toc-number">1.2.</span> <span class="toc-text">用 $.extend()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#封装在一个对象"><span class="toc-number">1.3.</span> <span class="toc-text">封装在一个对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery_对象的方法"><span class="toc-number">2.</span> <span class="toc-text">jQuery 对象的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象方法的上下文"><span class="toc-number">2.1.</span> <span class="toc-text">对象方法的上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式迭代_+_方法连缀"><span class="toc-number">2.2.</span> <span class="toc-text">隐式迭代 + 方法连缀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法参数"><span class="toc-number">2.3.</span> <span class="toc-text">方法参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others"><span class="toc-number">3.</span> <span class="toc-text">others</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+		
+			<li>
+				<a href="/categories/FE/" title="FE">FE (3)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (7)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/jQuery/" title="jQuery">jQuery (2)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.33px;">CSS</a><a href="/tags/HTML/" style="font-size: 16.67px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 13.33px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 11.67px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 13.33px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/tool/" style="font-size: 15.00px;">tool</a><a href="/tags/web/" style="font-size: 13.33px;">web</a><a href="/tags/实战/" style="font-size: 16.67px;">实战</a><a href="/tags/对象/" style="font-size: 13.33px;">对象</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.67px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.67px;">模块化</a><a href="/tags/模板/" style="font-size: 13.33px;">模板</a><a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a><a href="/tags/编码/" style="font-size: 11.67px;">编码</a><a href="/tags/翻译/" style="font-size: 15.00px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 13.33px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

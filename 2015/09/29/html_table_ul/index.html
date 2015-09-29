@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>chrome developer tool 开发者调试 | anjia</title>
+    <title>移动端 table 和 ul 的抉择 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="元素右键 【Elements】（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）（2）复制路径：CSS路径；XPath路径（3）设置断点：子元素修改、修改属性、删除元素
-Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
+    <meta name="description" content="首先，回顾下自己今天的工作过程：边写边删，再写再删，效率极其低下。而且中间心情也很糟糕，脾气有点急躁。原因：
+
+昨天熬夜了，看《琅琊榜》，到凌晨4点：胡歌依旧那么帅，虽然和逍遥哥哥的帅不一样。刘涛很漂亮啊，演技也很好的样子。靖王酷酷哒，竟然有我家冯叔的影子，尤其是眼睛和嘴巴，不过比我冯叔脸小。。。咳">
     
     
     
@@ -70,15 +71,15 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/23/tool_chromeDevTool/" title="chrome developer tool 开发者调试" itemprop="url">chrome developer tool 开发者调试</a>
+      <a href="/2015/09/29/html_table_ul/" title="移动端 table 和 ul 的抉择" itemprop="url">移动端 table 和 ul 的抉择</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://anjia.github.io" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-23T07:42:56.000Z" itemprop="datePublished">2014-09-23</time>
-    更新日期:<time datetime="2015-01-03T11:32:29.000Z" itemprop="dateModified">2015-01-03</time>
+    <time datetime="2015-09-29T12:05:35.000Z" itemprop="datePublished">2015-09-29</time>
+    更新日期:<time datetime="2015-09-29T13:52:46.000Z" itemprop="dateModified">2015-09-29</time>
     
   </p>
 </header>
@@ -87,56 +88,72 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#列表的三种布局方式"><span class="toc-number">1.</span> <span class="toc-text">列表的三种布局方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#table"><span class="toc-number">1.1.</span> <span class="toc-text">table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#float_加_%"><span class="toc-number">1.2.</span> <span class="toc-text">float 加 %</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弹性盒子"><span class="toc-number">1.3.</span> <span class="toc-text">弹性盒子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何选型"><span class="toc-number">2.</span> <span class="toc-text">如何选型</span></a></li></ol>
 		</div>
 		
-		<ol>
-<li>元素右键 【Elements】<br>（1）强制元素4种状态：focus、hover、active、visited（下方style的箭头小方块也可以）<br>（2）复制路径：CSS路径；XPath路径<br>（3）设置断点：子元素修改、修改属性、删除元素</li>
-<li>Pretty print 按钮(符号{})：“格式化缩进”压缩的js文件<br>【Sources】下的 js 文件</li>
-<li>查看元素绑定了哪些事件<br>【Elements】面板下的“Event Listeners”：按类型列出元素的相关事件（捕获和冒泡阶段会经过的这个节点的事件）</li>
-<li>查找<br>（1）所有js文件中搜索&amp;查找js函数定义：ctrl + shift + F<br>（2）查找函数定义：ctrl + shift + 0<br>（3）查找文件：ctrl + o</li>
-<li>command line API<br>（1）$(id) 与页面是否有jQuery无关<br>（2）$0,$1,$2,$3,$4：Elements 面板最近选中的5个元素，最新的是 $0<br>更多 console API：console.log()<br>更多 command line API：</li>
-<li>【Resources】页面的资源<br>（1）请求的资源情况：字体、图片、脚本文件、样式文件<br>（2）存储相关：Cookies、HTML5的Database、Local Storage<br>  你可以对存储的内容编辑和删除。</li>
-<li>【Timeline】：JS执行时间、页面元素渲染时间</li>
-</ol>
+		<p>首先，回顾下自己今天的工作过程：边写边删，再写再删，效率极其低下。而且中间心情也很糟糕，脾气有点急躁。原因：</p>
 <ol>
-<li>Chrome 的 workspace：<br>能够在开发者工具中调试修改 js|css、同时自动保存文件，从而提高开发效率。<br>避免在工具中调试好，再在编辑器中修改同样的操作</li>
-<li>【Profiles】性能分析</li>
-<li>仿真测试：</li>
+<li>昨天熬夜了，看《琅琊榜》，到凌晨4点：胡歌依旧那么帅，虽然和逍遥哥哥的帅不一样。刘涛很漂亮啊，演技也很好的样子。靖王酷酷哒，竟然有我家冯叔的影子，尤其是眼睛和嘴巴，不过比我冯叔脸小。。。咳咳，言归正传。缺觉，导致今天脑子不好使了，变笨了。这是大前提。</li>
+<li>没了思考时间：越想赶紧把那个ui搞定，结果就越想“立马”干活，导致写之前没动脑子。</li>
+<li>手生：我不编移动 box 好多年，常规和常识性的问题，没能提前规避，而是 try try try</li>
+<li>心…有点不静最近。昨天之所以发呆看电视打发时间，是因为昨天回家路上情绪莫名超级无敌低落，结果到家后整个人都很阴郁一点都不high。</li>
 </ol>
+<p>特此记录下，好提醒自己，以后别犯此类白痴错误了。引以为戒。</p>
+<p>这边博客的主题是：乍看起来极其简单的列表ui，在移动端，应该用 table 还是 ul？ul 是应该弹性盒子还是浮动？</p>
+<h2 id="列表的三种布局方式">列表的三种布局方式</h2>
+<p>实现列表的，有三种常见的方式：</p>
 <ol>
-<li>Ajax 时中断 【？？】</li>
-<li>console 中执行的代码可断点 【？】<br>最后一行加上 //@ sourceURL=filename.js,<br>会在 Scripts 面板中有个叫 filename.js 的文件, 然后他就和外部 js 文件一样了</li>
-<li>top frame</li>
+<li>table：宽度自适应，或者简单的宽度控制</li>
+<li>ul-li：用浮动和百分比</li>
+<li>ul-li：用弹性盒子</li>
 </ol>
+<p>今天纠结的小点：</p>
 <ol>
-<li>Elements</li>
-<li>Network：分析网站请求的网络情况、查看某一请求的请求头和响应头</li>
-<li>Console</li>
+<li>如果要行可点击时，排除 table，用 ul。</li>
+<li>如果有页签切换，直接用 table 不可行：如果宽度纯自适应，那切换时列表看起来会抖，体验不好</li>
+<li>宽度的分配问题：百分比不好设置，尤其移动端屏幕宽度不定。有时窄屏下刚刚好的比例到宽屏下就有些空荡不协调了；宽屏下合适的比例在窄屏下又被挤的掉下去了-这个很严重的。</li>
 </ol>
-<p>参考：<br><a href="http://ued.taobao.org/blog/2012/06/debug-with-chrome-dev-tool/" target="_blank" rel="external">chrome developer tool调试技巧</a>：ued.taobao.org<br><a href="http://isux.tencent.com/chrome-workspace.html" target="_blank" rel="external">Chrome workspace</a>：isux.tencent.com</p>
-<p><a href="https://developer.chrome.com/devtools/docs/console" target="_blank" rel="external">https://developer.chrome.com/devtools/docs/console</a><br><a href="https://developers.google.com/chrome-developer-tools/" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/</a> </p>
-<p><a href="http://javascript.ruanyifeng.com/tool/console.html" target="_blank" rel="external">console对象</a>： 阮一峰的博客书<br><a href="https://crxdoc-zh.appspot.com/apps/tut_debugging" target="_blank" rel="external">教程：调试</a>：里面有靠谱的更多链接…</p>
+<p>先说说这三种布局的特点：</p>
+<h3 id="table">table</h3>
+<p>1.没有行点击的，可用<br>2.没有页签切换的，可用：要保证tab切换时视觉上的不抖动，就得设置百分比。<br>3.列中有换行，同行要保持垂直对齐的<br>总之：横竖的对齐+内容的自适应+行不会掉下来，这三点就让原生的 table 天生棒棒哒。<br>但是一旦要加额外限制，table 就显得有点重了。额外限制包括：行可点击-不能实现；不同即有宽度-又有样式限制限制-html层次就深了。</p>
+<h3 id="float_加_%">float 加 %</h3>
+<p>兼容性挺好：各种浏览器都支持，而且表现也较一致<br>问题1：移动端宽度设置不好设置—原因如今天纠结的3—你看，这个时候table就比较好了-原生的对齐就很协调<br>问题2：一个宽度要改，其余的比例也都要适当地重新计算再修改，不方便。<br>问题3：多行时，列的对齐又不好控制-当列的宽度不是定死的时候。灵活就会导致潜在的不对齐。</p>
+<p>inline-block 和 nowrap 呢？试试，应该可以。即有百分比，又不会掉下去。</p>
+<h3 id="弹性盒子">弹性盒子</h3>
+<p>弹性盒子：比例简单灵活、且行不掉。不得不说，移动端弹性盒子确实挺好的<br>好处1：比例改动起来很方便-定个比例or固定宽度，比例就直接自适应了，而不用算来算去。<br>好处2：代码写起来看起来也比table轻便，且后续改动样式很灵活</p>
+<p>结果却发现，在移动端，弹性盒子的兼容性也挺多。且之前没问题的，现在也有问题了…你大爷<br>问题1：弹性盒子失效，子必须设置block 【css会很奇怪有没有，为什么要block呢…之前也没那规矩-敏敏说越是移动端越是新版的浏览器弹性盒子的问题越多】<br>问题2：弹性盒子，每行的比例竟然不一样 【连列都不对齐了，你还是我之前认识的弹性盒子吗？】</p>
+<h3 id="小结">小结</h3>
+<p>于是，我最后选定了：ul + float + 百分比<br>因为要行可点击，因为弹性盒子的坑我实在没精气神去查去填了。</p>
+<p>最后发现了个问题：设置了百分比后，当窄屏时行会掉下去。因为，列自己里面有设置了 padding-left 和 padding-right<br>解决：border-box 【不过，在移动端还用这个盒模型，总感觉是退步。呵呵哒。— 不过吧，有时候我觉得人家ie的盒模型挺符合现实的】</p>
+<h2 id="如何选型">如何选型</h2>
+<p>你看，上面YY了那么多，结论却是：布局整齐的，有时不灵活；太灵活的，又是高风险（兼容性和ui自适应性）。A面B面S面自己都说了。这结论，胜似无结论啊。<br>好吧，还是得下点结论的。编码之前，先问自己几个问题：</p>
+<ol>
+<li>整行要可点击吗？若要，那就果断抛弃 table，用 ui。</li>
+<li>列表数据量可控吗？若不可控，果断 table。它的天生横竖对齐，真的挺好的。</li>
+<li>有页签切换吗？若没有，那就 table吧，一个 table 内容会自适应的很好。<br>若有页签，那给 table 设置 width 方便控制吗？方便的话，那就果断 table。<br>若有页签，且宽度不好定。。。连 table 宽度比例都不好定了，你用 ui（不论是浮动百分比还是弹性盒子）效果能更好么？</li>
+</ol>
+<p>写到这吧，却发现，在宽度的布局上，他们之间其实都彼此差不多。原来。。。自己今天来来回回反反复复倒腾的那几个问题，结论其实如此明显-那自己当时怎么那么混沌呢？至于为什么会那样，是无从考证了，但唯一可以肯定的就是：今天纯纯的是只用手敲代码了，而丝毫没经过大脑。</p>
+<p>我的故事讲完了，最后的浓缩竟然是：气愤忧伤的开始，伤感悲催的结局。这。。。<br>速速回家好好睡觉晚上给脑子充值去。明天，我要一个美好、清晰、哈皮的开始！！！！！！！！！！！！</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/debug/">debug</a>
+  <span></span> <a href="/tags/HTML/">HTML</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/tool/">tool</a>
+  <a class="article-category-link" href="/categories/HTML/">HTML</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2014/09/23/tool_chromeDevTool/" data-title="chrome developer tool 开发者调试 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/09/29/html_table_ul/" data-title="移动端 table 和 ul 的抉择 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -145,19 +162,11 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/09/23/node_express/" title="Web应用框架 Express">
-  <strong>上一篇:</strong><br/>
-  <span>
-  Web应用框架 Express</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/09/23/funning_0/"  title="ALT+小键盘数字打的特殊符号">
+<a href="/2015/09/22/jq_plugin_dev_ui/"  title="jQuery UI 的部件工厂">
  <strong>下一篇:</strong><br/> 
- <span>ALT+小键盘数字打的特殊符号
+ <span>jQuery UI 的部件工厂
 </span>
 </a>
 </div>
@@ -174,7 +183,7 @@ Pretty print 按钮(符号{})：“格式化缩进”压缩的js">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#列表的三种布局方式"><span class="toc-number">1.</span> <span class="toc-text">列表的三种布局方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#table"><span class="toc-number">1.1.</span> <span class="toc-text">table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#float_加_%"><span class="toc-number">1.2.</span> <span class="toc-text">float 加 %</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弹性盒子"><span class="toc-number">1.3.</span> <span class="toc-text">弹性盒子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何选型"><span class="toc-number">2.</span> <span class="toc-text">如何选型</span></a></li></ol>
   </div>
 
 <div id="asidepart">

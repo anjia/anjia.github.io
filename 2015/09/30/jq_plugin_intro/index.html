@@ -1,0 +1,463 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jQuery 简洁的插件架构 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="jQuery 除了提供了核心组件（操作DOM、事件绑定、AJAX等）外，它还有强大的扩展功能，即插件架构。我们可以使用现成的插件，也可以自定义插件。现成的插件，我们可以通过以下方式获取：
+
+官网的插件库：http://plugins.jquery.com/有演示demo，有源码，有插件的用户评级、版">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/30/jq_plugin_intro/" title="jQuery 简洁的插件架构" itemprop="url">jQuery 简洁的插件架构</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-30T07:25:18.000Z" itemprop="datePublished">2015-09-30</time>
+    更新日期:<time datetime="2015-09-30T10:28:37.000Z" itemprop="dateModified">2015-09-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用插件"><span class="toc-number">1.</span> <span class="toc-text">使用插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义选择符"><span class="toc-number">1.1.</span> <span class="toc-text">自定义选择符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局函数插件"><span class="toc-number">1.2.</span> <span class="toc-text">全局函数插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery_UI_插件库"><span class="toc-number">2.</span> <span class="toc-text">jQuery UI 插件库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Interaction"><span class="toc-number">2.1.</span> <span class="toc-text">Interaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Widget"><span class="toc-number">2.2.</span> <span class="toc-text">Widget</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Effect"><span class="toc-number">2.3.</span> <span class="toc-text">Effect</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#颜色动画"><span class="toc-number">2.3.1.</span> <span class="toc-text">颜色动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于类的动画"><span class="toc-number">2.3.2.</span> <span class="toc-text">基于类的动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级缓动函数"><span class="toc-number">2.3.3.</span> <span class="toc-text">高级缓动函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他效果"><span class="toc-number">2.3.4.</span> <span class="toc-text">其他效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThemeRoller"><span class="toc-number">2.4.</span> <span class="toc-text">ThemeRoller</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QA"><span class="toc-number">4.</span> <span class="toc-text">QA</span></a></li></ol>
+		</div>
+		
+		<p>jQuery 除了提供了核心组件（操作DOM、事件绑定、AJAX等）外，它还有强大的扩展功能，即插件架构。我们可以使用现成的插件，也可以自定义插件。现成的插件，我们可以通过以下方式获取：</p>
+<ol>
+<li>官网的插件库：<a href="http://plugins.jquery.com/" target="_blank" rel="external">http://plugins.jquery.com/</a><br>有演示demo，有源码，有插件的用户评级、版本、bug报告等</li>
+<li>Github：提交历史、多人关注、多少分支，可以大致了解插件的品质，至少能知道它的流行程度</li>
+<li>jQuery 论坛：<a href="http://forum.jquery.com/using-jquery-plugins" target="_blank" rel="external">http://forum.jquery.com/using-jquery-plugins</a><br>讨论插件的使用</li>
+</ol>
+<h2 id="使用插件">使用插件</h2>
+<p>插件的使用非常简单。简单，是典型的 jQuery 插件的特征。我们可以为插件指定特定参数-映射，JSON结构键值对；也可以修改插件的默认参数 $.fn.cycle.defaults，一处修改全局生效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'&lt;div&gt;&lt;/div&gt;'</span>).slider();</div><div class="line"><span class="comment">//把一个div元素变成一个可滑动的进度条了</span></div></pre></td></tr></table></figure>
+
+<p>插件能干什么？它除了能提供更多的 jQuery 方法，eg. $.cookie(), $.math.sum() 外，它也可以扩展 jQuery 的功能，甚至修改已有的特性。改变 jQuery 库其他部分的运行方式，eg.为动画提供其他的风格，eg.能响应用户动作触发更多的 jQuery 事件 【?? 调用自定义的函数】</p>
+<h3 id="自定义选择符">自定义选择符</h3>
+<p>由插件提供的选择符扩展</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.cycle(<span class="string">'pause'</span>)  <span class="comment">//暂停播放-幻灯片</span></div><div class="line">.cycle(<span class="string">'resume'</span>) <span class="comment">//恢复播放-幻灯片，resume 重新开始 继续 恢复 重新占用</span></div><div class="line">$(<span class="string">'ul:paused'</span>)   <span class="comment">//jQuery对象，引用页面中所有暂停的幻灯片</span></div></pre></td></tr></table></figure>
+
+<h3 id="全局函数插件">全局函数插件</h3>
+<p>即在 jQuery 命名空间中提供了一些新的全局函数。当在插件中提供的功能与页面中的DOM元素无关时，就不适合去扩展标准的 jQuery 方法。这时，就可以选择此模式，去扩展全局函数。eg. <a href="https://github.com/carhartl/jquery-cookie" target="_blank" rel="external">Cookie插件</a> 就是通过 $.cookie() 来实现的。</p>
+<h2 id="jQuery_UI_插件库">jQuery UI 插件库</h2>
+<p>与 Cycle 和 Cookie 等大多数插件只做一件事相比，jQuery UI 能做的可谓包罗万象。jQuery UI 某种意义上并不是插件，而是一个完整的插件库。jQuery UI 团队创建了大量核心的交互组件和成熟的部件，使用它们可以创造出更加类似桌面应用程序的 Web 体验。可以去它的官网上看看 <a href="http://jqueryui.com/" target="_blank" rel="external">http://jqueryui.com/</a></p>
+<ol>
+<li>交互式组件（Interaction）：拖动、放置、排序和调整项目大小</li>
+<li>部件（Widget）：按钮、折叠窗格、日期选择器、对话框、滑动条、进度条、标签页，等还有其他正在开发中的</li>
+<li>效果（Effect）：jQuery UI 为补充和增强jQuery的核心动画功能，提供了相当多的高级效果。</li>
+</ol>
+<p>jQuery UI 库非常注重功能的一致性，下面通过一些小实例来感受下。</p>
+<h3 id="Interaction">Interaction</h3>
+<p>交互组件就是一组行为，可以和自定义代码结合起来生成复杂的交互式应用。 jQuery UI 中的交互式组件，eg.Resizable 组件可以让用户通过自然拖动的方式把元素调整成任意大小。</p>
+<p>为元素应用交互行为非常简单，只需在元素上调用和插件同名的方法即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在书名所在的盒装区域右小角添加一个调整大小的手柄</span></div><div class="line">$(<span class="string">'#book .title'</span>).resizable();</div><div class="line">	</div><div class="line"><span class="comment">//传递自定义的选项，eg.限制只能调整垂直方向上的高度</span></div><div class="line">$(<span class="string">'#book .title'</span>).resizable({</div><div class="line">	handles: <span class="string">'s'</span> <span class="comment">//south-底部</span></div><div class="line">});</div></pre></td></tr></table></figure>
+
+<h3 id="Widget">Widget</h3>
+<p>除了交互式组件外，jQuery UI 库还提供了一批可靠的用户界面部件。不论从外观还是功能上来看，它们都是开箱即用的。在页面上引用了不同的主题后，初始化后的 UI 部件就具有了一定的样式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//把一个div元素转换成一个滑动条部件</span></div><div class="line">$(<span class="string">'&lt;div id="slider"&gt;&lt;/div&gt;'</span>).slider().appendTo(<span class="string">'body'</span>);</div></pre></td></tr></table></figure>
+
+<p>假设，我们已经用 jQuery UI 中的 .cycle() 和 .slider() 在页面上创建了幻灯片和滑动条。现在，我们想用滑动条来手动控制幻灯片的播放。只需要在两者的状态发生变化时，在滑动条和幻灯片之间同步发送消息即可。</p>
+<p>为了响应滑动条的值的变化，我们可以绑定一个由滑动条触发的自定义事件 slide。虽然它不是原生js事件，但在 jQuery 代码中就像原生事件一样。监听这种事件呢，不用显示地 .bind()，只要把事件处理程序传递给 .slider() 方法即可，即设置插件的 slide 选项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'&lt;div id="slider"&gt;&lt;/div&gt;'</span>).slider({</div><div class="line">	min: <span class="number">0</span>,</div><div class="line">	max: $(<span class="string">'#books li'</span>).length - <span class="number">1</span>,</div><div class="line">	slide: <span class="function"><span class="keyword">function</span><span class="params">(event, ui)</span></span>{ <span class="comment">//自定义函数 slide</span></div><div class="line">		$(<span class="string">'#books'</span>).cycle(ui.value);</div><div class="line">	}</div><div class="line">}).appendTo(<span class="string">'body'</span>);</div></pre></td></tr></table></figure>
+
+<p>无论什么时候调用 slide() 回调，它的参数 ui 中都保存着部件相关的信息，包括滑动条当前的值。然后把这个值传递给 Cycle 部件。这就实现了通过滑动条去控制幻灯片的效果。要实现相反的效果，即幻灯片控制滑动条，则可以使用 Cycle 的 before 回调函数，它会在每次幻灯片变换时触发。</p>
+<p>此处，我们先不用关注为什么会这样，重点关注如何使用插件就行，即插件的 API 形式。故这里就不贴完整的代码了。<br>简单说明下：slide 函数是 Slider 组件内部定义的一个选项，对外提供的一个接口，供滑动条发生变化的时候回调用。它的参数，也是 Slider 内部回传的。代码中自定义的部分，就负责接收函数参数和丰富函数主体就 ok。同理 .cycle(ui.value) 这个函数也是幻灯片组件 Cycle 对外提供的一个接口。</p>
+<p>每个 jQuery UI 部件都有一些可以配置的选项、事件、方法。详情参考 <a href="http://jqueryui.com/demos/" target="_blank" rel="external">http://jqueryui.com/demos/</a></p>
+<h3 id="Effect">Effect</h3>
+<p>效果（effect）模块，包括：一个核心文件 + 一组独立的效果文件<br>其中，核心文件为创建颜色动画和基于类的动画提供了支持，也提供了高级的缓动函数。</p>
+<h4 id="颜色动画">颜色动画</h4>
+<p>在文档中引用了核心效果文件之后，扩展的 .animate() 就可以接受另外一些样式属性，eg. borderTopColor、backgroundColor、color </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#books'</span>).hover(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	$(<span class="string">'#books .title'</span>).animate({</div><div class="line">		backgroundColor: <span class="string">'#eee'</span>,</div><div class="line">		color: <span class="string">'#000'</span></div><div class="line">	}, <span class="number">1000</span>); </div><div class="line">}, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	$(<span class="string">'#books .title'</span>).animate({</div><div class="line">		backgroundColor: <span class="string">'#000'</span>,</div><div class="line">		color: <span class="string">'#fff'</span></div><div class="line">	}, <span class="number">1000</span>);</div><div class="line">});</div><div class="line"><span class="comment">//1s平滑的完成过渡：黑色背景上的白色文字 -&gt; 浅灰色背景上的黑色文本</span></div></pre></td></tr></table></figure>
+
+<h4 id="基于类的动画">基于类的动画</h4>
+<p>我们知道，有三个操作类的方法：.addClass() .removeClass() .toggleClass()。<br>这三个方法在 jQuery UI 中经过扩展，都可以接受第二个可选参数，用于控制动画时长。在指定了第二个参数的情况下，页面的行为就像是调用了.animate()并直接指定了所有样式属性一样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'title'</span>).toggleClass(<span class="string">'highlighted'</span>, <span class="string">'slow'</span>);</div></pre></td></tr></table></figure>
+
+<h4 id="高级缓动函数">高级缓动函数</h4>
+<p>有些动画，不是以稳定的速度来被执行的。eg .slideUp(1000) 相应元素的高度变成0要经过1秒。但开始和结束-变化慢，中间高度变化快。这种速度的变化就是缓动，让动画更流畅，更自然。高级缓动函数可以改变加速|减速曲线。</p>
+<p>【此处，略。当真正有需求时，再细查】 </p>
+<h4 id="其他效果">其他效果</h4>
+<p>效果模块的独立效果文件，包含了很多变换，比 jQuery 本身提供的简单滑动、淡化动画要复杂。这些变换都可以通过 .effect() 方法来实现。eg.<br>1.显示和隐藏  .show() .hide() .toggle() .slideUp() .slideDown()<br>2.改变元素形状和位置 transfer size<br>3.更吸引人的隐藏动画  explode puff<br>4.让元素更吸引眼球 pulsate shake(强调当前不能接受的动作)</p>
+<p>【此处，略。当真正有需求时，再细查】 </p>
+<h3 id="ThemeRoller">ThemeRoller</h3>
+<p>主题卷轴 ThemeRoller，一个面向 UI 部件的基于 Web 的交互式主题引擎（??? 相当于换肤喽）</p>
+<p>【此处，略。当真正有需求时，再细查】 </p>
+<h2 id="小结">小结</h2>
+<p>在网页中整合第三方插件的各种方式。着重讨论：<br>1.Cycle 插件：jQuery 实例上的-操作DOM的。自定义插件<br>2.Cookie 插件：jQuery 全局对象上的<br>3.jQuery UI 库</p>
+<p>什么是插件？<br>如何找别人开发的插件？<br>如何在网页中使用它们？</p>
+<h2 id="QA">QA</h2>
+<p>???<br>Cycle：处理html的。在js生成的 or 默认全权由用户书写html //感觉内部会自动生成<br>//里面不就是轮播</p>
+<p>命名<br>timeout: 切换幻灯片之间等待的毫秒数<br>speed: 切换本身要花的毫秒数<br>pause: 鼠标进入时-暂停播放</p>
+<p>slide // v.<br>before // v. 等很简单的名字命名</p>
+<p>$(‘#book .title’).resizable(); //方法名，小写<br>‘ui-icon-pause’ ‘ui-icon-play’<br>.animate({}, 1000) //第二个独立的参数</p>
+<p>???<br>回弹效果：</p>
+<p>???<br>Cookie 的有效期：会话期间-直到浏览器关闭、整个站点<br>对DOM进行操作- insertAfter<br>选择符的操作</p>
+<p>jQuery UI 主题框架中的标准类名 ‘primary’  </p>
+<p>jQuery UI 部件（Widget）对方法的调用形式都进行了转换—方便更简便的使用 </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jQuery/">jQuery</a><a href="/tags/插件/">插件</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/09/30/jq_plugin_intro/" data-title="jQuery 简洁的插件架构 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/09/29/html_table_ul/"  title="移动端 table 和 ul 的抉择">
+ <strong>下一篇:</strong><br/> 
+ <span>移动端 table 和 ul 的抉择
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用插件"><span class="toc-number">1.</span> <span class="toc-text">使用插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义选择符"><span class="toc-number">1.1.</span> <span class="toc-text">自定义选择符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局函数插件"><span class="toc-number">1.2.</span> <span class="toc-text">全局函数插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery_UI_插件库"><span class="toc-number">2.</span> <span class="toc-text">jQuery UI 插件库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Interaction"><span class="toc-number">2.1.</span> <span class="toc-text">Interaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Widget"><span class="toc-number">2.2.</span> <span class="toc-text">Widget</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Effect"><span class="toc-number">2.3.</span> <span class="toc-text">Effect</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#颜色动画"><span class="toc-number">2.3.1.</span> <span class="toc-text">颜色动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于类的动画"><span class="toc-number">2.3.2.</span> <span class="toc-text">基于类的动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级缓动函数"><span class="toc-number">2.3.3.</span> <span class="toc-text">高级缓动函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他效果"><span class="toc-number">2.3.4.</span> <span class="toc-text">其他效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThemeRoller"><span class="toc-number">2.4.</span> <span class="toc-text">ThemeRoller</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QA"><span class="toc-number">4.</span> <span class="toc-text">QA</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+		
+			<li>
+				<a href="/categories/FE/" title="FE">FE (3)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (8)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/jQuery/" title="jQuery">jQuery (4)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.57px;">CSS</a><a href="/tags/HTML/" style="font-size: 17.14px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.86px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 14.29px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.86px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 14.29px;">todo</a><a href="/tags/tool/" style="font-size: 14.29px;">tool</a><a href="/tags/web/" style="font-size: 12.86px;">web</a><a href="/tags/实战/" style="font-size: 15.71px;">实战</a><a href="/tags/对象/" style="font-size: 12.86px;">对象</a><a href="/tags/插件/" style="font-size: 12.86px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.43px;">杂谈</a><a href="/tags/模块化/" style="font-size: 15.71px;">模块化</a><a href="/tags/模板/" style="font-size: 12.86px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.86px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.86px;">笔记</a><a href="/tags/编码/" style="font-size: 11.43px;">编码</a><a href="/tags/翻译/" style="font-size: 14.29px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.86px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.86px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

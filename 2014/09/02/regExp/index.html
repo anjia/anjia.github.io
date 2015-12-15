@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>正则表达式 | anjia</title>
+    <title>JS 中的正则表达式 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="用途
+    <meta name="description" content="相关概念
+用途
 模式匹配：有效性验证、提取子串、查找特定字符、替换
 语法
 定界符//
@@ -27,8 +28,7 @@ B  非单词边界
 
 s  空白字符，比如空格、tab键、换行
 S  非空白字符
-w  字母、数字、下划线
-W">
+w  字母、数字、">
     
     
     
@@ -88,7 +88,7 @@ W">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/02/regExp/" title="正则表达式" itemprop="url">正则表达式</a>
+      <a href="/2014/09/02/regExp/" title="JS 中的正则表达式" itemprop="url">JS 中的正则表达式</a>
   </h1>
   <p class="article-author">By
     
@@ -96,7 +96,7 @@ W">
     </p>
   <p class="article-time">
     <time datetime="2014-09-02T14:30:55.000Z" itemprop="datePublished">2014-09-02</time>
-    更新日期:<time datetime="2015-01-25T14:49:20.000Z" itemprop="dateModified">2015-01-25</time>
+    更新日期:<time datetime="2015-11-24T07:30:13.000Z" itemprop="dateModified">2015-11-24</time>
     
   </p>
 </header>
@@ -105,10 +105,11 @@ W">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途"><span class="toc-number">1.</span> <span class="toc-text">用途</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定界符//"><span class="toc-number">2.1.</span> <span class="toc-text">定界符//</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位符"><span class="toc-number">2.2.</span> <span class="toc-text">定位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元字符"><span class="toc-number">2.3.</span> <span class="toc-text">元字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符类"><span class="toc-number">2.3.1.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#量词限定符"><span class="toc-number">2.3.2.</span> <span class="toc-text">量词限定符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#other_运算符"><span class="toc-number">2.3.3.</span> <span class="toc-text">other 运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转义字符"><span class="toc-number">3.</span> <span class="toc-text">转义字符</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#相关概念"><span class="toc-number">1.</span> <span class="toc-text">相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途"><span class="toc-number">1.1.</span> <span class="toc-text">用途</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定界符//"><span class="toc-number">1.2.1.</span> <span class="toc-text">定界符//</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位符"><span class="toc-number">1.2.2.</span> <span class="toc-text">定位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元字符"><span class="toc-number">1.2.3.</span> <span class="toc-text">元字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符类"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#量词限定符"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">量词限定符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运算符"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转义字符"><span class="toc-number">1.3.</span> <span class="toc-text">转义字符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JS_中的正则"><span class="toc-number">2.</span> <span class="toc-text">JS 中的正则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用字面量形式"><span class="toc-number">2.1.1.</span> <span class="toc-text">用字面量形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用_RegExp_构造函数"><span class="toc-number">2.1.2.</span> <span class="toc-text">用 RegExp 构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">2.1.3.</span> <span class="toc-text">对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例属性"><span class="toc-number">2.2.</span> <span class="toc-text">RegExp 的实例属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例方法"><span class="toc-number">2.3.</span> <span class="toc-text">RegExp 的实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec()"><span class="toc-number">2.3.1.</span> <span class="toc-text">exec()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test()"><span class="toc-number">2.3.2.</span> <span class="toc-text">test()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_构造函数的属性"><span class="toc-number">2.4.</span> <span class="toc-text">RegExp 构造函数的属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
-		<h2 id="用途">用途</h2>
+		<h1 id="相关概念">相关概念</h1>
+<h2 id="用途">用途</h2>
 <p>模式匹配：有效性验证、提取子串、查找特定字符、替换</p>
 <h2 id="语法">语法</h2>
 <h3 id="定界符//">定界符//</h3>
@@ -143,7 +144,7 @@ W">
 <li>{n,} 至少匹配n次</li>
 <li>{n,m} 匹配n到m次</li>
 </ol>
-<h4 id="other_运算符">other 运算符</h4>
+<h4 id="运算符">运算符</h4>
 <ol>
 <li>[]  指定一个范围。eg. [a-zA-Z0-9]</li>
 <li>() 组合字符串，所包含的内容必须同时一起。<br>eg. ([a-z][A-Z][0-9])，aA0匹配，aAA不匹配</li>
@@ -151,13 +152,64 @@ W">
 <li>^ 否定运算符。<br>一般出现在[]内部的是否定运算符，[]之外的是定位符^。eg. [^0-9] 表示除0-9数字之外的所有字符</li>
 </ol>
 <h2 id="转义字符">转义字符</h2>
+<h1 id="JS_中的正则">JS 中的正则</h1>
+<h2 id="定义">定义</h2>
+<p>ECMAScript 通过 RegExp 类型支持正则表达式</p>
+<h3 id="用字面量形式">用字面量形式</h3>
+<p>用字面量形式定义正则表达式，格式是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expession = <span class="regexp">/pattern/</span>flags;  <span class="comment">//patttern 是模式，flags 是标识</span></div></pre></td></tr></table></figure>
+
+<p><strong>3个 flags 标识</strong><br>g 全局模式（global）<br>i 不区分大小写模式（case-insensitive）<br>m 多行模式（multiline）</p>
+<p>比如：<br>/at/g  匹配字符串中所有”at”的实例<br>/[bc]at/i  匹配第一个”bat”或”cat”，不区分大小写<br>/.at/gi  匹配所有以”at”结尾的3个字符的组合，不区分大小写</p>
+<p><strong>patttern 模式中的元字符</strong><br>元字符共有14个 ^$.  []{}?+*  ()|  \<br>在模式中使用元字符时，都必须进行转义<br>比如：<br>/[bc]at/i  匹配第一个”[bc]at”，不区分大小写<br>/.at/gi  匹配所有以”.at”结尾的字符组合，不区分大小写</p>
+<h3 id="用_RegExp_构造函数">用 RegExp 构造函数</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"pattern"</span>, <span class="string">"flags"</span>);  <span class="comment">//patttern 是模式，flags 是标识</span></div></pre></td></tr></table></figure>
+
+<p>注意，此处参数 pattern 和 flag 都是 string 类型，而不带正则表达式的定界符 //</p>
+<h3 id="对比">对比</h3>
+<p><strong>相同点：</strong>以下的两个正则表达式是完全等价的<br>var pattern1 = /[bc]at/i;<br>var pattern2 = new RegExp(“[bc]at”, “i”);</p>
+<p><strong>不同点：</strong>RegExp 的构造函数的参数都是字符串，所以在某些情况下就需要对字符进行双重转义，比如字符 \ 在字符串中通常被转义成 \ </p>
+<h2 id="RegExp_的实例属性">RegExp 的实例属性</h2>
+<p>正则表达式的每一个实例都具有以下属性（可以取得有关模式的基本信息）</p>
+<ol>
+<li>global</li>
+<li>ignoreCase</li>
+<li>multiline</li>
+<li>source 正则表达式的字符串表示，按照字面量形式传入的（而不管它是以字面量形式创建还是 RegExp 构造函数创建的）</li>
+<li>lastIndex 整数，表示开始搜索下一个匹配项的字符位置，从0开始</li>
+</ol>
+<p><img src="\images\20150512_regexp_attrs.jpg" alt=""><br>通过这些属性可以获得一个正则表达式的各方面的信息，不过没多大用处。因为这些信息大部分都包含在模式声明中。<br>lastIndex 属性在配合方法 exec() 时还是有用处的。</p>
+<h2 id="RegExp_的实例方法">RegExp 的实例方法</h2>
+<h3 id="exec()">exec()</h3>
+<p>exec() 专门为捕获组而设计<br><strong>参数：</strong>要应用模式的字符串<br><strong>返回：</strong>包含第一个匹配项信息的数组 或者 null<br>数组的第一项是：与整个模式匹配的字符串<br>数组的第二项（及其他项都是）是：与模式中的捕获组匹配的字符串（如果模式中没有捕获组，那数据就只含有1项！）<br><img src="\images\20150512_regexp_exec_1.png" alt=""></p>
+<p>数组的实例，有两个额外的属性：<br>index 表示匹配项在字符串中的位置<br>input 表示应用正则表达式的字符串<br><img src="\images\20150512_regexp_exec_2.png" alt=""></p>
+<p>对 exec()而言，即使在模式中设置了全局标志 g，它每次也只会返回一个匹配性<br>它的作用在于：每次调用 exec() 都会在字符串中继续查找新的匹配项。<br>而不设置 g 时，在同一个字符串上多次调用 exec() 将始终返回第一个匹配项的信息。<br>此外，注意 lastIndex 属性的变化！<br><img src="\images\20150512_regexp_exec_3.png" alt=""></p>
+<h3 id="test()">test()</h3>
+<p>test() 只判断是否匹配，<br>参数：字符串<br>返回：当模式与字符串匹配时，返回true；否则返回false</p>
+<p>如果只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的情况下，这个方法很方便。test() 方法经常用于 if() 语句中。<br>场景：验证用户输入的情况下<br><img src="\images\20150512_regexp_test.png" alt=""></p>
+<p>其他方法：<br>.toString() 和 .toLocaleString() 这两方法都会返回正则表达式的字面量，与创建的方式无关。字符串形式的字面量。<br>.valueOf()  返回正则表达式本身<br><img src="\images\20150512_regexp_methods.png" alt=""></p>
+<h2 id="RegExp_构造函数的属性">RegExp 构造函数的属性</h2>
+<p>这些属性，可以理解为是：静态的。即是全局的。<br>它们适用于作用域中的所有正则表达式，并且是基于最近一次执行的正则表达式操作而变化。</p>
+<p>利用这些属性，可以从 exec() 和 test() 执行的操纵中提取更具体的信息。比如：最近一次要匹配的字符串；最近一次的匹配项；最近一次匹配的捕获组；匹配项目左边、右边的内容（自我感觉用处不大，故未列出。详情参考P108）</p>
+<p>除了这些外，还有多达9个用于存储捕获组的构造函数属性。可以像如下访问：<br>RegExp.$1<br>RegExp.$2<br>…<br>RegExp.$9<br>分别存储第1到9个匹配的捕获组。</p>
+<p>在调用 exec() 和 test() 方法时，这些属性会被自动填充。然后我们就可以直接使用啦。</p>
+<h1 id="其他">其他</h1>
+<p>String对象支持正则的方法</p>
+<ul>
+<li>search()  检索</li>
+<li>match()   查找</li>
+<li>replace() 替换</li>
+<li>split()   分割</li>
+</ul>
+<h1 id="参考">参考</h1>
+<p>《JavaScript高级程序设计（第3版）》 中的第5章 引用类型： 5.4 RegExp 类型<br>Q1: 字符串中的字符为什么要进行转义？都有哪些字符？eg. \ 会被转义成 \</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/正则表达式/">正则表达式</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/正则/">正则</a>
   </div>
 
 
@@ -170,7 +222,7 @@ W">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2014/09/02/regExp/" data-title="正则表达式 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2014/09/02/regExp/" data-title="JS 中的正则表达式 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -180,10 +232,10 @@ W">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/09/02/regExp_js/" title="js 中的正则表达式">
+ <a href="/2014/09/13/jade_what/" title="Jade 模板引擎">
   <strong>上一篇:</strong><br/>
   <span>
-  js 中的正则表达式</span>
+  Jade 模板引擎</span>
 </a>
 </div>
 
@@ -208,7 +260,7 @@ W">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途"><span class="toc-number">1.</span> <span class="toc-text">用途</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定界符//"><span class="toc-number">2.1.</span> <span class="toc-text">定界符//</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位符"><span class="toc-number">2.2.</span> <span class="toc-text">定位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元字符"><span class="toc-number">2.3.</span> <span class="toc-text">元字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符类"><span class="toc-number">2.3.1.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#量词限定符"><span class="toc-number">2.3.2.</span> <span class="toc-text">量词限定符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#other_运算符"><span class="toc-number">2.3.3.</span> <span class="toc-text">other 运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转义字符"><span class="toc-number">3.</span> <span class="toc-text">转义字符</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#相关概念"><span class="toc-number">1.</span> <span class="toc-text">相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途"><span class="toc-number">1.1.</span> <span class="toc-text">用途</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定界符//"><span class="toc-number">1.2.1.</span> <span class="toc-text">定界符//</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位符"><span class="toc-number">1.2.2.</span> <span class="toc-text">定位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元字符"><span class="toc-number">1.2.3.</span> <span class="toc-text">元字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符类"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#量词限定符"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">量词限定符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运算符"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转义字符"><span class="toc-number">1.3.</span> <span class="toc-text">转义字符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JS_中的正则"><span class="toc-number">2.</span> <span class="toc-text">JS 中的正则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用字面量形式"><span class="toc-number">2.1.1.</span> <span class="toc-text">用字面量形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用_RegExp_构造函数"><span class="toc-number">2.1.2.</span> <span class="toc-text">用 RegExp 构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">2.1.3.</span> <span class="toc-text">对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例属性"><span class="toc-number">2.2.</span> <span class="toc-text">RegExp 的实例属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_的实例方法"><span class="toc-number">2.3.</span> <span class="toc-text">RegExp 的实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec()"><span class="toc-number">2.3.1.</span> <span class="toc-text">exec()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test()"><span class="toc-number">2.3.2.</span> <span class="toc-text">test()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_构造函数的属性"><span class="toc-number">2.4.</span> <span class="toc-text">RegExp 构造函数的属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -221,7 +273,7 @@ W">
 		<ul>
 		
 			<li>
-				<a href="/categories/CSS/" title="CSS">CSS (7)</a></li>
+				<a href="/categories/CSS/" title="CSS">CSS (9)</a></li>
 		
 			<li>
 				<a href="/categories/FE/" title="FE">FE (3)</a></li>
@@ -239,7 +291,7 @@ W">
 				<a href="/categories/jQuery/" title="jQuery">jQuery (4)</a></li>
 		
 			<li>
-				<a href="/categories/javascript/" title="javascript">javascript (19)</a></li>
+				<a href="/categories/javascript/" title="javascript">javascript (17)</a></li>
 		
 			<li>
 				<a href="/categories/node/" title="node">node (4)</a></li>
@@ -266,7 +318,7 @@ W">
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -274,7 +326,7 @@ W">
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 18.75px;">CSS</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.50px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 15.00px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.50px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.75px;">todo</a><a href="/tags/tool/" style="font-size: 13.75px;">tool</a><a href="/tags/web/" style="font-size: 12.50px;">web</a><a href="/tags/实战/" style="font-size: 16.25px;">实战</a><a href="/tags/对象/" style="font-size: 12.50px;">对象</a><a href="/tags/插件/" style="font-size: 13.75px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.25px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.25px;">模块化</a><a href="/tags/模板/" style="font-size: 12.50px;">模板</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/编码/" style="font-size: 11.25px;">编码</a><a href="/tags/翻译/" style="font-size: 13.75px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.50px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.50px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+       <a href="/tags/CSS/" style="font-size: 18.75px;">CSS</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.50px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 15.00px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.50px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 13.75px;">todo</a><a href="/tags/tool/" style="font-size: 13.75px;">tool</a><a href="/tags/web/" style="font-size: 12.50px;">web</a><a href="/tags/实战/" style="font-size: 16.25px;">实战</a><a href="/tags/对象/" style="font-size: 12.50px;">对象</a><a href="/tags/插件/" style="font-size: 13.75px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.25px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.25px;">模块化</a><a href="/tags/模板/" style="font-size: 12.50px;">模板</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/编码/" style="font-size: 11.25px;">编码</a><a href="/tags/翻译/" style="font-size: 13.75px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.50px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.50px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 
@@ -297,8 +349,6 @@ W">
         <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
     
         <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
-    
-        <a href="http://blog.csdn.net/mine666" target="_blank">mine666</a>
     
         <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
     

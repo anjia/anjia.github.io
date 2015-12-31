@@ -1,0 +1,441 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jQuery 中的选择器 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="基础选择器
+1234567$(&#39;*&#39;)    //通配符	$(&#39;.class&#39;)$(&#39;#id&#39;)$(&#39;tag&#39;)	$(&#39;selector1, selector2, selector2&#39;)  //多个选择器
+
+属性选择器
+首先，在 jQuery 中使用属性选择器（attribute selector）">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/30/jq_selector/" title="jQuery 中的选择器" itemprop="url">jQuery 中的选择器</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-12-30T02:57:57.000Z" itemprop="datePublished">2015-12-30</time>
+    更新日期:<time datetime="2015-12-31T13:39:57.000Z" itemprop="dateModified">2015-12-31</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础选择器"><span class="toc-number">1.</span> <span class="toc-text">基础选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性选择器"><span class="toc-number">2.</span> <span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础过滤"><span class="toc-number">3.</span> <span class="toc-text">基础过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层级"><span class="toc-number">4.</span> <span class="toc-text">层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子元素过滤"><span class="toc-number">5.</span> <span class="toc-text">子元素过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单"><span class="toc-number">6.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容过滤"><span class="toc-number">7.</span> <span class="toc-text">内容过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可见性过滤"><span class="toc-number">8.</span> <span class="toc-text">可见性过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery扩展"><span class="toc-number">9.</span> <span class="toc-text">jQuery扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<h2 id="基础选择器">基础选择器</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'*'</span>)    <span class="comment">//通配符</span></div><div class="line">	</div><div class="line">$(<span class="string">'.class'</span>)</div><div class="line">$(<span class="string">'#id'</span>)</div><div class="line">$(<span class="string">'tag'</span>)</div><div class="line">	</div><div class="line">$(<span class="string">'selector1, selector2, selector2'</span>)  <span class="comment">//多个选择器</span></div></pre></td></tr></table></figure>
+
+<h2 id="属性选择器">属性选择器</h2>
+<p>首先，在 jQuery 中使用属性选择器（attribute selector）不用考虑浏览器的兼容性问题。<br>再次，选择器表达式中的属性值必须符合 W3C 的 CSS 选择器的规定。<br>最后，括号包裹时注意，可以这么组合：单双、双单、单单（转义）、双双（转义）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'a[href]'</span>)   <span class="comment">//拥有指定属性，属性可以是任何值</span></div><div class="line">	</div><div class="line">$(<span class="string">'input[name="id"]'</span>)   <span class="comment">//属性等于给定值</span></div><div class="line">$(<span class="string">'input[name!="id"]'</span>)   <span class="comment">//属性不定与给定值 or 不存在指定属性</span></div><div class="line">	</div><div class="line">$(<span class="string">'input[class|="item"]'</span>)   <span class="comment">//属性等于给定值 or 以它为前缀(后跟连字符-)的元素</span></div><div class="line">	</div><div class="line">$(<span class="string">'input[class^="item"]'</span>)   <span class="comment">//属性以给定值开始的元素</span></div><div class="line">$(<span class="string">'input[class$="item"]'</span>)   <span class="comment">//属性以给定值结尾的元素 (区分大小写)</span></div><div class="line">	</div><div class="line">$(<span class="string">'input[class*="item"]'</span>)   <span class="comment">//属性包含指定子串的元素 【字符串的包含】 eg. class="list-item"</span></div><div class="line">$(<span class="string">'input[class~="item"]'</span>)   <span class="comment">//用空格分隔的值中包含这指定子串 【空格分隔的，包含完整的一个】 eg. class="item name"</span></div><div class="line">	</div><div class="line">$(<span class="string">'a[href][name="more"]'</span>)   <span class="comment">//多个属性选择器的并集</span></div></pre></td></tr></table></figure>
+
+<p>jQuery 中的属性选择器和 CSS 中的属性选择器，有相似之处，但不完全相同。点击查看 <a href="/2015/12/31/css_selector_attr/">CSS中的属性选择器</a>。</p>
+<h2 id="基础过滤">基础过滤</h2>
+<p>此处，举例说明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//可放心用~</span></div><div class="line">$(<span class="string">'tr:not()'</span>)    <span class="comment">//排除法，去除选择器匹配到的</span></div><div class="line">$(<span class="string">'input:focus'</span>)  <span class="comment">//当前获取焦点的元素</span></div><div class="line">	</div><div class="line"><span class="comment">//位置类 [扩展的]</span></div><div class="line">$(<span class="string">'li:first'</span>)  <span class="comment">//仅一个</span></div><div class="line">$(<span class="string">'li:last'</span>)   <span class="comment">//仅一个</span></div><div class="line">$(<span class="string">'tr:even'</span>)</div><div class="line">$(<span class="string">'tr:odd'</span>)</div><div class="line">	</div><div class="line"><span class="comment">//索引值相关的选择器 [扩展的]  0-&gt;</span></div><div class="line">$(<span class="string">'td:eq(2)'</span>)    <span class="comment">//延伸的。所以建议用 $().eq(1) 替代以提高性能</span></div><div class="line">$(<span class="string">'td:lt(2)'</span>)    <span class="comment">//小于指定索引</span></div><div class="line">$(<span class="string">'td:gt(2)'</span>)    <span class="comment">//大于指定索引</span></div><div class="line">		</div><div class="line"><span class="comment">//其他</span></div><div class="line">$(<span class="string">':target'</span>)      <span class="comment">//如果文档的URI包含一个格式化的标识符，或hash（哈希） 这个不寻常的用法</span></div><div class="line">$(<span class="string">':root'</span>)      <span class="comment">//选择该文档的根元素，永远是&lt;html&gt;元素</span></div><div class="line">$(<span class="string">':lang()'</span>)</div><div class="line">	</div><div class="line">$(<span class="string">'div:animated'</span>) <span class="comment">//[扩展的]</span></div><div class="line">$(<span class="string">':header'</span>)    <span class="comment">//所有标题元素</span></div></pre></td></tr></table></figure>
+
+<h2 id="层级">层级</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'ul.list&gt;li'</span>) <span class="comment">//直接子，&lt;</span></div><div class="line">$(<span class="string">'ul li'</span>)      <span class="comment">//所有后代--包括子&子子孙孙等，空格</span></div><div class="line">$(<span class="string">'lable+input'</span>)  <span class="comment">//同父，与lable相邻的input【相邻兄弟 +】</span></div><div class="line">$(<span class="string">'lable~input'</span>)  <span class="comment">//同父，跟随lable的所有同级input</span></div></pre></td></tr></table></figure>
+
+<p>关键嘛，就在于区分这4个就ok了。<br>1.直接子 &lt;<br>2.子子孙孙 空格<br>3.兄弟 ~<br>4.相邻兄弟 +</p>
+<h2 id="子元素过滤">子元素过滤</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//较常用的	</span></div><div class="line">$(<span class="string">':first-child'</span>)   <span class="comment">//父元素的第一个子 【~~太惊悚了--子子孙孙无穷匮也的选择呀！！~~】</span></div><div class="line">$(<span class="string">':last-child'</span>)    <span class="comment">//父元素的最后一个子</span></div><div class="line">$(<span class="string">':nth-child(1)'</span>)  <span class="comment">//父元素的第n个子，1-&gt;</span></div><div class="line">	</div><div class="line"><span class="comment">//eg.</span></div><div class="line">$(<span class="string">'ul:first-child'</span>)  <span class="comment">//意思是：选取ul元素，且它是父的第一个子</span></div></pre></td></tr></table></figure>
+
+<p>jQuery 实现的 nth- 是严格遵守 CSS 规范的，下标从1开始。对于其他的选择器 eg. :eq() :even 则是遵循 JS 中的“0索引”技术。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//更多详情，可点击“参考”里的链接</span></div><div class="line">:only-child    <span class="comment">//选择是独生子的元素</span></div><div class="line">:only-of-type  <span class="comment">//没有兄弟的元素，且元素名称相同</span></div><div class="line">	</div><div class="line">:first-of-type</div><div class="line">:last-of-type</div><div class="line">	</div><div class="line">:nth-last-child()</div><div class="line">:nth-last-of-type()</div><div class="line">:nth-of-type() <span class="comment">//同一个父，且标签名字相同 的 第n个子元素</span></div><div class="line"><span class="comment">// jQuery 1.9 新增的选择器，它是遵循 CSS3 中结构性伪类选择符 :nth-of-type(n)</span></div></pre></td></tr></table></figure>
+
+<h2 id="表单">表单</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">:input  <span class="comment">//选择所有 input, textarea, select 和 button 元素.</span></div><div class="line">	</div><div class="line"><span class="comment">//--按类型来 【简写-语法糖，么么哒】</span></div><div class="line">:text</div><div class="line">:button <span class="comment">//所有按钮元素和类型为按钮的元素</span></div><div class="line">:password</div><div class="line">:file</div><div class="line">:radio</div><div class="line">:checkbox</div><div class="line">:reset</div><div class="line">:submit</div><div class="line">:image</div><div class="line">	</div><div class="line"><span class="comment">//--按属性来：选中 【这个用的较多】</span></div><div class="line">:checked   <span class="comment">//被勾选的，radio和checkbox</span></div><div class="line">:selected  <span class="comment">//被选中的，select中的</span></div><div class="line">	</div><div class="line"><span class="comment">//--按属性来：普通 4</span></div><div class="line">:disabled <span class="comment">//被禁用</span></div><div class="line">:enabled  <span class="comment">//未被禁用，可用的</span></div><div class="line">:focus  <span class="comment">//当前获取焦点的</span></div></pre></td></tr></table></figure>
+
+<h2 id="内容过滤">内容过滤</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">:contains()   <span class="comment">//包含指定文本的元素</span></div><div class="line">	</div><div class="line">:empty    <span class="comment">//没有子的元素（包括文本节点）</span></div><div class="line">:parent   <span class="comment">//有子or文本的父元素 </span></div><div class="line">	</div><div class="line">:has()   <span class="comment">// 至少包含指定选择器匹配的一种元素</span></div></pre></td></tr></table></figure>
+
+<h2 id="可见性过滤">可见性过滤</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:hidden   <span class="comment">//所有隐藏的元素</span></div><div class="line">:visible  <span class="comment">//所有可见的元素</span></div></pre></td></tr></table></figure>
+
+<p>什么是“可见元素”？即占据文档中的一定空间就ok了。<br>所以，可见元素不包括display:none，不包括 width=0 height=0<br>所以，visibility:hidden;  opacity:0 是可见的（因为他们依然占位）</p>
+<p>什么是“隐藏的元素”？包括以下这几种情况：<br>1.display:none<br>2.type=hidden 的表单元素<br>3.height=0 width=0<br>4.祖先元素是隐藏的</p>
+<h2 id="jQuery扩展">jQuery扩展</h2>
+<p>jQuery 扩展出来的选择器，并不是的 CSS 规范的一部分，使用它并不能充分利用原生 DOM 提供的 querySelectorAll() 方法来提高性能。为了现代浏览器上获得更佳的性能，都不建议使用。来看看都有谁，25个。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这2个，用的挺多</span></div><div class="line">[name!=<span class="string">"value"</span>]  <span class="comment">//属性不存在 or 值不等于。 等同于 .not([attr=value])</span></div><div class="line">:selected        <span class="comment">//针对select选中的项。等同于 .find('select option').filter(':selected')</span></div><div class="line">	</div><div class="line"><span class="comment">//9个，基础过滤...</span></div><div class="line">:first  <span class="comment">//等同于 :eq(0) 只能匹配一个单独元素。而 :first-child可以匹配多个（多个父的各自的第一个子）。可以用 .filter(':first')</span></div><div class="line">:last   <span class="comment">//似上</span></div><div class="line">:even   <span class="comment">//建议 .filter(':even')</span></div><div class="line">:odd    <span class="comment">//建议 .filter(':odd')</span></div><div class="line"></div><div class="line">:eq()   <span class="comment">//建议用 .eq(0)</span></div><div class="line">:gt()   <span class="comment">//建议 .slice(index)</span></div><div class="line">:lt()   <span class="comment">//建议 .slice(0,index)</span></div><div class="line">	</div><div class="line">:header   </div><div class="line">:animated</div><div class="line">	</div><div class="line"><span class="comment">//4个，不怎么用的</span></div><div class="line">:parent <span class="comment">//内容过滤</span></div><div class="line">:has()  <span class="comment">//内容过滤</span></div><div class="line">	</div><div class="line">:hidden  <span class="comment">//可见性</span></div><div class="line">:visible <span class="comment">//可见性</span></div><div class="line">		</div><div class="line"><span class="comment">//10个，表单类型类，建议直接用 'input[type=""]'</span></div><div class="line">:input</div><div class="line">:text</div><div class="line">:password</div><div class="line">:radio</div><div class="line">:checkbox</div><div class="line">:button</div><div class="line">:file</div><div class="line">:image</div><div class="line">:submit</div><div class="line">:reset</div></pre></td></tr></table></figure>
+
+<h2 id="参考">参考</h2>
+<p><a href="http://www.jquery123.com/category/selectors/" target="_blank" rel="external">http://www.jquery123.com/category/selectors/</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jQuery/">jQuery</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2015/12/30/jq_selector/" data-title="jQuery 中的选择器 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/12/31/css_selector_attr/" title="CSS 属性选择器">
+  <strong>上一篇:</strong><br/>
+  <span>
+  CSS 属性选择器</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/03/css_haslayout/"  title="IE 中的 hasLayout">
+ <strong>下一篇:</strong><br/> 
+ <span>IE 中的 hasLayout
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础选择器"><span class="toc-number">1.</span> <span class="toc-text">基础选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性选择器"><span class="toc-number">2.</span> <span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础过滤"><span class="toc-number">3.</span> <span class="toc-text">基础过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层级"><span class="toc-number">4.</span> <span class="toc-text">层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子元素过滤"><span class="toc-number">5.</span> <span class="toc-text">子元素过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单"><span class="toc-number">6.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容过滤"><span class="toc-number">7.</span> <span class="toc-text">内容过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可见性过滤"><span class="toc-number">8.</span> <span class="toc-text">可见性过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery扩展"><span class="toc-number">9.</span> <span class="toc-text">jQuery扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (10)</a></li>
+		
+			<li>
+				<a href="/categories/FE/" title="FE">FE (3)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (8)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (3)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/jQuery/" title="jQuery">jQuery (5)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (17)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (6)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+			<li>
+				<a href="/categories/插件/" title="插件">插件 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.57px;">CSS</a><a href="/tags/HTML/" style="font-size: 17.14px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.86px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 15.71px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.86px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/todo/" style="font-size: 14.29px;">todo</a><a href="/tags/tool/" style="font-size: 14.29px;">tool</a><a href="/tags/web/" style="font-size: 12.86px;">web</a><a href="/tags/实战/" style="font-size: 15.71px;">实战</a><a href="/tags/对象/" style="font-size: 12.86px;">对象</a><a href="/tags/插件/" style="font-size: 14.29px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.43px;">杂谈</a><a href="/tags/模块化/" style="font-size: 15.71px;">模块化</a><a href="/tags/模板/" style="font-size: 12.86px;">模板</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/笔记/" style="font-size: 12.86px;">笔记</a><a href="/tags/编码/" style="font-size: 11.43px;">编码</a><a href="/tags/翻译/" style="font-size: 14.29px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.86px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.86px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2015 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

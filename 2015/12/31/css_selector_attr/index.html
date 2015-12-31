@@ -4,20 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ALT+小键盘数字打的特殊符号 | anjia</title>
+    <title>CSS 属性选择器 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="按住 Alt 键，在小键盘上输入数字出来的特殊符号。再松开 Alt
-41459 ◇41460 ◆ 
-41461 □41462 ■
-41463 △41464 ▲
-41465 ※
-41466 →41467 ←41468 ↑41469 ↓
-41470 〓
-41456 ○41457 ●41458 ◎
-414">
+    <meta name="description" content="7个CSS属性选择器
+CSS 的属性选择器：在 CSS 中，用指定的属性去选择 HTML 元素。
+12345678910[href] //带有指定属性的元素[type=text] //指定属性=指定值	[id*=mohe]  //包含指定值，字符串的包含[class~=g-mohe] //属性值中包">
     
     
     
@@ -77,15 +71,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/23/funning_0/" title="ALT+小键盘数字打的特殊符号" itemprop="url">ALT+小键盘数字打的特殊符号</a>
+      <a href="/2015/12/31/css_selector_attr/" title="CSS 属性选择器" itemprop="url">CSS 属性选择器</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://anjia.github.io" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-23T07:42:09.000Z" itemprop="datePublished">2014-09-23</time>
-    更新日期:<time datetime="2015-01-03T05:59:02.000Z" itemprop="dateModified">2015-01-03</time>
+    <time datetime="2015-12-31T12:37:52.000Z" itemprop="datePublished">2015-12-31</time>
+    更新日期:<time datetime="2015-12-31T13:38:42.000Z" itemprop="dateModified">2015-12-31</time>
     
   </p>
 </header>
@@ -94,40 +88,47 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7个CSS属性选择器"><span class="toc-number">1.</span> <span class="toc-text">7个CSS属性选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比"><span class="toc-number">2.</span> <span class="toc-text">对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多"><span class="toc-number">3.</span> <span class="toc-text">更多</span></a></li></ol>
 		</div>
 		
-		<p>按住 Alt 键，在小键盘上输入数字出来的特殊符号。再松开 Alt</p>
-<p>41459 ◇<br>41460 ◆ </p>
-<p>41461 □<br>41462 ■</p>
-<p>41463 △<br>41464 ▲</p>
-<p>41465 ※</p>
-<p>41466 →<br>41467 ←<br>41468 ↑<br>41469 ↓</p>
-<p>41470 〓</p>
-<p>41456 ○<br>41457 ●<br>41458 ◎</p>
-<p>41454 ☆<br>41455 ★</p>
-<p>41441 ♂<br>41442 ♀</p>
-<p>43081 ↖<br>43082 ↗<br>43083 ↘<br>43084 ↙</p>
+		<h2 id="7个CSS属性选择器">7个CSS属性选择器</h2>
+<p>CSS 的属性选择器：在 CSS 中，用指定的属性去选择 HTML 元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[href] <span class="comment">//带有指定属性的元素</span></div><div class="line">[type=text] <span class="comment">//指定属性=指定值</span></div><div class="line">	</div><div class="line">[id*=mohe]  <span class="comment">//包含指定值，字符串的包含</span></div><div class="line">[<span class="keyword">class</span>~=g-mohe] <span class="comment">//属性值中包含指定值，且值是完整的单词</span></div><div class="line">	</div><div class="line">[<span class="keyword">class</span>|=mohe]  <span class="comment">//以指定值开头，且值必须是整个单词 or 以它为前缀(后跟连字符-)的元素</span></div><div class="line">	</div><div class="line">[id^=mh] <span class="comment">//以指定值开头</span></div><div class="line">[id$=mh]  <span class="comment">//以指定值结尾</span></div></pre></td></tr></table></figure>
+
+<h2 id="对比">对比</h2>
+<p>与 <a href="/2015/12/30/jq_selector/#属性选择器">jQuery属性选择器</a> 对比，两点不同：</p>
+<ol>
+<li>jQuery自己加了 [attr!=value]</li>
+<li>浏览器兼容性<br>CSS属性选择器，有坑：只有在规定了 !DOCTYPE 时，IE7 和 IE8 才支持属性选择器。在 IE6 及更低的版本中，不支持属性选择。<br>jQuery 中的已被处理过，可放心地去用。</li>
+</ol>
+<p>相似之处：</p>
+<ol>
+<li>其余6个的含义都一样  【已测试，棒棒哒】</li>
+<li>属性值的是否带引号<br>一般来讲，CSS中不带，jQuery中带。但，实际上二者等价，在这两种上下文环境中都可加可不加。<br>然而，我个人还是习惯都加引号。无它，只是看起来舒服些，更像“字符串”。</li>
+</ol>
+<h2 id="更多">更多</h2>
+<p>ToDo:CSS选择器<br>1.一览表，及各自分别属于谁（CSS1，CSS2，CSS3）<br>2.多应用，多踩坑咯：那个，平时用属性选择器用的不多哎….以后多用用</p>
+<p>其他：<br>CSS1-2-3：<a href="http://www.w3school.com.cn/cssref/css_selectors.asp" target="_blank" rel="external">http://www.w3school.com.cn/cssref/css_selectors.asp</a><br>笔记类：<a href="http://www.ruanyifeng.com/blog/2009/03/css_selectors.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2009/03/css_selectors.html</a><br>IE7浏览器下CSS属性选择器二三事：<a href="http://www.zhangxinxu.com/wordpress/2015/06/ie7-attribute-css-selector/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2015/06/ie7-attribute-css-selector/</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/shortcut-key/">shortcut key</a>
+  <span></span> <a href="/tags/CSS/">CSS</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/tool/">tool</a>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2014/09/23/funning_0/" data-title="ALT+小键盘数字打的特殊符号 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2015/12/31/css_selector_attr/" data-title="CSS 属性选择器 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -136,19 +137,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/09/23/tool_chromeDevTool/" title="chrome developer tool 开发者调试">
-  <strong>上一篇:</strong><br/>
-  <span>
-  chrome developer tool 开发者调试</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/09/17/handlebars/"  title="Handlebars.js 模板引擎">
+<a href="/2015/12/30/jq_selector/"  title="jQuery 中的选择器">
  <strong>下一篇:</strong><br/> 
- <span>Handlebars.js 模板引擎
+ <span>jQuery 中的选择器
 </span>
 </a>
 </div>
@@ -165,7 +158,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7个CSS属性选择器"><span class="toc-number">1.</span> <span class="toc-text">7个CSS属性选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比"><span class="toc-number">2.</span> <span class="toc-text">对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多"><span class="toc-number">3.</span> <span class="toc-text">更多</span></a></li></ol>
   </div>
 
 <div id="asidepart">

@@ -1,0 +1,467 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>base64 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="博主声明：base64 是一个月前查的知识点，今日才得空整理，信息被遗忘的差不多了。之所以还要记录，是因为当时的心情依旧是记忆犹新啊，就是“我嘞个擦，原来这是一个2009-2010年间的话题，而我，却是6年后才来带着好奇查阅的。作为FE，简直太不合格了”。
+所以，本篇就是来单纯扯淡的，闲聊。因为我还">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/28/css_base64/" title="base64" itemprop="url">base64</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-05-28T10:12:41.000Z" itemprop="datePublished">2016-05-28</time>
+    更新日期:<time datetime="2016-05-29T12:17:48.000Z" itemprop="dateModified">2016-05-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是_Base64？"><span class="toc-number">1.</span> <span class="toc-text">什么是 Base64？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#它能干啥？"><span class="toc-number">2.</span> <span class="toc-text">它能干啥？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#来来来贴标签"><span class="toc-number">3.</span> <span class="toc-text">来来来贴标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-number">3.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">3.2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适用场景"><span class="toc-number">3.3.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base64_编码工具"><span class="toc-number">4.</span> <span class="toc-text">base64 编码工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#心得"><span class="toc-number">5.</span> <span class="toc-text">心得</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考及其它"><span class="toc-number">6.</span> <span class="toc-text">参考及其它</span></a></li></ol>
+		</div>
+		
+		<p>博主声明：base64 是一个月前查的知识点，今日才得空整理，信息被遗忘的差不多了。之所以还要记录，是因为当时的心情依旧是记忆犹新啊，就是“我嘞个擦，原来这是一个2009-2010年间的话题，而我，却是6年后才来带着好奇查阅的。作为FE，简直太不合格了”。</p>
+<p>所以，本篇就是来单纯扯淡的，闲聊。因为我还记得一个心情，就是“base64现在应用的也不特别广了，至少在background-image的那个切入点上”，于是，遗忘的也就不再细细补了。今天，想起来多少，就记录多少。</p>
+<p>咳咳，依然很想好好学习的同学，可以移步这篇 <a href="http://www.99css.com/492/" target="_blank" rel="external">Data URI&amp;MHTML: 用还是不用？</a>，开头有引用到 Yahoo! 性能专家 Stoyan Stefanov 于 2009.4.10-2010.2.4 期间发表的四篇博客，可以去研读。</p>
+<p>来，余下的朋友，咱继续。</p>
+<h1 id="什么是_Base64？">什么是 Base64？</h1>
+<p>简单理解，Base64 就是一堆连续字母，最后有1~2个”=”的代码。此为引用 <a href="http://www.zhangxinxu.com/wordpress/2012/04/base64-url-image-图片-页面性能优化/" target="_blank" rel="external">张鑫旭博客</a> 里的一段话，如此通俗易懂的描述，甚是喜欢。</p>
+<h1 id="它能干啥？">它能干啥？</h1>
+<p>base64 可以</p>
+<ol>
+<li>编码 url：比如迅雷的地址 thunder://QUFodHRwOi8vd3d3LmJhaWR1LmNvbS9pbWcvc3NsbTFfbG9nby5naWZaWg==</li>
+<li>编码图片：比如 img 的 src</li>
+<li>编码字体文件：比如 Icon Font 【~此处没例子，嗯，就是这么任性~】</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"data:image/gif;base64,R0lGODlhAwADAIABAL6+vv///yH5BAEAAAEALAAAAAADAAMAAAIDjA9WADs="</span> /&gt;</span></div></pre></td></tr></table></figure>
+
+<h1 id="来来来贴标签">来来来贴标签</h1>
+<p>对于某样东西的优缺点，其实我不怎么喜欢这么比，感觉实际意义不大。就比如一个东西你没用对，你就找个借口说“啊，它的优点是那个，你说的这个问题啊，是它随之而来的缺点，无法避免。”但是，这次呢，我还是想肤浅的聊一聊，就是想借这些干巴巴的条条框框来瞬间呼唤起自己对 base64 的感观认知。仅此，无它。</p>
+<p>这里说说使用 base64 编码替代 CSS 背景图片时，它与传统 HTTP url 的比较。</p>
+<h2 id="优点">优点</h2>
+<ol>
+<li>少了 HTTP 请求<br>base64 不用再请求外部资源了，它会随着下载 HTML 的时候一并下载了</li>
+<li>避免跨域的问题：因为图片的数据是在本地的</li>
+<li>避免缓存：无需更新缓存，不用上传文件。不用担心被缓存的问题（eg.url本身没变的时候 诸如相对路径引用的图片资源）</li>
+</ol>
+<h2 id="缺点">缺点</h2>
+<ol>
+<li>浏览器兼容性问题<br>用 base64 作为背景图片，低版本浏览器不支持，诸如 ie6-7 【~特别具体到哪个版本，自己去测~】</li>
+<li>增加了 CSS 的文件大小<br>貌似可以被 gzip 压缩的，所以还行；又有人说：gzip 对 base64 没有压缩能力 【~喝喝哒，此处没深入调研。都说了，今天是来扯淡的，没骗你吧~】</li>
+<li>编码解码：增加了工作量<br>【编码－是指前期的自己上传吧，解码－浏览器这层也是要解的吧】</li>
+</ol>
+<h2 id="适用场景">适用场景</h2>
+<p>对于可以减少 HTTP 请求的这点，理论是相同，但落脚点到实战上，有两篇博客的意见却是不同的。<br>一个说：被频繁大量使用的小图片，建议用 base64。因为总体来看，是省了好多个 HTTP 请求<br>另一个说：被频繁大量使用的小图片，不建议用 base64。因为那么多页面在请求，浪费了浏览器的缓存…</p>
+<blockquote>
+<p>高能预警：下方言论，仅供参考</p>
+</blockquote>
+<p>所以，唯一能确定的一个场景就是：要 repeat 做背景的小图片，诸如 1*1px 3*3px 的<br>因为：图片很小、且不适合做成雪碧图的（要横竖 repeat 嘛）<br>总之就是：一次 HTTP 请求的开销都太大都不值得的时候，就是与不缓存、与数据尺寸可能大等相比，依然是HTTP请求不划算的时候<br>核心就是：图片要小要小。因为一旦大了，可读性…就差的不言而喻了，一长串串编码你能认得出它是啥图么？</p>
+<p>再补充些适用场景：</p>
+<ol>
+<li>图片，在服务器端用程序动态生成，每个用户显示的都不同时</li>
+<li>图片，体积小，单独占用一个 HTTP 会话不值得（有人推荐 &gt;30KB 图像就不用 Base64 了）</li>
+<li>访问受限，当访问外部资源麻烦or受限时（就是绕开跨域嘛）</li>
+</ol>
+<p>不适用场景：</p>
+<ol>
+<li>数据大：数据体积可能会是比原数据体积大1/3，Data URL形式的图片比二进制格式的图片体积大</li>
+<li>不会被浏览器缓存：Data URL 形式的图片，不会被浏览器缓存。尤其是这个图片被整站用到的时候…不缓存就不好了</li>
+</ol>
+<p>顺便提下：<br>图片的 base64 编码是前端优化性能的一个点（雪碧图也是前端优化性能的一个点）</p>
+<h1 id="base64_编码工具">base64 编码工具</h1>
+<p>上面叨叨了那么多，怎么能得到 base64 编码呢？</p>
+<ol>
+<li>网上有很多在线的 base64 生成工具 【~自己去查~】</li>
+<li>工具 cssgaga</li>
+<li>HTML5 文件本地预览 FileReader</li>
+<li>Canvas 的 canvas.toDataURL()，canvas获取图像的rgba数据之后<br>图像 -&gt; 二进制PNG数据 -&gt; ASCII的base64编码</li>
+</ol>
+<h1 id="心得">心得</h1>
+<p>果然，网上的碎片化信息，是不系统，而且不权威。有时候，同一个点，会看到两篇文章说的有出入。想要权威的，那就去读官方文档，当真心有必要弄懂这里时。</p>
+<p>要我说：在 background-image:url() 这里，base64 的用途现在不大了吧…这就是我开头提到的那第二个心情。</p>
+<ol>
+<li>用小图片做背景+重复的，这种做法现在已经很少了吧。</li>
+<li>CSS3 的边框、阴影、渐变、滤镜等已经能满足大部分 UI 需求了</li>
+<li>至于低版本浏览器…现在啊，直接忽略就行。UI 要求那么高干啥，功能能用就可以了</li>
+</ol>
+<p>不过，我对 data:image/gif; 等这种格式还挺好奇的。<br>data:image/gif;base64,xxx…xxx<br>data:img/jpg;base64,xxx…xxx<br>data:font/woff;charset=utf-8;base64,xxx…xxx</p>
+<h1 id="参考及其它">参考及其它</h1>
+<p>内有 Yahoo! 专家的四篇链接<br><a href="http://www.99css.com/492/" target="_blank" rel="external">http://www.99css.com/492/</a><br>【~可以追溯地远点，了解下base64是为了解决什么问题而产生的，这有助于理解我们到底应该怎么使用它~】<br>标签：图片、性能 （＋ CSS IE IE6-7）</p>
+<p>Data URI<br><a href="http://www.webhek.com/data-url" target="_blank" rel="external">http://www.webhek.com/data-url</a><br><a href="https://en.wikipedia.org/wiki/Data_URI_scheme" target="_blank" rel="external">https://en.wikipedia.org/wiki/Data_URI_scheme</a></p>
+<p>张鑫旭：<br><a href="http://www.zhangxinxu.com/wordpress/2012/04/base64-url-image-图片-页面性能优化/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2012/04/base64-url-image-图片-页面性能优化/</a></p>
+<p>【前端攻略】：玩转图片Base64编码<br><a href="http://www.cnblogs.com/coco1s/p/4375774.html" target="_blank" rel="external">http://www.cnblogs.com/coco1s/p/4375774.html</a></p>
+<p><a href="https://segmentfault.com/q/1010000000456088" target="_blank" rel="external">https://segmentfault.com/q/1010000000456088</a></p>
+<p>图片在线转换为 Base64，移动开发、HTML5开发、必备的 DataURI 工具<br>支持 PNG、GIF、JPG、BMP、TIF、PSD、ICO 等格式</p>
+<p>sprites：同时修改图片＋css有时候也挺麻烦的呢…</p>
+<p>?? 场景：<br>目前用的较多的：chrome 扩展的 Content CSS<br>因为不能直接引用扩展内部的图片文件，所以就编码存在 CSS 里</p>
+<p>?? 场景：<br>图片足够小 + 不能被能成雪碧图 + 整个网站复用性很高 + 基本不会被更新</p>
+<p>???<br>CSS文件的优点就是：重用 //此处的重用…貌似是 background-url的处理？<br>貌似 css inline 的是可以被缓存的</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS/">CSS</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CSS/">CSS</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2016/05/28/css_base64/" data-title="base64 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/28/tool_shell/"  title="shell 编程">
+ <strong>下一篇:</strong><br/> 
+ <span>shell 编程
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是_Base64？"><span class="toc-number">1.</span> <span class="toc-text">什么是 Base64？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#它能干啥？"><span class="toc-number">2.</span> <span class="toc-text">它能干啥？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#来来来贴标签"><span class="toc-number">3.</span> <span class="toc-text">来来来贴标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-number">3.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">3.2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适用场景"><span class="toc-number">3.3.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base64_编码工具"><span class="toc-number">4.</span> <span class="toc-text">base64 编码工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#心得"><span class="toc-number">5.</span> <span class="toc-text">心得</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考及其它"><span class="toc-number">6.</span> <span class="toc-text">参考及其它</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (11)</a></li>
+		
+			<li>
+				<a href="/categories/FE/" title="FE">FE (3)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (8)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (4)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/jQuery/" title="jQuery">jQuery (5)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (17)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (9)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+			<li>
+				<a href="/categories/插件/" title="插件">插件 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.75px;">CSS</a><a href="/tags/Emmet/" style="font-size: 10.00px;">Emmet</a><a href="/tags/Git/" style="font-size: 11.25px;">Git</a><a href="/tags/GitHub/" style="font-size: 11.25px;">GitHub</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/SSH-keys/" style="font-size: 10.00px;">SSH keys</a><a href="/tags/Sublime/" style="font-size: 10.00px;">Sublime</a><a href="/tags/bash/" style="font-size: 10.00px;">bash</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/chrome/" style="font-size: 10.00px;">chrome</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.50px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 16.25px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.50px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shell/" style="font-size: 10.00px;">shell</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/svn/" style="font-size: 10.00px;">svn</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 12.50px;">web</a><a href="/tags/实战/" style="font-size: 16.25px;">实战</a><a href="/tags/对象/" style="font-size: 12.50px;">对象</a><a href="/tags/插件/" style="font-size: 13.75px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.25px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.25px;">模块化</a><a href="/tags/模板/" style="font-size: 12.50px;">模板</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/编码/" style="font-size: 12.50px;">编码</a><a href="/tags/翻译/" style="font-size: 13.75px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.50px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.50px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2016 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

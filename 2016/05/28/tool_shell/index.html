@@ -1,0 +1,511 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>shell 编程 | anjia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="anjia">
+    
+    <meta name="description" content="Linux 下有很多不同的 shell，但我们通常使用 bash (bourne again shell) 进行 shell 编程，因为 bash 是免费的，且易用。下面用到的例子，都是用 bash。
+程序的第一行必须是 #!/bin/sh
+1234567#!/bin/sh# #! 用来告诉系统，它">
+    
+    
+    
+    
+    <link rel="alternate" href="http://anjia.github.io/" title="anjia" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="anjia">anjia</a></h1>
+				<h2 class="blog-motto">静下心，慢慢来</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:anjia.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/28/tool_shell/" title="shell 编程" itemprop="url">shell 编程</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://anjia.github.io" title="anjia">anjia</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-05-28T10:10:41.000Z" itemprop="datePublished">2016-05-28</time>
+    更新日期:<time datetime="2016-05-29T12:18:03.000Z" itemprop="dateModified">2016-05-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于替换"><span class="toc-number">1.1.</span> <span class="toc-text">关于替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unix_命令"><span class="toc-number">1.2.</span> <span class="toc-text">Unix 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Here_Documents"><span class="toc-number">1.3.</span> <span class="toc-text">Here Documents</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#控制语句"><span class="toc-number">2.</span> <span class="toc-text">控制语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#条件测试"><span class="toc-number">2.1.</span> <span class="toc-text">条件测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环"><span class="toc-number">2.2.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择"><span class="toc-number">2.3.</span> <span class="toc-text">选择</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#demo"><span class="toc-number">3.</span> <span class="toc-text">demo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#grep"><span class="toc-number">3.1.</span> <span class="toc-text">grep</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">3.2.</span> <span class="toc-text">sed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件重命名"><span class="toc-number">3.3.</span> <span class="toc-text">文件重命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志重命令"><span class="toc-number">3.4.</span> <span class="toc-text">日志重命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		</div>
+		
+		<p>Linux 下有很多不同的 shell，但我们通常使用 bash (bourne again shell) 进行 shell 编程，因为 bash 是免费的，且易用。下面用到的例子，都是用 bash。</p>
+<p>程序的第一行必须是 #!/bin/sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh</span></div><div class="line"><span class="comment"># #! 用来告诉系统，它后面的参数是用来执行改文件的程序。我们使用 /bin/sh</span></div><div class="line">	</div><div class="line"><span class="comment"># 在 shell 下，所有变量都用字符串表示，变量不需要声明，直接使用，直接对变量进行赋值。</span></div><div class="line"><span class="comment"># 在 shell 中，可以使用任意的 Linux/Unix 命令。比如</span></div><div class="line"><span class="comment"># ls cp | grep &gt; &gt;&gt; </span></div><div class="line"><span class="comment"># if ;then else if then else fi</span></div></pre></td></tr></table></figure>
+
+<p>如果要执行脚本，就必须使其具有执行权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x demo.sh</div></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 可以</span></div><div class="line">sh demo.sh</div><div class="line">	</div><div class="line"><span class="comment"># 也可以</span></div><div class="line">./demo.sh</div></pre></td></tr></table></figure>
+
+<h1 id="准备">准备</h1>
+<h2 id="关于替换">关于替换</h2>
+<p>关于替换（or扩展），举例说明，eg.  echo *.jpg<br>不带引号，是命令；<br>带了引号，会当作字符串（可以使用转义字符-反斜杠，来防止通配符的扩展）<br><img src="\images\shell_alternate.png" alt=""></p>
+<p>其中：<br>单引号：会防止任何变量扩展，即就是纯字符串<br>双引号：可以防止通配符扩展，但允许变量扩展。即里面可以携带变量<br><img src="\images\shell_demo2.png" alt=""></p>
+<p>在双引号里，也可以使用{}来告诉我们要打印的是个变量<br><img src="\images\shell_demo1.png" alt=""></p>
+<h2 id="Unix_命令">Unix 命令</h2>
+<p>常见命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ls   	<span class="comment"># 文件列表</span></div><div class="line">find 	<span class="comment"># 搜索文件 find *.txt</span></div><div class="line"><span class="built_in">cd</span> ../</div><div class="line"><span class="built_in">cd</span> directory</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">'hello word'</span></div><div class="line">	</div><div class="line">cat file.txt  <span class="comment"># 输出文件内容到标准输出设备（屏幕）上</span></div><div class="line">head file     <span class="comment"># 打印文本文件开头几行</span></div><div class="line">tail file     <span class="comment"># 打印文本文件末尾几行</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">rm file                 <span class="comment"># 删除文件</span></div><div class="line">cp sourcefile destfile  <span class="comment"># 文件拷贝</span></div><div class="line">mv oldname newname      <span class="comment"># 重命名文件或移动文件</span></div><div class="line">	</div><div class="line">mkdir foldername  <span class="comment"># 新建文件夹</span></div><div class="line">rmdir foldername  <span class="comment"># 删除文件夹</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sed</div><div class="line"><span class="comment"># sed 是一个基本的查找替换程序。</span></div><div class="line"><span class="comment"># 可以从标准输入（比如命令管道）读入文本，并将结果输出到标准输出（屏幕）</span></div><div class="line"><span class="comment"># 该命令采用正则表达式进行搜索</span></div><div class="line"><span class="comment"># 比如将文件demo.txt中的anjia替换成ANJIA，并将替换的内容输出到demo2.txt</span></div><div class="line"><span class="comment"># cat demo.txt | sed 's/anjia/ANJIA/' &gt; demo2.txt</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">awk                  <span class="comment"># 用来从文本文件中提取字段</span></div><div class="line">grep <span class="string">'pattern'</span> file  <span class="comment"># 在文件内搜索字符串比如：grep 'searchstring' file.txt</span></div><div class="line">sort file.txt        <span class="comment"># 对file.txt文件中的行进行排序</span></div><div class="line">uniq                 <span class="comment"># 删除文本文件中出现的行列比如： sort file.txt | uniq</span></div><div class="line">	</div><div class="line"><span class="built_in">read</span> var                        <span class="comment"># 提示用户输入，并将输入赋值给变量</span></div><div class="line">wc –l filewc -w filewc -c file  <span class="comment"># 计算文件行数计算文件中的单词数计算文件中的字符数</span></div></pre></td></tr></table></figure>
+
+<p>其他：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#  管道 | 将一个命令的输出作为另外一个命令的输入</span></div><div class="line"><span class="comment">#  &gt; 写入文件并覆盖旧文件</span></div><div class="line"><span class="comment">#  &gt;&gt; 加到文件的尾部，保留旧文件内容</span></div></pre></td></tr></table></figure>
+
+<h2 id="Here_Documents">Here Documents</h2>
+<p>在 bash 中使用多行注释的方法 <a href="http://blog.csdn.net/delphiwcdj/article/details/8088407" target="_blank" rel="external">Here Documents</a><br>其中，InputComesFromHERE 是自定义字符串，运算符<br>&lt;&lt;  内部内容必须顶格<br>&lt;&lt;- 内部内容可以有缩进</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">command &lt;&lt;InputComesFromHERE</div><div class="line">...</div><div class="line">...</div><div class="line">...</div><div class="line">InputComesFromHERE</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">command &lt;&lt;-InputComesFromHERE</div><div class="line">	...</div><div class="line">	...</div><div class="line">	...</div><div class="line">InputComesFromHERE</div></pre></td></tr></table></figure>
+
+<p>:是空命令，结合 here Documents，那么以下是多行注释</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">:&lt;&lt;Multi-Comment</div><div class="line">听说这里可以写成多行注释，试试喽</div><div class="line">Multi-Comment</div></pre></td></tr></table></figure>
+
+<p>参考：<br><a href="http://tldp.org/LDP/abs/html/here-docs.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/here-docs.html</a><br><a href="http://blog.csdn.net/delphiwcdj/article/details/8088407" target="_blank" rel="external">http://blog.csdn.net/delphiwcdj/article/details/8088407</a></p>
+<h1 id="控制语句">控制语句</h1>
+<h2 id="条件测试">条件测试</h2>
+<p>[  ] 来表示条件测试，注意方括号和中间的内容之间必须有空格</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[ -n <span class="string">"<span class="variable">$var</span>"</span> ]      <span class="comment"># 判断$var变量是否有值</span></div><div class="line">[ <span class="string">"<span class="variable">$a</span>"</span> = <span class="string">"<span class="variable">$b</span>"</span> ]    <span class="comment"># 判断$a和$b是否相等</span></div><div class="line">[ <span class="operator">-f</span> <span class="string">"somefile"</span> ]  <span class="comment"># 判断是否是一个文件</span></div><div class="line">[ -x <span class="string">"/bin/ls"</span> ]   <span class="comment"># 判断/bin/ls是否存在并有可执行权限</span></div></pre></td></tr></table></figure>
+
+<p>更多条件测试，可参考 <a href="http://www.tuicool.com/articles/MbmiAf" target="_blank" rel="external">shell中条件判断if中的-a到-z的意思</a></p>
+<p>if-else</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ xxx ]; <span class="keyword">then</span></div><div class="line">	...</div><div class="line"><span class="keyword">else</span></div><div class="line">	...</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+
+<p>case-in</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 执行命令</span></div><div class="line">ftype=`file <span class="string">"<span class="variable">$1</span>"</span>`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$ftype</span></div><div class="line">	</div><div class="line"><span class="comment"># case...in...esac</span></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$ftype</span>"</span> <span class="keyword">in</span></div><div class="line">	<span class="string">"<span class="variable">$1</span>: Zip archive"</span>*) <span class="comment"># seems to string indexOf match</span></div><div class="line">		unzip <span class="string">"<span class="variable">$1</span>"</span>;;</div><div class="line">	<span class="string">"<span class="variable">$1</span>: gzip compressed"</span>*)</div><div class="line">		gunzip <span class="string">"<span class="variable">$1</span>"</span>;;</div><div class="line">	<span class="string">"<span class="variable">$1</span>: bzip2 compressed"</span>*)</div><div class="line">		bunzip2 <span class="string">"<span class="variable">$1</span>"</span>;;</div><div class="line"><span class="comment"># *) error "File $1 can not be uncompressed with smartzip";;</span></div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+
+<h2 id="循环">循环</h2>
+<p>for-in</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> var <span class="keyword">in</span> A B C; <span class="keyword">do</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">"var is <span class="variable">$var</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+
+<p>while</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></div><div class="line">	sh /Users/anjia/GitHub/shell/crontab.sh</div><div class="line">	sleep <span class="number">5</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+
+<h2 id="选择">选择</h2>
+<p>可与用户交互的 select</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh</span></div><div class="line">select var <span class="keyword">in</span> <span class="string">"Linux"</span> <span class="string">"Gnu Hurd"</span> <span class="string">"Free BSD"</span> <span class="string">"Other"</span>; <span class="keyword">do</span></div><div class="line">	<span class="keyword">break</span></div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"You have select <span class="variable">$var</span>"</span></div></pre></td></tr></table></figure>
+
+<p>执行结果<br><img src="\images\shell_demo3.png" alt=""></p>
+<h1 id="demo">demo</h1>
+<p>下面用实例来感受下 shell 脚本。在看 demo 之前，先了解下几个有特殊含义的参数：</p>
+<ol>
+<li>$* 所有输入的命令行参数值</li>
+<li>$1-$9 命令行的第1个参数、…、第9个参数</li>
+<li>$# 命令行参数的总个数</li>
+</ol>
+<h2 id="grep">grep</h2>
+<p>grep：在文件内搜索字符串<br>wc：计算文件行数|文件单词个数<br>>>：文件追加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh</span></div><div class="line"><span class="built_in">echo</span> <span class="string">'welcome to shell!'</span></div><div class="line">	</div><div class="line">grep <span class="string">'anjia'</span> filename1.txt </div><div class="line">grep <span class="string">'anjia'</span> filename1.txt | wc <span class="operator">-l</span></div><div class="line">grep <span class="string">'anjia'</span> filename1.txt | wc <span class="operator">-l</span> &gt;&gt; filename2.txt</div><div class="line">	</div><div class="line"><span class="keyword">if</span> [ <span class="operator">-f</span> <span class="string">'filename2.txt'</span> ];<span class="keyword">then</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">'filename2.txt is a file.'</span></div><div class="line"><span class="keyword">else</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">'filename2.txt is not a file.'</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">	</div><div class="line"><span class="keyword">exit</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>运行结果：<br><img src="\images\shell_demo6.png" alt=""></p>
+<h2 id="sed">sed</h2>
+<p>sed：基本的查找替换程序。从标准输入（eg命令管道）读入文本，并将结果输出到标准输出（屏幕）。此命令采用正则表达式进行搜索。<br>>：文件重写覆盖<br><img src="\images\shell_demo7.png" alt=""></p>
+<h2 id="文件重命名">文件重命名</h2>
+<p>本例子是对多个文件进行重命名的。其中：<br>第一个参数：oldname<br>第二个参数：newname<br>之后的参数：将要替换的文件列表</p>
+<p>直接看源码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh</span></div><div class="line">		</div><div class="line"><span class="comment"># $# 包含命令行参数的总个数</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> <span class="operator">-lt</span> <span class="number">3</span> ]; <span class="keyword">then</span></div><div class="line">	<span class="comment"># 将帮助文字传递给 cat</span></div><div class="line">	cat &lt;&lt;-HELP</div><div class="line">		ren -- renames a number of files using sed regular expressions</div><div class="line">		USAGE: ren <span class="string">'regexp'</span> <span class="string">'replacement'</span> files...</div><div class="line">		EXAMPLE: rename all *.HTM files <span class="keyword">in</span> *.html:</div><div class="line">		ren <span class="string">'HTM$'</span> <span class="string">'html'</span> *.HTM</div><div class="line">	HELP</div><div class="line">	<span class="comment"># 多行multi-line message using cat</span></div><div class="line"><span class="keyword">exit</span> <span class="number">0</span> <span class="comment"># 退出程序</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">		</div><div class="line">OLD=<span class="string">"<span class="variable">$1</span>"</span>  <span class="comment"># 第一个参数赋值给OLD</span></div><div class="line">NEW=<span class="string">"<span class="variable">$2</span>"</span>  <span class="comment"># 第二个参数赋值给NEW</span></div><div class="line">		</div><div class="line">shift</div><div class="line">shift <span class="comment"># remove one argument from the list of command line arguments</span></div><div class="line"><span class="comment"># 将第一个和第二个参数从参数列表中删除</span></div><div class="line"><span class="comment"># 于是，原来的第三个参数，就成了参数列表$*中的第一个参数</span></div><div class="line">	</div><div class="line"><span class="comment"># $* 参数列表</span></div><div class="line"><span class="keyword">for</span> file <span class="keyword">in</span> $*; <span class="keyword">do</span></div><div class="line">	<span class="keyword">if</span> [ <span class="operator">-f</span> <span class="string">"<span class="variable">$file</span>"</span> ]; <span class="keyword">then</span></div><div class="line">		newfile=`<span class="built_in">echo</span> <span class="string">"<span class="variable">$file</span>"</span>|sed <span class="string">"s/<span class="variable">${OLD}</span>/<span class="variable">${NEW}</span>/g"</span>`</div><div class="line">		<span class="comment"># sed 命令：搜索和替换</span></div><div class="line">		<span class="comment"># 将反斜线内命令结果赋值给变量 newfile</span></div><div class="line">		<span class="comment"># 于是，我们就达到了目的：得到了旧文件名和新文件名</span></div><div class="line">	</div><div class="line">		<span class="keyword">if</span> [ <span class="operator">-f</span> <span class="string">"<span class="variable">$newfile</span>"</span> ]; <span class="keyword">then</span></div><div class="line">			<span class="built_in">echo</span> <span class="string">"ERROR: <span class="variable">$newfile</span> exists already"</span></div><div class="line">		<span class="keyword">else</span></div><div class="line">			<span class="built_in">echo</span> <span class="string">"renaming <span class="variable">$file</span> to <span class="variable">$newfile</span> ..."</span></div><div class="line">			mv <span class="string">"<span class="variable">$file</span>"</span> <span class="string">"<span class="variable">$newfile</span>"</span></div><div class="line">			<span class="comment"># mv oldname newname 重命名文件｜移动文件</span></div><div class="line">		<span class="keyword">fi</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line"><span class="keyword">done</span></div><div class="line">	</div><div class="line"><span class="keyword">exit</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>运行结果：<br><img src="\images\shell_demo4.png" alt=""></p>
+<h2 id="日志重命令">日志重命令</h2>
+<p>本实是给日志文件列表再插入一个最新的日志，从头插。比如：有如下文件<br>log.txt.1 log.txt.2 log.txt.3<br>现在又产生了一个最新的日志 log.txt，我们要将其变成 log.txt.1，原有的 log.txt.1变成 log.txt.2，log.txt.2 变成 log.txt.3，依次类推。</p>
+<p>直接看源码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/bin/sh</span></div><div class="line">	</div><div class="line">ver=<span class="string">"0.1"</span></div><div class="line"><span class="function"><span class="title">help</span></span>(){</div><div class="line">	cat &lt;&lt;-HELP</div><div class="line">			rotatefile -- rotate the file name</div><div class="line">			USAGE: rotatefile [-h] filename</div><div class="line">			OPTIONS: -h <span class="built_in">help</span> text</div><div class="line">			EXAMPLE: rotatefile out</div><div class="line">			This will e.g rename out.<span class="number">2</span> to out.<span class="number">3</span>,out1 to out.<span class="number">2</span></div><div class="line">			and create an empty out-file</div><div class="line">			The max number is <span class="number">10</span></div><div class="line">			version <span class="variable">$ver</span></div><div class="line">		HELP</div><div class="line">	<span class="keyword">exit</span> <span class="number">0</span></div><div class="line">}</div><div class="line">	</div><div class="line"><span class="function"><span class="title">error</span></span>(){</div><div class="line">	<span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span>"</span></div><div class="line">	<span class="keyword">exit</span> <span class="number">0</span></div><div class="line">}</div><div class="line">	</div><div class="line"><span class="comment"># while [ -n "$1" ]; do</span></div><div class="line"><span class="comment"># 	case $1 in</span></div><div class="line"><span class="comment"># 		-h) help;shift 1;;</span></div><div class="line"><span class="comment"># 		# --) exit 1;</span></div><div class="line"><span class="comment"># 		# -*) echo "error: no such option $1. -h for help"; exit 1;;</span></div><div class="line"><span class="comment"># 		# *) break;;</span></div><div class="line"><span class="comment"># 	esac</span></div><div class="line"><span class="comment"># done</span></div><div class="line">	</div><div class="line"><span class="comment"># input check</span></div><div class="line"><span class="comment"># string 长度为0则真</span></div><div class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$1</span>"</span> ]; <span class="keyword">then</span></div><div class="line">	error <span class="string">"ERROR: you must specify a file, use -h for help"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">	</div><div class="line">filen=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$filen</span></div><div class="line">	</div><div class="line"><span class="comment"># rename any.1 .2 etc file: 10 9 8 7 6 5 4 3 2 </span></div><div class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span>; <span class="keyword">do</span></div><div class="line">	<span class="keyword">if</span> [ <span class="operator">-f</span> <span class="string">"<span class="variable">$filen</span>.<span class="variable">$n</span>"</span> ]; <span class="keyword">then</span></div><div class="line">		p=`expr <span class="variable">$n</span> + <span class="number">1</span>`</div><div class="line">		<span class="built_in">echo</span> <span class="string">"mv <span class="variable">$filen</span>.<span class="variable">$n</span> <span class="variable">$filen</span>.<span class="variable">$p</span>"</span></div><div class="line">		mv <span class="variable">$filen</span>.<span class="variable">$n</span> <span class="variable">$filen</span>.<span class="variable">$p</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line"><span class="keyword">done</span></div><div class="line">	</div><div class="line"><span class="comment"># rename the original file:</span></div><div class="line"><span class="keyword">if</span> [ <span class="operator">-f</span> <span class="string">"<span class="variable">$filen</span>"</span> ]; <span class="keyword">then</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">"mv <span class="variable">$filen</span> <span class="variable">$filen</span>.1"</span></div><div class="line">	mv <span class="variable">$filen</span> <span class="variable">$filen</span>.<span class="number">1</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">	</div><div class="line"><span class="built_in">echo</span> touch <span class="variable">$filen</span> </div><div class="line">touch <span class="variable">$filen</span></div><div class="line">	</div><div class="line"><span class="keyword">exit</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>运行结果：<br><img src="\images\shell_demo5.png" alt=""></p>
+<h1 id="小结">小结</h1>
+<p>在编写 shell 脚本时，最好…：</p>
+<ol>
+<li>写注释</li>
+<li>校验参数</li>
+<li>支持帮助说明，即选项 -h 或者 -help<br>包括：功能说明、USAGE、OPTIONS、EXAMPLE</li>
+</ol>
+<p>学新语言时，一个一个字符敲代码的感觉，很好。</p>
+<h1 id="参考">参考</h1>
+<p><a href="http://blog.chinaunix.net/uid-20328094-id-95121.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-20328094-id-95121.html</a></p>
+<p>shell<br>bash</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/shell/">shell</a><a href="/tags/bash/">bash</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/tool/">tool</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://anjia.github.io/2016/05/28/tool_shell/" data-title="shell 编程 | anjia" data-tsina="undefined" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/28/css_base64/" title="base64">
+  <strong>上一篇:</strong><br/>
+  <span>
+  base64</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/28/tool_git/"  title="Git">
+ <strong>下一篇:</strong><br/> 
+ <span>Git
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于替换"><span class="toc-number">1.1.</span> <span class="toc-text">关于替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unix_命令"><span class="toc-number">1.2.</span> <span class="toc-text">Unix 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Here_Documents"><span class="toc-number">1.3.</span> <span class="toc-text">Here Documents</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#控制语句"><span class="toc-number">2.</span> <span class="toc-text">控制语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#条件测试"><span class="toc-number">2.1.</span> <span class="toc-text">条件测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环"><span class="toc-number">2.2.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择"><span class="toc-number">2.3.</span> <span class="toc-text">选择</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#demo"><span class="toc-number">3.</span> <span class="toc-text">demo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#grep"><span class="toc-number">3.1.</span> <span class="toc-text">grep</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">3.2.</span> <span class="toc-text">sed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件重命名"><span class="toc-number">3.3.</span> <span class="toc-text">文件重命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志重命令"><span class="toc-number">3.4.</span> <span class="toc-text">日志重命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类目录</p>
+		<ul>
+		
+			<li>
+				<a href="/categories/CSS/" title="CSS">CSS (11)</a></li>
+		
+			<li>
+				<a href="/categories/FE/" title="FE">FE (3)</a></li>
+		
+			<li>
+				<a href="/categories/HTML/" title="HTML">HTML (8)</a></li>
+		
+			<li>
+				<a href="/categories/Web/" title="Web">Web (4)</a></li>
+		
+			<li>
+				<a href="/categories/blog/" title="blog">blog (4)</a></li>
+		
+			<li>
+				<a href="/categories/jQuery/" title="jQuery">jQuery (5)</a></li>
+		
+			<li>
+				<a href="/categories/javascript/" title="javascript">javascript (17)</a></li>
+		
+			<li>
+				<a href="/categories/node/" title="node">node (4)</a></li>
+		
+			<li>
+				<a href="/categories/tool/" title="tool">tool (9)</a></li>
+		
+			<li>
+				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战/" title="实战">实战 (3)</a></li>
+		
+			<li>
+				<a href="/categories/实战知识点/" title="实战知识点">实战知识点 (3)</a></li>
+		
+			<li>
+				<a href="/categories/插件/" title="插件">插件 (1)</a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">文章归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 18.75px;">CSS</a><a href="/tags/Emmet/" style="font-size: 10.00px;">Emmet</a><a href="/tags/Git/" style="font-size: 11.25px;">Git</a><a href="/tags/GitHub/" style="font-size: 11.25px;">GitHub</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/SSH-keys/" style="font-size: 10.00px;">SSH keys</a><a href="/tags/Sublime/" style="font-size: 10.00px;">Sublime</a><a href="/tags/bash/" style="font-size: 10.00px;">bash</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/chrome/" style="font-size: 10.00px;">chrome</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.50px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 16.25px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.50px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shell/" style="font-size: 10.00px;">shell</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/svn/" style="font-size: 10.00px;">svn</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 12.50px;">web</a><a href="/tags/实战/" style="font-size: 16.25px;">实战</a><a href="/tags/对象/" style="font-size: 12.50px;">对象</a><a href="/tags/插件/" style="font-size: 13.75px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.25px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.25px;">模块化</a><a href="/tags/模板/" style="font-size: 12.50px;">模板</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/编码/" style="font-size: 12.50px;">编码</a><a href="/tags/翻译/" style="font-size: 13.75px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.50px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.50px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    
+        <a href="http://www.75team.com/" target="_blank">奇舞团</a>
+    
+        <a href="https://www.imququ.com/" target="_blank">JerryQu 的小站</a>
+    
+        <a href="http://www.welefen.com/" target="_blank">welefen的随笔</a>
+    
+        <a href="http://chevion.github.io/" target="_blank">chevionlu</a>
+    
+        <a href="http://www.cnblogs.com/jkisjk/" target="_blank">JKisJK</a>
+    
+        <a href="http://www.ivershuo.com/2014/04/fastcgi_on_nodejs/" target="_blank">阿肆</a>
+    
+        <a href="http://hszy00232.blog.163.com/blog" target="_blank">冰果</a>
+    
+        <a href="http://www.cnblogs.com/snadn/category/485724.html" target="_blank">snadn</a>
+    
+        <a href="http://jiaolonghuang.github.io/" target="_blank">JiaoLong_H</a>
+    
+        <a href="http://hujunil.github.io/" target="_blank">Hujun</a>
+    
+        <a href="http://my.oschina.net/u/1589874/blog?catalog=472902" target="_blank">Sunny_lyy</a>
+    
+        <a href="http://blog.justoffline.com/index.html" target="_blank">少说绝对</a>
+    
+        <a href="http://www.zhangxinxu.com/wordpress/" target="_blank">张鑫旭</a>
+    
+        <a href="http://www.aoao.org.cn/blog/" target="_blank">嗷嗷</a>
+    
+        <a href="http://hikejun.com/blog/" target="_blank">Kejun</a>
+    
+        <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a>
+    
+        <a href="http://melonh.com/" target="_blank">Melon瓜瓜</a>
+    
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<p class="copyright">© 2016 - 
+	
+	<a href="http://anjia.github.io" target="_blank" title="anjia">anjia</a>
+	 - Powered by hexo and Theme by Pacman
+	</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+  </body>
+</html>

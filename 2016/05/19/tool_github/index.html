@@ -78,7 +78,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-05-19T13:48:52.000Z" itemprop="datePublished">2016-05-19</time>
-    更新日期:<time datetime="2016-05-21T14:11:35.000Z" itemprop="dateModified">2016-05-21</time>
+    更新日期:<time datetime="2016-05-29T08:56:39.000Z" itemprop="dateModified">2016-05-29</time>
     
   </p>
 </header>
@@ -87,7 +87,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH_keys"><span class="toc-number">1.</span> <span class="toc-text">SSH keys</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">1.2.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂谈"><span class="toc-number">1.3.</span> <span class="toc-text">杂谈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub"><span class="toc-number">2.</span> <span class="toc-text">GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH_keys"><span class="toc-number">1.</span> <span class="toc-text">SSH keys</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">1.2.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂谈"><span class="toc-number">1.3.</span> <span class="toc-text">杂谈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub"><span class="toc-number">2.</span> <span class="toc-text">GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#入门"><span class="toc-number">2.1.</span> <span class="toc-text">入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两种_clone_方式"><span class="toc-number">2.2.</span> <span class="toc-text">两种 clone 方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#心得及参考"><span class="toc-number">3.</span> <span class="toc-text">心得及参考</span></a></li></ol>
 		</div>
 		
 		<p>以前玩 GitHub，懵懵懂懂啊朦朦胧胧，就记得，中间环节但凡求助于他人，即便最后弄好了，自己其实还是有些稀里糊涂。本周有项任务：用脚本定期从 GitHub上下载最新代码。于是，就借此机会，把这里搞清楚些。</p>
@@ -97,16 +97,21 @@
 <h3 id="介绍">介绍</h3>
 <p>GitHub 上有详细的<a href="https://help.github.com/categories/ssh/" target="_blank" rel="external">文档说明</a>，里面介绍了如何查看本地的已有 SSH keys、如何创建一个新 SSH key、如何把它添加到 ssh-agent、如何添加到你的账户，以及一些常见问题。目录如下所示。<br><img src="\images\github_ssh_list.png" alt=""></p>
 <p>在页面上的入口，详见：<br><img src="\images\github_ssh.png" alt=""></p>
+<p>用法示例：</p>
+<ol>
+<li>查看已经存在的 SSH keys</li>
+<li>生成一个新的 SSH Key</li>
+<li>并将其添加至 ssh-agent<br><img src="\images\github_ssh-keygen.png" alt=""></li>
+</ol>
 <h3 id="遇到的问题">遇到的问题</h3>
 <p>问题：授权的 key 被标识为只读，没法读取远程仓库<br>原因：是因为添加了多个 key<br>解决：清空，再重新添加，就好了。参考 stackoverflow 上的 <a href="http://stackoverflow.com/questions/33467474/github-authenticates-but-will-not-allow-code-push" target="_blank" rel="external">Github authenticates but will not allow code push</a>。整个过程，如下<br><img src="\images\github_error.png" alt=""></p>
-<p>很久之前也碰到过类似的问题，但原因不同。那次是因为没有用 SSH 克隆代码导致的，可参考 stackoverflow 上的 <a href="http://stackoverflow.com/questions/1595848/configuring-git-over-ssh-to-login-once" target="_blank" rel="external">Configuring Git over SSH to login once</a>。<br>今天更新时，又碰到了类似的问题。解决方法是：在 github 上 key 的授权改成具有写权限的，即 “Read/write” 【呃~长得一模一样的报错，为何每次的解决方式不一样…到底哪里才是最根本的问题呢？】<br><img src="\images\github_keys_write.png" alt=""></p>
-<p>一个仓库，一般有两种方式去拷贝or下载，就是 HTTPS 和 SSH。<br><img src="\images\github_clone.png" alt=""></p>
+<p>很久之前也碰到过类似的问题，但原因不同。那次是因为没有用 SSH 克隆代码导致的，可参考 stackoverflow 上的 <a href="http://stackoverflow.com/questions/1595848/configuring-git-over-ssh-to-login-once" target="_blank" rel="external">Configuring Git over SSH to login once</a>。<br>今天更新时，又碰到了类似的问题。解决方法是：在 github 上 key 的授权改成具有写权限的，即 “Read/write”<br><img src="\images\github_keys_write.png" alt=""></p>
 <h3 id="杂谈">杂谈</h3>
 <ol>
-<li>生成的 SSH keys 它们是一对 public/private rsa （比如： id_rsa.pub 和 id_rsa），pub的传给git，private的本机留着</li>
-<li>默认路径就是 C:\Users\anjia.ssh，如果你新输入了名字，那就会在当前目录下<br>后面弹出的框，是要你设置密码的。直接回车就好</li>
-<li>查看本机目前有的 public SSH key<br>命令 $ ls -al ~/.ssh  </li>
-<li>一个 key 只能用于一个账户或者一个仓库；同样，一个仓库也只能有一个 key（我碰到的情况就是：添加了2个key导致的权限问题）</li>
+<li>生成的 SSH keys 是一对 public/private rsa （比如： id_rsa.pub 和 id_rsa），pub的传给git，private的本机留着</li>
+<li>默认路径就是 C:\Users\anjia\.ssh，即 ~\.ssh<br>如果你新输入了名字，那就会在当前目录下（要在默认路径下用新名字，那就只能用绝对路径）<br>后面弹出的框，是要你设置密码的。默认为空，直接回车就好</li>
+<li>查看本机目前所有的 public SSH key<br>命令 $ ls -al ~/.ssh  </li>
+<li>一个 key 只能用于一个账户或者一个仓库；同样，一个仓库也只能有一个 key（key是指特定的一台机器。我碰到的情况就是：添加了2个key导致的权限问题）</li>
 <li>默认情况，public keys 的文件名字是以下中的一个<br>id_dsa.pub<br>id_ecdsa.pub<br>id_ed25519.pub<br>id_rsa.pub（window）</li>
 </ol>
 <p>关键词：</p>
@@ -117,7 +122,8 @@
 </ol>
 <p>.bash_history<br>.gitconfig</p>
 <h2 id="GitHub">GitHub</h2>
-<p>GitHub上有个专门的 <a href="https://guides.github.com/activities/hello-world/" target="_blank" rel="external">文档说明</a> 让你快速入门 Git 和 GitHub，不需要任何编码。可以在页面上通过点击鼠标完成：创建一个仓库，开始一个分支，发表评论，开启一个拉取请求。</p>
+<h3 id="入门">入门</h3>
+<p>GitHub上有个专门的 <a href="https://guides.github.com/activities/hello-world/" target="_blank" rel="external">文档说明</a> 让你快速入门 Git 和 GitHub。不需要任何编码，单纯通过页面上的鼠标操作，就可以完成：创建一个仓库，开始一个分支，发表评论，开启一个拉取请求。</p>
 <ol>
 <li>创建&amp;使用一个仓库</li>
 <li>开始&amp;管理一个新的分支 branch</li>
@@ -130,13 +136,19 @@
 <li>Master、Branch</li>
 <li>Pull Request：commit -&gt; merge</li>
 </ol>
-<h2 id="补充">补充</h2>
+<h3 id="两种_clone_方式">两种 clone 方式</h3>
+<p>一个仓库，一般有两种方式去拷贝or下载，就是 HTTPS 和 SSH。</p>
+<ol>
+<li>HTTPS（prefer to use it）<br>用 HTTPS 克隆，优点是方便。它是用 GitHub 的用户名和密码进行认证的。所以，每次提交的时候，都会提示你输入用户名和密码（当然也有相应的工具帮助缓存 GitHub 的账户信息，比如 credential helper ）</li>
+<li>SSH<br>它不需要输入用户名和密码，它是用 <a href="/2016/05/19/tool_github/">SSH key</a> 认证的。值得一提的是，SSH key 和机器相关，等你换了一台机器的时候，就得重新生成并添加 SSH key。</li>
+</ol>
+<p><img src="\images\github_clone.png" alt=""></p>
+<h2 id="心得及参考">心得及参考</h2>
 <p>心得就是：</p>
 <ol>
 <li>有问题，就 stackoverflow 和 google 吧（一段时间没搜疑难杂症就又忘记了…）本次，谨记之</li>
 <li>英文文档：不得不说，有时候还是英文文档读着更直观些，知道它到底在说什么（被翻译过来的…是会丢掉一些东西）</li>
 <li>GitHub 上的资料是真的挺全的。没有你想不到的，只有你没发现的…</li>
-<li>权限的问题…暂未全部搞明白。囧。暂且备忘 ToDo<br>下次换台电脑，重新来一遍流程，如果清晰了，再来更新</li>
 </ol>
 <p><a href="https://guides.github.com/activities/hello-world/" target="_blank" rel="external">https://guides.github.com/activities/hello-world/</a></p>
 <p>//这里面有脚本<br><a href="http://stackoverflow.com/questions/1595848/configuring-git-over-ssh-to-login-once" target="_blank" rel="external">http://stackoverflow.com/questions/1595848/configuring-git-over-ssh-to-login-once</a></p>
@@ -147,7 +159,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/GitHub/">GitHub</a><a href="/tags/todo/">todo</a>
+  <span></span> <a href="/tags/GitHub/">GitHub</a><a href="/tags/SSH-keys/">SSH keys</a>
   </div>
 
 
@@ -169,6 +181,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/05/28/tool_git/" title="Git">
+  <strong>上一篇:</strong><br/>
+  <span>
+  Git</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/02/04/webAscii/"  title="ASCII 码对照表">
@@ -190,7 +210,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH_keys"><span class="toc-number">1.</span> <span class="toc-text">SSH keys</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">1.2.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂谈"><span class="toc-number">1.3.</span> <span class="toc-text">杂谈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub"><span class="toc-number">2.</span> <span class="toc-text">GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH_keys"><span class="toc-number">1.</span> <span class="toc-text">SSH keys</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">1.2.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂谈"><span class="toc-number">1.3.</span> <span class="toc-text">杂谈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub"><span class="toc-number">2.</span> <span class="toc-text">GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#入门"><span class="toc-number">2.1.</span> <span class="toc-text">入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两种_clone_方式"><span class="toc-number">2.2.</span> <span class="toc-text">两种 clone 方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#心得及参考"><span class="toc-number">3.</span> <span class="toc-text">心得及参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -203,7 +223,7 @@
 		<ul>
 		
 			<li>
-				<a href="/categories/CSS/" title="CSS">CSS (10)</a></li>
+				<a href="/categories/CSS/" title="CSS">CSS (11)</a></li>
 		
 			<li>
 				<a href="/categories/FE/" title="FE">FE (3)</a></li>
@@ -227,7 +247,7 @@
 				<a href="/categories/node/" title="node">node (4)</a></li>
 		
 			<li>
-				<a href="/categories/tool/" title="tool">tool (7)</a></li>
+				<a href="/categories/tool/" title="tool">tool (9)</a></li>
 		
 			<li>
 				<a href="/categories/后端/" title="后端">后端 (3)</a></li>
@@ -248,7 +268,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">文章归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -256,7 +276,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 18.75px;">CSS</a><a href="/tags/Emmet/" style="font-size: 10.00px;">Emmet</a><a href="/tags/Git/" style="font-size: 10.00px;">Git</a><a href="/tags/GitHub/" style="font-size: 10.00px;">GitHub</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/Sublime/" style="font-size: 10.00px;">Sublime</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/chrome/" style="font-size: 10.00px;">chrome</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.50px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 16.25px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.50px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/svn/" style="font-size: 10.00px;">svn</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 12.50px;">web</a><a href="/tags/实战/" style="font-size: 16.25px;">实战</a><a href="/tags/对象/" style="font-size: 12.50px;">对象</a><a href="/tags/插件/" style="font-size: 13.75px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.25px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.25px;">模块化</a><a href="/tags/模板/" style="font-size: 12.50px;">模板</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/编码/" style="font-size: 12.50px;">编码</a><a href="/tags/翻译/" style="font-size: 13.75px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.50px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.50px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
+       <a href="/tags/CSS/" style="font-size: 18.75px;">CSS</a><a href="/tags/Emmet/" style="font-size: 10.00px;">Emmet</a><a href="/tags/Git/" style="font-size: 11.25px;">Git</a><a href="/tags/GitHub/" style="font-size: 11.25px;">GitHub</a><a href="/tags/HTML/" style="font-size: 17.50px;">HTML</a><a href="/tags/HTML5/" style="font-size: 10.00px;">HTML5</a><a href="/tags/SSH-keys/" style="font-size: 10.00px;">SSH keys</a><a href="/tags/Sublime/" style="font-size: 10.00px;">Sublime</a><a href="/tags/bash/" style="font-size: 10.00px;">bash</a><a href="/tags/canvas/" style="font-size: 10.00px;">canvas</a><a href="/tags/chrome/" style="font-size: 10.00px;">chrome</a><a href="/tags/debug/" style="font-size: 10.00px;">debug</a><a href="/tags/fe/" style="font-size: 12.50px;">fe</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/jQuery/" style="font-size: 16.25px;">jQuery</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/js高级程序设计/" style="font-size: 12.50px;">js高级程序设计</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/node/" style="font-size: 10.00px;">node</a><a href="/tags/shell/" style="font-size: 10.00px;">shell</a><a href="/tags/shortcut-key/" style="font-size: 10.00px;">shortcut key</a><a href="/tags/svn/" style="font-size: 10.00px;">svn</a><a href="/tags/todo/" style="font-size: 15.00px;">todo</a><a href="/tags/web/" style="font-size: 12.50px;">web</a><a href="/tags/实战/" style="font-size: 16.25px;">实战</a><a href="/tags/对象/" style="font-size: 12.50px;">对象</a><a href="/tags/插件/" style="font-size: 13.75px;">插件</a><a href="/tags/杂谈/" style="font-size: 11.25px;">杂谈</a><a href="/tags/模块化/" style="font-size: 16.25px;">模块化</a><a href="/tags/模板/" style="font-size: 12.50px;">模板</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/笔记/" style="font-size: 12.50px;">笔记</a><a href="/tags/编码/" style="font-size: 12.50px;">编码</a><a href="/tags/翻译/" style="font-size: 13.75px;">翻译</a><a href="/tags/读书笔记/" style="font-size: 12.50px;">读书笔记</a><a href="/tags/跨域/" style="font-size: 12.50px;">跨域</a><a href="/tags/转义/" style="font-size: 10.00px;">转义</a>
     </div>
   </div>
 

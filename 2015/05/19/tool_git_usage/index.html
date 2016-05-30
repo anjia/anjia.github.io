@@ -9,9 +9,9 @@
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="初始
-git init  //初始化一个目录
-eg. 以 ssh 方式（可读可写）clone 出来 https://github.com/anjia/anjia.github.io.gitgit clone ssh://git@github.com:anjia/anjia.github.io.git">
+    <meta name="description" content="命令
+初始
+1234git init  # 初始化一个目录	git clone ssh://git@github.com:anjia/anjia.github.io.git# 以 ssh 方式（可读可写）clone 出来 https://github.com/anjia/anjia.github.i">
     
     
     
@@ -79,7 +79,7 @@ eg. 以 ssh 方式（可读可写）clone 出来 https://github.com/anjia/anjia.
     </p>
   <p class="article-time">
     <time datetime="2015-05-19T06:46:44.000Z" itemprop="datePublished">2015-05-19</time>
-    更新日期:<time datetime="2016-05-29T12:44:13.000Z" itemprop="dateModified">2016-05-29</time>
+    更新日期:<time datetime="2016-05-30T07:55:22.000Z" itemprop="dateModified">2016-05-30</time>
     
   </p>
 </header>
@@ -88,29 +88,39 @@ eg. 以 ssh 方式（可读可写）clone 出来 https://github.com/anjia/anjia.
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始"><span class="toc-number">1.</span> <span class="toc-text">初始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-number">2.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他杂谈"><span class="toc-number">4.</span> <span class="toc-text">其他杂谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#命令"><span class="toc-number">1.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始"><span class="toc-number">1.1.</span> <span class="toc-text">初始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.2.</span> <span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#杂谈"><span class="toc-number">2.</span> <span class="toc-text">杂谈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">2.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="初始">初始</h2>
-<p>git init  //初始化一个目录</p>
-<p>eg. 以 ssh 方式（可读可写）clone 出来 <a href="https://github.com/anjia/anjia.github.io.git" target="_blank" rel="external">https://github.com/anjia/anjia.github.io.git</a><br>git clone ssh://git@github.com:anjia/anjia.github.io.git</p>
-<h2 id="命令">命令</h2>
-<p>$ git status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//查看当前的版本情况-很实用<br>$ git add .<br>$ git commit -am “Test chanage” &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//提交<br>$ git push origin master &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//再把commit的代码push到线上</p>
-<p>其他：<br>pwd &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//当前目录<br>mkdir aaa &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//这不就是linux命令么。这样，一个空的版本库就创建好了<br>clear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//清空当前屏幕</p>
-<h2 id="说明">说明</h2>
-<p>1、获取与创建项目<br>2、基本快照<br>3、分支与合并<br>4、分享与更新项目</p>
-<p>git init   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//将一个目录初始化Git仓库，可以看到一个 .git 子目录<br>git clone [url]   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//复制一个Git仓库【这是一种只读方式来获取代码，无法进行 git push】</p>
-<p>git add   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//添加文件到缓存【包括新建的|提交过后修改的】<br>git add .   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//在当前目录执行它，Git会递归执行所在目录中的所有文件都添加上去<br>git add *   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//子目录，递归添加新文件</p>
-<p>git status -s   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//查看文件在工作目录和缓存的状态<br>?? 代表本地的未被追踪的文件<br>A  文件已经被加上去了<br>AM 文件添加到缓存后又有改动，若此时提交快照-则是git add时的文件版本，而不是磁盘中的那个【Git并不认为“磁盘中的文件”和“快照的文件”必须是一致的，要想它们一样，则要git add】<br>D 删除了<br>M 修改了<br>AM 第一列A是缓存的，第二列M是工作目录的</p>
-<p>git commit                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//提交快照</p>
-<p>git diff                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//写入缓存（快照）的 vs. 已修改但未写入缓存的改动  【尚未缓存的改动】</p>
-<p>git reset                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//一不小心缓存的东西给去掉缓存了<br>git reset HEAD       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。</p>
-<p>git rm    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //将文件从缓存区移除  【会将文件从缓存区和你的硬盘中（工作目录）删除】<br>git rm —cached</p>
-<h2 id="其他杂谈">其他杂谈</h2>
-<p>GitHub，全球最大的，开源社交编程，代码托管网站</p>
-<p>高度集成的 Web 框架<br>单个工程师开发效率很高，但是团队协作很困难</p>
-<p>CVS/SVN 这种集中提交式的 SCM 都不能很好的支持 Rails 团队的工作模式<br>Git 这种良好支持分支管理的分布式的 SCM。</p>
-<p>但是在硅谷，Ruby 很火，被誉为云计算时代的Web编程语言。<br>Ruby 程序员因为做 Web 开发，经常用 JavaScript，很多 Ruby 社区核心人员本身也是 JS 社区的核心人员，JS 社区也就很快进驻 Github。<br>看看今天的 Github，Ruby，JS 和 iOS 的项目比例是非常高的，Java 比例则远不如 Sourceforge 和 Google Code，这有一定的社区渊源。</p>
+		<h1 id="命令">命令</h1>
+<h2 id="初始">初始</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init  <span class="comment"># 初始化一个目录</span></div><div class="line">	</div><div class="line">git clone ssh://git@github.com:anjia/anjia.github.io.git</div><div class="line"><span class="comment"># 以 ssh 方式（可读可写）clone 出来 https://github.com/anjia/anjia.github.io.git</span></div></pre></td></tr></table></figure>
+
+<h2 id="常用命令">常用命令</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git status                     <span class="comment"># 查看当前的版本情况-很实用</span></div><div class="line">$ git add .                      <span class="comment"># 递归增加</span></div><div class="line">$ git commit -am <span class="string">"Test chanage"</span>  <span class="comment"># 提交</span></div><div class="line">$ git push origin master         <span class="comment"># 再把commit的代码push到线上</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">pwd</span>       <span class="comment"># 当前目录</span></div><div class="line">mkdir aaa <span class="comment"># 创建目录</span></div><div class="line">clear     <span class="comment"># 清空当前屏幕</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">git init          <span class="comment"># 将一个目录初始化Git仓库，可以看到一个隐藏的 .git 子目录</span></div><div class="line">git clone [url]   <span class="comment"># 复制一个Git仓库【这是一种只读方式来获取代码，无法进行 git push】</span></div><div class="line">	</div><div class="line">git add     <span class="comment"># 添加文件到缓存【包括新建的|提交过后修改的】</span></div><div class="line">git add .   <span class="comment"># 在当前目录执行它，Git会递归执行所在目录中的所有文件都添加上去</span></div><div class="line">git add *   <span class="comment"># 子目录，递归添加新文件</span></div><div class="line">	</div><div class="line">git status <span class="operator">-s</span>  <span class="comment"># 查看文件在工作目录和缓存的状态</span></div><div class="line"><span class="comment">## ?? 代表本地的未被追踪的文件</span></div><div class="line"><span class="comment">## A  文件已经被加上去了</span></div><div class="line"><span class="comment">## AM 文件添加到缓存后又有改动，若此时提交快照-则是git add时的文件版本，而不是磁盘中的那个【Git并不认为“磁盘中的文件”和“快照的文件”必须是一致的，要想它们一样，则要git add】</span></div><div class="line"><span class="comment">## D 删除了</span></div><div class="line"><span class="comment">## M 修改了</span></div><div class="line"><span class="comment">## AM 第一列A是缓存的，第二列M是工作目录的</span></div><div class="line">	</div><div class="line">git commit 	 <span class="comment"># 提交快照</span></div><div class="line">git diff     <span class="comment"># 写入缓存（快照）的 vs. 已修改但未写入缓存的改动  【尚未缓存的改动】</span></div><div class="line">	</div><div class="line">git reset         <span class="comment"># 一不小心缓存的东西给去掉缓存了</span></div><div class="line">git reset HEAD    <span class="comment"># 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。</span></div><div class="line">	</div><div class="line">git rm            <span class="comment"># 将文件从缓存区移除  【会将文件从缓存区和你的硬盘中（工作目录）删除】</span></div><div class="line">git rm --cached</div></pre></td></tr></table></figure>
+
+<h1 id="杂谈">杂谈</h1>
+<p>关键字：</p>
+<ol>
+<li>获取与创建项目</li>
+<li>基本快照</li>
+<li>分支与合并</li>
+<li>分享与更新项目</li>
+</ol>
+<p>GitHub，全球最大的，开源社交编程，代码托管网站。高度集成的 Web 框架，方便团队协作</p>
+<p>CVS/SVN 这种集中提交式的 SCM 都不能很好的支持 Rails 团队的工作模式。Git 这种良好支持分支管理的分布式的 SCM。</p>
+<p>但是，在硅谷，Ruby 很火，被誉为云计算时代的 Web 编程语言。Ruby 程序员因为做 Web 开发，经常用 JavaScript，很多 Ruby 社区核心人员本身也是 JS 社区的核心人员，JS 社区也就很快进驻 Github。看看今天的 Github，Ruby，JS 和 iOS 的项目比例是非常高的，Java 比例则远不如 Sourceforge 和 Google Code，这有一定的社区渊源。</p>
+<blockquote>
+<p>已上呢，都是些破碎的信息。可以查看博主后来更新的两篇博客，相对完整，信息也更丰富更完整些</p>
+</blockquote>
+<p><a href="/2016/05/19/tool_github/">GitHub</a><br><a href="/2016/05/28/tool_git/">Git</a></p>
 <h2 id="参考">参考</h2>
 <p>简明教程：<a href="http://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="external">http://rogerdudler.github.io/git-guide/index.zh.html</a><br>如何向Github提交代码：<a href="http://my.oschina.net/linuxfelix/blog/201630" target="_blank" rel="external">http://my.oschina.net/linuxfelix/blog/201630</a></p>
 <p>for window </p>
@@ -173,7 +183,7 @@ eg. 以 ssh 方式（可读可写）clone 出来 https://github.com/anjia/anjia.
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始"><span class="toc-number">1.</span> <span class="toc-text">初始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-number">2.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他杂谈"><span class="toc-number">4.</span> <span class="toc-text">其他杂谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#命令"><span class="toc-number">1.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始"><span class="toc-number">1.1.</span> <span class="toc-text">初始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.2.</span> <span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#杂谈"><span class="toc-number">2.</span> <span class="toc-text">杂谈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">2.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

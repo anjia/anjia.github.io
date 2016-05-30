@@ -9,11 +9,9 @@
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="基本命令
-pwd      //查看当前所在目录
-cd ~/    //回到主目录cd ..
-ls -l     //只列出来能看的ls -la   //列出来所有的，包括配置信息
-vim _tpl.tpl  //编辑文件sudo chmod -R 777 anjiaBlogll video*   ">
+    <meta name="description" content="命令
+目录操作
+1234567891011121314pwd      # 查看当前所在目录	cd ~/    # 回到主目录cd ..	ls -l      # 只列出来能看的ls -la     # 列出来所有的，包括配置信息ll video*  # 以video开头的所有文件	rm * -rf">
     
     
     
@@ -81,7 +79,7 @@ vim _tpl.tpl  //编辑文件sudo chmod -R 777 anjiaBlogll video*   ">
     </p>
   <p class="article-time">
     <time datetime="2015-05-19T06:47:18.000Z" itemprop="datePublished">2015-05-19</time>
-    更新日期:<time datetime="2016-05-28T07:24:44.000Z" itemprop="dateModified">2016-05-28</time>
+    更新日期:<time datetime="2016-05-30T07:42:33.000Z" itemprop="dateModified">2016-05-30</time>
     
   </p>
 </header>
@@ -90,26 +88,37 @@ vim _tpl.tpl  //编辑文件sudo chmod -R 777 anjiaBlogll video*   ">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本命令"><span class="toc-number">1.</span> <span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">2.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#命令"><span class="toc-number">1.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录操作"><span class="toc-number">1.1.</span> <span class="toc-text">目录操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用svn命令"><span class="toc-number">1.2.</span> <span class="toc-text">常用svn命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除"><span class="toc-number">1.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本对比"><span class="toc-number">1.4.</span> <span class="toc-text">版本对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#svn_revert"><span class="toc-number">2.1.</span> <span class="toc-text">svn revert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#svn_update"><span class="toc-number">2.2.</span> <span class="toc-text">svn update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#svn_log"><span class="toc-number">2.3.</span> <span class="toc-text">svn log</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
-		<h2 id="基本命令">基本命令</h2>
-<p>pwd      //查看当前所在目录</p>
-<p>cd ~/    //回到主目录<br>cd ..</p>
-<p>ls -l     //只列出来能看的<br>ls -la   //列出来所有的，包括配置信息</p>
-<p>vim _tpl.tpl  //编辑文件<br>sudo chmod -R 777 anjiaBlog<br>ll video*   //以video开头的所有文件</p>
-<h2 id="常用命令">常用命令</h2>
-<p>svn checkout svn://xxx.xxx.xxx.xxx/app   //将文件checkout到本地目录,path为服务器上的目录,</p>
-<p>svn update          //默认项当前目录及子目录下的所有文件，都更新到最新版本<br>svn update test.tpl //与版本库同步</p>
-<p>svn add test.tpl //将当前目录下的文件test.tpl<br>svn add *.php    //添加当前目录下的所有php文件</p>
-<p>svn commit -m </p>
-<p>svn st  //查看文件或目录状态svn status path<br>? 不在svn控制中（服务器-无；本地-有）<br>M 内容被修改 （服务器-有；本地也有。但二者不一致）<br>C 发生冲突<br>A 预定加入到版本库中<br>K 被锁定</p>
-<p>//svn上的删除、移除<br>svn revert  //直接拉取svn的文件，覆盖本地的（即撤销本地自己的修改）<br>svn del   //删除文件<br>svn remove<br>svn rm<br>rm * -rf    //删除当前目录下的所有，不用提示</p>
-<p>svn st -v path  //递归，显示文件和子目录的状态 st-status<br>svn info test.tpl // 查看文件详细信息<br>svn log test.tpl  // 查看该文件的所有修改记录，及版本号变化</p>
-<p>//svn对比版本<br>svn log xxx/file.tpl<br>svn diff -r 35971:35969 xxx/file.tpl<br>svn di -r 200:205 test.tpl //对比200和201两版本间的差异  di-diff<br>svn merge -r 200:205 test.tpl  //将200和205两个版本间的差异合并到当前文件</p>
-<p>svn help  查看帮助</p>
-<h2 id="参考">参考</h2>
-<p>linux常用svn命令：<a href="http://add.corp.qihoo.net/pages/viewpage.action?pageId=11252825" target="_blank" rel="external">http://add.corp.qihoo.net/pages/viewpage.action?pageId=11252825</a></p>
+		<h1 id="命令">命令</h1>
+<h2 id="目录操作">目录操作</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">pwd</span>      <span class="comment"># 查看当前所在目录</span></div><div class="line">	</div><div class="line"><span class="built_in">cd</span> ~/    <span class="comment"># 回到主目录</span></div><div class="line"><span class="built_in">cd</span> ..</div><div class="line">	</div><div class="line">ls <span class="operator">-l</span>      <span class="comment"># 只列出来能看的</span></div><div class="line">ls -la     <span class="comment"># 列出来所有的，包括配置信息</span></div><div class="line">ll video*  <span class="comment"># 以video开头的所有文件</span></div><div class="line">	</div><div class="line">rm * -rf    <span class="comment"># 删除当前目录下的所有，不用提示</span></div><div class="line">	</div><div class="line">vim _tpl.tpl  <span class="comment"># 编辑文件 </span></div><div class="line">	</div><div class="line"><span class="built_in">sudo</span> chmod -R <span class="number">777</span> anjiaBlog  <span class="comment"># 重置读写权限</span></div></pre></td></tr></table></figure>
+
+<h2 id="常用svn命令">常用svn命令</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">svn checkout svn://xxx.xxx.xxx.xxx/app   <span class="comment"># 将文件checkout到本地目录,path为服务器上的目录,</span></div><div class="line">	</div><div class="line">svn update           <span class="comment"># 默认项当前目录及子目录下的所有文件，都更新到最新版本，从 svn server 上拉取</span></div><div class="line">svn update test.tpl  <span class="comment"># 与版本库同步</span></div><div class="line">	</div><div class="line">svn add test.tpl   <span class="comment"># 将当前目录下的文件test.tpl</span></div><div class="line">svn add *.php      <span class="comment"># 添加当前目录下的所有php文件</span></div><div class="line">	</div><div class="line">svn status  <span class="comment"># 查看文件或目录状态svn status path</span></div><div class="line"><span class="comment">## ? 不在svn控制中（服务器-无；本地-有）</span></div><div class="line"><span class="comment">## M 内容被修改 （服务器-有；本地也有。但二者不一致）</span></div><div class="line"><span class="comment">## C 发生冲突</span></div><div class="line"><span class="comment">## A 预定加入到版本库中</span></div><div class="line"><span class="comment">## K 被锁定</span></div><div class="line">	</div><div class="line">svn revert         <span class="comment"># 在本地.svn库里，回滚，即撤销本地自己的修改而已（代码依然是svn update之前的）</span></div><div class="line">svn commit -m <span class="string">''</span>   <span class="comment"># commit，本地提交到 svn server</span></div><div class="line">	</div><div class="line">svn <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></div></pre></td></tr></table></figure>
+
+<h2 id="删除">删除</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">svn del     <span class="comment"># 删除文件</span></div><div class="line">svn remove</div><div class="line">svn rm</div></pre></td></tr></table></figure>
+
+<h2 id="版本对比">版本对比</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">svn info test.tpl     <span class="comment"># 查看文件详细信息</span></div><div class="line">	</div><div class="line">svn log xxx/file.tpl  <span class="comment"># 查看该文件的所有修改记录，及版本号变化</span></div><div class="line">	</div><div class="line">svn diff -r <span class="number">35971</span>:<span class="number">35969</span> xxx/file.tpl  <span class="comment"># 对比35971和35969两版本间的差异</span></div><div class="line">svn merge -r <span class="number">35971</span>:<span class="number">35969</span> test.tpl     <span class="comment"># 将200和205两个版本间的差异合并到当前文件</span></div></pre></td></tr></table></figure>
+
+<h1 id="补充说明">补充说明</h1>
+<h2 id="svn_revert">svn revert</h2>
+<p><code>revert</code> undo some changes，对象是 Working copy （也就是开发机本地的.svn ）</p>
+<p>说明：<br>Working copy 就是自己开发机的代码，它的版本管理是依赖于开发机上的一个隐藏文件夹 .svn<br>.svn：Subversion depends on it to manage your working copy.</p>
+<h2 id="svn_update">svn update</h2>
+<p><code>update</code> the server sends changes to your working copy<br>Use <code>svn update</code> to bring your working copy into sync with the latest revision in the repository</p>
+<p>也就是 update 是从 svn 总部提取最新的代码到 Working Copy</p>
+<h2 id="svn_log">svn log</h2>
+<p>为什么 <code>svn log</code> 没有展示我刚刚提交的？<br>如果你提交了之后，并立即输入了没有带参数的 <code>svn log</code>，你可能会注意到你的最近提交没有显示在 log 列表里，这是需要结合 <code>svn commit</code> 的行为和 <code>svn log</code> 的默认行为来解释。首先，当你提交了一些修改，svn 只修改你提交的文件|文件夹的改动。所以，一般父目录依然是比较老的版本（去看看 “Updates and commits are separate” 这章节里面有相应的解释），<code>svn log</code> 默认提取它当前版本的目录的历史。因此，你不能看到最新的提交的修改。解决办法呢，是要么 <code>svn update</code> 你的 working copy，要么明确提供一个版本号码给 svn log，即 <code>svn log -r xxx</code></p>
+<p>说明：<br><code>svn log</code> 也是针对 Working copy 操作记录的。所以，在你 <code>svn update</code> 之前，看到的 log 可能是“旧”的-不是最新的提交代码。</p>
+<h1 id="参考">参考</h1>
+<p>linux 常用 svn 命令：<a href="http://add.corp.qihoo.net/pages/viewpage.action?pageId=11252825" target="_blank" rel="external">http://add.corp.qihoo.net/pages/viewpage.action?pageId=11252825</a></p>
+<p>在线图书-棒棒滴<br>Subversion 与版本控制：<a href="http://svnbook.red-bean.com/" target="_blank" rel="external">http://svnbook.red-bean.com/</a><br>SVN Book.pdf： <a href="http://svnbook.red-bean.com/en/1.5/svn-book.pdf" target="_blank" rel="external">http://svnbook.red-bean.com/en/1.5/svn-book.pdf</a></p>
+<p>revision 修正、修订本、修改、复习<br> version 版本</p>
+<p>fetch 抓取、提取</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -167,7 +176,7 @@ vim _tpl.tpl  //编辑文件sudo chmod -R 777 anjiaBlogll video*   ">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本命令"><span class="toc-number">1.</span> <span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">2.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#命令"><span class="toc-number">1.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录操作"><span class="toc-number">1.1.</span> <span class="toc-text">目录操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用svn命令"><span class="toc-number">1.2.</span> <span class="toc-text">常用svn命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除"><span class="toc-number">1.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本对比"><span class="toc-number">1.4.</span> <span class="toc-text">版本对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#svn_revert"><span class="toc-number">2.1.</span> <span class="toc-text">svn revert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#svn_update"><span class="toc-number">2.2.</span> <span class="toc-text">svn update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#svn_log"><span class="toc-number">2.3.</span> <span class="toc-text">svn log</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">

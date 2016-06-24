@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>URL 编码 | anjia</title>
+    <title>【译】Chrome DevTools 概况 | anjia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="anjia">
     
-    <meta name="description" content="为什么要编码？
-如果一样东西需要编码，那说明它不适合传输，原因有多种（有些字符有歧义、包含隐私数据、Size过大）。
-在 URL 中，之所以要编码，是因为有些字符会引起歧义。比如参数中的key=value键值对，当value里含有= &amp;amp; ? 等，就会造成 URL 服务器的解析错误。所以必须将">
+    <meta name="description" content="原文：https://developer.chrome.com/devtools
+DevTools 是 Developer Tools 的简称，它是一套内置在谷歌 Chrome 里的网页制作（web authoring）和调试的工具。该 DevTools 可以让 web 开发者深入到浏览器和Web应">
     
     
     
@@ -71,15 +70,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/15/jsURIEncode/" title="URL 编码" itemprop="url">URL 编码</a>
+      <a href="/2016/06/24/tool_chrome_devtools_overview/" title="【译】Chrome DevTools 概况" itemprop="url">【译】Chrome DevTools 概况</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://anjia.github.io" title="anjia">anjia</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-04-15T10:57:19.000Z" itemprop="datePublished">2015-04-15</time>
-    更新日期:<time datetime="2015-04-16T06:45:01.000Z" itemprop="dateModified">2015-04-16</time>
+    <time datetime="2016-06-24T13:53:17.000Z" itemprop="datePublished">2016-06-24</time>
+    更新日期:<time datetime="2016-06-24T14:38:43.000Z" itemprop="dateModified">2016-06-24</time>
     
   </p>
 </header>
@@ -88,72 +87,54 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要编码？"><span class="toc-number">1.</span> <span class="toc-text">为什么要编码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哪些字符需要编码？"><span class="toc-number">2.</span> <span class="toc-text">哪些字符需要编码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何编码？"><span class="toc-number">3.</span> <span class="toc-text">如何编码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS中的URL编码"><span class="toc-number">4.</span> <span class="toc-text">JS中的URL编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#encodeURI()"><span class="toc-number">4.1.</span> <span class="toc-text">encodeURI()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#encodeURIComponent()"><span class="toc-number">4.2.</span> <span class="toc-text">encodeURIComponent()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#它们的区别"><span class="toc-number">4.3.</span> <span class="toc-text">它们的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表单提交"><span class="toc-number">4.4.</span> <span class="toc-text">表单提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开_DevTools"><span class="toc-number">1.</span> <span class="toc-text">打开 DevTools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DevTools_窗口"><span class="toc-number">2.</span> <span class="toc-text">DevTools 窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#审查_DOM_和_样式"><span class="toc-number">3.</span> <span class="toc-text">审查 DOM 和 样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用_Console"><span class="toc-number">4.</span> <span class="toc-text">使用 Console</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调试_JavaScript"><span class="toc-number">5.</span> <span class="toc-text">调试 JavaScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升网络性能"><span class="toc-number">6.</span> <span class="toc-text">提升网络性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#审计"><span class="toc-number">7.</span> <span class="toc-text">审计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高渲染性能"><span class="toc-number">8.</span> <span class="toc-text">提高渲染性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript_和_CSS_性能"><span class="toc-number">9.</span> <span class="toc-text">JavaScript 和 CSS 性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查存储"><span class="toc-number">10.</span> <span class="toc-text">检查存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多阅读"><span class="toc-number">11.</span> <span class="toc-text">更多阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多资料"><span class="toc-number">12.</span> <span class="toc-text">更多资料</span></a></li></ol>
 		</div>
 		
-		<h2 id="为什么要编码？">为什么要编码？</h2>
-<p>如果一样东西需要编码，那说明它不适合传输，原因有多种（有些字符有歧义、包含隐私数据、Size过大）。</p>
-<p>在 URL 中，之所以要编码，是因为有些字符会引起歧义。比如参数中的key=value键值对，当value里含有= &amp; ? 等，就会造成 URL 服务器的解析错误。所以必须将引起歧义的符号进行转义，也就是对其进行编码。</p>
-<p>URL 的编码格式采用的是 ASCII 码，而不是 Unicode，也就是说 URL 中不能包含任何非 ASCII 字符，比如中文（如果客户端浏览器和服务器端浏览器支持的字符集不同，中文可能会造成问题，现在一般默认都使用 UTF-8）。</p>
-<p>URI的编码原则是使用安全的字符去（没有特殊用途和特殊意义的可打印字符）表示那些不安全的字符。URI 是统一资源标识，我们所说的 URL 只是 URI 的一种。</p>
-<h2 id="哪些字符需要编码？">哪些字符需要编码？</h2>
-<p>RFC3986文档规定：URL 中只允许包含英文字母（a-zA-Z）、数字（0-9）、4个特殊字符（-_.~）、所有保留字符。</p>
-<p>保留字：URL 可以划分成若干组件，协议、主机、路径等<br>一些字符用来分隔不同组件，比如 :/?#@<br>一些字符在每个组件中分隔的，比如 &amp;=</p>
-<p>不安全字符：还有些字符，当它们直接放在 URL 中时，可能会引起解析程序的歧义，原因很多。<br>1.空格 URL在传输过程 用户排版时 文本处理程序在处理URL的过程 都有可能引入无关紧要的空格；或者将有意义的空格给去掉<br>2.引号和&lt;&gt; 通常用于在普通文本中起到分隔URL的作用<br>3.# 通常用于标示书签或锚点<br>4.% 它本身被用作对不安全字符编码时的特殊字符，所以本身需要编码<br>5.{}[]|^’  某些网关或者传输代理会篡改这些字符</p>
-<p><a href="https://tools.ietf.org/html/rfc3986" target="_blank" rel="external">RFC3986文档对URL</a>的编码问题做出了详细的建议，指出哪些字符需要被编码才不会引起 URL 语义的转变，以及为什么对这些字符进行编码做出了解释。RFC3986指定了以下字符为保留字 :/?=&amp;#@+,;()$’*![]</p>
-<p>需要注意：<br>由于历史原因，目前存在一些不标准的编码实现，比如对于符号~ 虽然RFC3986文档规定，对于~不需要编码，但是一些老的网关或者传输代理会。比如[]也被编码了。</p>
-<p>对于 URL 中的合法字符，编码和不编码是等价的，但是对于上面提到的那些字符，如果不编码，那它们可能会造成 URL 语义的不同。因此，对于 URL 而言，只有普通英文字符和数字、特殊字符和保留字符，能出现在未经编码的 URL 中，其他字符都需要经过编码。</p>
-<h2 id="如何编码？">如何编码？</h2>
-<p>URL 编码通常被称为百分号编码（URL Encoding, also know as percent-encoding），因为它的编码方式很简单，使用 % 加上两位的字符-代表一个字节的16进制形式。</p>
-<p>URL 编码默认使用的字符集是 US-ASCII<br>比如 a 在US-ASCII中对应的字节是 0x61，那么URL编码之后得到的就是 %61<br>又如 @ 在ASCII字符集中对应的字节是 0x40，经过URL编码之后得到的是 %40</p>
-<p>对于非 ASCII 字符，需要使用 ASCII 字符集的超集进行编码得到相应的字节，然后再对每个字节执行百分号编码。<br>对于 Unicode 字符，RFC文档建议使用 UTF-8 对其进行编码得到相应的字节，然后再对每个字节执行百分号编码。</p>
-<h2 id="JS中的URL编码">JS中的URL编码</h2>
-<p>JS 提供了 3 对函数来对 URL 编码以得到合法的 URL，它们分别是：</p>
+		<p>原文：<a href="https://developer.chrome.com/devtools" target="_blank" rel="external">https://developer.chrome.com/devtools</a></p>
+<p>DevTools 是 Developer Tools 的简称，它是一套内置在谷歌 Chrome 里的网页制作（web authoring）和调试的工具。该 DevTools 可以让 web 开发者深入到浏览器和Web应用程序的内部。使用 DevTools 可以高效地追踪布局问题，可以设置 JavaScript 断点，也可以为代码优化提供参考。</p>
+<h2 id="打开_DevTools">打开 DevTools</h2>
+<p>三种方式可供选择：</p>
 <ol>
-<li>escape/unescape</li>
-<li>encodeURI/decodeURI</li>
-<li>encodeURIComponent/decodeURIComponent</li>
+<li>打开 Chrome 菜单，选择工具-&gt;开发者工具</li>
+<li>右键，选择“审查元素/Inspect Element” </li>
+<li>使用快捷键打开</li>
 </ol>
-<p>由于编码和解码是可逆的，所以这里只解释编码过程。<br>这里只说后两种编码，encodeURI 和 encodeURIComponent，它两都是用 UTF-8 对非 ASCII 字符进行编码，然后再进行百分号编码的。</p>
-<h3 id="encodeURI()">encodeURI()</h3>
-<p>目的：对 URI 进行完整编码<br>所以，它对在 URI 中具有特殊含义的 ASCII 标点符号，它是不会进行转义的，比如以下11个字符 ;/?:@&amp;=+$,#</p>
-<p>它不会对以下进行编码：<br>1.ASCII 字母<br>2.数字<br>3.ASCII 标点符号，以下9个 -_.!~*()’  【单引号不编，双引号会被编码】<br>4.在 URI 中有特殊含义的 ASCII 标点符号，以下11个 ;/?:@&amp;=+$,#</p>
-<p>其他字符会被编码成16进制的转义序列</p>
-<h3 id="encodeURIComponent()">encodeURIComponent()</h3>
-<p>目的：把字符串作为 URI 组件进行编码</p>
-<p>它不会对以下进行编码：<br>1.ASCII 字母<br>2.数字<br>3.ASCII 标点符号，以下9个 -_.!~*()’  【单引号不编，双引号会被编码 %22】</p>
-<p>ASCII 中的其他字符（用于分隔URI组件的标点符号）们都会被 16进制的转义序列，替换掉。</p>
-<h3 id="它们的区别">它们的区别</h3>
-<p>安全字符不同：<br>encodeURIComponent() 假定参数是 URI 的一部分（比如协议、主机名、路径、查询字符串），所以，会转义用于分隔 URI 各个部分的标点符号。<br>所以，如果待编码的字符中含有分隔符 ? &amp; # 等时，则应该用 encodeURIComponent()</p>
-<p>适用场合不同：<br>encodeURI 是对一个完整的 URI 进行编码<br>encodeURIComponent 是对 URI 的一个组件进行编码</p>
-<p><img src="\images\uri_encode_20150415.png" alt=""></p>
-<h3 id="表单提交">表单提交</h3>
-<p>当 HTML 表单被提交时，每个表单域都会被 URL 编码之后才发送。<br>由于历史原因，表单使用的 URL 编码实现并不符合最新的标准，例如空格使用的不是 %20，而是 + 号</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://www.w3school.com.cn/jsref/jsref_encodeuri.asp" target="_blank" rel="external">http://www.w3school.com.cn/jsref/jsref_encodeuri.asp</a><br><a href="http://www.w3school.com.cn/jsref/jsref_encodeURIComponent.asp" target="_blank" rel="external">http://www.w3school.com.cn/jsref/jsref_encodeURIComponent.asp</a></p>
-<p><a href="http://www.cnblogs.com/greatverve/archive/2011/12/12/URL-Encoding-Decoding.html" target="_blank" rel="external">http://www.cnblogs.com/greatverve/archive/2011/12/12/URL-Encoding-Decoding.html</a></p>
-<p>RFC3986文档对URL的描述<br><a href="https://tools.ietf.org/html/rfc3986" target="_blank" rel="external">https://tools.ietf.org/html/rfc3986</a></p>
-<p>16进制的转义序列：<br>: %3A<br>/ %2F<br>? %3F<br>= %3D<br>&amp; %26<br>空格 %20</p>
+<ul>
+<li>Window <code>Ctrl</code>+<code>Shift</code>+<code>I</code>，或者直接按 <code>F12</code></li>
+<li>Mac <code>Cmd</code>+<code>Opt</code>+<code>I</code><br>其中 <code>I</code>换成<code>J</code>可直接定位在 Console 页签、 <code>I</code>换成<code>C</code>可直接定位在 Element 页签</li>
+</ul>
+<h2 id="DevTools_窗口">DevTools 窗口</h2>
+<p>窗口的顶部有一个面向不同任务的工具栏，每一个工具栏和它相应的面板可以让你得到有关网页或 App 的某个特定类型的信息，包括 Dom 元素、资源（resources）、源码（sources）等。</p>
+<h2 id="审查_DOM_和_样式">审查 DOM 和 样式</h2>
+<h2 id="使用_Console">使用 Console</h2>
+<h2 id="调试_JavaScript">调试 JavaScript</h2>
+<h2 id="提升网络性能">提升网络性能</h2>
+<h2 id="审计">审计</h2>
+<h2 id="提高渲染性能">提高渲染性能</h2>
+<h2 id="JavaScript_和_CSS_性能">JavaScript 和 CSS 性能</h2>
+<h2 id="检查存储">检查存储</h2>
+<h2 id="更多阅读">更多阅读</h2>
+<h2 id="更多资料">更多资料</h2>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/编码/">编码</a>
+  <span></span> <a href="/tags/Chrome/">Chrome</a><a href="/tags/翻译/">翻译</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  <a class="article-category-link" href="/categories/tool/">tool</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://anjia.github.io/2015/04/15/jsURIEncode/" data-title="URL 编码 | anjia" data-tsina="undefined" class="share clearfix">
+  <div data-url="http://anjia.github.io/2016/06/24/tool_chrome_devtools_overview/" data-title="【译】Chrome DevTools 概况 | anjia" data-tsina="undefined" class="share clearfix">
   </div>
 
 </div>
@@ -162,19 +143,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/17/js_module_3_requireJS/" title="JS 的模块化编程（六）-  requireJS">
-  <strong>上一篇:</strong><br/>
-  <span>
-  JS 的模块化编程（六）-  requireJS</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/03/30/tool_sublimeText_shortcutKey/"  title="Sublime Text 快捷键">
+<a href="/2016/06/24/tool_chromeDevelper/"  title="【译】Chrome 开发者">
  <strong>下一篇:</strong><br/> 
- <span>Sublime Text 快捷键
+ <span>【译】Chrome 开发者
 </span>
 </a>
 </div>
@@ -191,7 +164,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要编码？"><span class="toc-number">1.</span> <span class="toc-text">为什么要编码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哪些字符需要编码？"><span class="toc-number">2.</span> <span class="toc-text">哪些字符需要编码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何编码？"><span class="toc-number">3.</span> <span class="toc-text">如何编码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS中的URL编码"><span class="toc-number">4.</span> <span class="toc-text">JS中的URL编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#encodeURI()"><span class="toc-number">4.1.</span> <span class="toc-text">encodeURI()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#encodeURIComponent()"><span class="toc-number">4.2.</span> <span class="toc-text">encodeURIComponent()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#它们的区别"><span class="toc-number">4.3.</span> <span class="toc-text">它们的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表单提交"><span class="toc-number">4.4.</span> <span class="toc-text">表单提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开_DevTools"><span class="toc-number">1.</span> <span class="toc-text">打开 DevTools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DevTools_窗口"><span class="toc-number">2.</span> <span class="toc-text">DevTools 窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#审查_DOM_和_样式"><span class="toc-number">3.</span> <span class="toc-text">审查 DOM 和 样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用_Console"><span class="toc-number">4.</span> <span class="toc-text">使用 Console</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调试_JavaScript"><span class="toc-number">5.</span> <span class="toc-text">调试 JavaScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升网络性能"><span class="toc-number">6.</span> <span class="toc-text">提升网络性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#审计"><span class="toc-number">7.</span> <span class="toc-text">审计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高渲染性能"><span class="toc-number">8.</span> <span class="toc-text">提高渲染性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript_和_CSS_性能"><span class="toc-number">9.</span> <span class="toc-text">JavaScript 和 CSS 性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查存储"><span class="toc-number">10.</span> <span class="toc-text">检查存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多阅读"><span class="toc-number">11.</span> <span class="toc-text">更多阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多资料"><span class="toc-number">12.</span> <span class="toc-text">更多资料</span></a></li></ol>
   </div>
 
 <div id="asidepart">
